@@ -26,3 +26,22 @@ def home(request):
 	}
 
 	return render(request, 'recipes/home.html', context)
+
+
+
+def recipe(request):
+
+	context = {
+		'title': 'Recipe'
+	}
+
+	return render(request, 'recipes/recipe.html', context)
+
+
+def new_recipe(request):
+
+	context = {
+		'title': 'New recipe'
+	}
+
+	return render(request, 'recipes/new_Recipe.html', context)

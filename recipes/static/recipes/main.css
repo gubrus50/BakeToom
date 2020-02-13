@@ -1,3 +1,24 @@
 ::-webkit-scrollbar {width: 5px; height: 15px }
 ::-webkit-scrollbar-track-piece  {background-color: #353535}
 ::-webkit-scrollbar-thumb:vertical {height: 30px; background-color: Darkgray}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#loadBtn {
+	opacity: 0.9;
+	border-color: #d8d8d8;
+	background-color: rgba(0,0,0,0.7)
+}
+
+#loadBtn:hover {
+	opacity: 1;
+	background-color: rgba(0,0,0,1)
+}
+
+#loadBtn:active {
+	background-color: green;
+	border-color: lime;
+	color: #4eed75;
+}

@@ -1,0 +1,106 @@
+{% extends "recipes/base.html" %}
+{% block content %}
+
+  <div class="d-flex justify-content-center mt-4 text-center text-dark bg-light">
+	<h3>STORE AND MANAGE YOUR<br/>FAVOURITE RECIPES</h3>
+  </div>
+
+  <form>
+  <!-- Background Image -->
+  <div name="Recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2015%2F06%2F28%2F00%2F17%2Fpoland-823978_960_720.jpg&f=1&nofb=1');background-repeat: no-repeat, repeat;background-position: center; background-size: cover;">
+
+
+
+  	<!-- Recipe -->
+  	<div class="border m-1 bg-light p-2" style="overflow: auto; border-radius: 5px">
+	  <h2>Recipe</h2>
+	  <hr/>
+  	  <!-- Title Input -->
+	  <div class="form-group">
+	    <label>Title</label>
+	    <input type="text" class="form-control">
+	  </div>
+	  <!-- Description Input -->
+	  <div class="form-group">
+	    <label>Short Description</label>
+	    <textarea class="form-control" rows="3"></textarea>
+	  </div>
+	  <!-- Image Input -->
+	  <div class="form-group">
+	  	<label>Image</label>
+	    <div class="input-group">
+		  <div class="input-group-prepend">
+		    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+		  </div>
+		  <div class="custom-file">
+		    <input type="file" class="custom-file-input" id="inputGroupFile01"
+		      aria-describedby="inputGroupFileAddon01">
+		    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+		  </div>
+		</div>
+	  </div>
+	  <!-- End of Image Input -->
+	</div>
+	<!-- End of Recipe -->
+
+
+
+	<!-- Ingredients -->
+	<div id="ingredientsForm" class="border m-1 bg-light p-2 pb-4" style="overflow: auto; border-radius: 5px">
+	  <h2>Ingredients</h2>
+	  <hr/>
+  	  <!-- New Category -->
+	  <button type="button" class="btn btn-outline-primary" onclick="createCategoryInIngredientsForm()">Create category</button>
+	  <br/><br/>
+
+  	  <!-- Category -->
+  	  <div class="p-3 mb-2 rounded" style="background-color: #e8e8e8">
+  	  	  <!-- Category Title -->
+		  <div class="form-group">
+		    <label>Category - Title</label>
+		    <input type="text" class="form-control">
+		  </div>
+		  <!-- Category Ingredients -->
+		  <div class="form-group">
+		    <label>Category - Ingredients</label>
+		    <textarea class="form-control" rows="3"></textarea>
+		  </div>
+		  <button type="button" class="btn btn-outline-danger" onclick="$(this).closest('div').remove();">Remove</button>
+	  </div>
+	  <!-- End of Category -->
+	</div>
+	<!-- End of Ingredients -->
+
+
+
+	<!-- Method -->
+	<div class="border m-1 bg-light p-2" style="overflow: auto; border-radius: 5px">
+	  <h2>Method</h2>
+	  <hr/>
+  	  <!-- Instructions -->
+	  <div class="form-group">
+	    <label>Instruction / Guide</label>
+	    <textarea class="form-control" rows="3"></textarea>
+	  </div>
+	</div>
+	<!-- End of Method -->
+
+
+  </div>
+  <!-- End of Background Image -->
+
+  <!-- Submittion -->
+  <center>
+  	<section class="ml-5 mr-5">
+  		<h2>Warning!</h2>
+  		<p>Uppon submiting your recipe, you are fully aware of the <a href="#">copyright law</a>. If any of the following data you have submited violates our <a href="#">terms and service</a> then the recipe will be taken off from the public and you may face the consequences. <a href="#">Click me</a> if you would like to know how to protect yourself against unfair accusations.</p>
+  	</section>
+  	<button type="submit" class="btn btn-success btn-lg btn-block">Generate My Recipe</button>
+  </center>
+  <!-- End of Submittion -->
+
+  </form>
+
+  <br/><br/><br/>
+
+{% endblock content %}
