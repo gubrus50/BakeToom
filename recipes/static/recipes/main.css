@@ -1,0 +1,3 @@
+::-webkit-scrollbar {width: 5px; height: 15px }
+::-webkit-scrollbar-track-piece  {background-color: #353535}
+::-webkit-scrollbar-thumb:vertical {height: 30px; background-color: Darkgray}

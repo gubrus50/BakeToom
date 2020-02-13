@@ -1,0 +1,38 @@
+{% extends "recipes/base.html" %}
+{% block content %}
+
+	<div class="d-flex justify-content-center mt-3 text-center text-dark bg-light">
+	  <h3>STORE AND MANAGE YOUR FAVOURITE RECIPES</h3>
+	</div>
+
+
+
+	<!-- Search form -->
+	<form class="form-inline my-4 d-flex justify-content-center">
+	  <input class="form-control" type="search" placeholder="Search" aria-label="Search" style="border-radius:0; width:70%;">
+	  <button class="btn btn-outline-secondary" type="submit" style="border-radius:0">Search</button>
+	</form>
+
+	<!-- Recipes -->
+	<div name="Recipes" class="mt-4 mb-5 pt-4" style="background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2015%2F06%2F28%2F00%2F17%2Fpoland-823978_960_720.jpg&f=1&nofb=1');background-repeat: no-repeat, repeat;background-position: center; background-size: cover;">
+
+		{% if recipes %}
+		  {% for recipe in recipes %}
+			<div class="border mt-1 mb-1 btn-light p-2" style="overflow: auto; border-radius: 5px">
+		      <article>
+			    <img class="float-right" width="150px" height="100px" style="border-radius: 5px 5px 5px 75px" src="{{ recipe.image }}">
+			    <h3>{{ recipe.title }}</h3>
+			    <p>
+			      {{ recipe.description }}
+			    </p>
+		      </article>
+	  	    </div>
+		  {% endfor %}
+		{% else %}
+		  <div class="d-flex justify-content-center text-light p-5 text-center" style="background: rgba(248, 249, 250, 0.3);">
+		    <h2>Sorry but no recipes are to be found</h2>
+		  </div>
+		{% endif %}
+		<br/>
+	</div>
+{% endblock content %}
