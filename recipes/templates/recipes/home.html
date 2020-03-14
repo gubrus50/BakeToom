@@ -1,21 +1,15 @@
 {% extends "recipes/base.html" %}
 {% block content %}
 
-	<div class="d-flex justify-content-center mt-4 text-center text-dark bg-light">
-	  <h3>STORE AND MANAGE YOUR<br/>FAVOURITE RECIPES</h3>
-	</div>
-
-
-
 	<!-- Search form -->
 	<form class="form-inline my-4 d-flex justify-content-center">
-	  <input class="form-control" type="search" placeholder="What are you looking for today?" aria-label="Search" style="border-radius:0; width:70%;">
-	  <button class="btn btn-outline-secondary" type="submit" style="border-radius:0">Search</button>
+	  <input class="form-control" type="search" placeholder="Czego dzisiaj pragniesz?" aria-label="Search" style="border-radius:0; width:70%;">
+	  <button class="btn btn-outline-secondary" type="submit" style="border-radius:0">Wyszukaj</button>
 	</form>
 
 	<!-- Recipes -->
-	<div name="Recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2015%2F06%2F28%2F00%2F17%2Fpoland-823978_960_720.jpg&f=1&nofb=1');background-repeat: no-repeat, repeat;background-position: center; background-size: cover;">
-
+	<div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2015%2F06%2F28%2F00%2F17%2Fpoland-823978_960_720.jpg&f=1&nofb=1');background-repeat: no-repeat, repeat;background-position: center; background-size: cover;">
+		  <center>
 		{% if recipes %}
 		  {% for recipe in recipes %}
 			<div class="border m-1 btn-light p-2" style="overflow: auto; border-radius: 5px" onclick="$(this).fadeOut(500);">
@@ -29,8 +23,7 @@
 	  	    </div>
 		  {% endfor %}
 		  <!-- Load Button -->
-		  <center>
-			<button id="loadBtn" class="rounded-circle pt-3 pl-3 pr-3 mt-3 btn btn-outline-secondary">
+			<button id="loadBtn" class="rounded-circle pt-3 pl-3 pr-3 mt-3 btn btn-outline-secondary" style="clear:both">
 			  <svg style="fill: currentcolor;" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 			 width="50px" height="50px" viewBox="0 0 284.929 284.929" style="enable-background:new 0 0 284.929 284.929;"
 			 xml:space="preserve">

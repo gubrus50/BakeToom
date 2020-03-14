@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="pl">
 <head>
 
 	<!-- Required meta tags -->
@@ -12,9 +12,9 @@
     <link rel="stylesheet" type="text/css" href="{% static 'recipes/main.css' %}">
 
 	{% if title %}
-		<title>Django Recipes - {{ title }}</title>
+		<title>Django Przepisy - {{ title }}</title>
 	{% else %}
-		<title>Django Recipes</title>
+		<title>Django Przepisy</title>
 	{% endif %}
 
 </head>
@@ -24,7 +24,7 @@
 	  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
 	  	<!-- Settings Logo / Menu toggle button -->
-		<a class="navbar-brand" href="#">MyBake</a>
+		<a class="navbar-brand" href="#">Moja Kuchnia</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		  <span class="navbar-toggler-icon"></span>
 		</button>
@@ -33,24 +33,24 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		  <ul class="navbar-nav mr-auto">
 		    <li class="nav-item">
-		      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+		      <a class="nav-link" href="#">Główna strona <span class="sr-only">(current)</span></a>
 		    </li>
 		    <li class="nav-item">
-		      <a class="nav-link" href="#">Login <span class="sr-only">(current)</span></a>
+		      <a class="nav-link" href="#">Zaloguj się <span class="sr-only">(current)</span></a>
 		    </li>
 		    <li class="nav-item dropdown">
 		      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		          Settings
+		          Ustawienia
 		      </a>
 		      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-		      	<a class="dropdown-item disabled" href="#">Manage account</a>
+		      	<a class="dropdown-item disabled" href="#">Zarządzaj kontem</a>
 		        <div class="dropdown-divider"></div>
-		        <a class="dropdown-item disabled" href="#">New recipe</a>
-		        <a class="dropdown-item disabled" href="#">Edit recipe</a>
-		        <a class="dropdown-item disabled" href="#">Remove recipe</a>
+		        <a class="dropdown-item disabled" href="#">Utwórz przepis</a>
+		        <a class="dropdown-item disabled" href="#">Edytuj przepis</a>
+		        <a class="dropdown-item disabled" href="#">Usuń przepis</a>
 		        <div class="dropdown-divider"></div>
-		        <a class="dropdown-item" href="#">Download</a>
-		        <a class="dropdown-item" href="#">Print</a>
+		        <a class="dropdown-item" href="#">Pobierz</a>
+		        <a class="dropdown-item" href="#">Wydrukuj</a>
 		      </div>
 		    </li>
 		  </ul>
@@ -60,6 +60,10 @@
 
 	<br/><br/>
 
+	<div class="d-flex justify-content-center mt-4 text-center text-dark bg-light">
+	  <h3>PRZECHOWYWAJ I ZARZĄDZAJ<br/>SWE ULUBIONE PRZEPISY</h3>
+    </div>
+
 	{% block content %}{% endblock %}
 
 	<!-- Footer -->
@@ -68,7 +72,7 @@
 	  <div class="container">
 	    <div class="mb-4 text-light text-center">
 	      <p>
-	      	This is just a random paragraph about this page. Nothing to be faound here.
+	      	To tylko tymczasowa zakładka ktura dodaje estetyczność strony.
 	      </p>
 	    </div>
 	  </div>

@@ -22,3 +22,48 @@ html {
 	border-color: lime;
 	color: #4eed75;
 }
+
+
+.recipe_ingredients ::-webkit-scrollbar {width: 0px; height: 0px }
+.recipe_ingredients ::-webkit-scrollbar-track-piece  {background-color: #f8f9fa}
+.recipe_ingredients ::-webkit-scrollbar-thumb:vertical {height: 1px; background-color: gray}
+
+.recipe_ingredients section {
+	float: left;
+  	width: 18%;
+  	height: 250px;
+  	border: 1px solid lightGray;
+  	border-radius: 10px;
+  	padding: 10px;
+  	margin: 10px;
+  	overflow: scroll
+}
+
+.recipe_ingredients section ul {
+	padding-inline-start: 20px;
+	list-style-type: "- "
+}
+
+#recipes div {
+  	width: 95%;
+  	text-align: left;
+}
+
+#new_recipe_submit_form {
+	width: 500px;
+}
+
+@media only screen and (max-width: 600px) {
+	.recipe_ingredients section {
+	  	width: 90%;
+	  	height: 250px;
+	  	border: 1px solid lightGray;
+	  	border-radius: 10px;
+	  	padding: 10px;
+	  	margin: 10px;
+	  	overflow: scroll
+	}
+
+	#recipes div { width: auto }
+	#new_recipe_submit_form { width: 80% }
+}

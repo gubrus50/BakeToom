@@ -1,14 +1,12 @@
 {% extends "recipes/base.html" %}
 {% block content %}
 
-  <div class="d-flex justify-content-center mt-4 text-center text-dark bg-light">
-	<h3>STORE AND MANAGE YOUR<br/>FAVOURITE RECIPES</h3>
-  </div>
+  <div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2015%2F06%2F28%2F00%2F17%2Fpoland-823978_960_720.jpg&f=1&nofb=1');background-repeat: no-repeat, repeat;background-position: center; background-size: cover;">
 
-  <div name="Recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2015%2F06%2F28%2F00%2F17%2Fpoland-823978_960_720.jpg&f=1&nofb=1');background-repeat: no-repeat, repeat;background-position: center; background-size: cover;">
+  	<center>
 
   	<!-- Recipe -->
-  	<div class="border m-1 btn-light p-2" style="overflow: auto; border-radius: 5px">
+  	<div class="border m-1 btn-light p-2" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
 	  <article>
 		<img class="float-right" width="150px" height="100px" style="border-radius: 5px 5px 5px 75px" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.taste.com.au%2FvJXAqn-9%2Fw720-h480-cfill-q80%2Ftaste%2F2016%2F11%2Flayered-berry-crumble-41922-1.jpeg&f=1&nofb=1">
 		<h3>Fruit Crumble Recipe</h3>
@@ -20,27 +18,118 @@
 	<!-- End of Recipe -->
 
 	<!-- Ingredients -->
-	<div class="border m-1 btn-light p-2" style="overflow: auto; border-radius: 5px">
-	  <article>
+	<div class="border m-1 btn-light p-2" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
+	  <article class="recipe_ingredients">
 		<h3>Ingredients</h3>
 		<hr/>
-		<h5>Crumble</h5>
-		<ul>
-			<li>50g flour</li>
-			<li>25g butter</li>
-			<li>25g sugar</li>
-		</ul>
-		<h5>Filling</h5>
-		<ul>
-			<li>1 apple, 1 piece of rhubarb</li>
-			<li>25g sugar</li>
-		</ul>
+
+		  <section>
+		    <h5>Crumble</h5>
+		    <ul>
+		      <li>50g flour</li>
+		      <li>25g butter</li>
+		      <li>25g sugar</li>
+		      <li>25g butter</li>
+		      <li>25g sugar</li>
+		      <li>25g butter</li>
+		      <li>25g sugar</li>
+		      <li>25g butter</li>
+		      <li>25g sugar</li>
+		      <li>25g butter</li>
+		      <li>25g sugar</li>
+		    </ul>
+		  </section>
+		  
+		  <section>
+		    <h5>Filling</h5>
+		    <ul>
+		      <li>1 apple, 1 piece of rhubarb</li>
+		      <li>25g sugar</li>
+		      <li>25g butter</li>
+		      <li>25g sugar</li>
+		      <li>25g butter</li>
+		      <li>25g sugar</li>
+		    </ul>
+		  </section>
+		  
+		  <section>
+		    <h5>Filling</h5>
+		    <ul>
+		      <li>1 apple, 1 piece of rhubarb</li>
+		      <li>25g sugar</li>
+		    </ul>
+		  </section>
+		  
+		  <section>
+		    <h5>Filling</h5>
+		    <ul>
+		      <li>1 apple, 1 piece of rhubarb</li>
+		      <li>25g sugar</li>
+		    </ul>
+		  </section>
+		  
+		  <section>
+		    <h5>Filling</h5>
+		    <ul>
+		      <li>1 apple, 1 piece of rhubarb</li>
+		      <li>25g sugar</li>
+		    </ul>
+		  </section>
+		  
+		  <section>
+		    <h5>Filling</h5>
+		    <ul>
+		      <li>1 apple, 1 piece of rhubarb</li>
+		      <li>25g sugar</li>
+		      <li>25g butter</li>
+		      <li>25g sugar</li>
+		      <li>25g butter</li>
+		      <li>25g sugar</li>
+		    </ul>
+		  </section>
+		  
+		  <section>
+		    <h5>Filling</h5>
+		    <ul>
+		      <li>1 apple, 1 piece of rhubarb</li>
+		      <li>25g sugar</li>
+		    </ul>
+		  </section>
+		  
+		  <section>
+		    <h5>Filling</h5>
+		    <ul>
+		      <li>1 apple, 1 piece of rhubarb</li>
+		      <li>25g sugar</li>
+		    </ul>
+		  </section>
+		  <section>
+		    <h5>Filling</h5>
+		    <ul>
+		      <li>1 apple, 1 piece of rhubarb</li>
+		      <li>25g sugar</li>
+		    </ul>
+		  </section>
+		  
+		  <section>
+		    <h5>Filling</h5>
+		    <ul>
+		      <li>1 apple, 1 piece of rhubarb</li>
+		      <li>25g sugar</li>
+		      <li>25g butter</li>
+		      <li>25g sugar</li>
+		      <li>25g butter</li>
+		      <li>25g sugar</li>
+		    </ul>
+		  </section>
+
+
 	  </article>
 	</div>
 	<!-- End of Ingredients -->
 
 	<!-- Method -->
-	<div class="border m-1 btn-light p-2" style="overflow: auto; border-radius: 5px">
+	<div class="border m-1 btn-light p-2" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
 	  <article>
 		<h3>Method</h3>
 		<hr/>
@@ -56,6 +145,12 @@
 	  </article>
 	</div>
 	<!-- End of Method -->
+
+	{% for recipe in recipes %}
+	  <h1>{{ recipe.title }}</h1>
+	{% endfor %}
+
+    </center>
 
   </div>
   <br/>
