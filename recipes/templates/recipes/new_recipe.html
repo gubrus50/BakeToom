@@ -22,20 +22,14 @@
 	    <textarea class="form-control" rows="3"></textarea>
 	  </div>
 	  <!-- Image Input -->
-	  <div class="form-group">
-	  	<label>Wprowadź Obraz</label>
-	    <div class="input-group">
-		  <div class="input-group-prepend">
-		    <span class="input-group-text" id="inputGroupFileAddon01">Prześlij</span>
-		  </div>
-		  <div class="custom-file">
-		    <input type="file" class="custom-file-input" id="inputGroupFile01"
-		      aria-describedby="inputGroupFileAddon01">
-		    <label class="custom-file-label" for="inputGroupFile01">Wybież plik</label>
-		  </div>
-		</div>
-	  </div>
-	  <!-- End of Image Input -->
+      <div class="form-group mt-3">
+      	<label>Wprowadź Obraz</label><br/>
+ 		<label class="btn btn-outline-secondary file-upload" style="border-radius: 5px 0px 0px 5px">
+ 			<input type="file" name="file" accept="image/png, image/jpeg" onchange="document.getElementById('file-upload-data').value=this.value">
+ 		    Otwórz plik
+ 		</label>
+ 		<input id="file-upload-data" type="text" class="input-group-text" placeholder="Nie wybrano pliku" readonly />
+      </div>
 	</div>
 	<!-- End of Recipe -->
 
@@ -46,22 +40,23 @@
 	  <h2>Składniki</h2>
 	  <hr/>
   	  <!-- New Category -->
-	  <button type="button" class="btn btn-outline-primary" onclick="createCategoryInIngredientsForm()">Utwórz kategorie</button>
+	  <button id="create-category-btn" type="button" class="btn btn-outline-primary" onclick="createCategoryInIngredientsForm(); updateCategoryButtonInIngredientsForm()">Utwórz kategorie</button>
 	  <br/><br/>
 
   	  <!-- Category -->
-  	  <div class="p-3 mb-2 rounded" style="background-color: #e8e8e8">
+  	  <div class="p-3 mb-2 rounded category">
   	  	  <!-- Category Title -->
 		  <div class="form-group">
 		    <label>Tytuł kategorii</label>
 		    <input type="text" class="form-control">
 		  </div>
+		  <br/><br/>
 		  <!-- Category Ingredients -->
 		  <div class="form-group">
 		    <label>Wprowadź listę składników do następującej kategorii</label>
-		    <textarea class="form-control" rows="3"></textarea>
+		    <textarea class="form-control empty-scroll" rows="3"></textarea>
 		  </div>
-		  <button type="button" class="btn btn-outline-danger" onclick="$(this).closest('div').remove();">Usuń następującą kategorie</button>
+		  <button type="button" class="btn btn-outline-danger" onclick="category_count--; updateCategoryButtonInIngredientsForm(); $(this).closest('div').remove();">Usuń kategorie</button>
 	  </div>
 	  <!-- End of Category -->
 	</div>
@@ -76,7 +71,7 @@
   	  <!-- Instructions -->
 	  <div class="form-group">
 	    <label>Wprowadź instrukcję sukcesywnego wykonania produktu</label>
-	    <textarea class="form-control" rows="3"></textarea>
+	    <textarea class="form-control empty-scroll" rows="3"></textarea>
 	  </div>
 	</div>
 	<!-- End of Method -->
@@ -96,7 +91,7 @@
 	  <p>Po przesłaniu przepisu jesteś w pełni świadomy <a href="#">prawa autorskiego</a>. Jeśli któreś z poniższych danych, które przesłałeś, narusza nasze <a href="#">warunki i usługi</a>, przepis zostanie usunięty z wiadomości publicznej i możesz ponieść konsekwencje. <a href="#">Kliknij mnie</a>, jeśli chcesz wiedzieć, jak się chronić przed nieuczciwymi oskarżeniami.</p>
     </section>
     <br/>
-    <button id="new_recipe_submit_form" type="submit" class="btn btn-success btn-lg btn-block">Stwórz i upublikuj mój przepis</button>
+    <button id="new-recipe-submit-form" type="submit" class="btn btn-success btn-lg btn-block">Stwórz i upublikuj mój przepis</button>
   </center>
   <!-- End of Submittion -->
 

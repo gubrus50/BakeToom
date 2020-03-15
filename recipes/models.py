@@ -12,5 +12,14 @@ class Recipe(models.Model):
 	description = models.TextField()
 	#method = models.TextField()
 
+	#recipe title
+	#recipe image
+	#recipe description
+
+	#categories title list (max-10)
+	#categories ingredients list (max-10)
+	
+	#method
+
 	def __str__(self):
 		return self.title

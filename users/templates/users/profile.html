@@ -1,0 +1,17 @@
+{% extends "recipes/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<br/>
+<center>
+  <!-- Container -->
+  <div class="border m-1 bg-light p-2 container" style="overflow: auto; border-radius: 5px">
+
+	<h2>{{ user.username }}</h2>
+	<a href="{% url 'logout' %}">Wyloguj się <span class="sr-only">(current)</span></a>
+
+  </div>
+  <!-- End of container -->
+
+</center>
+<br/>
+{% endblock content %}

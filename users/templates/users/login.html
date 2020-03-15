@@ -1,0 +1,40 @@
+{% extends "recipes/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<br/>
+<center>
+  <!-- Container -->
+  <div class="border m-1 bg-light p-2 container" style="overflow: auto; border-radius: 5px">
+
+	<div class="content-section">
+		<!-- Register form -->
+		<form method="POST">
+			{% csrf_token %}
+			<fieldset class="form-group">
+				<legend class="border-bottom mb-4">Zaloguj się do Świata smakoszy</legend>
+				{{ form|crispy }}
+			</fieldset>
+			<div class="form-group">
+				<!-- Sign Up btn -->
+				<button class="btn btn-outline-info" type="submit">Zaloguj się</button>
+			</div>
+		</form>
+
+		<!-- Additional info -->
+		<div class="border-top pt-3">
+			<!-- Already own an account? -->
+			<small class="text-muted">
+				Nie posiadasz konta? <a class="ml-2" href="{% url 'register' %}">Zarejestruj się</a>
+			</small>
+			<!-- Terms and Service -->
+			<small class="text-muted float-right">
+				Zapoznaj się <code>></code> <a href="#">Warunki i usługi</a>
+			</small>
+		</div>
+	</div>
+  </div>
+  <!-- End of container -->
+
+</center>
+<br/>
+{% endblock content %}

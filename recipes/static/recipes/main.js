@@ -1,18 +1,31 @@
+var category_count = 1;
 function createCategoryInIngredientsForm() {
 	$("#ingredientsForm").append('\
-		<div class="p-3 mb-2 rounded" style="background-color: #e8e8e8">\
+		<div class="p-3 mb-2 rounded category">\
   	  	  <!-- Category Title -->\
 		  <div class="form-group">\
 		    <label>Tytuł kategorii</label>\
 		    <input type="text" class="form-control">\
 		  </div>\
+		  <br/><br/>\
 		  <!-- Category Ingredients -->\
-		  <div class="form-group">\
+		  <div class="form-group empty-scroll">\
 		    <label>Wprowadź listę składników do następującej kategorii</label>\
 		    <textarea class="form-control" rows="3"></textarea>\
 		  </div>\
-		  <button type="button" class="btn btn-outline-danger" onclick="$(this).closest(\'div\').remove();">Usuń następującą kategorie</button>\
+		  <button type="button" class="btn btn-outline-danger" onclick="category_count--;updateCategoryButtonInIngredientsForm(); $(this).closest(\'div\').remove();">Usuń kategorie</button>\
 	  </div>\
 	');
+
+	category_count++;
 	return "Category has been successfully generated."
+}
+
+function updateCategoryButtonInIngredientsForm() {
+	var btn = $("#create-category-btn");
+	// Determine if #create-category-btn should be disabled
+	// (This function occurs only in new_recipe.html template)
+	if (category_count>9) {
+		btn.prop('disabled', true)
+	} else { btn.prop('disabled', false) }
 }
