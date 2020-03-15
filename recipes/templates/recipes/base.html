@@ -21,7 +21,7 @@
 <body>
 
 	<header class="site-header fixed-top">
-	  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 
 	  	<!-- Settings Logo / Menu toggle button -->
 		<a class="navbar-brand" href="#">Moja Kuchnia</a>
@@ -84,21 +84,18 @@
 	{% block content %}{% endblock %}
 
 	<!-- Footer -->
-	<footer class="page-footer font-small bg-dark pt-4">
-	  <!-- Footer Elements -->
-	  <div class="container">
-	    <div class="mb-4 text-light text-center">
-	      <p>
-	      	To tylko tymczasowa zakładka ktura dodaje estetyczność strony.
-	      </p>
-	    </div>
-	  </div>
-
-	  <!-- Copyright -->
-	  <div class="footer-copyright text-center py-3 text-secondary" style="background-color: #282c30">© 2020 Copyright:
-	    <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank"> MDBootstrap.com</a>
-	  </div>
-
+	<footer class="footer font-small bg-dark pt-4">
+	  <!--Temporary template message -->
+	  <section class="mb-4 text-light text-center container">
+	    <span>To tylko tymczasowa zakładka ktura dodaje estetyczność strony.</span>
+	  </section>
+	  <!-- Bootstrap Copyright -->
+	  <section class="footer-copyright py-3" style="background-color: #282c30">
+	  	<div class="container text-center text-secondary">
+	  	  © 2020 Copyright:
+	      <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank"> MDBootstrap.com</a>
+	  	</div>
+	  </section>
 	</footer>
 
 

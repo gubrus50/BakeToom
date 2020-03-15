@@ -32,7 +32,7 @@ html {
 
 .recipe-ingredients section {
 	float: left;
-  	width: 18%;
+  	width: 25%;
   	height: 250px;
   	border: 1px solid lightGray;
   	border-radius: 10px;
@@ -41,11 +41,15 @@ html {
   	overflow: scroll
 }
 .category {
-	width: 18% !important;
+	width: 25% !important;
 	background-color: #e8e8e8;
 	margin: 10px;
 	float: left
 }
+
+html { position: relative; min-height: 100% }
+body { margin-bottom: 170px }
+.footer { width: 100%; position: absolute; bottom: 0px; left: 0 }
 
 .recipe-ingredients section ul {
 	padding-inline-start: 20px;
@@ -83,6 +87,7 @@ label.file-upload, input[type="text"] {
 	  background-color: #e8e8e8
 	}
 
+	#file-upload-data { width: 155px }
 	#recipes div, div.container { width: auto }
 	#new-recipe-submit-form { width: 80% }
 	#terms-and-service { float: left !important; word-break: break-all }

@@ -25,7 +25,7 @@ function updateCategoryButtonInIngredientsForm() {
 	var btn = $("#create-category-btn");
 	// Determine if #create-category-btn should be disabled
 	// (This function occurs only in new_recipe.html template)
-	if (category_count>9) {
+	if (category_count>8) {
 		btn.prop('disabled', true)
 	} else { btn.prop('disabled', false) }
 }
