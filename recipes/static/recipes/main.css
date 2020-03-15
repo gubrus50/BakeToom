@@ -58,7 +58,7 @@ html {
 }
 
 #new-recipe-submit-form {
-	width: 500px;
+	width: 500px
 }
 
 label.file-upload input[type="file"] { display: none }
@@ -66,6 +66,7 @@ label.file-upload, input[type="text"] {
 	border-radius: 0px 5px 5px 0px;
 	float: left
 }
+
 
 @media only screen and (max-width: 600px) {
 	.recipe-ingredients section {
@@ -84,4 +85,11 @@ label.file-upload, input[type="text"] {
 
 	#recipes div, div.container { width: auto }
 	#new-recipe-submit-form { width: 80% }
+	#terms-and-service { float: left !important; word-break: break-all }
+	#profile-details-sub-container { 
+		float: left !important;
+		text-align: left !important;
+		width: 100%;
+		padding: 2px
+	}
 }
