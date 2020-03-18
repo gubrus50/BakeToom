@@ -15,7 +15,7 @@
       <h2>{{ user.username }}</h2>
       <hr/>
       <p>
-   	    <font style="font-weight: 600; color: #252b2b">Full Name: </font>
+   	    <font style="font-weight: 600; color: #252b2b">Pełne imię: </font>
    	    {{ user.first_name }} {{ user.last_name }}<br/>
         <font style="font-weight: 600; color: #252b2b">Email: </font>
         {{ user.email }}
@@ -24,7 +24,7 @@
 
     <!-- Right sub-container -->
     <div id="profile-details-sub-container" class="float-right text-right">
-      <a href="#">Zarządzaj Kontem<span class="sr-only">(current)</span></a>
+      <a href="#" onclick="$('#profile-update-details-form').fadeIn()">Zarządzaj Kontem<span class="sr-only">(current)</span></a>
 	  <br/>
 	  <a href="{% url 'logout' %}">Wyloguj się <span class="sr-only">(current)</span></a>
 	</div>
@@ -32,6 +32,28 @@
     <div style="clear: both"></div>
   </div>
   <!-- End of container -->
+
+
+
+  <!-- Update Details Form Container -->
+  <div id="profile-update-details-form" class="border m-1 bg-light p-2 container mt-2" style="overflow: auto; border-radius: 5px; display: none">
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Zarządzaj kontem</legend>
+        {{ u_form|crispy }}
+        {{ p_form|crispy }}
+      </fieldset>
+      <div class="form-group">
+        <!-- Confirm changes btn -->
+        <button class="btn btn-outline-info" type="submit">Zatwierdź zmiany</button>
+        <!-- Deny changes btn -->
+        <input type="button" value="Anuluj" class="btn btn-outline-danger float-right" onclick="$('#profile-update-details-form').fadeOut()" />
+      </div>
+    </form>
+  </div>
+  <!-- End of container -->
+
 
 </center>
 <br/>
