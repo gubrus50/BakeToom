@@ -1,7 +1,7 @@
 var category_count = 1;
 function createCategoryInIngredientsForm() {
 	$("#ingredientsForm").append('\
-		<div class="p-3 mb-2 rounded category">\
+		<div class="p-3 mb-2 rounded recipe-category">\
   	  	  <!-- Category Title -->\
 		  <div class="form-group">\
 		    <label>Tytuł kategorii</label>\

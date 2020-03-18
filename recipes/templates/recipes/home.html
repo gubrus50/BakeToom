@@ -3,16 +3,19 @@
 
 	<!-- Search form -->
 	<form class="form-inline my-4 d-flex justify-content-center">
-	  <input class="form-control" type="search" placeholder="Czego dzisiaj pragniesz?" aria-label="Search" style="border-radius:0; width:70%;">
-	  <button class="btn btn-outline-secondary" type="submit" style="border-radius:0">Wyszukaj</button>
+	  <input class="form-control" type="search" placeholder="Czego dzisiaj pragniesz?" aria-label="Search" style="border-radius:0; width:70%">
+	  <button class="btn btn-outline-secondary" type="submit" style="border-radius: 0">Wyszukaj</button>
 	</form>
 
+
+
+
 	<!-- Recipes -->
-	<div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2015%2F06%2F28%2F00%2F17%2Fpoland-823978_960_720.jpg&f=1&nofb=1');background-repeat: no-repeat, repeat;background-position: center; background-size: cover;">
+	<div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2015%2F06%2F28%2F00%2F17%2Fpoland-823978_960_720.jpg&f=1&nofb=1');background-repeat: no-repeat, repeat;background-position: center; background-size: cover">
 		  <center class="container">
 		{% if recipes %}
 		  {% for recipe in recipes %}
-			<div class="border m-1 btn-light p-2" style="overflow: auto; border-radius: 5px" onclick="$(this).fadeOut(500);">
+			<div class="border m-1 btn-light p-2 recipe-container" style="overflow: auto; border-radius: 5px" onclick="$(this).fadeOut(500)">
 		      <article>
 			    <img class="float-right" width="150px" height="100px" style="border-radius: 5px 5px 5px 75px" src="{{ recipe.image }}">
 			    <h3>{{ recipe.title }}</h3>
@@ -22,10 +25,10 @@
 		      </article>
 	  	    </div>
 		  {% endfor %}
-		  <!-- Load Button -->
+		  <!-- Load Button 
 			<button id="loadBtn" class="rounded-circle pt-3 pl-3 pr-3 mt-3 btn btn-outline-secondary" style="clear:both">
-			  <svg style="fill: currentcolor;" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-			 width="50px" height="50px" viewBox="0 0 284.929 284.929" style="enable-background:new 0 0 284.929 284.929;"
+			  <svg style="fill: currentcolor" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+			 width="50px" height="50px" viewBox="0 0 284.929 284.929" style="enable-background:new 0 0 284.929 284.929"
 			 xml:space="preserve">
 			    <g>
 				  <g>
@@ -58,12 +61,48 @@
 			  </svg>
 			</button>
 		  </center>
-		  <!-- Load Button End -->
-		{% else %}
-		  <div class="d-flex justify-content-center text-light p-5 text-center" style="background: rgba(248, 249, 250, 0.3);">
-		    <h2>Sorry but no recipes are to be found</h2>
-		  </div>
-		{% endif %}
+		   Load Button End -->
 
 	</div>
+
+
+
+	<!-- Pagination -->
+	<nav id="home-pagination" aria-label="Page navigation example">
+	  <!-- Search result count -->
+	  <center>
+	  	<h5 class="mb-3">Wyszukano <span id="search-result-counter">23</span> resultatów</h5>
+	  </center>
+	  <ul class="pagination pagination-circle pg-blue justify-content-center pb-5">
+	    <li class="page-item disabled"><a class="page-link">Początek</a></li>
+	    <li class="page-item disabled">
+	      <a class="page-link" aria-label="Previous">
+	        <span aria-hidden="true">&laquo;</span>
+	        <span class="sr-only">Początek</span>
+	      </a>
+	    </li>
+	    <li class="page-item active"><a class="page-link">1</a></li>
+	    <li class="page-item"><a class="page-link">2</a></li>
+	    <li class="page-item"><a class="page-link">3</a></li>
+	    <li class="page-item"><a class="page-link">4</a></li>
+	    <li class="page-item"><a class="page-link">5</a></li>
+	    <li class="page-item">
+	      <a class="page-link" aria-label="Next">
+	        <span aria-hidden="true">&raquo;</span>
+	        <span class="sr-only">Koniec</span>
+	      </a>
+	    </li>
+	    <li class="page-item"><a class="page-link">Koniec</a></li>
+	  </ul>
+	</nav>
+	<!-- End of Pagination -->
+
+		{% else %}
+		  <div class="d-flex justify-content-center text-light p-5 text-center" style="background: rgba(248, 249, 250, 0.3)">
+		    <h2>Sorry but no recipes are to be found</h2>
+		  </div>
+		</div>
+		{% endif %}
+
+
 {% endblock content %}

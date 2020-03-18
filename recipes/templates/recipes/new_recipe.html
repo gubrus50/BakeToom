@@ -5,7 +5,10 @@
   <!-- Background Image -->
   <div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2015%2F06%2F28%2F00%2F17%2Fpoland-823978_960_720.jpg&f=1&nofb=1');background-repeat: no-repeat, repeat;background-position: center; background-size: cover;">
 
+
     <center class="container">
+
+
 
   	<!-- Recipe -->
   	<div class="border m-1 bg-light p-2" style="overflow: auto; border-radius: 5px">
@@ -35,6 +38,8 @@
 
 
 
+
+
 	<!-- Ingredients -->
 	<div id="ingredientsForm" class="border m-1 bg-light p-2 pb-4" style="overflow: auto; border-radius: 5px">
 	  <h2>Składniki</h2>
@@ -43,8 +48,12 @@
 	  <button id="create-category-btn" type="button" class="btn btn-outline-primary" onclick="createCategoryInIngredientsForm(); updateCategoryButtonInIngredientsForm()">Utwórz kategorie</button>
 	  <br/><br/>
 
+
+
+
+
   	  <!-- Category -->
-  	  <div class="p-3 mb-2 rounded category">
+  	  <div class="p-3 mb-2 rounded recipe-category">
   	  	  <!-- Category Title -->
 		  <div class="form-group">
 		    <label>Tytuł kategorii</label>
@@ -61,6 +70,8 @@
 	  <!-- End of Category -->
 	</div>
 	<!-- End of Ingredients -->
+
+
 
 
 
@@ -85,13 +96,13 @@
 
 
   <!-- Submittion -->
-  <center class="container">
+  <center id="new-recipe-submit-form" class="container">
     <section class="ml-5 mr-5">
 	  <h2>Uwaga!</h2>
 	  <p>Po przesłaniu przepisu jesteś w pełni świadomy <a href="#">prawa autorskiego</a>. Jeśli któreś z poniższych danych, które przesłałeś, narusza nasze <a href="#">warunki i usługi</a>, przepis zostanie usunięty z wiadomości publicznej i możesz ponieść konsekwencje. <a href="#">Kliknij mnie</a>, jeśli chcesz wiedzieć, jak się chronić przed nieuczciwymi oskarżeniami.</p>
     </section>
     <br/>
-    <button id="new-recipe-submit-form" type="submit" class="btn btn-success btn-lg btn-block">Stwórz i upublikuj mój przepis</button>
+    <button type="submit" class="btn btn-success btn-lg btn-block">Stwórz i upublikuj mój przepis</button>
   </center>
   <!-- End of Submittion -->
 

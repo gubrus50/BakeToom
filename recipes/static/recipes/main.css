@@ -40,7 +40,7 @@ html {
   	margin: 10px;
   	overflow: scroll
 }
-.category {
+.recipe-category {
 	width: 25% !important;
 	background-color: #e8e8e8;
 	margin: 10px;
@@ -53,7 +53,7 @@ body { margin-bottom: 170px }
 
 .recipe-ingredients section ul {
 	padding-inline-start: 20px;
-	list-style-type: "- "
+	list-style-type: circle
 }
 
 #recipes div, div.container {
@@ -61,9 +61,7 @@ body { margin-bottom: 170px }
   	text-align: left
 }
 
-#new-recipe-submit-form {
-	width: 500px
-}
+#new-recipe-submit-form button { width: 500px }
 
 label.file-upload input[type="file"] { display: none }
 label.file-upload, input[type="text"] { 
@@ -73,6 +71,14 @@ label.file-upload, input[type="text"] {
 
 
 @media only screen and (max-width: 600px) {
+	.recipe-container { font-size: 12px }
+	.recipe-container h3 { font-size: 20px }
+	.recipe-button img {
+		border-radius: 5px 5px 5px 50px !important;
+		width: 100px;
+		height: 75px
+	}
+
 	.recipe-ingredients section {
 	  	width: 90%;
 	  	height: 250px;
@@ -82,14 +88,22 @@ label.file-upload, input[type="text"] {
 	  	margin: 10px;
 	  	overflow: scroll
 	}
-	.category {
-	  width: auto !important;
-	  background-color: #e8e8e8
+	.recipe-category {
+		width: auto !important;
+	 	background-color: #e8e8e8
 	}
+	.recipe-method ol { padding-inline-start: 20px }
 
+
+
+	#home-pagination { font-size: 12px }
+	#base-banner h3 { font-size: 20px }
 	#file-upload-data { width: 155px }
 	#recipes div, div.container { width: auto }
-	#new-recipe-submit-form { width: 80% }
+
+	#new-recipe-submit-form section { font-size: 12px }
+	#new-recipe-submit-form button { width: 80%; font-size: 15px }
+
 	#terms-and-service { float: left !important; word-break: break-all }
 	#profile-details-sub-container { 
 		float: left !important;
