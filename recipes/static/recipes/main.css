@@ -55,6 +55,7 @@ body { margin-bottom: 170px }
 	padding-inline-start: 20px;
 	list-style-type: circle
 }
+.recipe-method p { padding-inline-start: 20px }
 
 #recipes div, div.container {
   	width: 95%;
@@ -92,7 +93,7 @@ label.file-upload, input[type="text"] {
 		width: auto !important;
 	 	background-color: #e8e8e8
 	}
-	.recipe-method ol { padding-inline-start: 20px }
+	.recipe-method p { padding-inline-start: 10px }
 
 
 

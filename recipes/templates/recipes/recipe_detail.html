@@ -1,0 +1,86 @@
+{% extends "recipes/base.html" %}
+{% block content %}
+
+  <div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2015%2F06%2F28%2F00%2F17%2Fpoland-823978_960_720.jpg&f=1&nofb=1');background-repeat: no-repeat, repeat;background-position: center; background-size: cover;">
+
+
+
+  	<center class="container recipe-container">
+
+
+
+  	<!-- Recipe -->
+  	<div class="border m-1 btn-light p-2" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
+	  <article>
+		<img class="float-right" width="150px" height="100px" style="border-radius: 5px 5px 5px 75px" src="{{ object.image.url }}">
+		{% if object.title %}
+		  <h3>{{ object.title }}</h3>
+		{% else %}
+		  <!-- Title -->
+		  <h3>Przepis</h3>
+		{% endif %}
+
+		{% if object.description %}
+		  <p>{{ object.description }}</p>
+		{% else %}
+		  <p>...</p>
+		{% endif %}
+	  </article>
+	</div>
+	<!-- End of Recipe -->
+
+
+
+
+
+	<!-- Ingredients -->
+	<div class="border m-1 btn-light p-2" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
+	  <article class="recipe-ingredients empty-scroll">
+		<h3>Składniki</h3>
+		<hr/>
+		  {% if categories %}
+		    {% for category in categories %}
+		      {% if category.recipe == object %}
+		        <section>
+		          <h5>{{ category.title }}</h5>
+		          {% if category.ingredients %}
+		            {{ category.ingredients|linebreaksbr }}
+		          {% else %}
+		            <p>...</p>
+		          {% endif %}
+		        </section>
+		      {% endif %}
+		    {% endfor %}
+		  {% else %}
+		    <p>...</p>
+		  {% endif %}
+
+	  </article>
+	</div>
+	<!-- End of Ingredients -->
+
+
+
+
+
+	<!-- Method -->
+	<div class="border m-1 btn-light p-2 recipe-method" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
+	  <article>
+		<h3>Metoda</h3>
+		<hr/>
+		{% if object.method %}
+		  {{ object.method|linenumbers|linebreaks }}
+		{% else %}
+		  ...
+		{% endif %}
+	  </article>
+	</div>
+	<!-- End of Method -->
+
+
+
+    </center>
+
+  </div>
+  <br/>
+{% endblock content %}

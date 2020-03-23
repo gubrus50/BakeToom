@@ -12,61 +12,32 @@
 
 	<!-- Recipes -->
 	<div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2015%2F06%2F28%2F00%2F17%2Fpoland-823978_960_720.jpg&f=1&nofb=1');background-repeat: no-repeat, repeat;background-position: center; background-size: cover">
-		  <center class="container">
+	  <center class="container">
 		{% if recipes %}
 		  {% for recipe in recipes %}
-			<div class="border m-1 btn-light p-2 recipe-container" style="overflow: auto; border-radius: 5px" onclick="$(this).fadeOut(500)">
+			<div class="border m-1 btn-light p-2 recipe-container" onclick="$(this).fadeOut(500); setTimeout(function(){window.location='{% url 'recipe-detail' recipe.id %}'}, 500)" style="overflow: auto; border-radius: 5px">
 		      <article>
-			    <img class="float-right" width="150px" height="100px" style="border-radius: 5px 5px 5px 75px" src="{{ recipe.image }}">
+			    <img class="float-right" width="150px" height="100px" style="border-radius: 5px 5px 5px 75px" src="{{ recipe.image.url }}">
 			    <h3>{{ recipe.title }}</h3>
-			    <p>
-			      {{ recipe.description }}
-			    </p>
+			    <p>{{ recipe.description }}</p>
+			    <p><small>Published by {{ recipe.author }}</small></p>
 		      </article>
 	  	    </div>
 		  {% endfor %}
-		  <!-- Load Button 
-			<button id="loadBtn" class="rounded-circle pt-3 pl-3 pr-3 mt-3 btn btn-outline-secondary" style="clear:both">
-			  <svg style="fill: currentcolor" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-			 width="50px" height="50px" viewBox="0 0 284.929 284.929" style="enable-background:new 0 0 284.929 284.929"
-			 xml:space="preserve">
-			    <g>
-				  <g>
-				    <path d="M135.899,167.877c1.902,1.902,4.093,2.851,6.567,2.851s4.661-0.948,6.562-2.851L282.082,34.829
-							c1.902-1.903,2.847-4.093,2.847-6.567s-0.951-4.665-2.847-6.567L267.808,7.417c-1.902-1.903-4.093-2.853-6.57-2.853
-							c-2.471,0-4.661,0.95-6.563,2.853L142.466,119.622L30.262,7.417c-1.903-1.903-4.093-2.853-6.567-2.853
-							c-2.475,0-4.665,0.95-6.567,2.853L2.856,21.695C0.95,23.597,0,25.784,0,28.262c0,2.478,0.953,4.665,2.856,6.567L135.899,167.877z"
-							/>
-					<path d="M267.808,117.053c-1.902-1.903-4.093-2.853-6.57-2.853c-2.471,0-4.661,0.95-6.563,2.853L142.466,229.257L30.262,117.05
-							c-1.903-1.903-4.093-2.853-6.567-2.853c-2.475,0-4.665,0.95-6.567,2.853L2.856,131.327C0.95,133.23,0,135.42,0,137.893
-							c0,2.474,0.953,4.665,2.856,6.57l133.043,133.046c1.902,1.903,4.093,2.854,6.567,2.854s4.661-0.951,6.562-2.854l133.054-133.046
-							c1.902-1.903,2.847-4.093,2.847-6.565c0-2.474-0.951-4.661-2.847-6.567L267.808,117.053z"/>
-				  </g>
-				</g>
-				<g></g>
-				<g></g>
-				<g></g>
-				<g></g>
-				<g></g>
-				<g></g>
-				<g></g>
-				<g></g>
-				<g></g>
-				<g></g>
-				<g></g>
-				<g></g>
-				<g></g>
-				<g></g>
-			    <g></g>
-			  </svg>
-			</button>
-		  </center>
-		   Load Button End -->
-
+		{% else %}
+		  <div class="d-flex justify-content-center text-light p-5 text-center">
+		    <h2>Sorry but no recipes are to be found</h2>
+		  </div>
+		{% endif %}
+	  </center>
 	</div>
+	<!-- End of Recipes -->
 
 
 
+
+
+	{% if recipes %}
 	<!-- Pagination -->
 	<nav id="home-pagination" aria-label="Page navigation example">
 	  <!-- Search result count -->
@@ -96,13 +67,7 @@
 	  </ul>
 	</nav>
 	<!-- End of Pagination -->
-
-		{% else %}
-		  <div class="d-flex justify-content-center text-light p-5 text-center" style="background: rgba(248, 249, 250, 0.3)">
-		    <h2>Sorry but no recipes are to be found</h2>
-		  </div>
-		</div>
-		{% endif %}
+	{% endif %}
 
 
 {% endblock content %}
