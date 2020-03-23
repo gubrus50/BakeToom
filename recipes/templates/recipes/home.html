@@ -1,4 +1,5 @@
 {% extends "recipes/base.html" %}
+{% load recipes_extras %}
 {% block content %}
 
 	<!-- Search form -->
@@ -42,7 +43,7 @@
 	<nav id="home-pagination" aria-label="Page navigation example">
 	  <!-- Search result count -->
 	  <center>
-	  	<h5 class="mb-3">Wyszukano <span id="search-result-counter">23</span> resultatów</h5>
+	  	<h5 class="mb-3">Wyszukano <span id="search-result-counter">{% total_recipes %}</span> resultatów</h5>
 	  </center>
 	  <ul class="pagination pagination-circle pg-blue justify-content-center pb-5">
 	    <li class="page-item disabled"><a class="page-link">Początek</a></li>
