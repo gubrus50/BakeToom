@@ -62,7 +62,12 @@ body { margin-bottom: 170px }
   	text-align: left
 }
 
-#new-recipe-submit-form button { width: 500px }
+
+#recipes center.container div div.form-group {
+	margin-left: 5px
+}
+
+#new-recipe-submit-form input { width: 500px }
 
 label.file-upload input[type="file"] { display: none }
 label.file-upload, input[type="text"] { 
@@ -102,8 +107,12 @@ label.file-upload, input[type="text"] {
 	#file-upload-data { width: 155px }
 	#recipes div, div.container { width: auto }
 
+	#recipes center.container div div.form-group {
+		margin-left: 0
+	}
+
 	#new-recipe-submit-form section { font-size: 12px }
-	#new-recipe-submit-form button { width: 80%; font-size: 15px }
+	#new-recipe-submit-form input { width: 80%; font-size: 15px }
 
 	#terms-and-service { float: left !important; word-break: break-all }
 	#profile-details-sub-container { 

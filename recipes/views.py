@@ -1,6 +1,9 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import ListView, DetailView, CreateView
+from django.utils.translation import gettext_lazy as _
 from django.http import HttpResponse
+from django.contrib import messages
 from django.db.models import F
 from .models import Recipe, Category
 
@@ -13,11 +16,15 @@ def home(request):
 	return render(request, 'recipes/home.html', context)
 
 
+
 class RecipeListView(ListView):
 	model = Recipe
 	template_name = 'recipes/home.html' # <app>/<model>_<viewtype>.html
 	context_object_name = 'recipes'
 	ordering = [F('title').asc(nulls_last=True)] # ORDER BY title & If title=null, null go last.
+
+
+
 
 
 class RecipeDetailView(DetailView):
@@ -28,19 +35,35 @@ class RecipeDetailView(DetailView):
 		return context
 
 
-def recipe(request):
 
-	context = {
-		'recipes': Recipe.objects.all()
-	}
-
-	return render(request, 'recipes/recipe_detail.html', context)
+class RecipeCreateView(LoginRequiredMixin, CreateView):
+	model = Recipe
+	fields = ['title', 'image', 'description', 'method']
 
 
-def new_recipe(request):
+	"""
+	def post(self, *args, **kwargs):
+		if 'title' in self.request.POST and 'category' in self.request.POST:
 
-	context = {
-		'title': 'New recipe'
-	}
+			title = self.request.POST.get('title')
+			categories = self.request.POST.getlist('category') 
+			ingredients = self.request.POST.getlist('ingredients')
+			recipe = Recipe.objects.only('id').get(title=title)
 
-	return render(request, 'recipes/new_Recipe.html', context)
+			if len(categories) == len(ingredients):
+				for index in range(len(categories)):	
+					Category.objects.create(
+						recipe=recipe,
+						title=categories[index],
+						ingredients=ingredients[index]
+					)
+
+				messages.success(self.request, f'Your recipe has been successfully created')
+
+	#return HttpResponse('ERROR')
+	"""
+	def form_valid(self, form):
+		form.instance.author = self.request.user
+		messages.success(self.request, f'Your recipe has been successfully created')
+		return super().form_valid(form)
+
