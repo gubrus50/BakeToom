@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import (
+	ListView,
+	DetailView,
+	CreateView
+)
 from django.utils.translation import gettext_lazy as _
 from django.http import HttpResponse
 from django.contrib import messages
@@ -41,6 +45,7 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
 	fields = ['title', 'image', 'description', 'method']
 
 
+
 	"""
 	def post(self, *args, **kwargs):
 		if 'title' in self.request.POST and 'category' in self.request.POST:
@@ -59,11 +64,11 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
 					)
 
 				messages.success(self.request, f'Your recipe has been successfully created')
+	"""
 
 	#return HttpResponse('ERROR')
-	"""
+
 	def form_valid(self, form):
 		form.instance.author = self.request.user
 		messages.success(self.request, f'Your recipe has been successfully created')
 		return super().form_valid(form)
-

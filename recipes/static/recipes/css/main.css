@@ -101,6 +101,15 @@ label.file-upload, input[type="text"] {
 	.recipe-method p { padding-inline-start: 10px }
 
 
+	img.account-img {
+		width: 100%;
+		border-left: 30px solid lightGray;
+		border-right: 30px solid lightGray;
+		margin-bottom: 5px;
+		height: 200px;
+	}
+
+
 
 	#home-pagination { font-size: 12px }
 	#base-banner h3 { font-size: 20px }
@@ -114,7 +123,18 @@ label.file-upload, input[type="text"] {
 	#new-recipe-submit-form section { font-size: 12px }
 	#new-recipe-submit-form input { width: 80%; font-size: 15px }
 
-	#terms-and-service { float: left !important; word-break: break-all }
+	#additional-info-users-templates small { 
+		float: left !important;
+		display: inline;
+		clear: both;
+		word-break: break-all
+	}
+
+	#profile-details {
+		width: 100%;
+		word-wrap: break-word
+	}
+	#profile-details h2 { font-size: 25px }
 	#profile-details-sub-container { 
 		float: left !important;
 		text-align: left !important;
