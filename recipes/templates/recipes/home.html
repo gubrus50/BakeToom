@@ -21,7 +21,10 @@
 			    <img class="float-right" width="150px" height="100px" style="border-radius: 5px 5px 5px 75px" src="{{ recipe.image.url }}">
 			    <h3>{{ recipe.title }}</h3>
 			    <p>{{ recipe.description }}</p>
-			    <p><small>Published by {{ recipe.author }}</small></p>
+			    <small>
+			      autor: {{ recipe.author }}<br/>
+			      id_przepisu: {{ recipe.id }}
+			    </small>
 		      </article>
 	  	    </div>
 		  {% endfor %}

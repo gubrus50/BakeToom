@@ -1,23 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import (
-	ListView,
-	DetailView,
-	CreateView
-)
+from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView, DetailView
 from django.utils.translation import gettext_lazy as _
-from django.http import HttpResponse
+from django.urls import reverse, reverse_lazy
 from django.contrib import messages
 from django.db.models import F
 from .models import Recipe, Category
-
-# Create your views here.
-
-def home(request):
-	context = {
-		'recipes': Recipe.objects.all()
-	}
-	return render(request, 'recipes/home.html', context)
+from .forms import RecipeForm, CategoryForm
 
 
 
@@ -26,8 +16,6 @@ class RecipeListView(ListView):
 	template_name = 'recipes/home.html' # <app>/<model>_<viewtype>.html
 	context_object_name = 'recipes'
 	ordering = [F('title').asc(nulls_last=True)] # ORDER BY title & If title=null, null go last.
-
-
 
 
 
@@ -40,35 +28,37 @@ class RecipeDetailView(DetailView):
 
 
 
-class RecipeCreateView(LoginRequiredMixin, CreateView):
-	model = Recipe
-	fields = ['title', 'image', 'description', 'method']
+@login_required
+def RecipeCreateView(request):
+	if request.method == 'POST':
+		recipe_form = RecipeForm(request.POST, request.FILES)
 
+		if recipe_form.is_valid():
+			recipe_form.instance.author = request.user
+			categories = request.POST.getlist('category')
+			ingredients = request.POST.getlist('ingredients')
 
+			if len(categories) == len(ingredients) and len(categories)<10 and len(ingredients)<10:
+				recipe = recipe_form.save()
 
-	"""
-	def post(self, *args, **kwargs):
-		if 'title' in self.request.POST and 'category' in self.request.POST:
-
-			title = self.request.POST.get('title')
-			categories = self.request.POST.getlist('category') 
-			ingredients = self.request.POST.getlist('ingredients')
-			recipe = Recipe.objects.only('id').get(title=title)
-
-			if len(categories) == len(ingredients):
-				for index in range(len(categories)):	
+				for index in range(len(categories)):
 					Category.objects.create(
 						recipe=recipe,
-						title=categories[index],
+						name=categories[index],
 						ingredients=ingredients[index]
 					)
 
-				messages.success(self.request, f'Your recipe has been successfully created')
-	"""
+				messages.success(request, f'Your recipe has been successfully created')
+				return redirect(reverse('recipes-home'))
 
-	#return HttpResponse('ERROR')
+			else:
+				messages.error(request, f'ERROR - Failed Validation at RecipeCreateView')
+				return redirect(reverse('recipes-home'))
 
-	def form_valid(self, form):
-		form.instance.author = self.request.user
-		messages.success(self.request, f'Your recipe has been successfully created')
-		return super().form_valid(form)
+	else:
+		recipe_form = RecipeForm()
+
+	args = {}
+	args['recipe_form'] = recipe_form
+
+	return render(request, 'recipes/recipe_form.html', args)

@@ -29,39 +29,3 @@ function updateCategoryButtonInIngredientsForm() {
 		btn.prop('disabled', true)
 	} else { btn.prop('disabled', false) }
 }
-
-
-
-
-
-//##############################################//
-
-
-
-
-
-class Category {
-	constructor(recipe, title, ingredients) {
-		this.recipe = recipe;
-		this.title = title;
-		this.ingredients = ingredients
-	}
-}
-
-
-function getCategories() {
-	var pk 		   = document.getElementById('id_title');
-	var categories = document.getElementsByClassName('recipe-category');
-	var	category   = [];
-
-	// Find and store N^th category_data in class form -> Category()
-	for (i = 0; i < categories.length; i++) {
-		var title = categories[i].children[0].children[1].value;
-		var ingredients = categories[i].children[3].children[1].value;
-
-		if (pk.value && title && ingredients) {
-		  category.push(new Category(pk.value, title, ingredients))
-		}
-	}
-	return category
-}

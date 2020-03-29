@@ -27,6 +27,15 @@
 		{% else %}
 		  <p>...</p>
 		{% endif %}
+
+		<small>
+		  {% if object.author %}
+		    autor: {{ object.author }}<br/>
+		  {% else %}
+		  	autor: Error<br/>
+		  {% endif %}
+		  id_przepisu: {{ object.id }}
+		</small>
 	  </article>
 	</div>
 	<!-- End of Recipe -->
@@ -44,7 +53,7 @@
 		    {% for category in categories %}
 		      {% if category.recipe == object %}
 		        <section>
-		          <h5>{{ category.title }}</h5>
+		          <h5>{{ category.name }}</h5>
 		          {% if category.ingredients %}
 		            <ul>
 		              {{ category.ingredients|endline_split|unordered_list }}
