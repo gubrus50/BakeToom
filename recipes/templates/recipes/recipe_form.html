@@ -43,29 +43,10 @@
 	  <h2>Składniki</h2>
 	  <hr/>
   	  <!-- New Category -->
-	  <button id="create-category-btn" type="button" class="btn btn-outline-primary" onclick="createCategoryInIngredientsForm(); updateCategoryButtonInIngredientsForm()">Utwórz kategorie</button>
+	  <button id="create-category-btn" type="button" class="btn btn-outline-primary" onclick="createCategoryInIngredientsForm(1); updateCategoryButtonInIngredientsForm()">
+	    Utwórz kategorie
+	  </button>
 	  <br/><br/>
-
-
-
-
-
-  	  <!-- Category -->
-  	  <div class="p-3 mb-2 rounded recipe-category">
-  	  	  <!-- Category Title -->
-		  <div class="form-group">
-		    <label>Tytuł kategorii</label>
-		    <input type="text" name="category" maxlength="100" class="form-control" required>
-		  </div>
-		  <br/><br/>
-		  <!-- Category Ingredients -->
-		  <div class="form-group">
-		    <label>Wprowadź listę składników do następującej kategorii</label>
-		    <textarea name="ingredients" maxlength="240" class="form-control empty-scroll" rows="3" required></textarea>
-		  </div>
-		  <button type="button" class="btn btn-outline-danger" onclick="category_count--; updateCategoryButtonInIngredientsForm(); $(this).closest('div').remove();">Usuń kategorie</button>
-	  </div>
-	  <!-- End of Category -->
 	</div>
 	<!-- End of Ingredients -->
 
@@ -109,7 +90,11 @@
 <br/><br/><br/>
 
 
-<script type="text/javascript">var URL = " {% url 'recipe-create' %} "</script> -->
+<script type="text/javascript">
+var category_creation_count = {{ category_creation_count }}
+var categories = {{ categories|safe }}
+var ingredients = {{ ingredients|safe }}
+</script>
 <script src="{% static 'recipes/js/recipe_form.js' %}"></script>
 
 {% endblock content %}

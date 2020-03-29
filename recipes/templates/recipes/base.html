@@ -54,7 +54,7 @@
 		      	  <a class="dropdown-item" href="{% url 'profile' %}">Zreportuj</a>
 		      	{% if user.is_authenticated %}
 		          <div class="dropdown-divider"></div>
-		          <a class="dropdown-item disabled" href="#">Utwórz przepis</a>
+		          <a class="dropdown-item" href="{% url 'recipe-create' %}">Utwórz przepis</a>
 		          <a class="dropdown-item disabled" href="#">Edytuj przepis</a>
 		          <a class="dropdown-item disabled" href="#">Usuń przepis</a>
 		          <div class="dropdown-divider"></div>
