@@ -98,10 +98,12 @@
       	{% if message.tags == "error" %}
       	<div class="alert alert-danger">
           {{ message }}
+          <a href="#hidden-alert" onclick="$(this).parent().fadeOut()"><u>Okey, Hide</u></a> 
         </div>
       	{% else %}
         <div class="alert alert-{{ message.tags }}">
           {{ message }}
+          <a href="#hidden-alert" onclick="$(this).parent().fadeOut()"><u>Okey, Hide</u></a>  
         </div>
         {% endif %}
       {% endfor %}

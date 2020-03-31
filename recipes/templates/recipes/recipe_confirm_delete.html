@@ -9,8 +9,6 @@
 
   	<center class="container recipe-container">
 
-
-
   	<!-- Recipe -->
   	<div class="border m-1 btn-light p-2" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
 	  <article>
@@ -40,64 +38,29 @@
 	</div>
 	<!-- End of Recipe -->
 
-
-
-
-
-	<!-- Ingredients -->
-	<div class="border m-1 btn-light p-2" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
-	  <article class="recipe-ingredients empty-scroll">
-		<h3>Składniki</h3>
-		<hr/>
-		  {% if categories %}
-		    {% for category in categories %}
-		      {% if category.recipe == object %}
-		        <section>
-		          <h5>{{ category.name }}</h5>
-		          {% if category.ingredients %}
-		            <ul>
-		              {{ category.ingredients|endline_split|unordered_list }}
-		            </ul>
-		          {% else %}
-		            <p>...</p>
-		          {% endif %}
-		        </section>
-		      {% endif %}
-		    {% endfor %}
-		  {% else %}
-		    <p>...</p>
-		  {% endif %}
-	  </article>
-	</div>
-	<!-- End of Ingredients -->
-
-
-
-
-
-	<!-- Method -->
-	<div class="border m-1 btn-light p-2 recipe-method" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
-	  <article>
-		<h3>Metoda</h3>
-		<hr/>
-		{% if object.method %}
-		  {{ object.method|linenumbers|linebreaks }}
-		{% else %}
-		  ...
-		{% endif %}
-	  </article>
-	</div>
-	<!-- End of Method -->
-
-
+	<!-- Delete Form -->
+	<form method="POST">
+		{% csrf_token %}
+		<div class="border m-1 btn-light p-2 recipe-method" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
+		  <article>
+			<h3>Uwaga, zamierzasz usunąć przepis!</h3>
+			<hr/>
+			Po naciśnięciu przycisku <b>"Usuń przepis"</b> zgadzasz się na to by wszystkie dane
+			następującego przepisu zostały permanentnie wyczyszczone z naszej platformy.
+			<u>Czy napewno chcesz usunąć ten oto przepis?</u>
+		  </article>
+		  <br/>
+		  <!-- Delete recipe -->
+		  <button class="btn btn-outline-danger" type="submit">Usuń przepis</button>
+		  <!-- Deny action -->
+		  <a class="btn btn-outline-info float-right" href="{% url 'recipe-detail' object.id %}">Przerwij akcję</a>
+		</div>
+	</form>
+	<!-- End of Delete Form  -->
 
     </center>
 
   </div>
   <br/>
-
-{% if authenticated_user == object.author %}
-  <script src="{% static 'recipes/js/recipe_detail.js' %}"></script>
-{% endif %}
 
 {% endblock content %}

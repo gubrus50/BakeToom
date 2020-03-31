@@ -1,7 +1,15 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import (
+	LoginRequiredMixin,
+	UserPassesTestMixin
+)
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView, DetailView, UpdateView
+from django.views.generic import (
+	ListView,
+	DetailView,
+	UpdateView,
+	DeleteView
+)
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse, reverse_lazy
 from django.http import HttpResponse
@@ -25,6 +33,7 @@ class RecipeDetailView(DetailView):
 	def get_context_data(self, **kwargs):
 		context = super(RecipeDetailView, self).get_context_data(**kwargs)
 		context['categories'] = Category.objects.all()
+		context['authenticated_user'] = self.request.user
 		return context
 
 
@@ -61,12 +70,12 @@ def RecipeCreateView(request):
 					)
 
 				# Redirect user to their newly created recipe
-				messages.success(request, f'Your recipe has been successfully created')
+				messages.success(request, f'Your recipe has been successfully created.')
 				return redirect(reverse('recipe-detail', kwargs={'pk': recipe.pk}))
 
 			else:
 				# Set error message once data failed the requirements from validation
-				messages.error(request, f'ERROR - Failed Validation at RecipeCreateView')
+				messages.error(request, f'ERROR - Failed Validation at RecipeCreateView.')
 	else:
 		recipe_form = RecipeForm()
 
@@ -238,7 +247,7 @@ class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 			else:
 				# Set error message once data failed the requirements from validation
-				messages.error(self.request, f'ERROR - Failed Validation at RecipeUpdateView "Illegal or Missing Comparison"')
+				messages.error(self.request, f'ERROR - Failed Validation at RecipeUpdateView "Illegal or Missing Comparison."')
 				return redirect(reverse('recipe-update', kwargs={'pk': recipe_id}))
 
 
@@ -252,5 +261,22 @@ class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 		######################################################
 
 		form.instance.author = self.request.user
-		messages.success(self.request, f'Your recipe has been successfully updated')
+		messages.success(self.request, f'Your recipe has been successfully updated.')
 		return super().form_valid(form)
+
+
+
+
+
+
+
+
+class RecipeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+	model = Recipe
+	success_url = '/'
+
+	def test_func(self):
+		recipe = self.get_object()
+		if self.request.user == recipe.author:
+			return True
+		return False

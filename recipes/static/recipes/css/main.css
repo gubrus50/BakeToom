@@ -6,6 +6,10 @@ html {
   scroll-behavior: smooth;
 }
 
+.alert-danger a { color: #721c24 }
+.alert-success a { color: #155724 }
+
+
 #loadBtn {
 	opacity: 0.9;
 	border-color: #d8d8d8;
