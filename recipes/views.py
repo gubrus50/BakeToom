@@ -70,12 +70,12 @@ def RecipeCreateView(request):
 					)
 
 				# Redirect user to their newly created recipe
-				messages.success(request, f'Your recipe has been successfully created.')
+				messages.success(request, f'Twój przepis został pomyślnie utworzony.')
 				return redirect(reverse('recipe-detail', kwargs={'pk': recipe.pk}))
 
 			else:
 				# Set error message once data failed the requirements from validation
-				messages.error(request, f'ERROR - Failed Validation at RecipeCreateView.')
+				messages.error(request, f'ERROR - Nieudana walidacja w RecipeCreateView.')
 	else:
 		recipe_form = RecipeForm()
 
@@ -248,7 +248,7 @@ class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 			else:
 				# Set error message once data failed the requirements from validation
-				messages.error(self.request, f'ERROR - Failed Validation at RecipeUpdateView "Illegal or Missing Comparison."')
+				messages.error(self.request, f'ERROR - Nieudana walidacja w RecipeUpdateView "Niedozwolone lub brakujące porównanie".')
 				return redirect(reverse('recipe-update', kwargs={'pk': recipe_id}))
 
 
@@ -262,7 +262,7 @@ class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 		######################################################
 
 		form.instance.author = self.request.user
-		messages.success(self.request, f'Your recipe has been successfully updated.')
+		messages.success(self.request, f'Twój przepis został pomyślnie zaktualizowany.')
 		return super().form_valid(form)
 
 
