@@ -96,8 +96,9 @@
   </div>
   <br/>
 
-{% if authenticated_user == object.author %}
-  <script type="text/javascript">var editing_tools = true</script>
+<script type="text/javascript">
+  var editing_tools = {% if authenticated_user == object.author %}true{% else %}false
+</script>
 {% endif %}
 <script src="{% static 'recipes/js/recipe_detail.js' %}"></script>
 
