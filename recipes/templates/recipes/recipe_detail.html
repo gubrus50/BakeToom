@@ -30,9 +30,9 @@
 
 		<small>
 		  {% if object.author %}
-		    autor: {{ object.author }}<br/>
+		    autor: {{ object.author }}, 
 		  {% else %}
-		  	autor: Error<br/>
+		  	autor: null, 
 		  {% endif %}
 		  id_przepisu: {{ object.id }}
 		</small>
@@ -46,7 +46,7 @@
 
 	<!-- Ingredients -->
 	<div class="border m-1 btn-light p-2" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
-	  <article class="recipe-ingredients empty-scroll">
+	  <article class="recipe-ingredients custom-scroll empty-h-scroll">
 		<h3>Składniki</h3>
 		<hr/>
 		  {% if categories %}
@@ -97,7 +97,8 @@
   <br/>
 
 {% if authenticated_user == object.author %}
-  <script src="{% static 'recipes/js/recipe_detail.js' %}"></script>
+  <script type="text/javascript">var editing_tools = true</script>
 {% endif %}
+<script src="{% static 'recipes/js/recipe_detail.js' %}"></script>
 
 {% endblock content %}

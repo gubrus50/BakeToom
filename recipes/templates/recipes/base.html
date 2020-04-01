@@ -20,6 +20,13 @@
 		<title>Django Przepisy</title>
 	{% endif %}
 
+	{% if messages %}
+	  <script type="text/javascript">
+        var hidden_alert_count = 0;
+        var window_location = window.location.href
+      </script>
+    {% endif %}
+
 </head>
 
 
@@ -46,12 +53,17 @@
 		    <li class="nav-item">
 		      <a class="nav-link" href="{% url 'recipes-home' %}">Główna strona <span class="sr-only">(current)</span></a>
 		    </li>
+		    {% if messages %}
+		   	  <li class="nav-item">
+		        <a class="nav-link" href="#" onclick="$('.global-message-container > a').show(); $('.global-message-container').fadeIn(); hidden_alert_count=0">Powiadomienia <span class="sr-only">(current)</span></a>
+		      </li>
+		    {% endif %}
 		    <li class="nav-item dropdown">
 		      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		          Narzędzia
 		      </a>
 		      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-		      	  <a class="dropdown-item" href="{% url 'profile' %}">Zreportuj</a>
+		      	  <a class="dropdown-item disabled" href="#">Zreportuj</a>
 		      	{% if user.is_authenticated %}
 		          <div class="dropdown-divider"></div>
 		          <a class="dropdown-item" href="{% url 'recipe-create' %}">Utwórz przepis</a>
@@ -59,8 +71,8 @@
 		          <a class="dropdown-item disabled" href="#">Usuń przepis</a>
 		          <div class="dropdown-divider"></div>
 		        {% endif %}
-		        <a class="dropdown-item" href="#">Pobierz</a>
-		        <a class="dropdown-item" href="#">Wydrukuj</a>
+		        <a class="dropdown-item disabled" href="#">Pobierz</a>
+		        <a class="dropdown-item disabled" href="#">Wydrukuj</a>
 		      </div>
 		    </li>
 		  </ul>
@@ -96,16 +108,13 @@
     <!-- Global message box to inform the user -->
       {% for message in messages %}
       	{% if message.tags == "error" %}
-      	<div class="alert alert-danger">
-          {{ message }}
-          <a href="#hidden-alert" onclick="$(this).parent().fadeOut()"><u>Okey, Hide</u></a> 
-        </div>
+      	  <div class="global-message-container alert alert-danger">
       	{% else %}
-        <div class="alert alert-{{ message.tags }}">
+      	  <div class="global-message-container alert alert-{{ message.tags }}">
+      	{% endif %}
           {{ message }}
-          <a href="#hidden-alert" onclick="$(this).parent().fadeOut()"><u>Okey, Hide</u></a>  
-        </div>
-        {% endif %}
+            <a style="cursor:pointer" onclick="$(this).hide(); $(this).parent().fadeOut(); hidden_alert_count++; window.location.href=window_location+'#hidden-alert-'+hidden_alert_count.toString()"><u>Okej, schowaj</u></a> 
+          </div>
       {% endfor %}
     {% endif %}
 
@@ -138,7 +147,7 @@
 
 
 	<!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS, then main.js -->
+    <!-- jQuery first, then Popper.js then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

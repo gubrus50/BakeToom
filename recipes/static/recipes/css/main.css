@@ -3,8 +3,13 @@
 ::-webkit-scrollbar-thumb:vertical {height: 30px; background-color: Darkgray}
 
 html {
-  scroll-behavior: smooth;
+	scroll-behavior: smooth;
+	position: relative;
+	min-height: 100%
 }
+body { margin-bottom: 170px }
+
+.footer { width: 100%; position: absolute; bottom: 0px; left: 0 }
 
 .alert-danger a { color: #721c24 }
 .alert-success a { color: #155724 }
@@ -24,15 +29,21 @@ html {
 #loadBtn:active {
 	background-color: green;
 	border-color: lime;
-	color: #4eed75;
+	color: #4eed75
 }
 
-.empty-scroll::-webkit-scrollbar { width: 0px; height: 0px }
-.empty-scroll ::-webkit-scrollbar { width: 0px; height: 0px }
-.empty-scroll::-webkit-scrollbar-track-piece { background-color: #f8f9fa }
-.empty-scroll ::-webkit-scrollbar-track-piece { background-color: #f8f9fa }
-.empty-scroll::-webkit-scrollbar-thumb:vertical { height: 1px; background-color: gray }
-.empty-scroll ::-webkit-scrollbar-thumb:vertical { height: 1px; background-color: gray }
+.empty-h-scroll::-webkit-scrollbar:horizontal { width: 0px; height: 0px }
+.empty-h-scroll ::-webkit-scrollbar:horizontal { width: 0px; height: 0px }
+.empty-v-scroll::-webkit-scrollbar:vertical { width: 0px; height: 0px }
+.empty-v-scroll ::-webkit-scrollbar:vartical { width: 0px; height: 0px }
+.custom-scroll::-webkit-scrollbar-track-piece { background-color: #f8f9fa; box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2) }
+.custom-scroll ::-webkit-scrollbar-track-piece { background-color: #f8f9fa; box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2) }
+.custom-scroll::-webkit-scrollbar-thumb:vertical { height: 1px; background-color: gray }
+.custom-scroll ::-webkit-scrollbar-thumb:vertical { height: 1px; background-color: gray }
+.custom-scroll::-webkit-scrollbar-corner:vertical { background-color: red }
+.custom-scroll ::-webkit-scrollbar-corner:vertical { background-color: red }
+
+
 
 .recipe-ingredients section {
 	float: left;
@@ -44,20 +55,15 @@ html {
   	margin: 10px;
   	overflow: scroll
 }
+.recipe-ingredients section ul {
+	padding-inline-start: 20px;
+	list-style-type: circle
+}
 .recipe-category {
 	width: 25% !important;
 	background-color: #e8e8e8;
 	margin: 10px;
 	float: left
-}
-
-html { position: relative; min-height: 100% }
-body { margin-bottom: 170px }
-.footer { width: 100%; position: absolute; bottom: 0px; left: 0 }
-
-.recipe-ingredients section ul {
-	padding-inline-start: 20px;
-	list-style-type: circle
 }
 .recipe-method p { padding-inline-start: 20px }
 
@@ -72,6 +78,9 @@ body { margin-bottom: 170px }
 }
 
 #new-recipe-submit-form input { width: 500px }
+#new-recipe-submit-form div.btn-group button {
+	width: 300px
+}
 
 label.file-upload input[type="file"] { display: none }
 label.file-upload, input[type="text"] { 
@@ -110,7 +119,7 @@ label.file-upload, input[type="text"] {
 		border-left: 30px solid lightGray;
 		border-right: 30px solid lightGray;
 		margin-bottom: 5px;
-		height: 200px;
+		height: 200px
 	}
 
 
@@ -126,6 +135,10 @@ label.file-upload, input[type="text"] {
 
 	#new-recipe-submit-form section { font-size: 12px }
 	#new-recipe-submit-form input { width: 80%; font-size: 15px }
+	#new-recipe-submit-form div.btn-group button { 
+		font-size: 16px;
+		width: auto
+	}
 
 	#additional-info-users-templates small { 
 		float: left !important;

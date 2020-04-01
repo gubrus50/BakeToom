@@ -114,6 +114,7 @@ class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 		recipe_id = self.kwargs['pk']
 		category_query = Category.objects.select_related().filter(recipe=recipe_id)
 		context = super().get_context_data(**kwargs)
+		context['on_update_view'] = True
 
 		if not category_query:
 			# If empty query
@@ -274,9 +275,15 @@ class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class RecipeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 	model = Recipe
 	success_url = '/'
+	success_message = 'Your recipe has been successfully removed.'
 
 	def test_func(self):
 		recipe = self.get_object()
 		if self.request.user == recipe.author:
 			return True
 		return False
+
+	def delete(self, request, *args, **kwargs):
+		messages.success(self.request, self.success_message)
+		return super(RecipeDeleteView, self).delete(request, *args, **kwargs)
+	

@@ -10,7 +10,7 @@ function createCategoryInIngredientsForm(loop) {
 			  </div>\
 			  <br/><br/>\
 			  <!-- Category Ingredients -->\
-			  <div class="form-group empty-scroll">\
+			  <div class="form-group custom-scroll empty-h-scroll">\
 			    <label>Wprowadź listę składników do następującej kategorii</label>\
 			    <textarea name="ingredients" maxlength="240" class="form-control" rows="3" required></textarea>\
 			  </div>\
