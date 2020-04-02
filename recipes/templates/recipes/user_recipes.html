@@ -1,6 +1,7 @@
 {% extends "recipes/base.html" %}
 {% load recipes_extras %}
 {% block content %}
+{% load static %}
 
 	<!-- Recipes author s-->
 	<h5 class="mb-4 ml-1 mr-1 mt-4 text-center text-dark h5-mobile">Przepisy opublikowane przez "{{ view.kwargs.username }}"</h5>
@@ -13,8 +14,8 @@
 
 
 	<!-- User Recipes -->
-	<div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2015%2F06%2F28%2F00%2F17%2Fpoland-823978_960_720.jpg&f=1&nofb=1');background-repeat: no-repeat, repeat;background-position: center; background-size: cover">
-	  <center class="container">
+	<div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('{% static 'recipes/img/background_notepad.png' %}'); background-size: 15px 15px">
+	  <center class="container recipe-container">
 		{% if recipes %}
 		  {% for recipe in recipes %}
 			<div class="border m-1 btn-light p-2 recipe-container" onclick="$(this).fadeOut(500); setTimeout(function(){window.location='{% url 'recipe-detail' recipe.id %}'}, 500)" style="overflow: auto; border-radius: 5px">

@@ -3,7 +3,7 @@
 {% block content %}
 {% load static %}
 
-  <div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2015%2F06%2F28%2F00%2F17%2Fpoland-823978_960_720.jpg&f=1&nofb=1');background-repeat: no-repeat, repeat;background-position: center; background-size: cover;">
+  <div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('{% static 'recipes/img/background_notepad.png' %}'); background-size: 15px 15px">
 
 
 
@@ -90,11 +90,39 @@
 	<!-- End of Method -->
 
 
-
     </center>
 
   </div>
-  <br/>
+
+
+  <!-- Share - Social Media -->
+  <div class="text-center container mb-5">
+  	<h3 class="h3-mobile mb-4">Udostępnij przepis znajomym</h3>
+  	<ul class="list-inline social-media-icons">
+      <li class="list-inline-item" name="facebook-icon">
+      	<a href="#share">
+      	  <img height="75" src="{% static 'recipes/img/icons/facebook.svg' %}" />
+      	</a>
+      </li>
+      <li class="list-inline-item" name="instagram-icon">
+    	<a href="#share">
+    	  <img height="75" src="{% static 'recipes/img/icons/instagram.svg' %}" />
+      	</a>
+      </li>
+      <li class="list-inline-item" name="twitter-icon">
+    	<a href="#share">
+    	  <img height="75" src="{% static 'recipes/img/icons/twitter.svg' %}" />
+      	</a>
+      </li>
+      <li class="list-inline-item" name="google-plut-icon">
+    	<a href="#share">
+    	  <img height="75" src="{% static 'recipes/img/icons/google-plus.svg' %}" />
+	  	</a>
+	  </li>
+	</ul>
+  </div>
+  <!-- End of Share - Social Media-->
+
 
 <script type="text/javascript">
   var editing_tools = {% if authenticated_user == object.author %}true{% else %}false{% endif %}

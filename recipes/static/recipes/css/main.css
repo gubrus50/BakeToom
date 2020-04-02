@@ -7,7 +7,7 @@ html {
 	position: relative;
 	min-height: 100%
 }
-body { margin-bottom: 170px }
+body { margin-bottom: 240px }
 
 .footer { width: 100%; position: absolute; bottom: 0px; left: 0 }
 
@@ -32,6 +32,12 @@ body { margin-bottom: 170px }
 	color: #4eed75
 }
 
+.social-media-icons li a img:hover {
+	opacity: 0.9;
+	border: 2px solid white;
+	border-radius: 50%
+}
+
 .empty-h-scroll::-webkit-scrollbar:horizontal { width: 0px; height: 0px }
 .empty-h-scroll ::-webkit-scrollbar:horizontal { width: 0px; height: 0px }
 .empty-v-scroll::-webkit-scrollbar:vertical { width: 0px; height: 0px }
@@ -43,6 +49,14 @@ body { margin-bottom: 170px }
 .custom-scroll::-webkit-scrollbar-corner:vertical { background-color: red }
 .custom-scroll ::-webkit-scrollbar-corner:vertical { background-color: red }
 
+.recipe-container > div {
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+	margin-bottom: 5px !important;
+}
+.recipe-container > form > div {
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+	margin-bottom: 5px !important;
+}
 
 
 .recipe-ingredients section {
@@ -88,6 +102,7 @@ body { margin-bottom: 170px }
 }
 #home-pagination div[name="page-flip"] a {
 	border: 1px solid #dee2e6;
+	background-color: #fff;
 	text-decoration: none;
 	padding: .5rem .75rem;
 	text-align: center;
@@ -130,6 +145,8 @@ label.file-upload, input[type="text"] {
 
 
 @media only screen and (max-width: 600px) {
+	.footer-copyright ul li { font-size: 12px }
+
 	.recipe-container { font-size: 12px }
 	.recipe-container h3 { font-size: 20px }
 	.recipe-button img {
@@ -162,6 +179,7 @@ label.file-upload, input[type="text"] {
 		height: 200px
 	}
 
+	.social-media-icons li a img { height: 50px }
 
 
 	#home-pagination { font-size: 12px }
