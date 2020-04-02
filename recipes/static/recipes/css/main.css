@@ -82,6 +82,46 @@ body { margin-bottom: 170px }
 	width: 300px
 }
 
+#home-pagination { padding-bottom: 25px }
+#home-pagination div a {
+	border-radius: 0
+}
+#home-pagination div[name="page-flip"] a {
+	border: 1px solid #dee2e6;
+	text-decoration: none;
+	padding: .5rem .75rem;
+	text-align: center;
+	cursor: pointer;
+	border-top: 0;
+	float: left;
+	width: 20%
+}
+#home-pagination div ul li a.page-link-fancy {
+	border-left: 0; border-right: 0
+}
+#home-pagination div ul li a.page-link-fancy:hover {
+	background-image: linear-gradient(to top, #E9ECEF, #fff)
+}
+#home-pagination div ul li a.page-link-active-fancy {
+	border-left: 0; 
+	border-right: 0;
+	color: #007bff;
+	background-color: #fff
+}
+#home-pagination div ul li a[aria-label="First"]:hover {
+	background-image: linear-gradient(to right, #E9ECEF, #fff)
+}
+#home-pagination div ul li a[aria-label="Last"]:hover {
+	background-image: linear-gradient(to right, #fff, #E9ECEF)
+}
+#home-pagination div[name="page-flip"] a[aria-label="Previous"]:hover {
+	background-image: linear-gradient(to right, #E9ECEF, #fff)
+}
+#home-pagination div[name="page-flip"] a[aria-label="Next"]:hover {
+	background-image: linear-gradient(to right, #fff, #E9ECEF)
+}
+
+
 label.file-upload input[type="file"] { display: none }
 label.file-upload, input[type="text"] { 
 	border-radius: 0px 5px 5px 0px;
@@ -125,7 +165,8 @@ label.file-upload, input[type="text"] {
 
 
 	#home-pagination { font-size: 12px }
-	#base-banner h3 { font-size: 20px }
+	.h3-mobile { font-size: 20px }
+	.h5-mobile { font-size: 14px }
 	#file-upload-data { width: 155px }
 	#recipes div, div.container { width: auto }
 

@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.models import User
 from django.contrib.auth.mixins import (
 	LoginRequiredMixin,
 	UserPassesTestMixin
@@ -24,8 +25,21 @@ class RecipeListView(ListView):
 	model = Recipe
 	template_name = 'recipes/home.html' # <app>/<model>_<viewtype>.html
 	context_object_name = 'recipes'
-	ordering = [F('title').asc(nulls_last=True)] # ORDER BY title & If title=null, null go last.
+	# ORDER BY title & If title=null, null go last.
+	ordering = [F('title').asc(nulls_last=True)]
+	paginate_by = 5
 
+
+class UserRecipeListView(ListView):
+	model = Recipe
+	template_name = 'recipes/user_recipes.html' # <app>/<model>_<viewtype>.html
+	context_object_name = 'recipes'
+	paginate_by = 5
+
+	def get_queryset(self):
+		user = get_object_or_404(User, username=self.kwargs.get('username'))
+		# Return with ORDER BY title & If title=null, null go last.
+		return Recipe.objects.filter(author=user).order_by()
 
 
 class RecipeDetailView(DetailView):

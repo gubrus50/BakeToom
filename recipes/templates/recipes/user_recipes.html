@@ -2,6 +2,9 @@
 {% load recipes_extras %}
 {% block content %}
 
+	<!-- Recipes author s-->
+	<h5 class="mb-4 ml-1 mr-1 mt-4 text-center text-dark h5-mobile">Przepisy opublikowane przez "{{ view.kwargs.username }}"</h5>
+
 	<!-- Search form -->
 	<form class="form-inline my-4 d-flex justify-content-center">
 	  <input class="form-control" type="search" placeholder="Czego dzisiaj pragniesz?" aria-label="Search" style="border-radius:0; width:70%">
@@ -9,9 +12,7 @@
 	</form>
 
 
-
-
-	<!-- Recipes -->
+	<!-- User Recipes -->
 	<div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2015%2F06%2F28%2F00%2F17%2Fpoland-823978_960_720.jpg&f=1&nofb=1');background-repeat: no-repeat, repeat;background-position: center; background-size: cover">
 	  <center class="container">
 		{% if recipes %}
@@ -35,7 +36,7 @@
 		{% endif %}
 	  </center>
 	</div>
-	<!-- End of Recipes -->
+	<!-- End of User Recipes -->
 
 
 

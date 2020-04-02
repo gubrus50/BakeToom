@@ -30,7 +30,7 @@
 
 		<small>
 		  {% if object.author %}
-		    autor: {{ object.author }}, 
+		    autor: <a href="{% url 'user-recipes' object.author.username %}">{{ object.author }}</a>, 
 		  {% else %}
 		  	autor: null, 
 		  {% endif %}
