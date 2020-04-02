@@ -97,9 +97,8 @@
   <br/>
 
 <script type="text/javascript">
-  var editing_tools = {% if authenticated_user == object.author %}true{% else %}false
+  var editing_tools = {% if authenticated_user == object.author %}true{% else %}false{% endif %}
 </script>
-{% endif %}
 <script src="{% static 'recipes/js/recipe_detail.js' %}"></script>
 
 {% endblock content %}
