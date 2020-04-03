@@ -9,6 +9,7 @@ html {
 }
 body { margin-bottom: 240px }
 
+
 .footer { width: 100%; position: absolute; bottom: 0px; left: 0 }
 
 .alert-danger a { color: #721c24 }
@@ -169,6 +170,12 @@ label.file-upload, input[type="text"] {
 	 	background-color: #e8e8e8
 	}
 	.recipe-method p { padding-inline-start: 10px }
+	.recipe-method span button {
+		padding: .25rem .5rem;
+    	font-size: .875rem;
+    	line-height: 1.5;
+    	border-radius: .2rem
+	}
 
 
 	img.account-img {

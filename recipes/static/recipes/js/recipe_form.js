@@ -12,7 +12,7 @@ function createCategoryInIngredientsForm(loop) {
 			  <!-- Category Ingredients -->\
 			  <div class="form-group custom-scroll empty-h-scroll">\
 			    <label>Wprowadź listę składników do następującej kategorii</label>\
-			    <textarea name="ingredients" maxlength="240" class="form-control" rows="3" required></textarea>\
+			    <textarea name="ingredients" maxlength="500" class="form-control" rows="3" required></textarea>\
 			  </div>\
 			  <button type="button" class="btn btn-outline-danger" onclick="category_count--;updateCategoryButtonInIngredientsForm(); $(this).closest(\'div\').remove();">Usuń kategorie</button>\
 		  </div>\
@@ -54,4 +54,5 @@ function updateCategoryButtonInIngredientsForm() {
 window.onload = function() {
 	createCategoryInIngredientsForm(category_creation_count)
 	importCategories(categories, ingredients)
+	$('textarea').addClass('custom-scroll empty-h-scroll')
 }
