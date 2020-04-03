@@ -1,3 +1,5 @@
+/* Applies scrolls if category ingredients
+   content is on word-break             */
 function applyApropiateScrolls() {
 	$('.recipe-ingredients > section').each(function(){
 		if (this.scrollHeight > this.clientHeight) {
@@ -13,7 +15,8 @@ function applyApropiateScrolls() {
 }
 
 
-function UpdateMethodListBreaks(checkbox) {
+/* Expands/shrinks method list by applying/removing break tags */
+function updateMethodListBreaks(checkbox) {
 	var rml = $('#recipe-method-list').children().eq(2);
 
 	if (checkbox.checked) {
@@ -26,6 +29,29 @@ function UpdateMethodListBreaks(checkbox) {
 		)
 	}
 }
+
+
+/* Includes chebox bulletpoint for each list
+   element from categories ingredients    */
+function replaceIngredientsList() {
+	var ingredients_list = []
+
+	$('.ingredients').each(function(){
+		console.log($(this).html())
+		$(this).html(
+			$(this).html().replace(new RegExp('<li>','g'),'<li><label class="checkbox-container">')
+		)
+	})
+	$('.ingredients').each(function(){
+		console.log($(this).html())
+		$(this).html(
+			$(this).html().replace(new RegExp('</label>','g'),'<input type="checkbox"><span class="checkmark"></span></label>')
+		)
+	})
+	return ingredients_list
+}
+
+
 
 window.onload = function() {
 	var	tools = $('div[aria-labelledby="navbarDropdown"]');
@@ -41,7 +67,9 @@ window.onload = function() {
 	}
 
 	applyApropiateScrolls()
+	replaceIngredientsList()
 
+	/* Fancy checkbox button functionality */
 	$(function () {
 	    $('.button-checkbox').each(function () {
 

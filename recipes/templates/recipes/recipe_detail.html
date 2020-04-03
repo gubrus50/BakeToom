@@ -3,10 +3,8 @@
 {% block content %}
 {% load static %}
 
+  <!-- Background Image -->
   <div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('{% static 'recipes/img/background_notepad.png' %}'); background-size: 15px 15px">
-
-
-
   	<center class="container recipe-container">
 
 
@@ -43,7 +41,6 @@
 
 
 
-
 	<!-- Ingredients -->
 	<div class="border m-1 btn-light p-2" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
 	  <article class="recipe-ingredients custom-scroll empty-h-scroll">
@@ -55,7 +52,7 @@
 		        <section>
 		          <h5>{{ category.name }}</h5>
 		          {% if category.ingredients %}
-		            <ul>
+		            <ul class="ingredients">
 		              {{ category.ingredients|endline_split|unordered_list }}
 		            </ul>
 		          {% else %}
@@ -79,7 +76,7 @@
 	<div class="border m-1 btn-light p-2 recipe-method" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
 	  <!-- Expand list -->
 	  <span class="button-checkbox float-right">
-	  	<input type="checkbox" onchange="UpdateMethodListBreaks(this)" class="d-none" />
+	  	<input type="checkbox" onchange="updateMethodListBreaks(this)" class="d-none" />
        	<button type="button" class="btn btn-default" data-color="primary">
        	  Rozszerz Listę
         </button>
@@ -97,9 +94,14 @@
 	<!-- End of Method -->
 
 
-    </center>
 
+
+    </center>
   </div>
+  <!-- End of Background Image -->
+
+
+
 
 
   <!-- Share - Social Media -->
@@ -129,6 +131,10 @@
 	</ul>
   </div>
   <!-- End of Share - Social Media-->
+
+
+
+
 
 
 <script type="text/javascript">

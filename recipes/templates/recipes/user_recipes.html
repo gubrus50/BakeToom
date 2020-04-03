@@ -3,14 +3,17 @@
 {% block content %}
 {% load static %}
 
-	<!-- Recipes author s-->
+	<!-- Recipes author -->
 	<h5 class="mb-4 ml-1 mr-1 mt-4 text-center text-dark h5-mobile">Przepisy opublikowane przez "{{ view.kwargs.username }}"</h5>
+
+
 
 	<!-- Search form -->
 	<form class="form-inline my-4 d-flex justify-content-center">
 	  <input class="form-control" type="search" placeholder="Czego dzisiaj pragniesz?" aria-label="Search" style="border-radius:0; width:70%">
 	  <button class="btn btn-outline-secondary" type="submit" style="border-radius: 0">Wyszukaj</button>
 	</form>
+
 
 
 	<!-- User Recipes -->

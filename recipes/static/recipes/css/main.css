@@ -1,54 +1,86 @@
-::-webkit-scrollbar {width: 5px; height: 15px }
-::-webkit-scrollbar-track-piece  {background-color: #353535}
-::-webkit-scrollbar-thumb:vertical {height: 30px; background-color: Darkgray}
-
 html {
 	scroll-behavior: smooth;
 	position: relative;
 	min-height: 100%
 }
+
 body { margin-bottom: 240px }
 
+.footer {
+	position: absolute;
+	width: 100%;
+	bottom: 0px;
+	left: 0
+}
 
-.footer { width: 100%; position: absolute; bottom: 0px; left: 0 }
-
+/* Global Messages */
 .alert-danger a { color: #721c24 }
 .alert-success a { color: #155724 }
 
 
-#loadBtn {
-	opacity: 0.9;
-	border-color: #d8d8d8;
-	background-color: rgba(0,0,0,0.7)
-}
 
-#loadBtn:hover {
-	opacity: 1;
-	background-color: rgba(0,0,0,1)
-}
 
-#loadBtn:active {
-	background-color: green;
-	border-color: lime;
-	color: #4eed75
-}
 
-.social-media-icons li a img:hover {
-	opacity: 0.9;
-	border: 2px solid white;
-	border-radius: 50%
-}
 
+/**//* ---------- *//**/
+/**//* Scrollbars *//**/
+/**//* ---------- *//**/
+
+::-webkit-scrollbar { width: 5px; height: 15px }
+::-webkit-scrollbar-track-piece  { background-color: #353535}
+::-webkit-scrollbar-thumb:vertical { height: 30px; background-color: Darkgray} 
+
+/* Hide horizontal scrollbar */
 .empty-h-scroll::-webkit-scrollbar:horizontal { width: 0px; height: 0px }
 .empty-h-scroll ::-webkit-scrollbar:horizontal { width: 0px; height: 0px }
+
+/* Hide vertical scrollbar */
 .empty-v-scroll::-webkit-scrollbar:vertical { width: 0px; height: 0px }
 .empty-v-scroll ::-webkit-scrollbar:vartical { width: 0px; height: 0px }
-.custom-scroll::-webkit-scrollbar-track-piece { background-color: #f8f9fa; box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2) }
-.custom-scroll ::-webkit-scrollbar-track-piece { background-color: #f8f9fa; box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2) }
-.custom-scroll::-webkit-scrollbar-thumb:vertical { height: 1px; background-color: gray }
-.custom-scroll ::-webkit-scrollbar-thumb:vertical { height: 1px; background-color: gray }
+
+/* Unique scrollbar for website content */
+.custom-scroll::-webkit-scrollbar-track-piece {
+	background-color: #f8f9fa;
+	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2)
+}
+.custom-scroll ::-webkit-scrollbar-track-piece {
+	background-color: #f8f9fa;
+	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2)
+}
+.custom-scroll::-webkit-scrollbar-thumb:vertical {
+	height: 1px;
+	background-color: gray
+}
+.custom-scroll ::-webkit-scrollbar-thumb:vertical {
+	height: 1px;
+	background-color: gray
+}
 .custom-scroll::-webkit-scrollbar-corner:vertical { background-color: red }
 .custom-scroll ::-webkit-scrollbar-corner:vertical { background-color: red }
+
+/**//* ----------------- *//**/
+/**//* END of Scrollbars *//**/
+/**//* ----------------- *//**/
+
+
+
+
+
+
+
+/**//* ----------------- *//**/
+/**//* Recipe Containers *//**/
+/**//* ----------------- *//**/
+
+/* Main container (usually center tag) */
+#recipes div, div.container {
+  	width: 95%;
+  	text-align: left
+}
+
+#recipes center.container div div.form-group {
+	margin-left: 5px
+}
 
 .recipe-container > div {
 	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.1);
@@ -59,94 +91,33 @@ body { margin-bottom: 240px }
 	margin-bottom: 5px !important;
 }
 
-
-.recipe-ingredients section {
-	float: left;
-  	width: 25%;
-  	height: 250px;
-  	border: 1px solid lightGray;
-  	border-radius: 10px;
-  	padding: 10px;
-  	margin: 10px;
-  	overflow: scroll
-}
-.recipe-ingredients section ul {
-	padding-inline-start: 20px;
-	list-style-type: circle
-}
-.recipe-category {
-	width: 25% !important;
-	background-color: #e8e8e8;
-	margin: 10px;
-	float: left
-}
-.recipe-method p { padding-inline-start: 20px }
-
-#recipes div, div.container {
-  	width: 95%;
-  	text-align: left
-}
+/**//* ------------------------ *//**/
+/**//* END of Recipe Containers *//**/
+/**//* ------------------------ *//**/
 
 
-#recipes center.container div div.form-group {
-	margin-left: 5px
-}
-
-#new-recipe-submit-form input { width: 500px }
-#new-recipe-submit-form div.btn-group button {
-	width: 300px
-}
-
-#home-pagination { padding-bottom: 25px }
-#home-pagination div a {
-	border-radius: 0
-}
-#home-pagination div[name="page-flip"] a {
-	border: 1px solid #dee2e6;
-	background-color: #fff;
-	text-decoration: none;
-	padding: .5rem .75rem;
-	text-align: center;
-	cursor: pointer;
-	border-top: 0;
-	float: left;
-	width: 20%
-}
-#home-pagination div ul li a.page-link-fancy {
-	border-left: 0; border-right: 0
-}
-#home-pagination div ul li a.page-link-fancy:hover {
-	background-image: linear-gradient(to top, #E9ECEF, #fff)
-}
-#home-pagination div ul li a.page-link-active-fancy {
-	border-left: 0; 
-	border-right: 0;
-	color: #007bff;
-	background-color: #fff
-}
-#home-pagination div ul li a[aria-label="First"]:hover {
-	background-image: linear-gradient(to right, #E9ECEF, #fff)
-}
-#home-pagination div ul li a[aria-label="Last"]:hover {
-	background-image: linear-gradient(to right, #fff, #E9ECEF)
-}
-#home-pagination div[name="page-flip"] a[aria-label="Previous"]:hover {
-	background-image: linear-gradient(to right, #E9ECEF, #fff)
-}
-#home-pagination div[name="page-flip"] a[aria-label="Next"]:hover {
-	background-image: linear-gradient(to right, #fff, #E9ECEF)
-}
 
 
-label.file-upload input[type="file"] { display: none }
-label.file-upload, input[type="text"] { 
-	border-radius: 0px 5px 5px 0px;
-	float: left
-}
 
+
+
+
+
+
+/**//* -------------- *//**/
+/**//* User on Mobile *//**/
+/**//* ---------------*//**/
 
 @media only screen and (max-width: 600px) {
+
+	.h3-mobile { font-size: 20px }
+	.h5-mobile { font-size: 14px }
+
 	.footer-copyright ul li { font-size: 12px }
+
+
+
+
 
 	.recipe-container { font-size: 12px }
 	.recipe-container h3 { font-size: 20px }
@@ -156,28 +127,10 @@ label.file-upload, input[type="text"] {
 		height: 75px
 	}
 
-	.recipe-ingredients section {
-	  	width: 90%;
-	  	height: 250px;
-	  	border: 1px solid lightGray;
-	  	border-radius: 10px;
-	  	padding: 10px;
-	  	margin: 10px;
-	  	overflow: scroll
-	}
-	.recipe-category {
-		width: auto !important;
-	 	background-color: #e8e8e8
-	}
-	.recipe-method p { padding-inline-start: 10px }
-	.recipe-method span button {
-		padding: .25rem .5rem;
-    	font-size: .875rem;
-    	line-height: 1.5;
-    	border-radius: .2rem
-	}
 
 
+
+	/* USER APP */
 	img.account-img {
 		width: 100%;
 		border-left: 30px solid lightGray;
@@ -185,34 +138,16 @@ label.file-upload, input[type="text"] {
 		margin-bottom: 5px;
 		height: 200px
 	}
-
-	.social-media-icons li a img { height: 50px }
-
-
-	#home-pagination { font-size: 12px }
-	.h3-mobile { font-size: 20px }
-	.h5-mobile { font-size: 14px }
-	#file-upload-data { width: 155px }
 	#recipes div, div.container { width: auto }
-
 	#recipes center.container div div.form-group {
 		margin-left: 0
 	}
-
-	#new-recipe-submit-form section { font-size: 12px }
-	#new-recipe-submit-form input { width: 80%; font-size: 15px }
-	#new-recipe-submit-form div.btn-group button { 
-		font-size: 16px;
-		width: auto
-	}
-
 	#additional-info-users-templates small { 
 		float: left !important;
 		display: inline;
 		clear: both;
 		word-break: break-all
 	}
-
 	#profile-details {
 		width: 100%;
 		word-wrap: break-word
@@ -224,4 +159,8 @@ label.file-upload, input[type="text"] {
 		width: 100%;
 		padding: 2px
 	}
+	/* END of USER APP */
 }
+/**//* --------------------- *//**/
+/**//* END of User on Mobile *//**/
+/**//* --------------------- *//**/

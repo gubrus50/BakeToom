@@ -1,0 +1,41 @@
+/* Recipe category form container */
+.recipe-category {
+	width: 25% !important;
+	background-color: #e8e8e8;
+	margin: 10px;
+	float: left
+}
+
+/* Submit form button at the bottom */
+#new-recipe-submit-form input {
+	width: 500px
+}
+
+/* Submit form buttons ("Zaktualizuj dane", "Przerwij akcję") at the bottom */
+#new-recipe-submit-form div.btn-group button {
+	width: 300px
+}
+
+
+
+
+/* If user on mobile display */
+@media only screen and (max-width: 600px) {
+
+	/* Submit form warning message ("Uwaga!") */
+	#new-recipe-submit-form section {
+		font-size: 12px
+	}
+
+	/* Submit form button at the bottom */
+	#new-recipe-submit-form input {
+		width: 80%;
+		font-size: 15px
+	}
+
+	/* Submit form buttons ("Zaktualizuj dane", "Przerwij akcję") at the bottom */
+	#new-recipe-submit-form div.btn-group button { 
+		font-size: 16px;
+		width: auto
+	}
+}

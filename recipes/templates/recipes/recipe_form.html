@@ -8,67 +8,70 @@
 
   <!-- Background Image -->
   <div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('{% static 'recipes/img/background_notepad.png' %}'); background-size: 15px 15px">
-
-
     <center class="container recipe-container">
 
 
 
-  	<!-- Recipe -->
-  	<div class="border m-1 bg-light p-2" style="overflow: auto; border-radius: 5px">
-	  <h2>Przepis</h2>
-	  <hr/>
-  	  <!-- Title Input -->
-	  <div class="form-group">
-	    {{ form.title|as_crispy_field }}
+  	  <!-- Recipe -->
+  	  <div class="border m-1 bg-light p-2" style="overflow: auto; border-radius: 5px">
+	    <h2>Przepis</h2>
+	    <hr/>
+  	    <!-- Title Input -->
+	    <div class="form-group">
+	      {{ form.title|as_crispy_field }}
+	    </div>
+	    <!-- Description Input -->
+	    <br/><br/>
+	    <div class="form-group">
+	      {{ form.description|as_crispy_field }}
+	    </div>
+	    <!-- Image Input -->
+        <div class="form-group mt-3">
+      	  {{ form.image|as_crispy_field }}
+        </div>
 	  </div>
-	  <!-- Description Input -->
-	  <br/><br/>
-	  <div class="form-group">
-	    {{ form.description|as_crispy_field }}
+	  <!-- End of Recipe -->
+
+
+
+
+
+	  <!-- Ingredients -->
+	  <div id="ingredientsForm" class="border m-1 bg-light p-2 pb-4" style="overflow: auto; border-radius: 5px">
+	    <h2>Składniki</h2>
+	    <hr/>
+  	    <!-- New Category -->
+	    <button id="create-category-btn" type="button" class="btn btn-outline-primary" onclick="createCategoryInIngredientsForm(1); updateCategoryButtonInIngredientsForm()">
+	      Utwórz kategorie
+	    </button>
+	    <br/><br/>
 	  </div>
-	  <!-- Image Input -->
-      <div class="form-group mt-3">
-      	{{ form.image|as_crispy_field }}
-      </div>
-	</div>
-	<!-- End of Recipe -->
+	  <!-- End of Ingredients -->
 
 
 
 
 
-	<!-- Ingredients -->
-	<div id="ingredientsForm" class="border m-1 bg-light p-2 pb-4" style="overflow: auto; border-radius: 5px">
-	  <h2>Składniki</h2>
-	  <hr/>
-  	  <!-- New Category -->
-	  <button id="create-category-btn" type="button" class="btn btn-outline-primary" onclick="createCategoryInIngredientsForm(1); updateCategoryButtonInIngredientsForm()">
-	    Utwórz kategorie
-	  </button>
-	  <br/><br/>
-	</div>
-	<!-- End of Ingredients -->
 
-
-
-
-
-	<!-- Method -->
-	<div class="border m-1 bg-light p-2" style="overflow: auto; border-radius: 5px">
-	  <h2>Metoda</h2>
-	  <hr/>
-  	  <!-- Instructions -->
-	  <div class="form-group">
-	    {{ form.method|as_crispy_field }}
+	  <!-- Method -->
+	  <div class="border m-1 bg-light p-2" style="overflow: auto; border-radius: 5px">
+	    <h2>Metoda</h2>
+	    <hr/>
+  	    <!-- Instructions -->
+	    <div class="form-group">
+	      {{ form.method|as_crispy_field }}
+	    </div>
 	  </div>
-	</div>
-	<!-- End of Method -->
+	  <!-- End of Method -->
 
 
 	</center>
   </div>
   <!-- End of Background Image -->
+
+
+
+
 
 
 
@@ -86,6 +89,8 @@
 	  jesteś w pełni świadomy(a) <a href="#">prawa autorskiego</a>. Jeśli któreś z powyższych danych które wprowadziłeś(ąś) narusza nasze <a href="#">warunki i usługi</a>, to przepis zostanie usunięty z wiadomości publicznej i możesz ponieść konsekwencje karne. <a href="#">Kliknij mnie</a> jeśli chcesz wiedzieć jak się chronić przed nieuczciwymi oskarżeniami.</p>
     </section>
     <br/>
+
+
     {% if on_update_view %}
       <div class="btn-group">
       	<!-- Update data (submit) -->
@@ -101,7 +106,6 @@
 
 
 </form>
-
 <br/><br/><br/>
 
 

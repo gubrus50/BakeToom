@@ -6,6 +6,7 @@
   <!-- Container -->
   <div class="border m-1 bg-light p-2 container" style="overflow: auto; border-radius: 5px">
 
+
   	<!-- Profile Image -->
     <img class="rounded account-img float-left mr-3" width="150" height="150" src="{{ user.profile.image.url }}" />
     
@@ -21,13 +22,19 @@
         {{ user.email }}
   	  </p>
     </div>
+    <!-- End of Profile Details -->
+
+
 
     <!-- Right sub-container -->
     <div id="profile-details-sub-container" class="float-right text-right">
       <a href="#" onclick="$('#profile-update-details-form').fadeIn()">Zarządzaj Kontem<span class="sr-only">(current)</span></a>
-	  <br/>
-	  <a href="{% url 'logout' %}">Wyloguj się <span class="sr-only">(current)</span></a>
-	</div>
+	    <br/>
+	    <a href="{% url 'logout' %}">Wyloguj się <span class="sr-only">(current)</span></a>
+	  </div>
+    <!-- End of Right sub-container -->
+
+
 
     <div style="clear: both"></div>
   </div>
@@ -35,24 +42,35 @@
 
 
 
+
+
+
+
+
+
   <!-- Update Details Form Container -->
   <div id="profile-update-details-form" class="border m-1 bg-light p-2 container mt-2" style="overflow: auto; border-radius: 5px; display: none">
     <form method="POST" enctype="multipart/form-data">
       {% csrf_token %}
+
+
+      <!-- Manage account form -->
       <fieldset class="form-group">
         <legend class="border-bottom mb-4">Zarządzaj kontem</legend>
         {{ u_form|crispy }}
         {{ p_form|crispy }}
       </fieldset>
       <div class="form-group">
+
         <!-- Confirm changes btn -->
         <button class="btn btn-outline-info" type="submit">Zatwierdź zmiany</button>
         <!-- Deny changes btn -->
         <input type="button" value="Anuluj" class="btn btn-outline-danger float-right" onclick="$('#profile-update-details-form').fadeOut()" />
+
       </div>
     </form>
   </div>
-  <!-- End of container -->
+  <!-- End of Update Details Form Container -->
 
 
 </center>
