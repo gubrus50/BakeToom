@@ -1,69 +1,75 @@
 {% extends "recipes/base.html" %}
 {% load recipes_extras %}
 {% block content %}
-{% load static %}
+  {% load static %}
 
   <!-- Background Image -->
   <div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('{% static 'recipes/img/background_notepad.png' %}'); background-size: 15px 15px">
-  	<center class="container recipe-container">
+    <center class="container recipe-container">
 
 
 
-  	  <!-- Recipe -->
-  	  <div class="border m-1 btn-light p-2" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
-	    <article>
-		  <img class="float-right" width="150px" height="100px" style="border-radius: 5px 5px 5px 75px" src="{{ object.image.url }}">
-		  {% if object.title %}
-		    <h3>{{ object.title }}</h3>
-		  {% else %}
-		    <!-- Title -->
-		    <h3>Przepis</h3>
-		  {% endif %}
+      <!-- Recipe -->
+      <div class="border m-1 btn-light p-2" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
+        <article>
+          <img class="float-right" width="150px" height="100px" style="border-radius: 5px 5px 5px 75px" src="{{ object.image.url }}">
+          {% if object.title %}
+            <h3>{{ object.title }}</h3>
+          {% else %}
+          <!-- Title -->
+            <h3>Przepis</h3>
+          {% endif %}
 
-		  {% if object.description %}
-		    <p>{{ object.description }}</p>
-		  {% else %}
-		    <p>...</p>
-		  {% endif %}
+          {% if object.description %}
+            <p>{{ object.description }}</p>
+          {% else %}
+            <p>...</p>
+          {% endif %}
 
-		  <small>
-		    {% if object.author %}
-		      autor: {{ object.author }}<br/>
-		    {% else %}
-		  	  autor: Error<br/>
-		    {% endif %}
-		    id_przepisu: {{ object.id }}
-		  </small>
-	    </article>
-	  </div>
-	  <!-- End of Recipe -->
-
-
+          <small>
+          	{% if object.author %}
+          	  autor: {{ object.author }}<br/>
+          	{% else %}
+          	  autor: Error<br/>
+          	{% endif %}
+          	  id_przepisu: {{ object.id }}
+          </small>
+        </article>
+      </div>
+      <!-- End of Recipe -->
 
 
 
-	  <!-- Delete Form -->
-	  <form method="POST">
-		{% csrf_token %}
-		<div class="border m-1 btn-light p-2" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
 
-		  <article>
-			<h3>Uwaga, zamierzasz usunąć przepis!</h3>
-			<hr/>
-			Po naciśnięciu przycisku <b>"Usuń przepis"</b> zgadzasz się na to by wszystkie dane
+
+      <!-- Delete Form -->
+      <form method="POST">
+      	{% csrf_token %}
+      	<div class="border m-1 btn-light p-2" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
+
+      	  <article>
+      	  	<h3>Uwaga, zamierzasz usunąć przepis!</h3>
+      	  	<hr/>
+      	  	Po naciśnięciu przycisku <b>"Usuń przepis"</b> zgadzasz się na to by wszystkie dane
 			następującego przepisu zostały permanentnie wyczyszczone z naszej platformy.
 			<u>Czy napewno chcesz usunąć ten oto przepis?</u>
 		  </article>
 		  <br/>
 
-		  <!-- Delete recipe -->
-		  <button class="btn btn-outline-danger" type="submit">Usuń przepis</button>
-		  <!-- Deny action -->
-		  <a class="btn btn-outline-info float-right" href="{% url 'recipe-detail' object.id %}">Przerwij akcję</a>
+          <!-- Delete recipe -->
+          <button class="btn btn-outline-danger" type="submit">
+            Usuń przepis
+          </button>
+          <!-- Deny action -->
+          <a class="btn btn-outline-info float-right" href="{% url 'recipe-detail' object.id %}">
+            Przerwij akcję
+          </a>
 
-		</div>
-	  </form>
-	<!-- End of Delete Form  -->
+        </div>
+      </form>
+      <!-- End of Delete Form  -->
+
+
 
 
 

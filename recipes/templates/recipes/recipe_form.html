@@ -1,119 +1,119 @@
 {% extends "recipes/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-{% load static %}
+  {% load static %}
 
-<form method="POST" enctype="multipart/form-data">
-  {% csrf_token %}
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <!-- Background Image -->
+    <div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('{% static 'recipes/img/background_notepad.png' %}'); background-size: 15px 15px">
+      <center class="container recipe-container">
 
-  <!-- Background Image -->
-  <div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('{% static 'recipes/img/background_notepad.png' %}'); background-size: 15px 15px">
-    <center class="container recipe-container">
 
 
-
-  	  <!-- Recipe -->
-  	  <div class="border m-1 bg-light p-2" style="overflow: auto; border-radius: 5px">
-	    <h2>Przepis</h2>
-	    <hr/>
-  	    <!-- Title Input -->
-	    <div class="form-group">
-	      {{ form.title|as_crispy_field }}
+  	    <!-- Recipe -->
+  	    <div class="border m-1 bg-light p-2" style="overflow: auto; border-radius: 5px">
+	      <h2>Przepis</h2>
+	      <hr/>
+  	      <!-- Title Input -->
+	      <div class="form-group">
+	        {{ form.title|as_crispy_field }}
+	      </div>
+	      <!-- Description Input -->
+	      <br/><br/>
+	      <div class="form-group">
+	        {{ form.description|as_crispy_field }}
+	      </div>
+	      <!-- Image Input -->
+          <div class="form-group mt-3">
+      	    {{ form.image|as_crispy_field }}
+          </div>
 	    </div>
-	    <!-- Description Input -->
-	    <br/><br/>
-	    <div class="form-group">
-	      {{ form.description|as_crispy_field }}
+	    <!-- End of Recipe -->
+
+
+
+
+
+	    <!-- Ingredients -->
+	    <div id="ingredientsForm" class="border m-1 bg-light p-2 pb-4" style="overflow: auto; border-radius: 5px">
+	      <h2>Składniki</h2>
+	      <hr/>
+  	      <!-- New Category -->
+	      <button id="create-category-btn" type="button" class="btn btn-outline-primary" onclick="createCategoryInIngredientsForm(1); updateCategoryButtonInIngredientsForm()">
+	        Utwórz kategorie
+	      </button>
+	      <br/><br/>
 	    </div>
-	    <!-- Image Input -->
-        <div class="form-group mt-3">
-      	  {{ form.image|as_crispy_field }}
-        </div>
-	  </div>
-	  <!-- End of Recipe -->
-
-
-
-
-
-	  <!-- Ingredients -->
-	  <div id="ingredientsForm" class="border m-1 bg-light p-2 pb-4" style="overflow: auto; border-radius: 5px">
-	    <h2>Składniki</h2>
-	    <hr/>
-  	    <!-- New Category -->
-	    <button id="create-category-btn" type="button" class="btn btn-outline-primary" onclick="createCategoryInIngredientsForm(1); updateCategoryButtonInIngredientsForm()">
-	      Utwórz kategorie
-	    </button>
-	    <br/><br/>
-	  </div>
-	  <!-- End of Ingredients -->
+	    <!-- End of Ingredients -->
 
 
 
 
 
 
-	  <!-- Method -->
-	  <div class="border m-1 bg-light p-2" style="overflow: auto; border-radius: 5px">
-	    <h2>Metoda</h2>
-	    <hr/>
-  	    <!-- Instructions -->
-	    <div class="form-group">
-	      {{ form.method|as_crispy_field }}
+	    <!-- Method -->
+	    <div class="border m-1 bg-light p-2" style="overflow: auto; border-radius: 5px">
+	      <h2>Metoda</h2>
+	      <hr/>
+  	      <!-- Instructions -->
+	      <div class="form-group">
+	        {{ form.method|as_crispy_field }}
+	      </div>
 	    </div>
-	  </div>
-	  <!-- End of Method -->
+	    <!-- End of Method -->
 
 
-	</center>
-  </div>
-  <!-- End of Background Image -->
-
-
+	  </center>
+    </div>
+    <!-- End of Background Image -->
 
 
 
 
 
 
-  <!-- Submittion -->
-  <center id="new-recipe-submit-form" class="container">
-    <section class="ml-5 mr-5">
-	  <h2>Uwaga!</h2>
-	  <p>Zanim udostępnisz
-	  {% if on_update_view %}
-	    ulepszoną wersję danego przepisu,
-	  {% else %}
-	    swój przepis,
-	  {% endif %}
-	  jesteś w pełni świadomy(a) <a href="#">prawa autorskiego</a>. Jeśli któreś z powyższych danych które wprowadziłeś(ąś) narusza nasze <a href="#">warunki i usługi</a>, to przepis zostanie usunięty z wiadomości publicznej i możesz ponieść konsekwencje karne. <a href="#">Kliknij mnie</a> jeśli chcesz wiedzieć jak się chronić przed nieuczciwymi oskarżeniami.</p>
-    </section>
-    <br/>
 
 
-    {% if on_update_view %}
-      <div class="btn-group">
-      	<!-- Update data (submit) -->
-        <button type="submit" class="btn btn-warning btn-lg">Zaktualizuj dane</button>
-        <!-- Deny action -->
-        <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='{% url 'recipe-detail' object.id %}'">Przerwij akcję</button>
-  	  </div>
-    {% else %}
-      <input type="submit" class="btn btn-success btn-lg btn-block" value="Stwórz i upublikuj mój przepis" />
-    {% endif %}
-  </center>
-  <!-- End of Submittion -->
+    <!-- Submittion -->
+    <center id="new-recipe-submit-form" class="container">
+      <section class="ml-5 mr-5">
+	    <h2>Uwaga!</h2>
+	    <p>Zanim udostępnisz
+	    {% if on_update_view %}
+	      ulepszoną wersję danego przepisu,
+	    {% else %}
+	      swój przepis,
+	    {% endif %}
+	    jesteś w pełni świadomy(a) <a href="#">prawa autorskiego</a>. Jeśli któreś z powyższych danych które wprowadziłeś(ąś) narusza nasze <a href="#">warunki i usługi</a>, to przepis zostanie usunięty z wiadomości publicznej i możesz ponieść konsekwencje karne. <a href="#">Kliknij mnie</a> jeśli chcesz wiedzieć jak się chronić przed nieuczciwymi oskarżeniami.</p>
+      </section>
+      <br/>
 
 
-</form>
-<br/><br/><br/>
+      {% if on_update_view %}
+        <div class="btn-group">
+      	  <!-- Update data (submit) -->
+          <button type="submit" class="btn btn-warning btn-lg">Zaktualizuj dane</button>
+          <!-- Deny action -->
+          <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='{% url 'recipe-detail' object.id %}'">Przerwij akcję</button>
+  	    </div>
+      {% else %}
+        <input type="submit" class="btn btn-success btn-lg btn-block" value="Stwórz i upublikuj mój przepis" />
+      {% endif %}
+    </center>
+    <!-- End of Submittion -->
 
 
-<script type="text/javascript">
-var category_creation_count = {{ category_creation_count }}
-var categories = {{ categories|safe }}
-var ingredients = {{ ingredients|safe }}
-</script>
-<script src="{% static 'recipes/js/recipe_form.js' %}"></script>
+  </form>
+  <br/><br/><br/>
+
+
+  <script type="text/javascript">
+    var category_creation_count = {{ category_creation_count }}
+    var categories = {{ categories|safe }}
+    var ingredients = {{ ingredients|safe }}
+  </script>
+  <script src="{% static 'recipes/js/recipe_form.js' %}"></script>
 
 {% endblock content %}

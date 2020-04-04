@@ -1,16 +1,16 @@
 html {
-	scroll-behavior: smooth;
-	position: relative;
-	min-height: 100%
+  scroll-behavior: smooth;
+  position: relative;
+  min-height: 100%
 }
 
 body { margin-bottom: 240px }
 
 .footer {
-	position: absolute;
-	width: 100%;
-	bottom: 0px;
-	left: 0
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+  left: 0
 }
 
 /* Global Messages */
@@ -40,20 +40,20 @@ body { margin-bottom: 240px }
 
 /* Unique scrollbar for website content */
 .custom-scroll::-webkit-scrollbar-track-piece {
-	background-color: #f8f9fa;
-	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2)
+  background-color: #f8f9fa;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2)
 }
 .custom-scroll ::-webkit-scrollbar-track-piece {
-	background-color: #f8f9fa;
-	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2)
+  background-color: #f8f9fa;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2)
 }
 .custom-scroll::-webkit-scrollbar-thumb:vertical {
-	height: 1px;
-	background-color: gray
+  height: 1px;
+  background-color: gray
 }
 .custom-scroll ::-webkit-scrollbar-thumb:vertical {
-	height: 1px;
-	background-color: gray
+  height: 1px;
+  background-color: gray
 }
 .custom-scroll::-webkit-scrollbar-corner:vertical { background-color: red }
 .custom-scroll ::-webkit-scrollbar-corner:vertical { background-color: red }
@@ -74,21 +74,21 @@ body { margin-bottom: 240px }
 
 /* Main container (usually center tag) */
 #recipes div, div.container {
-  	width: 95%;
-  	text-align: left
+  width: 95%;
+  text-align: left
 }
 
 #recipes center.container div div.form-group {
-	margin-left: 5px
+  margin-left: 5px
 }
 
 .recipe-container > div {
-	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.1);
-	margin-bottom: 5px !important;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 5px !important
 }
 .recipe-container > form > div {
-	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.1);
-	margin-bottom: 5px !important;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 5px !important
 }
 
 /**//* ------------------------ *//**/
@@ -110,56 +110,56 @@ body { margin-bottom: 240px }
 
 @media only screen and (max-width: 600px) {
 
-	.h3-mobile { font-size: 20px }
-	.h5-mobile { font-size: 14px }
+  .h3-mobile { font-size: 20px }
+  .h5-mobile { font-size: 14px }
 
-	.footer-copyright ul li { font-size: 12px }
-
-
-
-
-
-	.recipe-container { font-size: 12px }
-	.recipe-container h3 { font-size: 20px }
-	.recipe-button img {
-		border-radius: 5px 5px 5px 50px !important;
-		width: 100px;
-		height: 75px
-	}
+  .footer-copyright ul li { font-size: 12px }
 
 
 
 
-	/* USER APP */
-	img.account-img {
-		width: 100%;
-		border-left: 30px solid lightGray;
-		border-right: 30px solid lightGray;
-		margin-bottom: 5px;
-		height: 200px
-	}
-	#recipes div, div.container { width: auto }
-	#recipes center.container div div.form-group {
-		margin-left: 0
-	}
-	#additional-info-users-templates small { 
-		float: left !important;
-		display: inline;
-		clear: both;
-		word-break: break-all
-	}
-	#profile-details {
-		width: 100%;
-		word-wrap: break-word
-	}
-	#profile-details h2 { font-size: 25px }
-	#profile-details-sub-container { 
-		float: left !important;
-		text-align: left !important;
-		width: 100%;
-		padding: 2px
-	}
-	/* END of USER APP */
+
+  .recipe-container { font-size: 12px }
+  .recipe-container h3 { font-size: 20px }
+  .recipe-button img {
+    border-radius: 5px 5px 5px 50px !important;
+    width: 100px;
+    height: 75px
+  }
+
+
+
+
+  /* USER APP */
+  img.account-img {
+    width: 100%;
+    border-left: 30px solid lightGray;
+    border-right: 30px solid lightGray;
+    margin-bottom: 5px;
+    height: 200px
+  }
+  #recipes div, div.container { width: auto }
+  #recipes center.container div div.form-group {
+    margin-left: 0
+  }
+  #additional-info-users-templates small { 
+    float: left !important;
+    display: inline;
+    clear: both;
+    word-break: break-all
+  }
+  #profile-details {
+    width: 100%;
+    word-wrap: break-word
+  }
+  #profile-details h2 { font-size: 25px }
+  #profile-details-sub-container { 
+    float: left !important;
+    text-align: left !important;
+    width: 100%;
+    padding: 2px
+  }
+  /* END of USER APP */
 }
 /**//* --------------------- *//**/
 /**//* END of User on Mobile *//**/

@@ -1,7 +1,7 @@
 {% extends "recipes/base.html" %}
 {% load recipes_extras %}
 {% block content %}
-{% load static %}
+  {% load static %}
 
   <!-- Background Image -->
   <div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('{% static 'recipes/img/background_notepad.png' %}'); background-size: 15px 15px">
@@ -46,24 +46,24 @@
 	  <article class="recipe-ingredients custom-scroll empty-h-scroll">
 		<h3>Składniki</h3>
 		<hr/>
-		  {% if categories %}
-		    {% for category in categories %}
-		      {% if category.recipe == object %}
-		        <section>
-		          <h5>{{ category.name }}</h5>
-		          {% if category.ingredients %}
-		            <ul class="ingredients">
-		              {{ category.ingredients|endline_split|unordered_list }}
-		            </ul>
-		          {% else %}
-		            <p>...</p>
-		          {% endif %}
-		        </section>
-		      {% endif %}
-		    {% endfor %}
-		  {% else %}
-		    <p>...</p>
-		  {% endif %}
+		{% if categories %}
+		  {% for category in categories %}
+		    {% if category.recipe == object %}
+		      <section>
+		        <h5>{{ category.name }}</h5>
+		        {% if category.ingredients %}
+		          <ul class="ingredients">
+		            {{ category.ingredients|endline_split|unordered_list }}
+		          </ul>
+		        {% else %}
+		          <p>...</p>
+		        {% endif %}
+		      </section>
+		    {% endif %}
+		  {% endfor %}
+		{% else %}
+		  <p>...</p>
+		{% endif %}
 	  </article>
 	</div>
 	<!-- End of Ingredients -->
@@ -106,7 +106,9 @@
 
   <!-- Share - Social Media -->
   <div class="text-center container mb-5">
-  	<h3 class="h3-mobile mb-4">Udostępnij przepis znajomym</h3>
+  	<h3 class="h3-mobile mb-4">
+  	  Udostępnij przepis znajomym
+  	</h3>
   	<ul class="list-inline social-media-icons">
       <li class="list-inline-item" name="facebook-icon">
       	<a href="#share">
