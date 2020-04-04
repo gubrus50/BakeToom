@@ -21,11 +21,11 @@ function updateMethodListBreaks(checkbox) {
 
 	if (checkbox.checked) {
 		$(rml).html(
-			$(rml).html().replace(new RegExp("<br>","g"),"<br><br>")
+			$(rml).html().replace(new RegExp('<br>','g'),'<br><br>')
 		)
 	} else {
 		$(rml).html(
-			$(rml).html().replace(new RegExp("<br><br>","g"),"<br>")
+			$(rml).html().replace(new RegExp('<br><br>','g'),'<br>')
 		)
 	}
 }
@@ -37,13 +37,11 @@ function replaceIngredientsList() {
 	var ingredients_list = []
 
 	$('.ingredients').each(function(){
-		console.log($(this).html())
 		$(this).html(
 			$(this).html().replace(new RegExp('<li>','g'),'<li><label class="checkbox-container">')
 		)
 	})
 	$('.ingredients').each(function(){
-		console.log($(this).html())
 		$(this).html(
 			$(this).html().replace(new RegExp('</label>','g'),'<input type="checkbox"><span class="checkmark"></span></label>')
 		)
@@ -51,6 +49,36 @@ function replaceIngredientsList() {
 	return ingredients_list
 }
 
+
+/* Removes null/spaced objects from the method list */
+function replaceMethodList() {
+	// Get list
+	var new_method_list = []
+	var method_data = $('#recipe-method-list > p').html();
+	var method_list = method_data.split('<br>');
+
+	for (var i=0; i<method_list.length; i++) {
+		// Remove linenumbers
+		method_list[i]=method_list[i].replace(/^.+?\./g,'')
+		// Populate new_method_list with existing data
+	    if (!method_list[i] 
+	    || 	method_list[i]===''
+	    || 	/^\s+$/g.test(method_list[i]))
+	    {} else {
+	    	new_method_list.push(method_list[i])
+	    }
+	}
+
+	// Apply linenumbers for each element from method_list
+	var linenumbers = new_method_list.length.toString().replace(/\d/g,'0')
+	for (var i=0; i<new_method_list.length; i++) {
+		x = linenumbers
+		x = x.slice((i+1).toString().length)
+		new_method_list[i]= x + (i+1) + '.' + new_method_list[i]+'<br>'
+	}
+
+	$('#recipe-method-list > p').html(new_method_list)
+}
 
 
 window.onload = function() {
@@ -68,6 +96,7 @@ window.onload = function() {
 
 	applyApropiateScrolls()
 	replaceIngredientsList()
+	replaceMethodList()
 
 	/* Fancy checkbox button functionality */
 	$(function () {
