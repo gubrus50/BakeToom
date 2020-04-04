@@ -27,6 +27,34 @@
 
 
 
+/**//* ----------- *//**/
+/**//* Django form *//**/
+/**//* ----------- *//**/
+
+/* Following forms width is adjusted to
+   auto to fill their parent container */
+
+#div_id_title { width: auto !important }
+#div_id_title div { width: auto !important }
+
+#div_id_description { width: auto !important }
+#div_id_description div { width: auto !important }
+
+#div_id_image { width: auto !important }
+#div_id_image div { width: auto !important }
+
+#div_id_method { width: auto !important }
+#div_id_method div { width: auto !important }
+
+/**//* ------------------ *//**/
+/**//* END of Django form *//**/
+/**//* ------------------ *//**/
+
+
+
+
+
+
 
 /* Center categories */
 @media only screen and (max-width: 1200px) {
@@ -39,9 +67,11 @@
   /* Recipe categories container */
   .recipe-category {
   	float: none;
-	width: auto !important
+	  width: auto !important;
+    margin-left: 10px
   }
 }
+
 
 
 
@@ -53,7 +83,7 @@
   /* Recipe category -> ingredients form (textarea) */
   .recipe-category div textarea[name="ingredients"] {
     min-height: 250px
-    }
+  }
 
   /* Submit form warning message ("Uwaga!") */
   #new-recipe-submit-form section {
