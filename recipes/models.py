@@ -14,8 +14,8 @@ class Recipe(models.Model):
 	title 		= models.CharField(max_length=100, verbose_name= _('Tytuł przepisu'))
 	author		= models.ForeignKey(User, on_delete=models.CASCADE, verbose_name= _('Autor'))
 	image 		= models.ImageField(default='default_recipe.jpg', upload_to='recipe_pics', verbose_name= _('Wprowadź Obraz'))
-	description = models.TextField(blank=True, verbose_name= _('Krutka deskrypcja przepisu'))
-	method 		= models.TextField(blank=True, verbose_name= _('Wprowadź instrukcję sukcesywnego wykonania produktu'))
+	description = models.TextField(max_length=400, blank=True, verbose_name= _('Krutka deskrypcja przepisu'))
+	method 		= models.TextField(max_length=10000, blank=True, verbose_name= _('Wprowadź instrukcję sukcesywnego wykonania produktu'))
 
 	def __str__(self):
 		return self.title
