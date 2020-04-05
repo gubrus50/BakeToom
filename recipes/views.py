@@ -21,13 +21,22 @@ from .forms import RecipeForm, CategoryForm
 
 
 
+
 class RecipeListView(ListView):
 	model = Recipe
 	template_name = 'recipes/home.html' # <app>/<model>_<viewtype>.html
 	context_object_name = 'recipes'
-	# ORDER BY title & If title=null, null go last.
-	ordering = [F('title').asc(nulls_last=True)]
 	paginate_by = 5
+
+	def get_queryset(self):
+		query = self.request.GET.get('title')
+		if query:
+			object_list = self.model.objects.filter(title=query).order_by('title')
+		else:
+			object_list = self.model.objects.all().order_by('title')
+		return object_list
+
+
 
 
 class UserRecipeListView(ListView):
@@ -38,8 +47,16 @@ class UserRecipeListView(ListView):
 
 	def get_queryset(self):
 		user = get_object_or_404(User, username=self.kwargs.get('username'))
-		# Return with ORDER BY title & If title=null, null go last.
-		return Recipe.objects.filter(author=user).order_by()
+		query = self.request.GET.get('title')
+		
+		if query:
+			object_list = self.model.objects.filter(author=user, title=query).order_by('title')
+		else:
+			object_list = self.model.objects.filter(author=user).order_by('title')
+		return object_list
+
+
+
 
 
 class RecipeDetailView(DetailView):

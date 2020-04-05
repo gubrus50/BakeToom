@@ -9,8 +9,8 @@
 
 
   <!-- Search form -->
-  <form class="form-inline my-4 d-flex justify-content-center">
-	<input class="form-control" type="search" placeholder="Czego dzisiaj pragniesz?" aria-label="Search" style="border-radius:0; width:70%">
+  <form method="GET" action="{% url 'user-recipes' view.kwargs.username %}" class="form-inline my-4 d-flex justify-content-center">
+	<input class="form-control" type="search" name="title" value='{{ request.GET.title }}' placeholder="Czego dzisiaj pragniesz?" aria-label="Search" style="border-radius:0; width:70%">
 	<button class="btn btn-outline-secondary" type="submit" style="border-radius: 0">Wyszukaj</button>
   </form>
 
@@ -34,9 +34,10 @@
 	  	  </div>
 		{% endfor %}
 	  {% else %}
-		<div class="d-flex justify-content-center text-light p-5 text-center">
-		  <h2>Sorry but no recipes are to be found</h2>
-		</div>
+	  	<!-- No results -->
+		<div class="d-flex justify-content-center text-dark p-5 text-center" style="background-color: #f8f9fa">
+  	      <h2>Zero rezultatów</h2>
+  	    </div>
 	  {% endif %}
 	</center>
   </div>

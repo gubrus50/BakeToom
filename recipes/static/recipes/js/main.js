@@ -24,14 +24,17 @@ function getCookie(cname) {
 
 /* Cookies toggle animation */
 $(document).ready(function(){
-	if (!getCookie('allow_cookies')) {   
+  if (!getCookie('allow_cookies')) { 
 		setTimeout(function () {
-        	$("#cookieConsent").fadeIn(200)
-    	}, 1000)
-    }
-    $("ignorecookies, .acceptcookies").click(function() {
-    	setCookie('allow_cookies',true,7)
-        $("#cookieConsent").fadeOut(200)
-    })
+      $("#cookieConsent").css('visibility', 'visible').hide().fadeIn(500) 
+    }, 250)
+  }
+  else {
+    $("#cookieConsent").css('display', 'none')
+  }
+  $("ignorecookies, .acceptcookies").click(function() {
+    setCookie('allow_cookies',true,1)
+      $("#cookieConsent").fadeOut(200)
+  })
 })
 
