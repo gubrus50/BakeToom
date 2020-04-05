@@ -31,7 +31,7 @@ class RecipeListView(ListView):
 	def get_queryset(self):
 		query = self.request.GET.get('title')
 		if query:
-			object_list = self.model.objects.filter(title=query).order_by('title')
+			object_list = self.model.objects.filter(title__icontains=query).order_by('title')
 		else:
 			object_list = self.model.objects.all().order_by('title')
 		return object_list
@@ -50,7 +50,7 @@ class UserRecipeListView(ListView):
 		query = self.request.GET.get('title')
 		
 		if query:
-			object_list = self.model.objects.filter(author=user, title=query).order_by('title')
+			object_list = self.model.objects.filter(author=user, title__icontains=query).order_by('title')
 		else:
 			object_list = self.model.objects.filter(author=user).order_by('title')
 		return object_list
