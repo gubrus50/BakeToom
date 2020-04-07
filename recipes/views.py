@@ -29,11 +29,13 @@ class RecipeListView(ListView):
 	paginate_by = 5
 
 	def get_queryset(self):
-		query = self.request.GET.get('title')
+		query = self.request.GET.get('recipe')
 		if query:
-			object_list = self.model.objects.filter(title__icontains=query).order_by('title')
+			# Order by title, and move null values to last position.
+			object_list = self.model.objects.filter(title__icontains=query).order_by(F('title').asc(nulls_last=True))
 		else:
-			object_list = self.model.objects.all().order_by('title')
+			# Order by title, and move null values to last position.
+			object_list = self.model.objects.all().order_by(F('title').asc(nulls_last=True))
 		return object_list
 
 
@@ -47,12 +49,14 @@ class UserRecipeListView(ListView):
 
 	def get_queryset(self):
 		user = get_object_or_404(User, username=self.kwargs.get('username'))
-		query = self.request.GET.get('title')
+		query = self.request.GET.get('recipe')
 		
 		if query:
-			object_list = self.model.objects.filter(author=user, title__icontains=query).order_by('title')
+			# Order by title, and move null values to last position.
+			object_list = self.model.objects.filter(author=user, title__icontains=query).order_by(F('title').asc(nulls_last=True))
 		else:
-			object_list = self.model.objects.filter(author=user).order_by('title')
+			# Order by title, and move null values to last position.
+			object_list = self.model.objects.filter(author=user).order_by(F('title').asc(nulls_last=True))
 		return object_list
 
 

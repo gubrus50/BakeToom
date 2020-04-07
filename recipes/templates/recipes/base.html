@@ -7,6 +7,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+  <!-- Tab icon -->
+  <link rel="shortcut icon" href="{% static 'recipes/img/mybakes_temporary_icon.png' %}">
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -16,9 +18,9 @@
   <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/recipe_form.css' %}">
 
   {% if title %}
-    <title>Django Przepisy - {{ title }}</title>
+    <title>MyBakes - {{ title }}</title>
   {% else %}
-    <title>Django Przepisy</title>
+    <title>MyBakes</title>
   {% endif %}
 
   {% if messages %}
@@ -62,16 +64,16 @@
               Narzędzia
 		        </a>
 		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-		          <a class="dropdown-item disabled" href="#">Zreportuj</a>
+		          <a class="dropdown-item disabled" href="#" name="report">Zreportuj</a>
               {% if user.is_authenticated %}
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{% url 'recipe-create' %}">Utwórz przepis</a>
-                <a class="dropdown-item disabled" href="#">Edytuj przepis</a>
-                <a class="dropdown-item disabled" href="#">Usuń przepis</a>
+                <a class="dropdown-item" href="{% url 'recipe-create' %}" name="create_recipe">Utwórz przepis</a>
+                <a class="dropdown-item disabled" href="#" name="edit_recipe">Edytuj przepis</a>
+                <a class="dropdown-item disabled" href="#" name="delete_recipe">Usuń przepis</a>
                 <div class="dropdown-divider"></div>
               {% endif %}
-              <a class="dropdown-item disabled" href="#">Pobierz</a>
-              <a class="dropdown-item disabled" href="#">Wydrukuj</a>
+              <a class="dropdown-item disabled" href="#" name="download">Pobierz</a>
+              <a class="dropdown-item disabled" href="#" name="print">Wydrukuj</a>
             </div>
           </li>
         </ul>

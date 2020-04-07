@@ -10,7 +10,7 @@
 
   <!-- Search form -->
   <form method="GET" action="{% url 'user-recipes' view.kwargs.username %}" class="form-inline my-4 d-flex justify-content-center">
-	<input class="form-control" type="search" name="title" value='{{ request.GET.title }}' placeholder="Czego dzisiaj pragniesz?" aria-label="Search" style="border-radius:0; width:70%">
+	<input class="form-control" type="search" name="recipe" value='{{ request.GET.title }}' placeholder="Czego dzisiaj pragniesz?" aria-label="Search" style="border-radius:0; width:70%">
 	<button class="btn btn-outline-secondary" type="submit" style="border-radius: 0">Wyszukaj</button>
   </form>
 
