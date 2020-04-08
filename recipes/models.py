@@ -39,3 +39,6 @@ class Category(models.Model):
 	recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, db_index=True)
 	name = models.CharField(max_length=100, blank=True, verbose_name= _('Tytuł kategorii'))
 	ingredients	= models.TextField(max_length=500, db_index=True, verbose_name= _('Wprowadź listę składników do następującej kategorii'))
+
+	class Meta:
+		verbose_name_plural = 'Categories'

@@ -194,7 +194,7 @@ class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 		def create_categories(category_name_list, category_ingredients_list):
 			if len(category_name_list)==len(category_ingredients_list):
 				for index in range(len(category_name_list)):
-					# If THIS new category and ingredient is not empty
+					# If THIS new category and ingredients is not empty
 					if not (not (category_name_list[index] and not category_name_list[index].isspace())):
 						if not (not (category_ingredients_list[index] and not category_ingredients_list[index].isspace())):
 							# Create category
@@ -210,76 +210,92 @@ class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 				Category.objects.filter(id=int(old_category_id_list[index])).delete()
 
 
-		def replace_categories(loop, remove_global_list, old_category_id_list, category_name_list, category_ingredients_list):
-			# In this method new_categories might get updated on wrong category (from this recipe of corse),
-			# however, in this case it dosen't matter because the following
-			# categories are linked with THIS recipe id.
+		def replace_categories(mode, old_category_id_list, category_name_list, category_ingredients_list):
+			# Function replace_categories is used only in [CATEGORIES VALIDATION AND IMPLEMENTATION] section
+			# Also, some categories might get updated on wrong query_id, however, this is not an issue
+			# because the updated query_id still belongs to THIS recipe.
 
-			def validate_and_create(ocil, cnl, cil):
+
+			# Check if parameters are not empty.
+			# Then, replace old category with new data
+			def validate_and_replace(ocil, cnl, cil):
 				# If THIS new category and ingredient is not empty
-				if not (not (cnl[index] and not cnl[index].isspace())):
-					if not (not (cil[index] and not cil[index].isspace())):
+				if not (not (cnl and not cnl.isspace())):
+					if not (not (cil and not cil.isspace())):
 						# Select old category by id 
 						# and replace its data with new category
-						c = Category.objects.get(id=int(ocil[index]))
-						c.name = cnl[index]
-						c.ingredients = cil[index]
+						c = Category.objects.get(id=int(ocil))
+						c.name = cnl
+						c.ingredients = cil
 						c.save()
 
-			if loop == "by_new":
-				for index in range(len(category_name_list)):
-					validate_and_create(old_category_id_list, category_name_list, category_ingredients_list)
-					if remove_global_list==True:
-						# GLOBAL LIST
-						del query_ids[index]
 
-			elif loop == "by_old":
+			if mode == 'qi==nc' or mode == 'qi>nc':
+				for index in range(len(category_name_list)):
+					validate_and_replace(
+						old_category_id_list[0],
+						category_name_list[index],
+						category_ingredients_list[index]
+					)
+
+					# Remove following global list element
+					del query_ids[0]
+
+
+			elif mode == 'qi<nc':
 				for index in range(len(old_category_id_list)):
-					validate_and_create(old_category_id_list, category_name_list, category_ingredients_list)
-					if remove_global_list==True:
-						# GLOBAL LIST
-						del new_categories[index]
-						del new_ingredients[index]
+					validate_and_replace(
+						old_category_id_list[index],
+						category_name_list[0],
+						category_ingredients_list[0]
+					)
+
+					# Remove following global list elements
+					del new_categories[0]
+					del new_ingredients[0]
 
 
 		############################################
 		# CATEGORIES VALIDATION AND IMPLEMENTATION #
 		############################################
 
+		# These global list elements are used for replace_categories function
 		global new_categories, new_ingredients
 		new_categories = self.request.POST.getlist('category')
 		new_ingredients = self.request.POST.getlist('ingredients')
 
-		# If submitted categories names are same length as submitted categories ingredients,
-		# ff so, are their elements count between 1 and 9
+
+		# Before updating categories, confirm that data sent by the user is valid in terms of length and count
 		if len(new_categories)==len(new_ingredients) and len(new_categories)>0 and len(new_categories)<10:
 
-			# If there are no categories in THIS recipe
+
+			# If there used to be no categories
 			if not category_query:
 				# Create new categories for THIS recipe
 				create_categories(new_categories, new_ingredients)
 
-			# If old categories length is same as new categories length
-			elif len(query_ids)==len(new_categories):
-				# Initialize old categories with new_categories
-				# and don't remove global list elements
-				replace_categories("by_new", False, query_ids, new_categories, new_ingredients)
 
-			# If there were more categories in THIS recipe than submitted
+			# If there's the same number of categories as it used to be
+			elif len(query_ids)==len(new_categories):
+				# Initialize old categories with new categories
+				replace_categories('qi==nc', query_ids, new_categories, new_ingredients)
+
+
+			# If there are less categories than it used to be
 			elif len(query_ids)>len(new_categories):
 				# Initialize old categories with new_categories
-				# and remove global list elements
-				replace_categories("by_new", True, query_ids, new_categories, new_ingredients)
-				# Remove leftover, old categories
+				replace_categories('qi>nc', query_ids, new_categories, new_ingredients)
+				# Remove categories sotred in query_ids (global list element) from THIS recipe
 				remove_categories(query_ids)
 
-			# If there is not enough old categories to initialize new categories
+
+			# If there are more categories than it used to be
 			elif len(query_ids)<len(new_categories):
-				# Initialize old categories with new_categories
-				# and remove global list elements
-				replace_categories("by_old", True, query_ids, new_categories, new_ingredients)
-				# Create the leftover new categories for THIS recipe
+				# Initialize old categories with new categories
+				replace_categories('qi<nc', query_ids, new_categories, new_ingredients)
+				# Create categories of new_categories + new_ingredients (global list elements) for THIS recipe
 				create_categories(new_categories, new_ingredients)
+
 
 			else:
 				# Set error message once data failed the requirements from validation
@@ -289,19 +305,18 @@ class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 		# If there are no new_categories for initialization
 		elif len(new_categories)==len(new_ingredients) and len(query_ids)>0 and len(new_categories)==0:
-			# Remove leftover, old categories 
+			# Remove categories sotred in query_ids (global list element) from THIS recipe
 			remove_categories(query_ids)
 
 		######################################################
 		# END OF -> CATEGORIES VALIDATION AND IMPLEMENTATION #
 		######################################################
 
+
+
 		form.instance.author = self.request.user
 		messages.success(self.request, f'Twój przepis został pomyślnie zaktualizowany.')
 		return super().form_valid(form)
-
-
-
 
 
 
