@@ -12,7 +12,7 @@
   	<!-- Recipe -->
   	<div class="border m-1 btn-light p-2" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
 	  <article>
-		<img class="float-right" width="150px" height="100px" style="border-radius: 5px 5px 5px 75px" src="{{ object.image.url }}">
+		<img id="recipe-image" class="float-right" width="150px" height="100px" style="border-radius: 5px 5px 5px 75px" src="{{ object.image.url }}">
 		{% if object.title %}
 		  <h3>{{ object.title }}</h3>
 		{% else %}

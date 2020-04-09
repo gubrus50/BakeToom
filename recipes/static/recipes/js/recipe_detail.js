@@ -133,6 +133,47 @@ function currentDate()
 
 
 
+
+function toDataURL(url, callback) {
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    var reader = new FileReader();
+    reader.onloadend = function() {
+      callback(reader.result);
+    }
+    reader.readAsDataURL(xhr.response);
+  };
+  xhr.open('GET', url);
+  xhr.responseType = 'blob';
+  xhr.send();
+}
+
+
+
+
+
+
+function returnPageToNormal(originalContents) {
+	// Return page to normal state / old document
+	document.body.innerHTML = originalContents;
+	applyCheckboxFunctionality();
+
+	// Uncheck Expand List checkbox (Rozszerz Litę)
+	// to avoid additional expantion bug.
+	var rml = $('#recipe-method-list').children().eq(2);
+	$(rml).html(
+		$(rml).html().replace(new RegExp('<br><br>','g'),'<br>')
+	)
+	$('#expand-list')
+		.removeClass('active btn-primary')
+		.addClass('btn-default')
+}
+
+
+
+
+
+
 function renderDocumentAndCommitAction(mode, content_id)
 {
 	// Get content and old document
@@ -140,13 +181,20 @@ function renderDocumentAndCommitAction(mode, content_id)
 	var originalContents = document.body.innerHTML;
 
 	// Validate the provided parameters
-	if (mode!="print" || !content_id) { return false }
+	// Regex: select print or download from first position where no data follows after 
+	if (!content_id || !/^(print|download)(?!(.|\n))/g.test(mode)) { return false }
 
 	else {
 		/* Following scripts render new document */
 
 		// include current date and url with content_id content.
 		document.body.innerHTML = 'EU-Data: ' + currentDate() + ', URL: ' + window.location.href + printContents;
+
+		// Remove background from #recipes container
+		$('#recipes').attr('style', 'background-size: 15px 15px');
+
+		// Align text to left side
+		$('#recipes > center').attr('style', 'text-align: left');
 
 		// Remove bottom margin of #recipes
 		$('#recipes').removeClass('mb-5');
@@ -175,21 +223,12 @@ function renderDocumentAndCommitAction(mode, content_id)
 		})
 	}
 
-	// Display print popup
-	window.print();
-	// Return page to normal state / old document
-	document.body.innerHTML = originalContents;
-	applyCheckboxFunctionality();
+	if (mode=='print') {
+		// Display print popup
+		window.print();
+		returnPageToNormal(originalContents)
 
-	// Uncheck Expand List checkbox (Rozszerz Litę)
-	// to avoid additional expantion bug.
-	var rml = $('#recipe-method-list').children().eq(2);
-	$(rml).html(
-		$(rml).html().replace(new RegExp('<br><br>','g'),'<br>')
-	)
-	$('#expand-list')
-		.removeClass('active btn-primary')
-		.addClass('btn-default')
+	} else { return originalContents }
 }
 
 
@@ -290,8 +329,16 @@ window.onload = function()
 	$(print_tool).attr('onclick', "renderDocumentAndCommitAction('print','recipes')");
 	$(print_tool).removeClass('disabled');
 	// Enable download tool (Pobierz)
-	//$(download_tool).attr('onclick', "");
-	//$(download_tool).removeClass('disabled');
+	$(download_tool).attr('onclick', "originalContents=renderDocumentAndCommitAction('download','recipes'); this.href='data:text/html;charset=UTF-8,'+encodeURIComponent(document.documentElement.outerHTML); returnPageToNormal(originalContents)");
+	$(download_tool).attr('download', 'page.html');
+	$(download_tool).removeClass('disabled');
+
+
+	// Convert recipe image src to base64
+	toDataURL($('#recipe-image').attr('src'), function(dataUrl) {
+		$('#recipe-image').attr('src', dataUrl)
+	})
+
 
 	if (editing_tools) {
 		// The following script enables editing_tools for the owner of the recipe
