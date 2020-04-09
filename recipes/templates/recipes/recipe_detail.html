@@ -139,7 +139,8 @@
 
 
 <script type="text/javascript">
-  var editing_tools = {% if authenticated_user == object.author %}true{% else %}false{% endif %}
+var editing_tools = {% if authenticated_user == object.author %}true{% else %}false{% endif %}
+var recipe_title = {% if object.title %}'{{ object.title }}'{% else %}'Przepis'{% endif %}
 </script>
 <script src="{% static 'recipes/js/recipe_detail.js' %}"></script>
 

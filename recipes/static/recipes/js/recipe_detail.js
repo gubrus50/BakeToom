@@ -145,7 +145,7 @@ function toDataURL(url, callback) {
   };
   xhr.open('GET', url);
   xhr.responseType = 'blob';
-  xhr.send();
+  xhr.send()
 }
 
 
@@ -189,6 +189,9 @@ function renderDocumentAndCommitAction(mode, content_id)
 
 		// include current date and url with content_id content.
 		document.body.innerHTML = 'EU-Data: ' + currentDate() + ', URL: ' + window.location.href + printContents;
+
+		// Float image to the right
+		$('#recipe-image').attr('style', 'float: right; border-radius: 5px 5px 5px 75px');
 
 		// Remove background from #recipes container
 		$('#recipes').attr('style', 'background-size: 15px 15px');
@@ -329,16 +332,13 @@ window.onload = function()
 	$(print_tool).attr('onclick', "renderDocumentAndCommitAction('print','recipes')");
 	$(print_tool).removeClass('disabled');
 	// Enable download tool (Pobierz)
-	$(download_tool).attr('onclick', "originalContents=renderDocumentAndCommitAction('download','recipes'); this.href='data:text/html;charset=UTF-8,'+encodeURIComponent(document.documentElement.outerHTML); returnPageToNormal(originalContents)");
-	$(download_tool).attr('download', 'page.html');
+	$(download_tool).attr('onclick',
+		"var originalContents = renderDocumentAndCommitAction('download', 'recipes'); " +
+		"this.href = 'data:text/html;charset=UTF-8,' + encodeURIComponent(document.documentElement.outerHTML); " +
+		"returnPageToNormal(originalContents)"
+	);
+	$(download_tool).attr('download', recipe_title+'.html');
 	$(download_tool).removeClass('disabled');
-
-
-	// Convert recipe image src to base64
-	toDataURL($('#recipe-image').attr('src'), function(dataUrl) {
-		$('#recipe-image').attr('src', dataUrl)
-	})
-
 
 	if (editing_tools) {
 		// The following script enables editing_tools for the owner of the recipe
@@ -347,6 +347,12 @@ window.onload = function()
 		$(delete_recipe).attr('href', window.location.pathname+"delete");
 		$(delete_recipe).removeClass('disabled')
 	}
+
+
+	// Change recipe image to base64 url
+	toDataURL($('#recipe-image').attr('src'), function(dataUrl) {
+		$('#recipe-image').attr('src' , dataUrl)
+	});
 
 	replaceIngredientsList();
 	applyApropiateScrolls();
