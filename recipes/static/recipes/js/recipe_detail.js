@@ -349,6 +349,49 @@ window.onload = function()
 	}
 
 
+
+	/* Share / Social Media Functionality */
+
+	var s_url = window.location;
+	var s_title = recipe_title;
+	var s_via = 'MyBakes';
+	var s_related = 'MyBakes,MyBakesTeam,MBChefs';
+
+	// Facebook
+	$('li[name="facebook-icon"]').find('a').attr({
+		href: 'http://www.facebook.com/sharer.php?u='+s_url,
+		target: '_blank'
+	});
+
+	// Reddit
+	$('li[name="reddit-icon"]').find('a').attr({
+		href: 'http://reddit.com/submit?url='+s_url+
+			  '&title='+s_title,
+
+		target: '_blank'
+	});
+
+	// Twitter
+	$('li[name="twitter-icon"]').find('a').attr({
+		href: 'https://twitter.com/intent/tweet'+
+			  '?url='+s_url+ 
+			  '&text='+s_title+
+			  '&via='+s_via +
+			  '&related='+s_related,
+
+		target: '_blank'
+	});
+
+	// Mail
+	$('li[name="mail-icon"]').find('a').attr({
+		href: 'mailto:?Subject='+s_title+
+			  '&body='+s_url
+	});
+
+	/* END of Share / Social Media Functionality */
+
+
+
 	// Change recipe image to base64 url
 	toDataURL($('#recipe-image').attr('src'), function(dataUrl) {
 		$('#recipe-image').attr('src' , dataUrl)
