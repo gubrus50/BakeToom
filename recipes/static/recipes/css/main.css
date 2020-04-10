@@ -110,8 +110,31 @@ body { margin-bottom: 240px }
 
 @media only screen and (max-width: 600px) {
 
-  .h3-mobile { font-size: 20px }
-  .h5-mobile { font-size: 14px }
+  .h-mobile h2 { font-size: 25px }
+  .h-mobile h3 { font-size: 20px }
+  .h-mobile h4 { font-size: 14px }
+
+  h2.h-mobile { font-size: 25px !important }
+  h3.h-mobile { font-size: 20px !important }
+  h4.h-mobile { font-size: 14px !important }
+
+  h2.h2-mobile,
+  h3.h2-mobile,
+  h4.h2-mobile,
+  h5.h2-mobile { font-size: 25px !important }
+
+  h2.h3-mobile,
+  h3.h3-mobile,
+  h4.h3-mobile,
+  h5.h3-mobile { font-size: 20px !important }
+
+  h2.h4-mobile,
+  h3.h4-mobile,
+  h4.h4-mobile,
+  h5.h4-mobile { font-size: 14px !important }
+  
+
+
 
   .footer-copyright ul li { font-size: 12px }
 
@@ -133,10 +156,11 @@ body { margin-bottom: 240px }
   /* USER APP */
   img.account-img {
     width: 100%;
-    border-left: 30px solid lightGray;
-    border-right: 30px solid lightGray;
+    border-left: 30px solid #dee2e6;
+    border-right: 30px solid #dee2e6;
     margin-bottom: 5px;
-    height: 200px
+    height: 200px;
+    object-fit: cover
   }
   #recipes div, div.container { width: auto }
   #recipes center.container div div.form-group {
@@ -152,7 +176,6 @@ body { margin-bottom: 240px }
     width: 100%;
     word-wrap: break-word
   }
-  #profile-details h2 { font-size: 25px }
   #profile-details-sub-container { 
     float: left !important;
     text-align: left !important;
