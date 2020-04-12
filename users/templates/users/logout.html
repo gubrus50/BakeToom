@@ -1,36 +1,33 @@
 {% extends "recipes/base.html" %}
 {% block content %}
+
+
   <br/>
   <center class="container">
-    <!-- Container -->
     <div class="border m-1 h-mobile bg-light p-2 container" style="overflow: auto; border-radius: 5px">
-      
+
 
       <div class="content-section">
-	    <!-- Your account has been logged out -->
-	    <h2>Twe konto zostało wylogowane</h2>
-        <!-- Additional info -->
+        <h2>Twe konto zostało wylogowane</h2>
         <div id="additional-info-users-templates" class="border-top pt-3">
-        <!-- Already own an account? -->
-        <small class="text-muted">
-          <a href="{% url 'login' %}">
-            Zaloguj się ponownie
-          </a>
-        </small>
-        <!-- Terms and Service -->
-        <small class="text-muted float-right">
-		  Zapoznaj się <code>></code>
-		  <a href="#">
-		    Warunki i usługi
-		  </a>
-		</small>
-	  </div>
+
+          <small name="to-login-page" class="text-muted">
+            <a href="{% url 'login' %}">Zaloguj się ponownie</a>
+          </small>
+          <small name="terms-and-service" class="text-muted float-right">Zapoznaj się 
+            <code>></code>
+            <a href="#">
+              Warunki i usługi
+            </a>
+          </small>
+          
+        </div>
+      </div>
 
 
     </div>
-  </div>
-  <!-- End of container -->
-
   </center>
   <br/>
+
+
 {% endblock content %}

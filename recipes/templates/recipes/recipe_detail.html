@@ -3,95 +3,88 @@
 {% block content %}
   {% load static %}
 
+
   <!-- Background Image -->
   <div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('{% static 'recipes/img/background_notepad.png' %}'); background-size: 15px 15px">
-  	<center class="container recipe-container">
+    <center class="container recipe-container">
 
 
+    <!-- Recipe container -->
+    <div class="border m-1 btn-light p-2" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
+      <article>
+        <img id="recipe-image" class="float-right" width="150px" height="100px" style="border-radius: 5px 5px 5px 75px" src="{{ object.image.url }}">
+        {% if object.title %}
+          <h3>{{ object.title }}</h3>
+        {% else %}
+          <h3>Przepis</h3>
+        {% endif %}
 
-  	<!-- Recipe -->
-  	<div class="border m-1 btn-light p-2" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
-	  <article>
-		<img id="recipe-image" class="float-right" width="150px" height="100px" style="border-radius: 5px 5px 5px 75px" src="{{ object.image.url }}">
-		{% if object.title %}
-		  <h3>{{ object.title }}</h3>
-		{% else %}
-		  <!-- Title -->
-		  <h3>Przepis</h3>
-		{% endif %}
+        {% if object.description %}
+          <p>{{ object.description }}</p>
+        {% else %}
+          <p>...</p>
+        {% endif %}
 
-		{% if object.description %}
-		  <p>{{ object.description }}</p>
-		{% else %}
-		  <p>...</p>
-		{% endif %}
-
-		<small>
-		  {% if object.author %}
-		    autor: <a href="{% url 'user-recipes' object.author.username %}">{{ object.author }}</a>, 
-		  {% else %}
-		  	autor: null, 
-		  {% endif %}
-		  id_przepisu: {{ object.id }}
-		</small>
-	  </article>
-	</div>
-	<!-- End of Recipe -->
+        <small>
+          {% if object.author %}
+            autor: <a href="{% url 'user-recipes' object.author.username %}">{{ object.author }}</a>, 
+          {% else %}
+            autor: null, 
+          {% endif %}
+          id_przepisu: {{ object.id }}
+        </small>
+      </article>
+    </div>
 
 
+    <!-- Ingredients container -->
+    <div class="border m-1 btn-light p-2" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
+      <article class="recipe-ingredients custom-scroll empty-h-scroll">
+        <h3>Składniki</h3>
+        <hr/>
+        {% if categories %}
+          {% for category in categories %}
+            {% if category.recipe == object %}
+
+              <section>
+                <h5>{{ category.name }}</h5>
+                {% if category.ingredients %}
+                  <ul class="ingredients">
+                    {{ category.ingredients|endline_split|unordered_list }}
+                  </ul>
+                {% else %}
+                  <p>...</p>
+                {% endif %}
+              </section>
+
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          <p>...</p>
+        {% endif %}
+      </article>
+    </div>
 
 
-	<!-- Ingredients -->
-	<div class="border m-1 btn-light p-2" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
-	  <article class="recipe-ingredients custom-scroll empty-h-scroll">
-		<h3>Składniki</h3>
-		<hr/>
-		{% if categories %}
-		  {% for category in categories %}
-		    {% if category.recipe == object %}
-		      <section>
-		        <h5>{{ category.name }}</h5>
-		        {% if category.ingredients %}
-		          <ul class="ingredients">
-		            {{ category.ingredients|endline_split|unordered_list }}
-		          </ul>
-		        {% else %}
-		          <p>...</p>
-		        {% endif %}
-		      </section>
-		    {% endif %}
-		  {% endfor %}
-		{% else %}
-		  <p>...</p>
-		{% endif %}
-	  </article>
-	</div>
-	<!-- End of Ingredients -->
-
-
-
-
-
-	<!-- Method -->
-	<div class="border m-1 btn-light p-2 recipe-method" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
-	  <!-- Expand list -->
-	  <span class="button-checkbox float-right">
-	  	<input type="checkbox" onchange="updateMethodListBreaks(this)" class="d-none" />
-       	<button id="expand-list" type="button" class="btn btn-default" data-color="primary">
-       	  Rozszerz Listę
+    <!-- Method container -->
+    <div class="border m-1 btn-light p-2 recipe-method" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
+      <!-- Expand list button -->
+      <span class="button-checkbox float-right">
+        <input type="checkbox" onchange="updateMethodListBreaks(this)" class="d-none" />
+        <button id="expand-list" type="button" class="btn btn-default" data-color="primary">
+          Rozszerz Listę
         </button>
       </span>
-	  <article id="recipe-method-list">
-		<h3>Metoda</h3>
-		<hr/>
-		{% if object.method %}
-		  {{ object.method|linenumbers|linebreaks }}
-		{% else %}
-		  ...
-		{% endif %}
-	  </article>
-	</div>
-	<!-- End of Method -->
+      <article id="recipe-method-list">
+        <h3>Metoda</h3>
+        <hr/>
+        {% if object.method %}
+          {{ object.method|linenumbers|linebreaks }}
+        {% else %}
+          ...
+        {% endif %}
+      </article>
+    </div>
 
 
     </center>
@@ -99,49 +92,41 @@
   <!-- End of Background Image -->
 
 
-
-
-
-
-  <!-- Share / Social Media -->
+  <!-- Share container -->
   <div class="text-center container mb-5 h-mobile">
-  	<h3 class="mb-4">
-  	  Udostępnij przepis znajomym
-  	</h3>
-  	<ul class="list-inline social-media-icons">
+    <h3 class="mb-4">
+      Udostępnij przepis znajomym
+    </h3>
+    <ul class="list-inline social-media-icons">
       <li class="list-inline-item" name="facebook-icon">
-      	<a href="#share">
-      	  <img height="75" src="{% static 'recipes/img/icons/flaticon/facebook.svg' %}" />
-      	</a>
+        <a href="#share">
+          <img height="75" src="{% static 'recipes/img/icons/flaticon/facebook.svg' %}" />
+        </a>
       </li>
       <li class="list-inline-item" name="reddit-icon">
-    	<a href="#share">
-    	  <img height="75" src="{% static 'recipes/img/icons/flaticon/reddit.svg' %}" />
-      	</a>
+        <a href="#share">
+          <img height="75" src="{% static 'recipes/img/icons/flaticon/reddit.svg' %}" />
+        </a>
       </li>
       <li class="list-inline-item" name="twitter-icon">
-    	<a href="#share">
-    	  <img height="75" src="{% static 'recipes/img/icons/flaticon/twitter.svg' %}" />
-      	</a>
+        <a href="#share">
+          <img height="75" src="{% static 'recipes/img/icons/flaticon/twitter.svg' %}" />
+        </a>
       </li>
       <li class="list-inline-item" name="mail-icon">
-    	<a href="#share">
-    	  <img height="75" src="{% static 'recipes/img/icons/flaticon/mail.svg' %}" />
-	  	</a>
-	  </li>
-	</ul>
+        <a href="#share">
+          <img height="75" src="{% static 'recipes/img/icons/flaticon/mail.svg' %}" />
+        </a>
+      </li>
+    </ul>
   </div>
-  <!-- End of Share / Social Media-->
 
 
+  <script type="text/javascript">
+    var editing_tools = {% if authenticated_user == object.author %}true{% else %}false{% endif %}
+    var recipe_title = {% if object.title %}'{{ object.title }}'{% else %}'Przepis'{% endif %}
+  </script>
+  <script src="{% static 'recipes/js/recipe_detail.js' %}"></script>
 
-
-
-
-<script type="text/javascript">
-var editing_tools = {% if authenticated_user == object.author %}true{% else %}false{% endif %}
-var recipe_title = {% if object.title %}'{{ object.title }}'{% else %}'Przepis'{% endif %}
-</script>
-<script src="{% static 'recipes/js/recipe_detail.js' %}"></script>
 
 {% endblock content %}

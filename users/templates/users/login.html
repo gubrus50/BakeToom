@@ -1,61 +1,56 @@
 {% extends "recipes/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+
+
   <br/>
   <center class="container">
-  	<!-- Container -->
   	<div class="border m-1 bg-light p-2 container" style="overflow: auto; border-radius: 5px">
-  	  <div class="content-section">
-
+      <div class="content-section">
 
 
         <!-- Register form -->
         <form method="POST">
-      	  {% csrf_token %}
-      	  <fieldset class="form-group">
-      	    <legend class="border-bottom mb-4">
-      	      Zaloguj się do Świata smakoszy
-      	    </legend>
-      	    {{ form|crispy }}
-      	  </fieldset>
-      	  <div class="form-group">
-      	    <!-- Sign Up btn -->
-      	    <button class="btn btn-outline-info" type="submit">
-      	      Zaloguj się
+          {% csrf_token %}
+          <fieldset class="form-group">
+            <legend class="border-bottom mb-4">
+              Zaloguj się do Świata smakoszy
+            </legend>
+            {{ form|crispy }}
+          </fieldset>
+          <div class="form-group">
+            <!-- Sign-Up button -->
+            <button class="btn btn-outline-info" type="submit">
+              Zaloguj się
             </button>
-      	    <a href="#" class="float-right">
-      	      Nie pamięntam hasła
-      	    </a>
-      	  </div>
+            <a href="#" class="float-right">
+              Nie pamięntam hasła
+            </a>
+          </div>
         </form>
 
 
-		
-
         <!-- Additional info -->
         <div id="additional-info-users-templates" class="border-top pt-3">
-          <!-- Already own an account? -->
-          <small class="text-muted">
-          	Nie posiadasz konta?
-          	<a class="ml-2" href="{% url 'register' %}">
-          	  Zarejestruj się
-          	</a>
+          <small name="to-register-page" class="text-muted">
+            Nie posiadasz konta?
+            <a class="ml-2" href="{% url 'register' %}">
+              Zarejestruj się
+            </a>
           </small>
-          <!-- Terms and Service -->
-          <small class="text-muted float-right">
-          	Zapoznaj się <code>></code>
-          	<a href="#">
-          	  Warunki i usługi
-          	</a>
+          <small name="terms-and-service" class="text-muted float-right">
+            Zapoznaj się <code>></code>
+            <a href="#">
+              Warunki i usługi
+            </a>
           </small>
         </div>
 
 
-
+      </div>
     </div>
-  </div>
-  <!-- End of container -->
-
   </center>
   <br/>
+
+
 {% endblock content %}

@@ -3,20 +3,19 @@
 <html lang="pl">
 <head>
 
-  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Tab icon -->
-  <link rel="shortcut icon" href="{% static 'recipes/img/icons/mybakes_icon.svg' %}">
-
-  <!-- Bootstrap CSS -->
+  <!-- Bootstrap CSS 4.0.0 licensed https://github.com/twbs/bootstrap/blob/v4.0.0/LICENSE 
+  WARNING - DO NOT MOVE THIS LINK TAG BECAUSE FOR STRANGE REASON THE FOOTER MARGINS FAILS TO WORK -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <link rel="shortcut icon" href="{% static 'recipes/img/icons/mybakes_icon.svg' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/main.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/home.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/recipe_detail.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/recipe_form.css' %}">
-
+  
   {% if title %}
     <title>MyBakes - {{ title }}</title>
   {% else %}
@@ -31,40 +30,44 @@
   {% endif %}
 
 </head>
-
-
-
-
-
 <body>
-  <header class="site-header fixed-top">
-  	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 
-	    <!-- Logo -->
+  <header class="site-header fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+
+
+      <!-- Logo -->
       <a class="navbar-brand" href="#">Moja Kuchnia</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
 
-
       <!-- Menu / Navigation options -->
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'recipes-home' %}">Główna strona <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="{% url 'recipes-home' %}">
+              Główna strona <span class="sr-only">(current)</span>
+            </a>
           </li>
+
           {% if messages %}
           <li class="nav-item">
-            <a class="nav-link" href="#" onclick="$('.global-message-container > a').show(); $('.global-message-container').fadeIn(); hidden_alert_count=0">Powiadomienia <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#" onclick="$('.global-message-container > a').show(); $('.global-message-container').fadeIn(); hidden_alert_count=0">
+              Powiadomienia <span class="sr-only">(current)</span>
+            </a>
           </li>
           {% endif %}
+
+          <!-- Tools dropdown -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Narzędzia
-		        </a>
-		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-		          <a class="dropdown-item disabled" href="#" name="report">Zreportuj</a>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item disabled" href="#" name="report">Zreportuj</a>
               {% if user.is_authenticated %}
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{% url 'recipe-create' %}" name="create_recipe">Utwórz przepis</a>
@@ -76,14 +79,17 @@
               <a class="dropdown-item disabled" href="#" name="print">Wydrukuj</a>
             </div>
           </li>
+
         </ul>
+
+        <!-- Login / Profile -->
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-          	{% if user.is_authenticated %}
-          	  <a class="nav-link" href="{% url 'profile' %}">Mój Profil <span class="sr-only">(current)</span></a>
-          	{% else %}
-          	  <a class="nav-link" href="{% url 'login' %}">Zaloguj się <span class="sr-only">(current)</span></a>
-          	{% endif %}
+            {% if user.is_authenticated %}
+              <a class="nav-link" href="{% url 'profile' %}">Mój Profil <span class="sr-only">(current)</span></a>
+            {% else %}
+              <a class="nav-link" href="{% url 'login' %}">Zaloguj się <span class="sr-only">(current)</span></a>
+            {% endif %}
           </li>
         </ul>
       </div>
@@ -91,34 +97,26 @@
 
     </nav>
   </header>
-
-  <br/><br/>
-
+  <br/>
+  <br/>
 
 
   <!-- Banner -->
   <div id="base-banner" class="d-flex h-mobile justify-content-center mt-4 text-center text-dark bg-light">
-  	<h3>PRZECHOWYWAJ I ZARZĄDZAJ<br/>SWE ULUBIONE PRZEPISY</h3>
+    <h3>PRZECHOWYWAJ I ZARZĄDZAJ<br/>SWE ULUBIONE PRZEPISY</h3>
   </div>
-
-
 
 
   <!-- Bootstrap-Cookie-Alert -->
   <div id="cookieConsent" style="visibility: hidden" class="alert text-center cookiealert" role="alert">
-    <b>Cookies?</b> &#x1F36A; Używamy plików cookie, aby zapewnić najlepszą jakość korzystania z naszej witryny. <a href="https://wszystkoociasteczkach.pl/polityka-cookies/" target="_blank">dowiedz się więcej</a>
-    <button type="button" class="btn btn-warning btn-sm acceptcookies" aria-label="Close">
-      Okej, schowaj
-    </button>
+    <b>Cookies?</b> &#x1F36A; Używamy plików cookie, aby zapewnić najlepszą jakość korzystania z naszej witryny. 
+    <a href="https://wszystkoociasteczkach.pl/polityka-cookies/" target="_blank">dowiedz się więcej</a>
+    <button type="button" class="btn btn-warning btn-sm acceptcookies" aria-label="Close">Okej, schowaj</button>
   </div>
-  <!-- END of Bootstrap-Cookie-Alert -->
-
-
-
 
 
   {% if messages %}
-    <!-- Global message box to inform the user -->
+    <!-- Global messages -->
     {% for message in messages %}
       {% if message.tags == "error" %}
         <div class="global-message-container alert alert-danger">
@@ -134,51 +132,43 @@
   {% endif %}
 
 
-
-
-
   <!-- Main content of the page -->
   {% block content %}{% endblock %}
-  <!-- End of main content of the page -->
 
 
-
-
-	
   <footer class="footer font-small bg-dark pt-4">
-  	<section class="footer-copyright py-3" style="background-color: #282c30">
-	  <!--Temporary template message -->
-	  <ul class="mb-4 text-light text-center container">
-	  	<span>
-	  	  Najmilsze wspomnienia powstają, gdy zgromadzą się wszyscy przy stole
-	  	</span>
-	  </ul>
-	  <!-- Copyright -->
-	  <ul class="container list-inline text-center text-secondary">
-	  	<li class="mb-2">
-	  	  © 2020 Copyright
-	  	</li>
-	  	<li>
-	  	  Strona udekorowana za pomocą
-	  	  <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank"> MDBootstrap.com</a>
-	  	</li>
-	  	<li>
-	  	  Ikony wykonane przez
-	  	  <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> ze <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
-	  	</li>
-	  </ul>
-	</section>
+    <section class="footer-copyright py-3" style="background-color: #282c30">
+      <!--Temporary template message -->
+      <ul class="mb-4 text-light text-center container">
+        <span>
+          Najmilsze wspomnienia powstają, gdy zgromadzą się wszyscy przy stole
+        </span>
+      </ul>
+      <!-- Copyright -->
+      <ul class="container list-inline text-center text-secondary">
+        <li class="mb-2">
+          © 2020 Copyright
+        </li>
+        <li>
+          Strona udekorowana za pomocą
+          <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank"> MDBootstrap.com</a>
+        </li>
+        <!-- WARNING - DO NOT REMOVE FOLLOWING LIST ELEMENT BECAUSE IT'S PART OF FLATICON LICENSE TERMS -->
+        <li>
+          Ikony wykonane przez
+          <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> ze <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+        </li>
+      </ul>
+    </section>
   </footer>
 
 
-
-
-
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, Popper.js then Bootstrap JS, then main.js -->
+  <!-- jQuery first, Popper.js, Bootstrap JS, then main.js -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="{% static 'recipes/js/main.js' %}" crossorigin="anonymous"></script>
+
+
 </body>
 </html>
