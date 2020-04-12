@@ -1,3 +1,55 @@
+function getCurrentDate()
+{
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1;
+	var yyyy = today.getFullYear();
+
+	if(dd<10) {
+		dd = '0'+dd
+	} 
+
+	if(mm<10) {
+		mm = '0'+mm
+	} 
+
+	return dd + '/' + mm + '/' + yyyy
+}
+
+
+
+function getBase64(url, callback)
+{
+	var xhr = new XMLHttpRequest();
+	xhr.onload = function() {
+
+	var reader = new FileReader();
+	reader.onloadend = function() {
+		callback(reader.result)
+	}
+	reader.readAsDataURL(xhr.response)
+	}
+
+	xhr.open('GET', url);
+	xhr.responseType = 'blob';
+	xhr.send()
+}
+
+
+
+function isEmpty(element)
+{
+	if (!element
+	|| element===''
+	|| /^\s+$/g.test(element))
+	{ 
+		return true
+	}
+	return false
+}
+
+
+
 /* Applies scrolls if category ingredients
    content is on word-break             */
 function applyApropiateScrolls()
@@ -17,9 +69,8 @@ function applyApropiateScrolls()
 
 
 
-
-
-/* Expands/shrinks method list by applying/removing break tags */
+/* Expands/shrinks the list from method
+   container by applying/removing break tags */
 function updateMethodListBreaks(checkbox)
 {
 	var rml = $('#recipe-method-list').children().eq(2);
@@ -37,11 +88,9 @@ function updateMethodListBreaks(checkbox)
 
 
 
-
-
-
-/* Includes chebox bulletpoint for each list
-   element from categories ingredients    */
+/* Includes fancy chebox bulletpoint for each
+   categories ingredients list element, which
+   is located in categories container      */
 function replaceIngredientsList()
 {
 	$('.ingredients').each(function(){
@@ -58,26 +107,8 @@ function replaceIngredientsList()
 
 
 
-
-
-function isEmpty(element)
-{
-	if (!element
-	|| element===''
-	|| /^\s+$/g.test(element))
-	{ 
-		return true
-	}
-	return false
-}
-
-
-
-
-
-
-
-/* Removes null/spaced objects from the method list */
+/* Removes null/spaced objects from the
+   method container list             */
 function replaceMethodList()
 {
 	// Get list
@@ -86,16 +117,15 @@ function replaceMethodList()
 	var method_list = method_data.split('<br>');
 
 	for (var i=0; i<method_list.length; i++) {
-		// Remove linenumbers
+		// Remove |linenumbers
 		method_list[i]=method_list[i].replace(/^.+?\./g,'')
-		// if not empty
-	    if (!isEmpty(method_list[i])) {
-	    	// Populate new_method_list with existing data
-	    	new_method_list.push(method_list[i])
-	    }
+
+		if (!isEmpty(method_list[i])) {
+			new_method_list.push(method_list[i])
+		}
 	}
 
-	// Apply linenumbers for each element from method_list
+	// Apply |linenumbers for each element from method_list
 	var linenumbers = new_method_list.length.toString().replace(/\d/g,'0')
 	for (var i=0; i<new_method_list.length; i++) {
 		x = linenumbers
@@ -108,52 +138,8 @@ function replaceMethodList()
 
 
 
-
-
-
-function currentDate()
+function returnPageToNormal(originalContents)
 {
-	var today = new Date();
-	var dd = today.getDate();
-	var mm = today.getMonth()+1;
-	var yyyy = today.getFullYear();
-
-	if(dd<10) {
-	    dd = '0'+dd
-	} 
-
-	if(mm<10) {
-	    mm = '0'+mm
-	} 
-
-	return dd + '/' + mm + '/' + yyyy;	
-}
-
-
-
-
-
-
-function toDataURL(url, callback) {
-  var xhr = new XMLHttpRequest();
-  xhr.onload = function() {
-    var reader = new FileReader();
-    reader.onloadend = function() {
-      callback(reader.result);
-    }
-    reader.readAsDataURL(xhr.response);
-  };
-  xhr.open('GET', url);
-  xhr.responseType = 'blob';
-  xhr.send()
-}
-
-
-
-
-
-
-function returnPageToNormal(originalContents) {
 	// Return page to normal state / old document
 	document.body.innerHTML = originalContents;
 	applyCheckboxFunctionality();
@@ -171,9 +157,6 @@ function returnPageToNormal(originalContents) {
 
 
 
-
-
-
 function renderDocumentAndCommitAction(mode, content_id)
 {
 	// Get content and old document
@@ -188,7 +171,7 @@ function renderDocumentAndCommitAction(mode, content_id)
 		/* Following scripts render new document */
 
 		// include current date and url with content_id content.
-		document.body.innerHTML = 'EU-Data: ' + currentDate() + ', URL: ' + window.location.href + printContents;
+		document.body.innerHTML = 'EU-Data: ' + getCurrentDate() + ', URL: ' + window.location.href + printContents;
 
 		// Float image to the right
 		$('#recipe-image').attr('style', 'float: right; border-radius: 5px 5px 5px 75px');
@@ -227,7 +210,6 @@ function renderDocumentAndCommitAction(mode, content_id)
 	}
 
 	if (mode=='print') {
-		// Display print popup
 		window.print();
 		returnPageToNormal(originalContents)
 
@@ -236,86 +218,62 @@ function renderDocumentAndCommitAction(mode, content_id)
 
 
 
-
-
-
-
-function downloadContent() {
-	$(download_tool).click(function () {
-	    doc.fromHTML($('#content').html(), 15, 15, {
-	        'width': 170,
-	            'elementHandlers': specialElementHandlers
-	    });
-	    doc.save('sample-file.pdf');
-	})
-}
-
-
-
-
-
-
 /* Fancy checkbox button functionality */
 function applyCheckboxFunctionality()
 {
 	$(function () {
-	    $('.button-checkbox').each(function () {
+		$('.button-checkbox').each(function () {
 
-	        // Settings
-	        var $widget = $(this),
-	            $button = $widget.find('button'),
-	            $checkbox = $widget.find('input:checkbox'),
-	            color = $button.data('color'),
-	            settings = {
-	                on: {
-	                    icon: 'glyphicon glyphicon-check'
-	                },
-	                off: {
-	                    icon: 'glyphicon glyphicon-unchecked'
-	                }
-	            };
+			// Settings
+			var $widget = $(this),
+				$button = $widget.find('button'),
+				$checkbox = $widget.find('input:checkbox'),
+				color = $button.data('color'),
+				settings = {
+					on: {
+						icon: 'glyphicon glyphicon-check'
+					},
+					off: {
+						icon: 'glyphicon glyphicon-unchecked'
+					}
+				}
 
-	        // Event Handlers
-	        $button.on('click', function () {
-	            $checkbox.prop('checked', !$checkbox.is(':checked'));
-	            $checkbox.triggerHandler('change');
-	            updateDisplay();
-	        });
-	        $checkbox.on('change', function () {
-	            updateDisplay();
-	        });
+			// Event Handlers
+			$button.on('click', function () {
+				$checkbox.prop('checked', !$checkbox.is(':checked'));
+				$checkbox.triggerHandler('change');
+				updateDisplay()
+			})
+			$checkbox.on('change', function () {
+				updateDisplay()
+			})
 
-	        // Actions
-	        function updateDisplay() {
-	            var isChecked = $checkbox.is(':checked');
+			// Actions
+			function updateDisplay() {
+				var isChecked = $checkbox.is(':checked');
 
-	            // Set the button's state
-	            $button.data('state', (isChecked) ? "on" : "off");
+				// Set the button's state
+				$button.data('state', (isChecked) ? "on" : "off");
 
-	            // Set the button's icon
-	            $button.find('.state-icon')
-	                .removeClass()
-	                .addClass('state-icon ' + settings[$button.data('state')].icon);
+				// Set the button's icon
+				$button.find('.state-icon')
+					.removeClass()
+					.addClass('state-icon ' + settings[$button.data('state')].icon)
 
-	            // Update the button's color
-	            if (isChecked) {
-	                $button
-	                    .removeClass('btn-default')
-	                    .addClass('btn-' + color + ' active');
-	            }
-	            else {
-	                $button
-	                    .removeClass('btn-' + color + ' active')
-	                    .addClass('btn-default');
-	            }
-	        }
-	    });
-	});
+				// Update the button's color
+				if (isChecked) {
+					$button
+						.removeClass('btn-default')
+						.addClass('btn-' + color + ' active')
+				} else {
+					$button
+						.removeClass('btn-' + color + ' active')
+						.addClass('btn-default')
+				}
+			}
+		})
+	})
 }
-
-
-
-
 
 
 
@@ -350,23 +308,23 @@ window.onload = function()
 
 
 
-	/* Share / Social Media Functionality */
+	/* Share container -> icons Functionality */
 
-	var s_url = window.location;
-	var s_title = recipe_title;
-	var s_via = 'MyBakes';
-	var s_related = 'MyBakes,MyBakesTeam,MBChefs';
+	var share_url = window.location;
+	var share_title = recipe_title;
+	var share_via = 'MyBakes';
+	var share_related = 'MyBakes,MyBakesTeam,MBChefs';
 
 	// Facebook
 	$('li[name="facebook-icon"]').find('a').attr({
-		href: 'http://www.facebook.com/sharer.php?u='+s_url,
+		href: 'http://www.facebook.com/sharer.php?u='+share_url,
 		target: '_blank'
 	});
 
 	// Reddit
 	$('li[name="reddit-icon"]').find('a').attr({
-		href: 'http://reddit.com/submit?url='+s_url+
-			  '&title='+s_title,
+		href: 'http://reddit.com/submit?url='+share_url+
+			  '&title='+share_title,
 
 		target: '_blank'
 	});
@@ -374,26 +332,26 @@ window.onload = function()
 	// Twitter
 	$('li[name="twitter-icon"]').find('a').attr({
 		href: 'https://twitter.com/intent/tweet'+
-			  '?url='+s_url+ 
-			  '&text='+s_title+
-			  '&via='+s_via +
-			  '&related='+s_related,
+			  '?url='+share_url+ 
+			  '&text='+share_title+
+			  '&via='+share_via +
+			  '&related='+share_related,
 
 		target: '_blank'
 	});
 
 	// Mail
 	$('li[name="mail-icon"]').find('a').attr({
-		href: 'mailto:?Subject='+s_title+
-			  '&body='+s_url
+		href: 'mailto:?Subject='+share_title+
+			  '&body='+share_url
 	});
 
-	/* END of Share / Social Media Functionality */
+	/* END of Share container -> icons Functionality */
 
 
 
 	// Change recipe image to base64 url
-	toDataURL($('#recipe-image').attr('src'), function(dataUrl) {
+	getBase64($('#recipe-image').attr('src'), function(dataUrl) {
 		$('#recipe-image').attr('src' , dataUrl)
 	});
 
@@ -407,5 +365,5 @@ window.onload = function()
 
 
 window.onresize = function(event) {
-    applyApropiateScrolls()
+	applyApropiateScrolls()
 }
