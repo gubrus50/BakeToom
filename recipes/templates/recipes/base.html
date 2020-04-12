@@ -10,16 +10,16 @@
   WARNING - DO NOT MOVE THIS LINK TAG BECAUSE FOR STRANGE REASON THE FOOTER MARGINS FAILS TO WORK -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-  <link rel="shortcut icon" href="{% static 'recipes/img/icons/mybakes_icon.svg' %}">
+  <link rel="shortcut icon" href="{% static 'recipes/img/icons/baketoom_icon.svg' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/main.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/home.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/recipe_detail.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/recipe_form.css' %}">
   
   {% if title %}
-    <title>MyBakes - {{ title }}</title>
+    <title>BakeToom - {{ title }}</title>
   {% else %}
-    <title>MyBakes</title>
+    <title>BakeToom</title>
   {% endif %}
 
   {% if messages %}
@@ -37,7 +37,7 @@
 
 
       <!-- Logo -->
-      <a class="navbar-brand" href="#">Moja Kuchnia</a>
+      <a class="navbar-brand" href="#"><img height="40" src="{% static 'recipes/img/baketoom_logo.png' %}"/></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

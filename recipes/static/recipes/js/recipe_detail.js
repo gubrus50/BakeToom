@@ -312,8 +312,8 @@ window.onload = function()
 
 	var share_url = window.location;
 	var share_title = recipe_title;
-	var share_via = 'MyBakes';
-	var share_related = 'MyBakes,MyBakesTeam,MBChefs';
+	var share_via = 'BakeToom';
+	var share_related = 'BakeToom,BakeToomTeam,BTChefs';
 
 	// Facebook
 	$('li[name="facebook-icon"]').find('a').attr({
