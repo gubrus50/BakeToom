@@ -18,7 +18,17 @@ body { margin-bottom: 240px }
 .alert-success a { color: #155724 }
 
 
-
+#scroll-to-top-button {
+  box-shadow: 0 0 10px rgba(0,0,0,0.6);
+  -moz-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+  -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+  -o-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+  border-radius: 50%;
+  position: fixed;
+  z-index: 10000;
+  bottom: 10px;
+  right: 10px
+}
 
 
 
@@ -110,24 +120,29 @@ body { margin-bottom: 240px }
 
 @media only screen and (max-width: 600px) {
 
+  .h-mobile h1 { font-size: 30px }
   .h-mobile h2 { font-size: 25px }
   .h-mobile h3 { font-size: 20px }
   .h-mobile h4 { font-size: 14px }
 
+  h1.h-mobile { font-size: 30px !important }
   h2.h-mobile { font-size: 25px !important }
   h3.h-mobile { font-size: 20px !important }
   h4.h-mobile { font-size: 14px !important }
 
+  h1.h2-mobile,
   h2.h2-mobile,
   h3.h2-mobile,
   h4.h2-mobile,
   h5.h2-mobile { font-size: 25px !important }
 
+  h1.h3-mobile,
   h2.h3-mobile,
   h3.h3-mobile,
   h4.h3-mobile,
   h5.h3-mobile { font-size: 20px !important }
 
+  h1.h4-mobile,
   h2.h4-mobile,
   h3.h4-mobile,
   h4.h4-mobile,

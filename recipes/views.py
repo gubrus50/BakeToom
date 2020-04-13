@@ -337,3 +337,14 @@ class RecipeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 		messages.success(self.request, self.success_message)
 		return super(RecipeDeleteView, self).delete(request, *args, **kwargs)
 	
+
+
+
+def MoreInformation(request):
+	return render(request, 'recipes/more_information.html')
+
+def TermsAndConditions(request):
+	return render(request, 'recipes/terms_and_conditions.html')
+
+def PrivacyAndPolicy(request):
+	return render(request, 'recipes/privacy_and_policy.html')

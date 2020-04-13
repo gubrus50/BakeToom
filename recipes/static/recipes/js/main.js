@@ -29,9 +29,28 @@ function getCookie(cname)
 
 
 
-/* Cookies toggle animation */
+/* shows scroll-to-top button if we scroll 
+beyond the height of the initial window. */
+const scrollFunc = () => {
+
+	let scroll_vertical_axis = window.scrollY;
+
+	if (scroll_vertical_axis > 0) {
+		$('#scroll-to-top-button').fadeIn()
+	} else {
+		$('#scroll-to-top-button').fadeOut()
+	}
+}
+window.addEventListener('scroll', scrollFunc);
+
+
+
+
 $(document).ready(function()
 {
+	$('#scroll-to-top-button').hide();
+
+	/* Cookies toggle animation */
 	if (!getCookie('hide_cookies_popup')) { 
 		setTimeout(function () {
 			$("#cookieConsent").css('visibility', 'visible').hide().fadeIn(500) 

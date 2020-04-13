@@ -37,7 +37,7 @@
 
 
       <!-- Logo -->
-      <a class="navbar-brand" href="#"><img height="40" src="{% static 'recipes/img/baketoom_logo.png' %}"/></a>
+      <a class="navbar-brand" href="{% url 'recipes-home' %}"><img height="40" src="{% static 'recipes/img/baketoom_logo.png' %}"/></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -48,8 +48,8 @@
         <ul class="navbar-nav mr-auto">
 
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'recipes-home' %}">
-              Główna strona <span class="sr-only">(current)</span>
+            <a class="nav-link" href="{% url 'more-information' %}">
+              Więcej informacji <span class="sr-only">(current)</span>
             </a>
           </li>
 
@@ -132,6 +132,13 @@
   {% endif %}
 
 
+  <a href="#top">
+    <button id="scroll-to-top-button" type="button" class="btn btn-dark">
+      <i class='fas fa-angle-double-up' style='font-size:36px'></i>
+    </button>
+  </a>
+
+
   <!-- Main content of the page -->
   {% block content %}{% endblock %}
 
@@ -163,8 +170,9 @@
   </footer>
 
 
-  <!-- jQuery first, Popper.js, Bootstrap JS, then main.js -->
+  <!-- jQuery first, Popper.js, Fontawesome.js, Bootstrap JS, then main.js -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" crossorigin="anonymous"></script>
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="{% static 'recipes/js/main.js' %}" crossorigin="anonymous"></script>
