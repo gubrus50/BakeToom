@@ -110,7 +110,10 @@ body { margin-bottom: 240px }
 
 
 
-
+/* USER APP */
+img.account-img {
+  border: 3px solid #dee2e6
+}
 
 
 
@@ -170,12 +173,15 @@ body { margin-bottom: 240px }
 
   /* USER APP */
   img.account-img {
-    width: 100%;
     border-left: 30px solid #dee2e6;
     border-right: 30px solid #dee2e6;
+    border-radius: 5px !important;
     margin-bottom: 5px;
+    object-fit: cover;
+    border-bottom: 0;
+    border-top: 0;
     height: 200px;
-    object-fit: cover
+    width: 100%
   }
   #recipes div, div.container { width: auto }
   #recipes center.container div div.form-group {
