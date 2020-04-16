@@ -20,7 +20,7 @@
           </div>
           <br/>
           <br/>
-          <div class="form-group" style="width:auto; margin-right: 10px">
+          <div class="form-group custom-scroll empty-h-scroll" style="width:auto; margin-right: 10px">
             {{ form.description|as_crispy_field }}
           </div>
           <div class="form-group mt-3" style="width:auto; margin-right: 10px">
@@ -43,11 +43,21 @@
 
 
         <!-- Method container -->
-        <div class="border m-1 bg-light p-2" style="overflow: auto; border-radius: 5px">
+        <div class="border m-1 bg-light p-2 custom-scroll empty-h-scroll" style="overflow: auto; border-radius: 5px">
           <h2>Metoda</h2>
           <hr/>
           <div class="form-group" style="width:auto; margin-right: 10px">
             {{ form.method|as_crispy_field }}
+          </div>
+        </div>
+
+
+        <!-- License container -->
+        <div class="border m-1 bg-light p-2 custom-scroll empty-h-scroll" style="overflow: auto; border-radius: 5px">
+          <h2>Licencja</h2>
+          <hr/>
+          <div class="form-group" style="width:auto; margin-right: 10px">
+            {{ form.license|as_crispy_field }}
           </div>
         </div>
 
@@ -90,9 +100,10 @@
 
 
   <script type="text/javascript">
-    var category_creation_count = {{ category_creation_count }}
-    var categories = {{ categories|safe }}
-    var ingredients = {{ ingredients|safe }}
+    var category_creation_count = {{ category_creation_count }};
+    var categories = {{ categories|safe }};
+    var ingredients = {{ ingredients|safe }};
+    var user_fullname = '{{ user.get_full_name }}'
   </script>
   <script src="{% static 'recipes/js/recipe_form.js' %}"></script>
 

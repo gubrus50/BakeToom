@@ -87,6 +87,20 @@
     </div>
 
 
+    <!-- License container -->
+    <div class="border m-1 btn-light p-2" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
+      <article>
+        <h3>Licencja</h3>
+        <hr/>
+        {% if object.license %}
+          {{ object.license|linebreaks }}
+        {% else %}
+          ...
+        {% endif %}
+      </article>
+    </div>
+
+
     </center>
   </div>
   <!-- End of Background Image -->
@@ -123,7 +137,7 @@
 
 
   <script type="text/javascript">
-    var editing_tools = {% if authenticated_user == object.author %}true{% else %}false{% endif %}
+    var editing_tools = {% if authenticated_user == object.author %}true{% else %}false{% endif %};
     var recipe_title = {% if object.title %}'{{ object.title }}'{% else %}'Przepis'{% endif %}
   </script>
   <script src="{% static 'recipes/js/recipe_detail.js' %}"></script>

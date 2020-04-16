@@ -62,9 +62,23 @@ function updateCategoryButtonInIngredientsForm()
 
 
 
+function forLicenseInclude(year, fullname)
+{
+	$('#id_license')
+	.val(
+		$('#id_license')
+			.val()
+			.replace(/\[rok\]/g, year)
+			.replace(/\[pełne imię i nazwisko\]/g, fullname)
+	)
+}
+
+
+
 window.onload = function() 
 {
-	createCategoryInIngredientsForm(category_creation_count)
-	importCategories(categories, ingredients)
+	createCategoryInIngredientsForm(category_creation_count);
+	importCategories(categories, ingredients);
+	forLicenseInclude(new Date().getFullYear(), user_fullname);
 	$('textarea').addClass('custom-scroll empty-h-scroll')
 }

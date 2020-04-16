@@ -141,7 +141,7 @@ def RecipeCreateView(request):
 
 class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = Recipe
-	fields = ['title', 'image', 'description', 'method']
+	fields = ['title', 'image', 'description', 'method', 'license']
 
 
 	def get_context_data(self, **kwargs):

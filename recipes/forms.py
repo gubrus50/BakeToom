@@ -9,7 +9,8 @@ class RecipeForm(forms.ModelForm):
 			'title',
 			'image',
 			'description',
-			'method'
+			'method',
+			'license'
 		]
 
 class CategoryForm(forms.ModelForm):
