@@ -112,7 +112,7 @@ body { margin-bottom: 240px }
 
 /* USER APP */
 img.account-img {
-  border: 3px solid #dee2e6
+  border: 5px solid #dee2e6
 }
 
 
@@ -185,7 +185,8 @@ img.account-img {
   }
   #recipes div, div.container { width: auto }
   #recipes center.container div div.form-group {
-    margin-left: 0
+    margin-left: 0;
+    margin-right: 0 !important
   }
   #additional-info-users-templates small { 
     float: left !important;

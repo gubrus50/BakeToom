@@ -100,9 +100,6 @@
   overflow: scroll
 }
 
-/* Recipe method container */
-.recipe-method p { padding-inline-start: 20px }
-
 /**//* ------------------------ *//**/
 /**//* END of Recipe Containers *//**/
 /**//* ------------------------ *//**/
@@ -172,10 +169,6 @@
 	  height: 250px
 	}
 	/* END of Recipe categories container */
-
-
-	/* Recipe method list */
-	.recipe-method p { padding-inline-start: 10px }
 
 
 	/* Recipe method Expan button (Rozszerz Listę btn) */
