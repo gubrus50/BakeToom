@@ -5,9 +5,100 @@
 
 
   <!-- Search form -->
-  <form method="GET" action="{% url 'recipes-home' %}" class="container form-inline my-4 d-flex justify-content-center">
-    <input class="form-control" type="search" name='recipe' value='{{ request.GET.title }}' placeholder="Czego dzisiaj pragniesz?" aria-label="Search" style="border-radius:0; width:70%">
-    <button class="btn btn-outline-secondary" type="submit" style="border-radius: 0">Wyszukaj</button>
+  <form id="search-form" method="GET" action="{% url 'recipes-home' %}" class="container form-inline my-4 d-flex justify-content-center h-mobile">
+
+    <div class="form-control" style="border-radius: 0; width: 70%; height: 38px">
+      <input type="search" name="recipe" value="{{ request.GET.title }}" placeholder="Czego dzisiaj pragniesz?" aria-label="Search" style="border: 0; width: 90%">
+      <a id="search-filter-btn" href="#filter" class="text-secondary float-right"><i class="fas fa-filter"></i></a>
+    </div>
+    <button type="submit"class="btn btn-outline-secondary" style="border-radius: 0; height: 38px">Wyszukaj</button>
+
+    <div name="filter-container" style="margin: 20px 10% 0px 10%; display: none;">
+      <ul class="list-inline">
+        <!-- Search by -->
+        <li name="search-by" class="list-inline-item">
+          <h5 class="h4-mobile">Szukaj według</h5>
+          <hr/>
+          <ul name="search-by-children" class="list-inline">
+            <li class="list-inline-item">
+              <input type="checkbox" name="recipe-title" value="recipe-title" checked />
+              nazwy przepisu
+            </li>
+            <li class="list-inline-item">
+              <input type="checkbox" name="publisher" value="publisher" checked />
+              nazwy wydawcy
+            </li>
+            <li class="list-inline-item">
+              <input type="checkbox" class="filter-search-by-date" name="search-by-date" value="publish-date" />
+              daty publikacji
+            </li>
+            <li class="list-inline-item">
+              <input type="checkbox" class="filter-search-by-date" name="search-by-date" value="edit-date" />
+              daty edytacji
+            </li>
+            <li class="list-inline-item">
+              <input type="checkbox" name="recipe-id" value="recipe-id" />
+              id przepisu
+            </li>
+          </ul>
+        </li>
+        <!-- Upload date -->
+        <li name="upload-date" class="list-inline-item">
+          <h5 class="h4-mobile">Data przesłania</h5>
+          <hr/>
+          <ul name="upload-date-children" class="list-inline">
+            <li class="list-inline-item">
+              <input type="radio" name="upload-date" value="neutral" checked />
+              obojętna
+            </li>
+            <li class="list-inline-item">
+              <input type="radio" name="upload-date" value="today" />
+              dzisiejsza
+            </li>
+            <li class="list-inline-item">
+              <input type="radio" name="upload-date" value="this-week" />
+              tego tygodnia
+            </li>
+            <li class="list-inline-item">
+              <input type="radio" name="upload-date" value="this-month" />
+              tego miesiąca
+            </li>
+            <li class="list-inline-item">
+              <input type="radio" name="upload-date" value="this-year" />
+              tego rokcznika
+            </li>
+          </ul>
+        </li>
+        <!-- Categories -->
+        <li name="categories" class="list-inline-item">
+          <h5 class="h4-mobile">Kategorie</h5>
+          <hr/>
+          <ul name="categories-children" class="list-inline">
+            <li class="list-inline-item">
+              <input type="checkbox" name="certified" value="certified" disabled />
+              tylko certyfikowe
+            </li>
+            <li class="list-inline-item">
+              <input type="checkbox" name="bakes" value="bakes" checked />
+              wypieki
+            </li>
+            <li class="list-inline-item">
+              <input type="checkbox" name="deserts" value="deserts" checked />
+              desery
+            </li>
+            <li class="list-inline-item">
+              <input type="checkbox" name="soups" value="soups" checked />
+              zupy
+            </li>
+            <li class="list-inline-item">
+              <input type="checkbox" name="other" value="other" checked />
+              inne
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
   </form>
 
 
