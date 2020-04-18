@@ -93,7 +93,9 @@ $(document).ready(function()
 			})
 		}
 	}
-	
-	pd.onclick = function() { disableOrEnableUploadDateFilter() }
-	ed.onclick = function() { disableOrEnableUploadDateFilter() }
+
+	if (pd&&ed) {
+		pd.onclick = function() { disableOrEnableUploadDateFilter() }
+		ed.onclick = function() { disableOrEnableUploadDateFilter() }
+	}
 })

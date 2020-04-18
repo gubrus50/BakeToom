@@ -4,7 +4,7 @@
   {% load static %}
 
 
-  <!-- Author of recipes message -->
+  <!-- Publisher of recipes message -->
   <h5 class="mb-4 ml-1 mr-1 mt-4 text-center text-dark h4-mobile">
     Przepisy opublikowane przez "{{ view.kwargs.username }}"
   </h5>
@@ -17,7 +17,7 @@
   </form>
 
 
-  <!-- Author recipes container -->
+  <!-- Publisher recipes container -->
   <div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('{% static 'recipes/img/background_notepad.png' %}'); background-size: 15px 15px">
     <center class="container recipe-container">
       {% if recipes %}
@@ -28,7 +28,18 @@
               <h3>{{ recipe.title }}</h3>
               <p>{{ recipe.description }}</p>
               <small>
-                autor: <a href="{% url 'user-recipes' recipe.author.username %}">{{ recipe.author }}</a>, 
+                {% if recipe.publisher %}
+                  wydawca: <a href="{% url 'user-recipes' recipe.publisher.username %}">{{ recipe.publisher }}</a> 
+                {% else %}
+                  wydawca: null 
+                {% endif %},
+
+                {% if recipe.recipe_type %}
+                  typ: {{ recipe.recipe_type }}
+                {% else %}
+                  typ: inne
+                {% endif %},
+
                 id_przepisu: {{ recipe.id }}
               </small>
             </article>

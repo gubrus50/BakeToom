@@ -113,7 +113,18 @@
               <h3>{{ recipe.title }}</h3>
               <p>{{ recipe.description }}</p>
               <small>
-                autor: <a href="{% url 'user-recipes' recipe.author.username %}">{{ recipe.author }}</a>,
+                {% if recipe.publisher %}
+                  wydawca: <a href="{% url 'user-recipes' recipe.publisher.username %}">{{ recipe.publisher }}</a> 
+                {% else %}
+                  wydawca: null 
+                {% endif %},
+
+                {% if recipe.recipe_type %}
+                  typ: {{ recipe.recipe_type }}
+                {% else %}
+                  typ: inne
+                {% endif %},
+
                 id_przepisu: {{ recipe.id }}
               </small>
             </article>

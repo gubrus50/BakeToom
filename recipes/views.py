@@ -53,10 +53,10 @@ class UserRecipeListView(ListView):
 		
 		if query:
 			# Order by title, and move null values to last position.
-			object_list = self.model.objects.filter(author=user, title__icontains=query).order_by(F('title').asc(nulls_last=True))
+			object_list = self.model.objects.filter(publisher=user, title__icontains=query).order_by(F('title').asc(nulls_last=True))
 		else:
 			# Order by title, and move null values to last position.
-			object_list = self.model.objects.filter(author=user).order_by(F('title').asc(nulls_last=True))
+			object_list = self.model.objects.filter(publisher=user).order_by(F('title').asc(nulls_last=True))
 		return object_list
 
 
@@ -88,7 +88,7 @@ def RecipeCreateView(request):
 
 		if recipe_form.is_valid():
 			# Get current user with their categories data from post
-			recipe_form.instance.author = request.user
+			recipe_form.instance.publisher = request.user
 			categories = request.POST.getlist('category')
 			ingredients = request.POST.getlist('ingredients')
 
@@ -141,7 +141,14 @@ def RecipeCreateView(request):
 
 class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = Recipe
-	fields = ['title', 'image', 'description', 'method', 'license']
+	fields = [
+		'title',
+		'image',
+		'recipe_type',
+		'description',
+		'method',
+		'license'
+	]
 
 
 	def get_context_data(self, **kwargs):
@@ -182,7 +189,7 @@ class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 	def test_func(self):
 		recipe = self.get_object()
-		if self.request.user == recipe.author:
+		if self.request.user == recipe.publisher:
 			return True
 		return False
 
@@ -314,7 +321,7 @@ class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 
 
-		form.instance.author = self.request.user
+		form.instance.publisher = self.request.user
 		messages.success(self.request, f'Twój przepis został pomyślnie zaktualizowany.')
 		return super().form_valid(form)
 
@@ -329,7 +336,7 @@ class RecipeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 	def test_func(self):
 		recipe = self.get_object()
-		if self.request.user == recipe.author:
+		if self.request.user == recipe.publisher:
 			return True
 		return False
 

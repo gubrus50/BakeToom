@@ -12,7 +12,14 @@ from PIL import Image
 
 class Recipe(models.Model):
 
-	default_license = (
+	RECIPE_TYPE_CHOICES = (
+		('wypiek', 'wypiek'),
+		('deser', 'deser'),
+		('zupa', 'zupa'),
+		('inne', 'inne')
+	)
+
+	DEFAULT_LICENSE = (
 		'MIT License'
 		'\n\n'
 		'Copyright (c) [rok] [pełne imię i nazwisko]'
@@ -36,17 +43,27 @@ class Recipe(models.Model):
 		'SOFTWARE.'
 	)
 
-	title 		= models.CharField(max_length=100, verbose_name= _('Tytuł przepisu'))
-	author		= models.ForeignKey(User, on_delete=models.CASCADE, verbose_name= _('Autor'))
-	image 		= models.ImageField(default='default_recipe.jpg', upload_to='recipe_pics', verbose_name= _('Wprowadź Obraz'))
-	description = models.TextField(max_length=400, blank=True, verbose_name= _('Krutka deskrypcja przepisu'))
-	method 		= models.TextField(max_length=10000, blank=True, verbose_name= _('Wprowadź instrukcję sukcesywnego wykonania produktu'))
-	license		= models.TextField(max_length=10000, blank=False, default=default_license, verbose_name= _('Utwórz wiarygodną licencję'))
+	title 			= models.CharField(max_length=100, verbose_name=_('Tytuł przepisu'))
+	publisher		= models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('Wydawca'))
+	recipe_type		= models.CharField(max_length=100, blank=False, default=RECIPE_TYPE_CHOICES[3][1], choices=RECIPE_TYPE_CHOICES, verbose_name=_('Typ przepisu'))
+	certified		= models.BooleanField(blank=False, default=False)
+	image 			= models.ImageField(default='default_recipe.jpg', upload_to='recipe_pics', verbose_name=_('Wprowadź Obraz'))
+	description 	= models.TextField(max_length=400, blank=True, verbose_name=_('Krutka deskrypcja przepisu'))
+	method 			= models.TextField(max_length=10000, blank=True, verbose_name=_('Wprowadź instrukcję sukcesywnego wykonania produktu'))
+	license			= models.TextField(max_length=10000, blank=False, default=DEFAULT_LICENSE, verbose_name=_('Utwórz wiarygodną licencję'))
+	date_posted_old = models.DateTimeField(blank=False, default=timezone.now)
+	date_posted		= models.DateTimeField(blank=False, default=timezone.now)
+	date_created	= models.DateTimeField(blank=False, default=timezone.now)
+	date_edited		= models.DateTimeField(blank=False, default=timezone.now)
+
 
 	def __str__(self):
 		return self.title
 
 	def save(self, *args, **kwargs):
+
+		self.date_posted = timezone.now()
+		self.date_edited = timezone.now()
 		super().save(*args, **kwargs)
 
 		img = Image.open(self.image.path)
@@ -55,6 +72,8 @@ class Recipe(models.Model):
 			output_size = (300, 300)
 			img.thumbnail(output_size)
 			img.save(self.image.path)
+
+
 
 	def get_absolute_url(self):
 		return reverse('recipe-detail', kwargs={'pk': self.pk})
