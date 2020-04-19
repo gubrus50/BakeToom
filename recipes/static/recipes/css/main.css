@@ -117,6 +117,9 @@ body { margin-bottom: 240px }
   margin-bottom: 5px !important
 }
 
+/* flag icon */
+.f16 li { margin-top: 1.25px }
+
 /**//* ------------------------ *//**/
 /**//* END of Recipe Containers *//**/
 /**//* ------------------------ *//**/
@@ -208,6 +211,8 @@ img.account-img {
     width: 100px;
     height: 75px
   }
+  /* flag icon */
+  .f16 li { margin-top: -2px }
 
 
 

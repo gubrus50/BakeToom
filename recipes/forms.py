@@ -11,7 +11,8 @@ class RecipeForm(forms.ModelForm):
 			'recipe_type',
 			'description',
 			'method',
-			'license'
+			'license',
+			'nationality'
 		]
 
 class CategoryForm(forms.ModelForm):

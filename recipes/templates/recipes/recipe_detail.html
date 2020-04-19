@@ -11,35 +11,33 @@
 
     <!-- Recipe container -->
     <div class="border m-1 btn-light p-2" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
-      <article name="recipe-details">
-        <img id="recipe-image" class="float-right" width="150px" height="100px" style="border-radius: 5px 5px 5px 75px" src="{{ object.image.url }}">
-        {% if object.title %}
-          <h3>{{ object.title }}</h3>
-        {% else %}
-          <h3>Przepis</h3>
-        {% endif %}
-
-        {% if object.description %}
-          <p>{{ object.description }}</p>
-        {% else %}
-          <p>...</p>
-        {% endif %}
-
-        <small>
-          {% if object.publisher %}
-            wydawca: <a href="{% url 'user-recipes' object.publisher.username %}">{{ object.publisher }}</a> 
+      <article>
+        <img class="float-right" width="150px" height="100px" style="border-radius: 5px 5px 5px 75px" src="{{ recipe.image.url }}">
+        <h3>{{ recipe.title }}</h3>
+        <p>{{ recipe.description }}</p>
+        <small class="f16">
+          {% if recipe.nationality != 'International' %}
+            narodowość:
+            <li class="flag {{ recipe.nationality|lower }}"></li>
+          {% else %}
+            narodowość: międzynarodow
+          {% endif %},
+          
+          {% if recipe.publisher %}
+            wydawca: <a href="{% url 'user-recipes' recipe.publisher.username %}">{{ recipe.publisher }}</a> 
           {% else %}
             wydawca: null 
           {% endif %},
 
-          {% if object.recipe_type %}
-            typ: {{ object.recipe_type }}
+          {% if recipe.recipe_type %}
+            typ: {{ recipe.recipe_type }}
           {% else %}
             typ: inne
           {% endif %},
 
-          id_przepisu: {{ object.id }}
+          id_przepisu: {{ recipe.id }}
         </small>
+
 
         <hr/>
 

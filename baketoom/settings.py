@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'crispy_forms',
     'django_cleanup',
+    'django_countries',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

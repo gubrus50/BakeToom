@@ -118,7 +118,14 @@
               <img class="float-right" width="150px" height="100px" style="border-radius: 5px 5px 5px 75px" src="{{ recipe.image.url }}">
               <h3>{{ recipe.title }}</h3>
               <p>{{ recipe.description }}</p>
-              <small>
+              <small class="f16">
+                {% if recipe.nationality != 'International' %}
+                  narodowość:
+                  <li class="flag {{ recipe.nationality|lower }}"></li>
+                {% else %}
+                  narodowość: międzynarodow
+                {% endif %},
+
                 {% if recipe.publisher %}
                   wydawca: <a href="{% url 'user-recipes' recipe.publisher.username %}">{{ recipe.publisher }}</a> 
                 {% else %}

@@ -147,7 +147,8 @@ class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 		'recipe_type',
 		'description',
 		'method',
-		'license'
+		'license',
+		'nationality'
 	]
 
 
