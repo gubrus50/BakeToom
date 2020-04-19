@@ -181,9 +181,20 @@ img.account-img {
   h5.h5-mobile { font-size: 10px !important }
   
 
+  /* search-form */
+  #search-form {
+    text-align: center;
+    padding: 0
+  }
+  #search-form div[name="filter-container"] {
+    margin: 20px 5% 0 5% !important
+  }
   #search-form div[name="filter-container"] ul li {
+    text-align: left;
     margin-right: 5px;
   }
+  /* end of search-form */
+
   .footer-copyright ul li { font-size: 12px }
 
 
@@ -240,12 +251,22 @@ img.account-img {
 
 @media only screen and (max-width: 320px) {
 
-  #search-form { padding: 0 }
-  #search-form div[name="filter-container"] {
-    margin: 20px 5% 0 5% !important
+  #search-form {
+    text-align: left
   }
-  #search-form div[name="filter-container"] ul li[name="categories"] {
-    margin-top: 20px
+  #search-form div[name="filter-container"] ul li {
+    margin-top: 20px;
+    width: 100%
+  }
+  #search-form div[name="filter-container"] ul li ul li.list-inline-item {
+    margin-top: 0px
+  }
+  .bootstrap-select.countrypicker button.btn.dropdown-toggle {
+    margin-top: -10px !important;
+  }
+  #search-form div[name="filter-container"] ul li[name="nationality"] h5,
+  #search-form div[name="filter-container"] ul li[name="nationality"] hr {
+    display: block !important;
   }
 
 }

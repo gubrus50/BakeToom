@@ -29,12 +29,12 @@
               nazwy wydawcy
             </li>
             <li class="list-inline-item">
-              <input type="checkbox" class="filter-search-by-date" name="search-by-date" value="publish-date" />
-              daty publikacji
+              <input type="checkbox" class="filter-search-by-date" name="search-by-date" value="creation-date" />
+              daty utworzenia
             </li>
             <li class="list-inline-item">
-              <input type="checkbox" class="filter-search-by-date" name="search-by-date" value="edit-date" />
-              daty edytacji
+              <input type="checkbox" class="filter-search-by-date" name="search-by-date" value="general-date" />
+              daty ogólnej
             </li>
             <li class="list-inline-item">
               <input type="checkbox" name="recipe-id" value="recipe-id" />
@@ -95,6 +95,12 @@
               inne
             </li>
           </ul>
+        </li>
+        <!-- Nationality -->
+        <li name="nationality" class="list-inline-item">
+          <h5 class="h4-mobile">Narodowość</h5>
+          <hr/>
+          <select class="selectpicker countrypicker custom-scroll" data-default="PL" data-flag="true"></select>
         </li>
       </ul>
     </div>

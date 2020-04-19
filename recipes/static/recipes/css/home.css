@@ -57,9 +57,29 @@
 }
 
 
+/* Search filter Nationality */
+.bootstrap-select.countrypicker button.btn.dropdown-toggle {
+  margin-top: -10px;
+  padding: 0
+}
 
 
 /* If user on mobile display */
 @media only screen and (max-width: 600px) {
   #home-pagination { font-size: 12px }
+
+  /* Search filter Nationality */
+  .bootstrap-select.countrypicker button.btn.dropdown-toggle {
+    margin-top: 0
+  }
+  .bootstrap-select.countrypicker {
+    width: 100% !important
+  }
+  #search-form div[name="filter-container"] ul li[name="nationality"] {
+    width: 100%
+  }
+  #search-form div[name="filter-container"] ul li[name="nationality"] h5,
+  #search-form div[name="filter-container"] ul li[name="nationality"] hr {
+    display: none
+  }
 }
