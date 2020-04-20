@@ -15,7 +15,7 @@ from django.utils.translation import gettext_lazy as _
 from django.urls import reverse, reverse_lazy
 from django.http import HttpResponse
 from django.contrib import messages
-from django.db.models import F
+from django.db.models import F, Q
 from .models import Recipe, Category
 from .forms import RecipeForm, CategoryForm
 
@@ -29,13 +29,56 @@ class RecipeListView(ListView):
 	paginate_by = 5
 
 	def get_queryset(self):
-		query = self.request.GET.get('recipe')
-		if query:
-			# Order by title, and move null values to last position.
-			object_list = self.model.objects.filter(title__icontains=query).order_by(F('title').asc(nulls_last=True))
-		else:
+		q = self.request.GET.get('q')
+		if not q:
 			# Order by title, and move null values to last position.
 			object_list = self.model.objects.all().order_by(F('title').asc(nulls_last=True))
+		else:
+
+			# FILTERS - BOOLEAN:
+			recipe_title = self.request.GET.get('recipe-title')
+			publisher = self.request.GET.get('publisher')
+			recipe_id = self.request.GET.get('recipe-id')
+			certified = self.request.GET.get('certified')
+			bakes = self.request.GET.get('bakes')
+			deserts = self.request.GET.get('deserts')
+			soups = self.request.GET.get('soups')
+			other = self.request.GET.get('other')
+
+			# FILTERS - NON-BOOLEAN:
+			search_by_date = self.request.GET.get('search-by-date')
+			upload_date = self.request.GET.get('upload-date')
+			nationality = self.request.GET.get('nationality')
+			countrypicker = self.request.GET.get('countrypicker')
+
+			q_objects = Q()
+
+			if recipe_title:
+				q_objects |= Q(title__icontains=q)
+			"""
+			if publisher:
+				q_objects |= Q(publisher__icontains=q)
+			if recipe_id:
+				q_objects |= Q(id__contains=q)
+			if certified:
+				q_objects |= Q(certified__contains=True)
+			"""
+			if bakes:
+				q_objects &= Q(recipe_type__contains='wypiek')
+			if deserts:
+				q_objects &= Q(recipe_type__contains='deser')
+			if soups:
+				q_objects &= Q(recipe_type__contains='zupa')
+			if other:
+				q_objects &= Q(recipe_type__contains='inne')
+
+
+			# Order by title, and move null values to last position.
+			if len(q_objects) <= 0:
+				object_list = self.model.objects.all().order_by(F('title').asc(nulls_last=True))
+			else:
+				object_list = self.model.objects.filter(q_objects).order_by(F('title').asc(nulls_last=True))
+
 		return object_list
 
 
