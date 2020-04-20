@@ -13,30 +13,30 @@
     </div>
     <button type="submit"class="btn btn-outline-secondary" style="border-radius: 0; height: 38px">Wyszukaj</button>
 
-    <div name="filter-container" style="margin: 20px 10% 0px 10%; display: none;">
+    <div name="filter-container" style="margin: 20px 10% 0px 10%; display: none">
       <ul class="list-inline">
         <!-- Search by -->
         <li name="search-by" class="list-inline-item">
           <h5 class="h4-mobile">Szukaj według</h5>
           <hr/>
-          <ul name="search-by-children" class="list-inline">
-            <li class="list-inline-item">
+          <ul name="search-by-children">
+            <li>
               <input type="checkbox" name="recipe-title" value="recipe-title" checked />
               nazwy przepisu
             </li>
-            <li class="list-inline-item">
+            <li>
               <input type="checkbox" name="publisher" value="publisher" checked />
               nazwy wydawcy
             </li>
-            <li class="list-inline-item">
-              <input type="checkbox" class="filter-search-by-date" name="search-by-date" value="creation-date" />
+            <li>
+              <input type="checkbox" name="search-by-date" value="creation-date" />
               daty utworzenia
             </li>
-            <li class="list-inline-item">
-              <input type="checkbox" class="filter-search-by-date" name="search-by-date" value="general-date" />
+            <li>
+              <input type="checkbox" name="search-by-date" value="general-date" />
               daty ogólnej
             </li>
-            <li class="list-inline-item">
+            <li>
               <input type="checkbox" name="recipe-id" value="recipe-id" />
               id przepisu
             </li>
@@ -46,24 +46,24 @@
         <li name="upload-date" class="list-inline-item">
           <h5 class="h4-mobile">Data przesłania</h5>
           <hr/>
-          <ul name="upload-date-children" class="list-inline">
-            <li class="list-inline-item">
+          <ul name="upload-date-children">
+            <li>
               <input type="radio" name="upload-date" value="neutral" checked />
               obojętna
             </li>
-            <li class="list-inline-item">
+            <li>
               <input type="radio" name="upload-date" value="today" />
               dzisiejsza
             </li>
-            <li class="list-inline-item">
+            <li>
               <input type="radio" name="upload-date" value="this-week" />
               tego tygodnia
             </li>
-            <li class="list-inline-item">
+            <li>
               <input type="radio" name="upload-date" value="this-month" />
               tego miesiąca
             </li>
-            <li class="list-inline-item">
+            <li>
               <input type="radio" name="upload-date" value="this-year" />
               tego rocznika
             </li>
@@ -73,24 +73,24 @@
         <li name="categories" class="list-inline-item">
           <h5 class="h4-mobile">Kategorie</h5>
           <hr/>
-          <ul name="categories-children" class="list-inline">
-            <li class="list-inline-item">
+          <ul name="categories-children">
+            <li>
               <input type="checkbox" name="certified" value="certified" disabled />
               tylko certyfikowe
             </li>
-            <li class="list-inline-item">
+            <li>
               <input type="checkbox" name="bakes" value="bakes" checked />
               wypieki
             </li>
-            <li class="list-inline-item">
+            <li>
               <input type="checkbox" name="deserts" value="deserts" checked />
               desery
             </li>
-            <li class="list-inline-item">
+            <li>
               <input type="checkbox" name="soups" value="soups" checked />
               zupy
             </li>
-            <li class="list-inline-item">
+            <li>
               <input type="checkbox" name="other" value="other" checked />
               inne
             </li>
@@ -100,7 +100,23 @@
         <li name="nationality" class="list-inline-item">
           <h5 class="h4-mobile">Narodowość</h5>
           <hr/>
-          <select class="selectpicker countrypicker custom-scroll" data-default="PL" data-flag="true"></select>
+          <ul name="nationality-children">
+            <li>
+              <input type="radio" name="nationality" value="general" checked />
+              ogólna
+            </li>
+            <li>
+              <input type="radio" name="nationality" value="international" />
+              międzynarodowa
+            </li>
+            <li>
+              <input type="radio" name="nationality" value="specific" />
+              specyficzna
+            </li>
+            <li>
+              <select class="selectpicker countrypicker custom-scroll d-none" name="nationality" data-default="PL" data-flag="true"></select>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>

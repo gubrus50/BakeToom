@@ -12,14 +12,15 @@ body { margin-bottom: 240px }
   margin: 20px 0 0 0 !important;
   font-size: 12px
 }
-#search-form div[name="filter-container"] ul li ul li.list-inline-item {
-  display: block !important
-}
 #search-form div[name="filter-container"] ul li {
   vertical-align: top !important;
   margin-right: 20px;
   margin-left: 0;
   margin-top: 0
+}
+#search-form div[name="filter-container"] ul {
+  list-style: none;
+  padding-left: 0;
 }
 
 .footer {
@@ -184,19 +185,6 @@ img.account-img {
   h5.h5-mobile { font-size: 10px !important }
   
 
-  /* search-form */
-  #search-form {
-    text-align: center;
-    padding: 0
-  }
-  #search-form div[name="filter-container"] {
-    margin: 20px 5% 0 5% !important
-  }
-  #search-form div[name="filter-container"] ul li {
-    text-align: left;
-    margin-right: 5px;
-  }
-  /* end of search-form */
 
   .footer-copyright ul li { font-size: 12px }
 
@@ -263,21 +251,66 @@ img.account-img {
     margin-top: 20px;
     width: 100%
   }
-  #search-form div[name="filter-container"] ul li ul li.list-inline-item {
-    margin-top: 0px
+  #search-form div[name="filter-container"] ul li ul li {
+    margin-top: 0
   }
+  /* Search filter Nationality */
   .bootstrap-select.countrypicker button.btn.dropdown-toggle {
-    margin-top: -10px !important;
+    margin-top: -10px !important
   }
-  #search-form div[name="filter-container"] ul li[name="nationality"] h5,
-  #search-form div[name="filter-container"] ul li[name="nationality"] hr {
+  #search-form div[name="filter-container"] ul li[name="nationality"] ul li {
     display: block !important;
+  }
+  #search-form div[name="filter-container"] ul li[name="nationality"] ul li:nth-of-type(3) {
+    padding-top: 10px !important;
+    float: left
   }
 
 }
 
 
-
 /**//* --------------------- *//**/
 /**//* END of User on Mobile *//**/
 /**//* --------------------- *//**/
+
+
+@media only screen and (max-width: 1000px) {
+  /* search-form */
+  #search-form {
+    text-align: center;
+    padding: 0
+  }
+  #search-form div[name="filter-container"] {
+    margin: 20px 5% 0 5% !important
+  }
+  #search-form div[name="filter-container"] ul li {
+    padding-top: 10px;
+    margin-right: 0;
+    text-align: left
+  }
+  #search-form div[name="filter-container"] ul li[name="categories"] {
+    float: right
+  }
+  #search-form div[name="filter-container"] ul li[name="search-by"] {
+    float: left
+  }
+  /* Search filter Nationality */
+  .bootstrap-select.countrypicker {
+    width: 100% !important;
+    margin-top: 10px
+  }
+  #search-form div[name="filter-container"] ul li[name="nationality"] {
+    margin-top: 20px;
+    width: 100%
+  }
+  #search-form div[name="filter-container"] ul li[name="nationality"] ul li {
+    margin-right: 10px;
+    display: inline
+  }
+  #search-form div[name="filter-container"] ul li[name="nationality"] ul li:nth-of-type(3) {
+    float: right;
+    padding-top: 0;
+    margin-right: 0;
+  }
+  /* end of search-form */
+}

@@ -74,14 +74,16 @@ $(document).ready(function()
 		}
 	})
 
-	/* Search filter -> Disable upload date checkbox is publish/edit date is checked */
-	// jquery :checked feature was bugged at 18/04/2020, thats why I use selector by class
-	var elm = document.getElementsByClassName('filter-search-by-date');
-	var pd = elm[0];
-	var ed = elm[1];
+	/* Search filter dynamic functions */
+	var elm = document.querySelectorAll('[name="search-by-date"]');
+	var publish_date = elm[0];
+	var edit_date = elm[1];
+	var nationality_radios = $('input[name="nationality"]');
+	var specific = nationality_radios[2];
 	
+	// Disable upload date checkbox if publish/edit date is checked
 	function disableOrEnableUploadDateFilter() {
-		if (pd.checked || ed.checked) {
+		if (publish_date.checked || edit_date.checked) {
 			// disable upload date radio buttons from search filter-container
 			$('ul[name="upload-date-children"]').children('li').each(function(index) {
 				$(this).children('input[type="radio"]').prop('disabled', true)
@@ -94,8 +96,21 @@ $(document).ready(function()
 		}
 	}
 
-	if (pd&&ed) {
-		pd.onclick = function() { disableOrEnableUploadDateFilter() }
-		ed.onclick = function() { disableOrEnableUploadDateFilter() }
+
+	if (publish_date && edit_date && specific) {	
+		publish_date.onclick = function() { disableOrEnableUploadDateFilter() }
+		edit_date.onclick = function() { disableOrEnableUploadDateFilter() }
+
+		// Disable or enable countrypicker in nationality filter
+		$(nationality_radios).on('change', function() {
+			if (specific.checked) {
+				if ($('.countrypicker').hasClass('d-none')) {
+					$('.countrypicker').removeClass('d-none')
+				}
+				else { $('.countrypicker').show() }
+			} else { $('.countrypicker').hide() }	
+		})
 	}
+	/* END of Search filter dynamic functions */
+
 })
