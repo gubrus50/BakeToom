@@ -75,11 +75,11 @@ $(document).ready(function()
 	})
 
 	/* Search filter dynamic functions */
-	var elm = document.querySelectorAll('[name="search-by-date"]');
+	var elm = document.querySelectorAll('[name="SD"]');
 	var publish_date = elm[0];
 	var edit_date = elm[1];
-	var nationality_radios = $('input[name="nationality"]');
-	var specific = nationality_radios[2];
+	var nationality_mode_radios = $('input[name="NM"]');
+	var specific = nationality_mode_radios[2];
 	
 	// Disable upload date checkbox if publish/edit date is checked
 	function disableOrEnableUploadDateFilter() {
@@ -102,7 +102,7 @@ $(document).ready(function()
 		edit_date.onclick = function() { disableOrEnableUploadDateFilter() }
 
 		// Disable or enable countrypicker in nationality filter
-		$(nationality_radios).on('change', function() {
+		$(nationality_mode_radios).on('change', function() {
 			if (specific.checked) {
 				if ($('.countrypicker').hasClass('d-none')) {
 					$('.countrypicker').removeClass('d-none')

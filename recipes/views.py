@@ -55,7 +55,7 @@ class RecipeListView(ListView):
 			# FILTERS - NON-BOOLEAN:
 			search_by_date = self.request.GET.get('SD')
 			upload_date = self.request.GET.get('UD')
-			nationality = self.request.GET.get('NM')
+			nationality_mode = self.request.GET.get('NM')
 			countrypicker = self.request.GET.get('nat')
 
 			q_objects = Q()
