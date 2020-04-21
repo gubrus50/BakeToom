@@ -28,41 +28,48 @@ class RecipeListView(ListView):
 	context_object_name = 'recipes'
 	paginate_by = 5
 
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['query'] = self.request.GET.get('q', '')
+		return context
+
+
 	def get_queryset(self):
-		q = self.request.GET.get('q')
-		if not q:
+		query = self.request.GET.get('q', '')
+
+		if not query:
 			# Order by title, and move null values to last position.
 			object_list = self.model.objects.all().order_by(F('title').asc(nulls_last=True))
 		else:
 
 			# FILTERS - BOOLEAN:
-			recipe_title = self.request.GET.get('recipe-title')
-			publisher = self.request.GET.get('publisher')
-			recipe_id = self.request.GET.get('recipe-id')
-			certified = self.request.GET.get('certified')
-			bakes = self.request.GET.get('bakes')
-			deserts = self.request.GET.get('deserts')
-			soups = self.request.GET.get('soups')
-			other = self.request.GET.get('other')
+			recipe_title = self.request.GET.get('t')
+			publisher = self.request.GET.get('p')
+			recipe_id = self.request.GET.get('id')
+			certified = self.request.GET.get('cer')
+			bakes = self.request.GET.get('b')
+			deserts = self.request.GET.get('d')
+			soups = self.request.GET.get('s')
+			other = self.request.GET.get('o')
 
 			# FILTERS - NON-BOOLEAN:
-			search_by_date = self.request.GET.get('search-by-date')
-			upload_date = self.request.GET.get('upload-date')
-			nationality = self.request.GET.get('nationality')
-			countrypicker = self.request.GET.get('countrypicker')
+			search_by_date = self.request.GET.get('SD')
+			upload_date = self.request.GET.get('UD')
+			nationality = self.request.GET.get('NM')
+			countrypicker = self.request.GET.get('nat')
 
 			q_objects = Q()
 
 			if recipe_title:
-				q_objects |= Q(title__icontains=q)
+				q_objects &= Q(title__icontains=query)
 			"""
 			if publisher:
-				q_objects |= Q(publisher__icontains=q)
+				q_objects |= Q(publisher__icontains=query)
+			"""
 			if recipe_id:
-				q_objects |= Q(id__contains=q)
+				q_objects |= Q(id__exact=query)
 			if certified:
 				q_objects |= Q(certified__contains=True)
-			"""
 			if bakes:
 				q_objects &= Q(recipe_type__contains='wypiek')
 			if deserts:
@@ -80,7 +87,6 @@ class RecipeListView(ListView):
 				object_list = self.model.objects.filter(q_objects).order_by(F('title').asc(nulls_last=True))
 
 		return object_list
-
 
 
 
@@ -395,7 +401,7 @@ def MoreInformation(request):
 	return render(request, 'recipes/more_information.html')
 
 def TermsAndConditions(request):
-	return render(request, 'recipes/terms_and_conditions.html')
+	return render(request, 'recipes/terms_and_conditions_pl.html')
 
 def PrivacyAndPolicy(request):
-	return render(request, 'recipes/privacy_and_policy.html')
+	return render(request, 'recipes/privacy_and_policy_pl.html')

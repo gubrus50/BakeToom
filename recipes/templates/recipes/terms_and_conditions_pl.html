@@ -1,0 +1,113 @@
+{% extends "recipes/base.html" %}
+{% block content %}
+  {% load static %}
+
+
+  <div class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('{% static 'recipes/img/background_notepad.png' %}'); background-size: 15px 15px">
+    <center class="recipe-container pb-2">
+      <div class="container m-1 h-mobile bg-light p-4 border" style="border-radius: 5px">
+      
+        <h2><strong>Zasady i Warunki</strong></h2>
+
+        <p>Witamy w BakeToom!</p>
+        <p>Niniejszy regulamin określa zasady i zasady korzystania ze strony internetowej BakeToom, znajdującej się pod adresem baketoom.com.</p>
+        <p>Uzyskując dostęp do tej witryny, przyjmujemy, że akceptujesz te warunki. Nie kontynuuj korzystania z BakeToom, jeśli nie zgadzasz się na przestrzeganie wszystkich warunków określonych na tej stronie. Nasze Warunki zostały utworzone przy pomocy <a target="_blank" href="https://www.termsandconditionsgenerator.com">Generator warunków</a> i <a target="_blank" href="https://www.privacypolicyonline.com/terms-conditions-generator/">Darmowy generator warunków</a>.</p>
+        <p>Poniższa terminologia ma zastosowanie do niniejszych warunków, oświadczenia o ochronie prywatności i informacji o wyłączeniu odpowiedzialności oraz wszystkich umów: "Klient", "Ty" i "Twój" odnosi się do Ciebie, osoba loguje się na tej stronie internetowej i jest zgodna z warunkami firmy. "Firma", "My", "My", "Nasz" i "My" odnoszą się do naszej firmy. "Strona", "Strony" lub "My" odnoszą się zarówno do Klienta, jak i do nas samych. Wszystkie warunki odnoszą się do oferty, przyjęcia i rozpatrzenia płatności niezbędnej do podjęcia procesu naszej pomocy dla Klienta w najbardziej odpowiedni sposób, w wyraźnym celu zaspokojenia potrzeb Klienta w zakresie świadczenia określonych przez Spółkę usług, zgodnie z i z zastrzeżeniem obowiązującego prawa holenderskiego. Każde użycie powyższej terminologii lub innych słów w liczbie pojedynczej, mnogiej, wielkich liter i / lub on / ona lub oni, są uważane za zamienne, a zatem odnoszą się do tego samego.</p>
+
+        <h3><strong>Cookies</strong></h3>
+
+        <p>Używamy plików cookie. Uzyskując dostęp do BakeToom, wyraziłeś zgodę na używanie plików cookie zgodnie z <a href="{% url 'privacy-and-policy' %}">polityką prywatności</a> i zasad BakeToom.</p>
+        <p>Większość interaktywnych stron internetowych używa plików cookie, aby umożliwić nam pobranie danych użytkownika dla każdej wizyty. Pliki cookie są używane przez naszą stronę internetową, aby umożliwić funkcjonowanie niektórych obszarów, aby ułatwić osobom odwiedzającym. Niektórzy z naszych partnerów stowarzyszonych / reklamowych mogą również wykorzystywać pliki cookie.</p>
+
+        <h3><strong>Licencja</strong></h3>
+
+        <p>O ile nie zaznaczono inaczej, BakeToom i / lub jego licencjodawcy są właścicielami praw własności intelektualnej do wszystkich materiałów BakeToom. Wszelkie prawa własności intelektualnej są zastrzeżone. Możesz uzyskać dostęp do materiałów z BakeToom na własny użytek, z zastrzeżeniem ograniczeń określonych w niniejszych warunkach.</p>
+        <p>Nie wolno Ci:</p>
+        <ul>
+          <li>Ponownie opublikować wszelkie materiały z BakeToom</li>
+          <li>Sprzedawać, wypożyczać ani udzielać podlicencji materiałów od BakeToom</li>
+          <li>Reprodukować, powielać ani kopiować materiałów z BakeToom</li>
+          <li>Rozpowszechniać treści z BakeToom</li>
+        </ul>
+        <p>Niniejsza Umowa zaczyna obowiązywać z dniem jej zawarcia.</p>
+        <p>Części tej witryny oferują użytkownikom możliwość publikowania i wymiany opinii i informacji w niektórych obszarach witryny. BakeToom nie filtruje, nie edytuje, nie publikuje ani nie przegląda komentarzy przed ich pojawieniem się na stronie. Komentarze nie odzwierciedlają poglądów i opinii BakeToom, jego agentów i / lub podmiotów powiązanych. Komentarze odzwierciedlają poglądy i opinie osoby, która publikuje swoje poglądy i opinie. W zakresie dozwolonym przez obowiązujące prawo, BakeToom nie ponosi odpowiedzialności za Komentarze ani za jakąkolwiek odpowiedzialność, szkody lub wydatki spowodowane i / lub poniesione w wyniku jakiegokolwiek wykorzystania i / lub opublikowania i / lub pojawienia się komentarzy na tej stronie internetowej.</p>
+        <p>BakeToom zastrzega sobie prawo do monitorowania wszystkich komentarzy i usuwania wszelkich komentarzy, które mogą zostać uznane za nieodpowiednie, obraźliwe lub powodujące naruszenie niniejszych warunków.</p>
+        <p>Gwarantujesz i reprezentujesz, że:</p>
+        <ul>
+          <li>Gwarantujesz i oświadczasz, że: jesteś uprawniony do zamieszczania komentarzy na naszej stronie internetowej oraz posiadasz wszelkie niezbędne licencje i zgody;</li>
+          <li>Użytkownik gwarantuje i oświadcza, że: Komentarze nie naruszają żadnych praw własności intelektualnej, w tym między innymi praw autorskich, patentów lub znaków towarowych osób trzecich;</li>
+          <li>Gwarantujesz i oświadczasz, że: Komentarze nie zawierają żadnych zniesławiających, obraźliwych, nieprzyzwoitych lub w inny sposób niezgodnych z prawem materiałów, które stanowią naruszenie prywatności</li>
+          <li>Komentarze nie będą wykorzystywane w celu nakłaniania lub promowania działalności gospodarczej lub obyczajowej lub prezentowania działalności handlowej lub działalności niezgodnej z prawem.</li>
+        </ul>
+        <p>Niniejszym przyznajesz BakeToom niewyłączną licencję na wykorzystywanie, reprodukowanie, edytowanie i upoważnianie innych do używania, reprodukowania i edytowania dowolnych Twoich komentarzy w dowolnej formie, we wszystkich formatach lub mediach.</p>
+
+        <h3><strong>Hiperłącza do naszych treści</strong></h3>
+
+        <p>Następujące organizacje mogą linkować do naszej witryny bez uprzedniej pisemnej zgody:</p>
+        <ul>
+          <li>Agencje rządowe;</li>
+          <li>Wyszukiwarki;</li>
+          <li>Organizacje informacyjne;</li>
+          <li>Dystrybutorzy katalogów online mogą łączyć się z naszą witryną w taki sam sposób, jak hiperłącza do stron internetowych innych wymienionych firm; i</li>
+          <li>Akredytowane firmy ogólnosystemowe, z wyjątkiem pozyskiwania organizacji non-profit, charytatywnych centrów handlowych i grup charytatywnych, które nie mogą łączyć hiperłącza do naszej strony internetowej.</li>
+        </ul>
+        <p>Organizacje te mogą linkować do naszej strony głównej, publikacji lub innych informacji na stronie internetowej, o ile link: (a) w żaden sposób nie wprowadza w błąd; (b) nie oznacza fałszywie sponsorowania, poparcia lub zatwierdzenia strony łączącej oraz jej produktów i / lub usług; oraz (c) mieści się w kontekście witryny strony łączącej.</p>
+        <p>Możemy rozpatrywać i zatwierdzać inne żądania linków od następujących typów organizacji:<p>
+        <ul>
+          <li>powszechnie znane źródła informacji dla konsumentów i / lub firm;</li>
+          <li>strony społecznościowe dot.com;</li>
+          <li>stowarzyszenia lub inne grupy reprezentujące organizacje charytatywne;</li>
+          <li>dystrybutorzy katalogów online;</li>
+          <li>portale internetowe;</li>
+          <li>firmy księgowe, prawne i doradcze; i</li>
+          <li>instytucje edukacyjne i stowarzyszenia handlowe.</li>
+        </ul>
+        <p>Zatwierdzimy prośby o połączenie od tych organizacji, jeśli zdecydujemy, że: (a) link nie sprawi, że spojrzymy niekorzystnie na siebie lub na nasze akredytowane firmy; (b) organizacja nie ma u nas żadnych negatywnych danych; (c) korzyść dla nas z widoczności hiperłącza rekompensuje brak BakeToom; oraz (d) link znajduje się w kontekście ogólnych informacji o zasobach.</p>
+        <p>Organizacje te mogą linkować do naszej strony głównej, o ile link: (a) w żaden sposób nie wprowadza w błąd; (b) nie oznacza fałszywie sponsorowania, poparcia lub zatwierdzenia strony łączącej oraz jej produktów lub usług; oraz (c) mieści się w kontekście witryny strony łączącej.</p>
+        <p>Jeśli jesteś jedną z organizacji wymienionych w ust. 2 powyżej i chcesz połączyć się z naszą witryną, musisz nas poinformować, wysyłając wiadomość e-mail do BakeToom. Podaj swoje imię i nazwisko, nazwę organizacji, dane kontaktowe, a także adres URL swojej witryny, listę adresów URL, z których zamierzasz połączyć się z naszą witryną oraz listę adresów URL w naszej witrynie, do których chciałbyś połączyć. Poczekaj 2-3 tygodnie na odpowiedź.</p>
+        <p>Zatwierdzone organizacje mogą umieszczać hiperłącza do naszej witryny w następujący sposób:</p>
+        <ul>
+          <li>Używając naszej nazwy korporacyjnej; lub</li>
+          <li>Poprzez użycie jednolitego lokalizatora zasobów, z którym jest połączony; lub</li>
+          <li>Poprzez użycie dowolnego innego opisu naszej witryny, do którego prowadzi link, ma to sens w kontekście i formacie treści na stronie podmiotu łączącego.</li>
+        </ul>
+        <p>Żadne użycie logo BakeToom lub innej grafiki nie będzie dozwolone w przypadku linkowania bez umowy licencyjnej na znak towarowy.</p>
+
+        <h3><strong>iFrames</strong></h3>
+
+        <p>Bez uprzedniej zgody i pisemnej zgody nie wolno tworzyć ramek wokół naszych stron internetowych, które w jakikolwiek sposób zmieniają wizualną prezentację lub wygląd naszej witryny.</p>
+
+        <h3><strong>Odpowiedzialność za treść</strong></h3>
+
+        <p>We shall not be hold responsible for any content that appears on your Website. You agree to protect and defend us against all claims that is rising on your Website. No link(s) should appear on any Website that may be interpreted as libelous, obscene or criminal, or which infringes, otherwise violates, or advocates the infringement or other violation of, any third party rights.</p>
+
+        <h3><strong>Your Privacy</strong></h3>
+
+        <p>Please read <a href="{% url 'privacy-and-policy' %}">Privacy Policy</a>.</p>
+
+        <h3><strong>Reservation of Rights</strong></h3>
+
+        <p>Nie ponosimy odpowiedzialności za treści pojawiające się na Twojej stronie internetowej. Zgadzasz się chronić nas i bronić przed wszelkimi roszczeniami, które pojawiają się w Twojej witrynie. Żadne linki nie powinny pojawiać się na żadnej stronie internetowej, która może być interpretowana jako zniesławiająca, obsceniczna lub karna, lub która narusza, w inny sposób narusza lub opowiada się za naruszeniem lub innym naruszeniem jakichkolwiek praw osób trzecich.</p>
+
+        <h3><strong>Usunięcie linków z naszej strony internetowej</strong></h3>
+
+        <p>Jeśli znajdziesz z naszej strony jakikolwiek obraźliwy link, możesz skontaktować się z nami i poinformować nas w dowolnym momencie. Rozpatrzymy prośby o usunięcie linków, ale nie jesteśmy do tego zobowiązani by ci bezpośrednio odpowiedzieć.</p>
+        <p>Nie zapewniamy, że informacje na tej stronie są poprawne, nie gwarantujemy ich kompletności ani dokładności; nie obiecujemy również, że witryna będzie dostępna lub że materiały na stronie będą aktualizowane.</p>
+
+        <h3><strong>Zrzeczenie się</strong></h3>
+
+        <p>W maksymalnym zakresie dozwolonym przez obowiązujące prawo wykluczamy wszelkie oświadczenia, gwarancje i warunki dotyczące naszej strony internetowej i korzystania z niej. Nic w tym oświadczeniu nie będzie:</p>
+        <ul>
+          <li>ograniczać lub wyłączać naszą lub twoją odpowiedzialność za śmierć lub obrażenia ciała;</li>
+          <li>ograniczać lub wyłączać naszą lub twoją odpowiedzialność za oszustwo lub świadome wprowadzenie w błąd;</li>
+          <li>graniczać nasze lub nasze zobowiązania w sposób niedozwolony przez obowiązujące prawo; lub</li>
+          <li>wyklucz wszelkie nasze zobowiązania lub zobowiązania, których nie można wykluczyć zgodnie z obowiązującym prawem.</li>
+        </ul>
+        <p>Ograniczenia i zakazy odpowiedzialności określone w niniejszej sekcji oraz w innych miejscach niniejszego wyłączenia odpowiedzialności: (a) podlegają postanowieniom poprzedniego akapitu; oraz (b) regulują wszystkie zobowiązania wynikające z wyłączenia odpowiedzialności, w tym zobowiązania wynikające z umowy, czynu niedozwolonego oraz z tytułu naruszenia obowiązku ustawowego.</p>
+        <p>Tak długo, jak strona internetowa oraz informacje i usługi na stronie są udostępniane bezpłatnie, nie będziemy ponosić odpowiedzialności za jakiekolwiek straty lub szkody jakiegokolwiek rodzaju.</p>
+
+      </div>
+    </center>
+  </div>
+
+{% endblock content %}
