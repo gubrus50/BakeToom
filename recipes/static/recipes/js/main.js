@@ -61,56 +61,5 @@ $(document).ready(function()
 	$("ignorecookies, .acceptcookies").click(function() {
 		setCookie('hide_cookies_popup',true,1)
 		$("#cookieConsent").fadeOut(200)
-	});
-
-	/* Search filter container toggle animation */
-	var fc = $('div[name="filter-container"]');
-	$('#search-filter-btn').on('click', function() {
-		if ($(fc).is(':hidden')) {
-			$(fc).slideDown('slow')
-		}
-		else {
-			$('div[name="filter-container"]').slideUp('slow')
-		}
 	})
-
-	/* Search filter dynamic functions */
-	var elm = $('input[name="search_by_date"]');
-	var publish_date = elm[0];
-	var edit_date = elm[1];
-	var nationality_mode = $('input[name="nationality_mode"]');
-	var specific = nationality_mode[2];
-	
-	// Disable upload date checkbox if publish/edit date is checked
-	function disableOrEnableUploadDateFilter() {
-		if (publish_date.checked || edit_date.checked) {
-			// disable upload date radio buttons from search filter-container
-			$('ul[name="upload-date-children"]').children('li').each(function(index) {
-				$(this).children('input[type="radio"]').prop('disabled', true)
-			})
-		} else {
-			// enable upload date radio buttons from search filter-container
-			$('ul[name="upload-date-children"]').children('li').each(function(index) {
-				$(this).children('input[type="radio"]').prop('disabled', false)
-			})
-		}
-	}
-
-
-	if (publish_date && edit_date && specific) {	
-		publish_date.onclick = function() { disableOrEnableUploadDateFilter() }
-		edit_date.onclick = function() { disableOrEnableUploadDateFilter() }
-
-		// Disable or enable countrypicker in nationality filter
-		$(nationality_mode).on('change', function() {
-			if (specific.checked) {
-				if ($('.countrypicker').hasClass('d-none')) {
-					$('.countrypicker').removeClass('d-none')
-				}
-				else { $('.countrypicker').show() }
-			} else { $('.countrypicker').hide() }	
-		})
-	}
-	/* END of Search filter dynamic functions */
-
 })

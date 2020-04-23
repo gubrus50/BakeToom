@@ -12,12 +12,12 @@
 
   <!-- Search form -->
   <form method="GET" action="{% url 'user-recipes' view.kwargs.username %}" class="form-inline my-4 d-flex justify-content-center">
-    <input class="form-control" type="search" name="recipe" value='{{ request.GET.title }}' placeholder="Czego dzisiaj pragniesz?" aria-label="Search" style="border-radius:0; width:70%">
+    <input class="form-control" type="search" name="q" value='{{ request.GET.q }}' placeholder="Czego dzisiaj pragniesz?" aria-label="Search" style="border-radius:0; width:70%">
     <button class="btn btn-outline-secondary" type="submit" style="border-radius: 0">Wyszukaj</button>
   </form>
 
 
-  <!-- Publisher recipes container -->
+  <!-- Recipes container -->
   <div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('{% static 'recipes/img/background_notepad.png' %}'); background-size: 15px 15px">
     <center class="container recipe-container">
       {% if recipes %}
@@ -28,13 +28,13 @@
               <h3>{{ recipe.title }}</h3>
               <p>{{ recipe.description }}</p>
               <small class="f16">
-                {% if recipe.nationality != 'International' %}
+                {% if recipe.nationality %}
                   narodowość:
                   <li class="flag {{ recipe.nationality|lower }}"></li>
                 {% else %}
-                  narodowość: międzynarodow
+                  narodowość: międzynarodowy
                 {% endif %},
-                
+
                 {% if recipe.publisher %}
                   wydawca: <a href="{% url 'user-recipes' recipe.publisher.username %}">{{ recipe.publisher }}</a> 
                 {% else %}
@@ -48,12 +48,15 @@
                 {% endif %},
 
                 id_przepisu: {{ recipe.id }}
+                {% if recipe.certified %}
+                  <img class="float-right" height="25" src="{% static 'recipes/img/icons/flaticon/certificate.svg' %}" />
+                {% endif %}
               </small>
             </article>
           </div>
         {% endfor %}
       {% else %}
-        <!-- No results -->
+        <!-- No results msg -->
         <div class="d-flex justify-content-center text-dark p-5 text-center" style="background-color: #f8f9fa">
           <h2>Zero rezultatów</h2>
         </div>
@@ -71,55 +74,118 @@
           <ul class="pagination pagination-circle pg-blue mb-0">
             <!-- To first page -->
             <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
-              <a class="page-link" style="border-right: 0" aria-label="First" href="{% if page_obj.has_previous %}?page=1{% else %}#{% endif %}">
-                Początek
-              </a>
+              <a class="page-link" style="border-right: 0" aria-label="First"
+              
+                {% if page_obj.has_previous %}
+                  {% if request.GET.q %}
+                    href="#"
+                    onclick="paginateToPage(1)"
+                  {% else %}
+                    href="?page=1"
+                  {% endif %}
+                {% else %}
+                  href="#"
+                {% endif %}
+
+              >Początek</a>
             </li>
             <!-- Direct page choice -->
             {% for num in page_obj.paginator.page_range %}
               {% if page_obj.number == num %}
                 <li class="page-item active">
-                  <a class="page-link page-link-active-fancy" href="?page={{ num }}">
-                    {{ num }}
-                  </a>
+                  <a class="page-link page-link-active-fancy"
+
+                    {% if request.GET.q %}
+                      href="#"
+                      onclick="paginateToPage({{ num }})"
+                    {% else %}
+                      href="?page={{ num }}"
+                    {% endif %}
+                  
+                  >{{ num }}</a>
                 </li>
               {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
                 <li class="page-item">
-                  <a class="page-link page-link-fancy" href="?page={{ num }}">
-                    {{ num }}
-                  </a>
+                  <a class="page-link page-link-fancy"
+
+                    {% if request.GET.q %}
+                      href="#"
+                      onclick="paginateToPage({{ num }})"
+                    {% else %}
+                      href="?page={{ num }}"
+                    {% endif %}
+                  
+                  >{{ num }}</a>
                 </li>
               {% endif %}
             {% endfor %}
             <!-- To last page -->
             <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
-              <a class="page-link" style="border-left: 0" aria-label="Last" href="{% if page_obj.has_next %}?page={{ page_obj.paginator.num_pages }}{% else %}#{% endif %}">
-                Koniec
-              </a>
+              <a class="page-link" style="border-left: 0" aria-label="Last"
+
+                {% if page_obj.has_next %}
+                  {% if request.GET.q %}
+                    href="#"
+                    onclick="paginateToPage({{ page_obj.paginator.num_pages }})"
+                  {% else %}
+                    href="?page={{ page_obj.paginator.num_pages }}"
+                  {% endif %}
+                {% else %}
+                  href="#"
+                {% endif %}
+
+              >Koniec</a>
             </li>
           </ul>
         </div>
 
         <div name="page-flip">
           <!-- Previous page action -->
-         <a style="border-right: 0" class="{% if not page_obj.has_previous %}disabled{% endif %}" aria-label="Previous" href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% else %}#{% endif %}">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
+          <a style="border-right: 0" class="{% if not page_obj.has_previous %}disabled{% endif %}" aria-label="Previous"
+
+            {% if page_obj.has_previous %}
+              {% if request.GET.q %}
+                href="#"
+                onclick="paginateToPage({{ page_obj.previous_page_number }})"
+              {% else %}
+                href="?page={{ page_obj.previous_page_number }}"
+              {% endif %}
+            {% else %}
+              href="#"
+            {% endif %}
+
+          ><span aria-hidden="true">&laquo;</span></a>
+
           <!-- Result counter -->
           <a style="width: 60%; border-left: 0; border-right: 0; color: #6c757d; cursor: default">
             <span id="search-result-counter">{{ page_obj.paginator.count }}</span>
-            rezultatów
+              rezultatów
           </a>
+
           <!-- Next page action -->
-          <a style="border-left: 0" class="{% if not page_obj.has_next %}disabled{% endif %}" aria-label="Next" href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}{% else %}#{% endif %}">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
+          <a style="border-left: 0" class="{% if not page_obj.has_next %}disabled{% endif %}" aria-label="Next"
+
+            {% if page_obj.has_next %}
+              {% if request.GET.q %}
+                href="#"
+                onclick="paginateToPage({{ page_obj.next_page_number }})"
+              {% else %}
+                href="?page={{ page_obj.next_page_number }}"
+              {% endif %}
+            {% else %}
+              href="#"
+            {% endif %}
+
+          ><span aria-hidden="true">&raquo;</span></a>
         </div>
 
       </nav>
     </center>
   {% endif %}
   <!-- End of Pagination -->
+
+
+  <script name="main.js" src="{% static 'recipes/js/filter_search_with_pagination.js' %}" crossorigin="anonymous"></script>
 
 
 {% endblock content %}

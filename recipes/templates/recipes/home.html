@@ -29,15 +29,15 @@
               nazwy wydawcy
             </li>
             <li>
-              <input type="checkbox" name="search_by_date" value="PD" disabled />
+              <input type="checkbox" name="certified" value="true" />
+              tylko certyfikowe
+            </li>
+            <li>
+              <input type="checkbox" name="search_by_date" value="DOC" />
               daty utworzenia
             </li>
             <li>
-              <input type="checkbox" name="search_by_date" value="GD" disabled />
-              daty ogólnej
-            </li>
-            <li>
-              <input type="checkbox" name="id" value="1" />
+              <input type="checkbox" name="id" value="true" />
               id przepisu
             </li>
           </ul>
@@ -74,10 +74,6 @@
           <h5 class="h4-mobile">Kategorie</h5>
           <hr/>
           <ul name="categories-children">
-            <li>
-              <input type="checkbox" name="certified" value="true" />
-              tylko certyfikowe
-            </li>
             <li>
               <input type="radio" name="type" value="general" checked />
               ogólne
@@ -185,55 +181,118 @@
           <ul class="pagination pagination-circle pg-blue mb-0">
             <!-- To first page -->
             <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
-              <a class="page-link" style="border-right: 0" aria-label="First" href="{% if page_obj.has_previous %}?page=1{% else %}#{% endif %}">
-                Początek
-              </a>
+              <a class="page-link" style="border-right: 0" aria-label="First"
+              
+                {% if page_obj.has_previous %}
+                  {% if request.GET.nationality %}
+                    href="#"
+                    onclick="paginateToPage(1)"
+                  {% else %}
+                    href="?page=1"
+                  {% endif %}
+                {% else %}
+                  href="#"
+                {% endif %}
+
+              >Początek</a>
             </li>
             <!-- Direct page choice -->
             {% for num in page_obj.paginator.page_range %}
               {% if page_obj.number == num %}
                 <li class="page-item active">
-                  <a class="page-link page-link-active-fancy" href="?page={{ num }}">
-                    {{ num }}
-                  </a>
+                  <a class="page-link page-link-active-fancy"
+
+                    {% if request.GET.nationality %}
+                      href="#"
+                      onclick="paginateToPage({{ num }})"
+                    {% else %}
+                      href="?page={{ num }}"
+                    {% endif %}
+                  
+                  >{{ num }}</a>
                 </li>
               {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
                 <li class="page-item">
-                  <a class="page-link page-link-fancy" href="?page={{ num }}">
-                    {{ num }}
-                  </a>
+                  <a class="page-link page-link-fancy"
+
+                    {% if request.GET.nationality %}
+                      href="#"
+                      onclick="paginateToPage({{ num }})"
+                    {% else %}
+                      href="?page={{ num }}"
+                    {% endif %}
+                  
+                  >{{ num }}</a>
                 </li>
               {% endif %}
             {% endfor %}
             <!-- To last page -->
             <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
-              <a class="page-link" style="border-left: 0" aria-label="Last" href="{% if page_obj.has_next %}?page={{ page_obj.paginator.num_pages }}{% else %}#{% endif %}">
-                Koniec
-              </a>
+              <a class="page-link" style="border-left: 0" aria-label="Last"
+
+                {% if page_obj.has_next %}
+                  {% if request.GET.nationality %}
+                    href="#"
+                    onclick="paginateToPage({{ page_obj.paginator.num_pages }})"
+                  {% else %}
+                    href="?page={{ page_obj.paginator.num_pages }}"
+                  {% endif %}
+                {% else %}
+                  href="#"
+                {% endif %}
+
+              >Koniec</a>
             </li>
           </ul>
         </div>
 
         <div name="page-flip">
           <!-- Previous page action -->
-          <a style="border-right: 0" class="{% if not page_obj.has_previous %}disabled{% endif %}" aria-label="Previous" href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% else %}#{% endif %}">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
+          <a style="border-right: 0" class="{% if not page_obj.has_previous %}disabled{% endif %}" aria-label="Previous"
+
+            {% if page_obj.has_previous %}
+              {% if request.GET.nationality %}
+                href="#"
+                onclick="paginateToPage({{ page_obj.previous_page_number }})"
+              {% else %}
+                href="?page={{ page_obj.previous_page_number }}"
+              {% endif %}
+            {% else %}
+              href="#"
+            {% endif %}
+
+          ><span aria-hidden="true">&laquo;</span></a>
+
           <!-- Result counter -->
           <a style="width: 60%; border-left: 0; border-right: 0; color: #6c757d; cursor: default">
             <span id="search-result-counter">{{ page_obj.paginator.count }}</span>
               rezultatów
           </a>
+
           <!-- Next page action -->
-          <a style="border-left: 0" class="{% if not page_obj.has_next %}disabled{% endif %}" aria-label="Next" href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}{% else %}#{% endif %}">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
+          <a style="border-left: 0" class="{% if not page_obj.has_next %}disabled{% endif %}" aria-label="Next"
+
+            {% if page_obj.has_next %}
+              {% if request.GET.nationality %}
+                href="#"
+                onclick="paginateToPage({{ page_obj.next_page_number }})"
+              {% else %}
+                href="?page={{ page_obj.next_page_number }}"
+              {% endif %}
+            {% else %}
+              href="#"
+            {% endif %}
+
+          ><span aria-hidden="true">&raquo;</span></a>
         </div>
 
       </nav>
     </center>
   {% endif %}
   <!-- End of Pagination -->
+
+
+  <script name="main.js" src="{% static 'recipes/js/filter_search_with_pagination.js' %}" crossorigin="anonymous"></script>
 
 
 {% endblock content %}

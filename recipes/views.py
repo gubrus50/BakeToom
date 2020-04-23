@@ -28,7 +28,7 @@ class RecipeListView(ListView):
 	model = Recipe
 	template_name = 'recipes/home.html' # <app>/<model>_<viewtype>.html
 	context_object_name = 'recipes'
-	paginate_by = 5
+	paginate_by = 2
 
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
@@ -37,18 +37,18 @@ class RecipeListView(ListView):
 
 
 	def get_queryset(self):
-		query 				= self.request.GET.get('q', None)
+		query 				= self.request.GET.get('q', '')
 		recipe_title 		= self.request.GET.get('title')
 		publisher 			= self.request.GET.get('publisher')
-		recipe_id 			= self.request.GET.get('id')
 		certified 			= self.request.GET.get('certified')
-		recipe_type 		= self.request.GET.get('type')
-		upload_date 		= self.request.GET.get('UD')
+		recipe_id 			= self.request.GET.get('id')
 		search_by_date 		= self.request.GET.get('search_by_date')
+		recipe_type 		= self.request.GET.get('type')
 		nationality_mode 	= self.request.GET.get('nationality_mode')
 		nationality			= self.request.GET.get('nationality')
 
-		# FILTERS
+
+
 		query_set = Q()
 		if query:
 			if recipe_title:
@@ -61,7 +61,8 @@ class RecipeListView(ListView):
 				try:
 					int(query)
 				except:
-					pass
+					# Id must be an integer.
+					messages.error(self.request, f'ERROR - Identyfikator musi być liczbą całkowitą.')
 				else:
 					query_set |= Q(id__exact=query)
 
@@ -79,9 +80,11 @@ class RecipeListView(ListView):
 
 		if search_by_date and search_by_date != 'GUD':
 			t = timezone.localtime(timezone.now())
+
 			# today's upload date
 			if search_by_date == 'TUD':
 				query_set &= Q(date_posted__day=t.day)
+
 			# this week upload date
 			elif search_by_date == 'TWUD':
 				week_start = datetime.today()
@@ -89,14 +92,35 @@ class RecipeListView(ListView):
 				week_end = week_start + timedelta(days=7)
 				query_set &= Q(date_posted__gte=week_start)
 				query_set &= Q(date_posted__lt=week_end)
+
 			# this month upload date
 			elif search_by_date == 'TMUD':
 				query_set &= Q(date_posted__month=t.month)
+
 			# this year upload date
 			elif search_by_date == 'TYUD':
 				query_set &= Q(date_posted__year=t.year)
 
-		# END OF FILTERS
+			# date of creation
+			elif search_by_date == 'DOC' and query:
+				date = None
+				try:
+					datetime.strptime(query, '%d/%m/%Y')
+				except:
+					try:
+						datetime.strptime(query, '%d-%m-%Y')
+					except:
+						# Invalid data form error.
+						messages.error(self.request, f'ERROR - Wprowadzona data musi być ułożona w następującej formie - DD/MM/YYYY.')
+					else:
+						date = datetime.strptime(query, '%d-%m-%Y')
+				else:
+					date = datetime.strptime(query, '%d/%m/%Y')
+
+				if date:
+					query_set &= Q(date_created__date=date)
+
+
 
 
 		if len(query_set) <= 0:
@@ -112,11 +136,11 @@ class UserRecipeListView(ListView):
 	model = Recipe
 	template_name = 'recipes/user_recipes.html' # <app>/<model>_<viewtype>.html
 	context_object_name = 'recipes'
-	paginate_by = 5
+	paginate_by = 2
 
 	def get_queryset(self):
 		user = get_object_or_404(User, username=self.kwargs.get('username'))
-		query = self.request.GET.get('recipe')
+		query = self.request.GET.get('q')
 		
 		if query:
 			# Order by title, and move null values to last position.
