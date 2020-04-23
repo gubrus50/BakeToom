@@ -16,11 +16,11 @@
         <h3>{{ recipe.title }}</h3>
         <p>{{ recipe.description }}</p>
         <small class="f16">
-          {% if recipe.nationality != 'International' %}
+          {% if recipe.nationality %}
             narodowość:
             <li class="flag {{ recipe.nationality|lower }}"></li>
           {% else %}
-            narodowość: międzynarodow
+            narodowość: międzynarodowy
           {% endif %},
           
           {% if recipe.publisher %}
@@ -36,6 +36,9 @@
           {% endif %},
 
           id_przepisu: {{ recipe.id }}
+          {% if recipe.certified %}
+            <img class="float-right" height="25" src="{% static 'recipes/img/icons/flaticon/certificate.svg' %}" />
+          {% endif %}
         </small>
 
 

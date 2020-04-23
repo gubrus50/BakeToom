@@ -8,7 +8,7 @@
   <form id="search-form" method="GET" action="{% url 'recipes-home' %}" class="container form-inline my-4 d-flex justify-content-center h-mobile">
 
     <div class="form-control" style="border-radius: 0; width: 70%; height: 38px">
-      <input type="search" name="q" value="{{ request.GET.query }}" placeholder="Czego dzisiaj pragniesz?" aria-label="Search" style="border: 0; width: 90%">
+      <input type="search" name="q" value="{{ query }}" placeholder="Czego dzisiaj pragniesz?" aria-label="Search" style="border: 0; width: 90%">
       <a id="search-filter-btn" href="#filter" class="text-secondary float-right"><i class="fas fa-filter"></i></a>
     </div>
     <button type="submit"class="btn btn-outline-secondary" style="border-radius: 0; height: 38px">Wyszukaj</button>
@@ -21,19 +21,19 @@
           <hr/>
           <ul name="search-by-children">
             <li>
-              <input type="checkbox" name="t" value="1" checked />
+              <input type="checkbox" name="title" value="true" checked />
               nazwy przepisu
             </li>
             <li>
-              <input type="checkbox" name="p" value="1" checked disabled />
+              <input type="checkbox" name="publisher" value="true" checked />
               nazwy wydawcy
             </li>
             <li>
-              <input type="checkbox" name="SD" value="p" disabled />
+              <input type="checkbox" name="search_by_date" value="PD" disabled />
               daty utworzenia
             </li>
             <li>
-              <input type="checkbox" name="SD" value="g" disabled />
+              <input type="checkbox" name="search_by_date" value="GD" disabled />
               daty ogólnej
             </li>
             <li>
@@ -48,23 +48,23 @@
           <hr/>
           <ul name="upload-date-children">
             <li>
-              <input type="radio" name="UD" value="g" checked />
+              <input type="radio" name="search_by_date" value="GUD" checked />
               obojętna
             </li>
             <li>
-              <input type="radio" name="UD" value="t" disabled />
+              <input type="radio" name="search_by_date" value="TUD" />
               dzisiejsza
             </li>
             <li>
-              <input type="radio" name="UD" value="w" disabled />
+              <input type="radio" name="search_by_date" value="TWUD" />
               tego tygodnia
             </li>
             <li>
-              <input type="radio" name="UD" value="m" disabled />
+              <input type="radio" name="search_by_date" value="TMUD" />
               tego miesiąca
             </li>
             <li>
-              <input type="radio" name="UD" value="y" disabled />
+              <input type="radio" name="search_by_date" value="TYUD" />
               tego rocznika
             </li>
           </ul>
@@ -75,23 +75,27 @@
           <hr/>
           <ul name="categories-children">
             <li>
-              <input type="checkbox" name="cer" value="1" disabled />
+              <input type="checkbox" name="certified" value="true" />
               tylko certyfikowe
             </li>
             <li>
-              <input type="checkbox" name="b" value="1" />
+              <input type="radio" name="type" value="general" checked />
+              ogólne
+            </li>
+            <li>
+              <input type="radio" name="type" value="wypiek" />
               wypieki
             </li>
             <li>
-              <input type="checkbox" name="d" value="1" />
+              <input type="radio" name="type" value="deser" />
               desery
             </li>
             <li>
-              <input type="checkbox" name="s" value="1" />
+              <input type="radio" name="type" value="zupa" />
               zupy
             </li>
             <li>
-              <input type="checkbox" name="o" value="1" />
+              <input type="radio" name="type" value="inne" />
               inne
             </li>
           </ul>
@@ -102,19 +106,19 @@
           <hr/>
           <ul name="nationality-children">
             <li>
-              <input type="radio" name="NM" value="g" checked />
+              <input type="radio" name="nationality_mode" value="general" checked />
               ogólna
             </li>
             <li>
-              <input type="radio" name="NM" value="i" disabled />
+              <input type="radio" name="nationality_mode" value="international" />
               międzynarodowa
             </li>
             <li>
-              <input type="radio" name="NM" value="s" disabled />
+              <input type="radio" name="nationality_mode" value="specific" />
               specyficzna
             </li>
             <li>
-              <select class="selectpicker countrypicker custom-scroll d-none" name="nat" data-default="PL" data-flag="true"></select>
+              <select class="selectpicker countrypicker custom-scroll d-none" name="nationality" data-default="PL" data-flag="true"></select>
             </li>
           </ul>
         </li>
@@ -135,11 +139,11 @@
               <h3>{{ recipe.title }}</h3>
               <p>{{ recipe.description }}</p>
               <small class="f16">
-                {% if recipe.nationality != 'International' %}
+                {% if recipe.nationality %}
                   narodowość:
                   <li class="flag {{ recipe.nationality|lower }}"></li>
                 {% else %}
-                  narodowość: międzynarodow
+                  narodowość: międzynarodowy
                 {% endif %},
 
                 {% if recipe.publisher %}
@@ -155,6 +159,9 @@
                 {% endif %},
 
                 id_przepisu: {{ recipe.id }}
+                {% if recipe.certified %}
+                  <img class="float-right" height="25" src="{% static 'recipes/img/icons/flaticon/certificate.svg' %}" />
+                {% endif %}
               </small>
             </article>
           </div>

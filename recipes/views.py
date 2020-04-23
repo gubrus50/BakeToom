@@ -12,10 +12,12 @@ from django.views.generic import (
 	DeleteView
 )
 from django.utils.translation import gettext_lazy as _
+from django.utils import timezone
 from django.urls import reverse, reverse_lazy
 from django.http import HttpResponse
 from django.contrib import messages
 from django.db.models import F, Q
+from datetime import datetime, timedelta
 from .models import Recipe, Category
 from .forms import RecipeForm, CategoryForm
 
@@ -35,56 +37,72 @@ class RecipeListView(ListView):
 
 
 	def get_queryset(self):
-		query = self.request.GET.get('q', '')
+		query 				= self.request.GET.get('q', None)
+		recipe_title 		= self.request.GET.get('title')
+		publisher 			= self.request.GET.get('publisher')
+		recipe_id 			= self.request.GET.get('id')
+		certified 			= self.request.GET.get('certified')
+		recipe_type 		= self.request.GET.get('type')
+		upload_date 		= self.request.GET.get('UD')
+		search_by_date 		= self.request.GET.get('search_by_date')
+		nationality_mode 	= self.request.GET.get('nationality_mode')
+		nationality			= self.request.GET.get('nationality')
 
-		if not query:
-			# Order by title, and move null values to last position.
+		# FILTERS
+		query_set = Q()
+		if query:
+			if recipe_title:
+				query_set &= Q(title__icontains=query)
+
+			if publisher:
+				query_set |= Q(publisher__username__icontains=query)
+
+			if recipe_id:
+				try:
+					int(query)
+				except:
+					pass
+				else:
+					query_set |= Q(id__exact=query)
+
+		if certified:
+			query_set &= Q(certified=True)
+
+		if recipe_type and recipe_type != 'general':
+			query_set &= Q(recipe_type__iexact=recipe_type)
+
+		if nationality_mode == 'specific' and nationality:
+			query_set &= Q(nationality__iexact=nationality)
+
+		elif nationality_mode == 'international':
+			query_set &= Q(nationality__iexact='')
+
+		if search_by_date and search_by_date != 'GUD':
+			t = timezone.localtime(timezone.now())
+			# today's upload date
+			if search_by_date == 'TUD':
+				query_set &= Q(date_posted__day=t.day)
+			# this week upload date
+			elif search_by_date == 'TWUD':
+				week_start = datetime.today()
+				week_start -= timedelta(days=week_start.weekday())
+				week_end = week_start + timedelta(days=7)
+				query_set &= Q(date_posted__gte=week_start)
+				query_set &= Q(date_posted__lt=week_end)
+			# this month upload date
+			elif search_by_date == 'TMUD':
+				query_set &= Q(date_posted__month=t.month)
+			# this year upload date
+			elif search_by_date == 'TYUD':
+				query_set &= Q(date_posted__year=t.year)
+
+		# END OF FILTERS
+
+
+		if len(query_set) <= 0:
 			object_list = self.model.objects.all().order_by(F('title').asc(nulls_last=True))
 		else:
-
-			# FILTERS - BOOLEAN:
-			recipe_title = self.request.GET.get('t')
-			publisher = self.request.GET.get('p')
-			recipe_id = self.request.GET.get('id')
-			certified = self.request.GET.get('cer')
-			bakes = self.request.GET.get('b')
-			deserts = self.request.GET.get('d')
-			soups = self.request.GET.get('s')
-			other = self.request.GET.get('o')
-
-			# FILTERS - NON-BOOLEAN:
-			search_by_date = self.request.GET.get('SD')
-			upload_date = self.request.GET.get('UD')
-			nationality_mode = self.request.GET.get('NM')
-			countrypicker = self.request.GET.get('nat')
-
-			q_objects = Q()
-
-			if recipe_title:
-				q_objects &= Q(title__icontains=query)
-			"""
-			if publisher:
-				q_objects |= Q(publisher__icontains=query)
-			"""
-			if recipe_id:
-				q_objects |= Q(id__exact=query)
-			if certified:
-				q_objects |= Q(certified__contains=True)
-			if bakes:
-				q_objects &= Q(recipe_type__contains='wypiek')
-			if deserts:
-				q_objects &= Q(recipe_type__contains='deser')
-			if soups:
-				q_objects &= Q(recipe_type__contains='zupa')
-			if other:
-				q_objects &= Q(recipe_type__contains='inne')
-
-
-			# Order by title, and move null values to last position.
-			if len(q_objects) <= 0:
-				object_list = self.model.objects.all().order_by(F('title').asc(nulls_last=True))
-			else:
-				object_list = self.model.objects.filter(q_objects).order_by(F('title').asc(nulls_last=True))
+			object_list = self.model.objects.filter(query_set).order_by(F('title').asc(nulls_last=True))
 
 		return object_list
 

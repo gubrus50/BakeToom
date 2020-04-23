@@ -95,9 +95,8 @@ class Recipe(models.Model):
 
 	nationality	= CountryField(
 		max_length=100,
-		blank=False,
-		default="International",
-		blank_label='międzynarodowy',
+		blank=True,
+		blank_label='Międzynarodowy',
 		verbose_name=_('Wybierz narodowość przepisu')
 	)
 
