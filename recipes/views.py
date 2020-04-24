@@ -28,7 +28,7 @@ class RecipeListView(ListView):
 	model = Recipe
 	template_name = 'recipes/home.html' # <app>/<model>_<viewtype>.html
 	context_object_name = 'recipes'
-	paginate_by = 2
+	paginate_by = 10
 
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
@@ -136,7 +136,7 @@ class UserRecipeListView(ListView):
 	model = Recipe
 	template_name = 'recipes/user_recipes.html' # <app>/<model>_<viewtype>.html
 	context_object_name = 'recipes'
-	paginate_by = 2
+	paginate_by = 10
 
 	def get_queryset(self):
 		user = get_object_or_404(User, username=self.kwargs.get('username'))

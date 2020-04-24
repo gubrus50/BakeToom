@@ -1,33 +1,20 @@
 {% extends "recipes/base.html" %}
 {% block content %}
+  {% load static %}
 
 
-  <br/>
-  <center class="container">
-    <div class="border m-1 h-mobile bg-light p-2 container" style="overflow: auto; border-radius: 5px">
+  <div id="recipes" class="mt-4 mb-4 pt-4 pb-4" style="background-image: url('{% static 'recipes/img/background_notepad.png' %}'); background-size: 15px 15px">
+    <center class="container recipe-container">
+      
+      <img id="goodbye-image" class="mb-5" width="500" src="{% static 'recipes/img/icons/goodbye_logout_pl.svg' %}" />
+      <br/>
+      <a href="{% url 'recipes-home' %}" class="btn btn-dark btn-lg mb-5" style="border-radius: 20px">
+        <i class="fa fa-home"></i>
+        Powrót na stronę główną
+      </a>
 
-
-      <div class="content-section">
-        <h2>Twe konto zostało wylogowane</h2>
-        <div id="additional-info-users-templates" class="border-top pt-3">
-
-          <small name="to-login-page" class="text-muted">
-            <a href="{% url 'login' %}">Zaloguj się ponownie</a>
-          </small>
-          <small name="terms-and-conditions" class="text-muted float-right">Zapoznaj się 
-            <code>></code>
-            <a href="{% url 'terms-and-conditions' %}">
-              Zasady i warunki
-            </a>
-          </small>
-          
-        </div>
-      </div>
-
-
-    </div>
-  </center>
-  <br/>
+    </center>
+  </div>
 
 
 {% endblock content %}

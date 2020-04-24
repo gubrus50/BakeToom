@@ -29,6 +29,7 @@ body { margin-bottom: 240px }
   bottom: 0;
   left: 0
 }
+.footer-copyright ul li { font-size: 14px }
 
 /* Global Messages */
 .alert-danger a { color: #721c24 }
@@ -186,7 +187,8 @@ img.account-img {
   
 
 
-  .footer-copyright ul li { font-size: 12px }
+  .footer-copyright ul li,
+  .footer-copyright ul span { font-size: 12px }
 
 
 
@@ -202,8 +204,8 @@ img.account-img {
   /* flag icon */
   .f16 li { margin-top: -2px }
 
-
-
+  /* Search form -> previous btn */
+  #previous-page-btn { display: none }
 
   /* USER APP */
   img.account-img {
@@ -234,10 +236,18 @@ img.account-img {
   }
   #profile-details-sub-container { 
     float: left !important;
-    text-align: left !important;
-    width: 100%;
-    padding: 2px
+    width: 100%
   }
+  #profile-details-sub-container ul { 
+    text-align: left !important
+  }
+  #profile-details-sub-container ul a label { 
+    display: block !important;
+    float: right !important;
+    color: #495057
+  }
+
+  #goodbye-image { width: 100% }
   /* END of USER APP */
 }
 

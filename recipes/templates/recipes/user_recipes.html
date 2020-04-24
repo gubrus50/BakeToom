@@ -12,6 +12,9 @@
 
   <!-- Search form -->
   <form method="GET" action="{% url 'user-recipes' view.kwargs.username %}" class="form-inline my-4 d-flex justify-content-center">
+    <a id="previous-page-btn" href="javascript:if(window.location.href!=window.location.origin+'/user/{{ view.kwargs.username }}/'){history.back()}" class="btn text-secondary" style="border-radius: 0; height: 38px; outline: none; box-shadow: none">
+      <i class="fa fa-arrow-left" style="font-size: 25px"></i>
+    </a>
     <input class="form-control" type="search" name="q" value='{{ request.GET.q }}' placeholder="Czego dzisiaj pragniesz?" aria-label="Search" style="border-radius:0; width:70%">
     <button class="btn btn-outline-secondary" type="submit" style="border-radius: 0">Wyszukaj</button>
   </form>
@@ -33,12 +36,6 @@
                   <li class="flag {{ recipe.nationality|lower }}"></li>
                 {% else %}
                   narodowość: międzynarodowy
-                {% endif %},
-
-                {% if recipe.publisher %}
-                  wydawca: <a href="{% url 'user-recipes' recipe.publisher.username %}">{{ recipe.publisher }}</a> 
-                {% else %}
-                  wydawca: null 
                 {% endif %},
 
                 {% if recipe.recipe_type %}
