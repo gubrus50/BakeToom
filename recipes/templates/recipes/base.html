@@ -20,12 +20,16 @@
   -->
   <link rel="stylesheet" type="text/css" href="//github.com/downloads/lafeber/world-flags-sprite/flags32.css">
 
+  <!-- Qwigley font-family -->
+  <link href="https://fonts.googleapis.com/css2?family=Qwigley&display=swap" rel="stylesheet">
+
   <link rel="shortcut icon" href="{% static 'recipes/img/icons/baketoom_icon.svg' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/main.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/home.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/recipe_detail.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/recipe_form.css' %}">
   
+
   {% if title %}
     <title>BakeToom - {{ title }}</title>
   {% else %}
@@ -47,7 +51,7 @@
 
 
       <!-- Logo -->
-      <a title="Strona główna" name="home-page" class="navbar-brand" href="{% url 'recipes-home' %}"><img height="40" src="{% static 'recipes/img/baketoom_logo.png' %}"/></a>
+      <a title="Strona główna" name="home-page" class="navbar-brand" href="{% url 'recipes-home' %}"><img height="35" src="{% static 'recipes/img/baketoom_logo.png' %}"/></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -59,14 +63,16 @@
 
           <li class="nav-item">
             <a class="nav-link" href="{% url 'more-information' %}">
-              Więcej informacji <span class="sr-only">(current)</span>
+             <i class="nav-icon-item fa fa-book"></i>
+             <span name="more-information">Więcej informacji</span>
             </a>
           </li>
 
           {% if messages %}
           <li class="nav-item">
             <a class="nav-link" href="#" onclick="$('.global-message-container > a').show(); $('.global-message-container').fadeIn(); hidden_alert_count=0">
-              Powiadomienia <span class="sr-only">(current)</span>
+              <i class="nav-icon-item fa fa-exclamation-circle"></i>
+              <span name="notifications">Powiadomienia</span>
             </a>
           </li>
           {% endif %}
@@ -74,7 +80,8 @@
           <!-- Tools dropdown -->
           <li class="nav-item dropdown">
             <a title="Menedżer przepisów" name="recipe-manager" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Narzędzia
+              <i class="nav-icon-item fa fa-edit"></i>
+              <span name="tools">Narzędzia</span>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item disabled" href="#" name="report">Zreportuj</a>
@@ -95,20 +102,22 @@
         <!-- Login / Profile -->
         <ul class="navbar-nav ml-auto">
           <li class="nav-item dropdown">
-            <a title="Użytkownik" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a title="Użytkownik" name="user" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {% if user.is_authenticated %}
-                <i class='fas fa-user-cog' style='font-size: 30px'></i>
+                <i class="nav-icon-item fas fa-user-cog" style="font-size: 20px"></i>
+                <span name="user" class="d-none">Użytkownik</span>
               {% else %}
-                <i class='fas fa-sign-in-alt' style='font-size: 30px'></i>
+                <i class="nav-icon-item fas fa-sign-in-alt" style="font-size: 20px"></i>
+                <span name="user" class="d-none">Użytkownik</span>
               {% endif %}
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
               {% if user.is_authenticated %}
-                <a class="dropdown-item" href="{% url 'profile' %}" name="my-profile">Mój profil<span class="sr-only">(current)</span></a>
-                <a class="dropdown-item" href="{% url 'logout' %}" name="logout">Wyloguj się<span class="sr-only">(current)</span></a>
+                <a class="dropdown-item" href="{% url 'profile' %}" name="my-profile">Mój profil</a>
+                <a class="dropdown-item" href="{% url 'logout' %}" name="logout">Wyloguj się</a>
               {% else %}
-                <a class="dropdown-item" href="{% url 'login' %}" name="login">Zaloguj się<span class="sr-only">(current)</span></a>
-                <a class="dropdown-item" href="{% url 'register' %}" name="register">Zarejestruj się<span class="sr-only">(current)</span></a>
+                <a class="dropdown-item" href="{% url 'login' %}" name="login">Zaloguj się</a>
+                <a class="dropdown-item" href="{% url 'register' %}" name="register">Zarejestruj się</a>
               {% endif %}
             </div>
           </li>
@@ -189,18 +198,21 @@
           <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank">
             MDBootstrap.com
           </a>,
-          <a href="https://developer.snapappointments.com/bootstrap-select/">
+          <a href="https://developer.snapappointments.com/bootstrap-select/" target="_blank">
             Bootstrap-select
           </a>,
-          <a href="https://github.com/mojoaxel/bootstrap-select-country">
+          <a href="https://github.com/mojoaxel/bootstrap-select-country/" target="_blank">
             Bootstrap-select-country
           </a>,
-          <a href="https://github.com/lafeber/world-flags-sprite">
+          <a href="https://github.com/lafeber/world-flags-sprite/" target="_blank">
             World-flags-sprite
+          </a>,
+          <a href="https://fontawesome.com/" target="_blank">
+            Fontawesome
           </a>
           i
-          <a href="https://fontawesome.com/">
-            Fontawesome
+          <a href="https://fonts.google.com/" target="_blank">
+            Fonts.google.com
           </a>
         </li>
       </ul>

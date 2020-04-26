@@ -13,10 +13,11 @@
       <img name="profile-image" class="rounded account-img float-left mr-3" width="155" height="155" src="{{ user.profile.image.url }}" />
     
       <div id="profile-details" class="col-xs-6 h-mobile float-left">
-        <h2>{{ user.username }}
-          <a title="Wyloguj się" name="logout" href="{% url 'logout' %}">
-            <i class="fas fa-door-open" style='font-size:30px'></i>
+        <h2>
+          <a title="Wyloguj się" name="logout" href="{% url 'logout' %}" style="text-decoration: none">
+            <i class="fas fa-door-open" style="font-size:30px"></i>
           </a>
+          {{ user.username }}
         </h2>
         <hr/>
         <p>

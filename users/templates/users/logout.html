@@ -6,7 +6,9 @@
   <div id="recipes" class="mt-4 mb-4 pt-4 pb-4" style="background-image: url('{% static 'recipes/img/background_notepad.png' %}'); background-size: 15px 15px">
     <center class="container recipe-container">
       
-      <img id="goodbye-image" class="mb-5" width="500" src="{% static 'recipes/img/icons/goodbye_logout_pl.svg' %}" />
+      <p id="goodbye-message" style="font-size: 125px; font-family: 'Qwigley', cursive; color: #343a40; margin-bottom: -75px">Do widzenia</p>
+
+      <img id="goodbye-image" width="500" src="{% static 'recipes/img/icons/goodbye_logout.svg' %}" />
       <br/>
       <a href="{% url 'recipes-home' %}" class="btn btn-dark btn-lg mb-5" style="border-radius: 20px">
         <i class="fa fa-home"></i>

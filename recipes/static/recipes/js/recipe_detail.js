@@ -173,6 +173,9 @@ function renderDocumentAndCommitAction(mode, content_id)
 		// include current date and url with content_id content.
 		document.body.innerHTML = 'EU-Data: ' + getCurrentDate() + ', URL: ' + window.location.href + printContents;
 
+		// Replace nationality image with country name instead
+		$('small > li.flag').replaceWith($('<span>' + recipe_nationality + '</span>'));
+
 		// Float image to the right
 		$('#recipe-image').attr('style', 'float: right; border-radius: 5px 5px 5px 75px');
 

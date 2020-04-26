@@ -4,6 +4,14 @@
   {% load static %}
 
 
+  <center class="container recipe-container">
+    <p>
+      <i class="fa fa-info-circle mr-1 mt-4"></i>
+      Przejdź do menu nawigacyjnego i naciśnij "Narzędzia", aby wyświetlić dostępne opcje.
+    </p>
+  </center>
+
+
   <!-- Background Image -->
   <div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('{% static 'recipes/img/background_notepad.png' %}'); background-size: 15px 15px">
     <center class="container recipe-container">
@@ -180,7 +188,8 @@
 
   <script type="text/javascript">
     var editing_tools = {% if authenticated_user == object.publisher %}true{% else %}false{% endif %};
-    var recipe_title = {% if object.title %}'{{ object.title }}'{% else %}'Przepis'{% endif %}
+    var recipe_title = {% if object.title %}'{{ object.title }}'{% else %}'Przepis'{% endif %};
+    var recipe_nationality = {% if recipe.nationality.name %}'{{ recipe.nationality.name }}'{% else %}'międzynarodowy'{% endif %}
   </script>
   <script src="{% static 'recipes/js/recipe_detail.js' %}"></script>
 

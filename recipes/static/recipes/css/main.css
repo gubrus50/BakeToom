@@ -12,7 +12,7 @@ body { margin-bottom: 240px }
   margin: 20px 0 0 0 !important;
   font-size: 12px
 }
-#search-form div[name="filter-container"] ul li {
+#search-form div[name="filter-container"] > ul > li {
   vertical-align: top !important;
   margin-right: 20px;
   margin-left: 0;
@@ -20,7 +20,14 @@ body { margin-bottom: 240px }
 }
 #search-form div[name="filter-container"] ul {
   list-style: none;
-  padding-left: 0;
+  padding-left: 0
+}
+
+/* Navbar section: <!-- Login / Profile --> */
+.nav-icon-item {
+  display: inline-block;
+  text-align: left;
+  width: 20px
 }
 
 .footer {
@@ -36,10 +43,10 @@ body { margin-bottom: 240px }
 .alert-success a { color: #155724 }
 
 #scroll-to-top-button {
-  box-shadow: 0 0 10px rgba(0,0,0,0.6);
-  -moz-box-shadow: 0 0 10px rgba(0,0,0,0.6);
   -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+  -moz-box-shadow: 0 0 10px rgba(0,0,0,0.6);
   -o-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+  box-shadow: 0 0 10px rgba(0,0,0,0.6);
   border-radius: 50%;
   position: fixed;
   z-index: 10000;
@@ -102,8 +109,8 @@ body { margin-bottom: 240px }
 
 /* Main container (usually center tag) */
 #recipes div, div.container {
-  width: 95%;
-  text-align: left
+  text-align: left;
+  width: 95%
 }
 
 #recipes center.container div div.form-group {
@@ -119,17 +126,12 @@ body { margin-bottom: 240px }
   margin-bottom: 5px !important
 }
 
-/* flag icon */
+/* flag icon recipe detail container */
 .f16 li { margin-top: 1.25px }
 
 /**//* ------------------------ *//**/
 /**//* END of Recipe Containers *//**/
 /**//* ------------------------ *//**/
-
-
-
-
-
 
 
 
@@ -186,6 +188,12 @@ img.account-img {
   h5.h5-mobile { font-size: 10px !important }
   
 
+  #scroll-to-top-button { opacity: 0.5 }
+
+  /* Navbar section: <!-- Login / Profile --> */
+  .nav-icon-item { width: 25px }
+  a[name="user"] > span { display: inline !important }
+  a[name="user"] > i { font-size: 15px !important }
 
   .footer-copyright ul li,
   .footer-copyright ul span { font-size: 12px }
@@ -201,7 +209,7 @@ img.account-img {
     width: 100px;
     height: 75px
   }
-  /* flag icon */
+  /* flag icon recipe detail container */
   .f16 li { margin-top: -2px }
 
   /* Search form -> previous btn */
@@ -209,8 +217,8 @@ img.account-img {
 
   /* USER APP */
   img.account-img {
-    border-left: 30px solid #dee2e6;
     border-right: 30px solid #dee2e6;
+    border-left: 30px solid #dee2e6;
     border-radius: 5px !important;
     margin-bottom: 5px;
     object-fit: cover;
@@ -221,18 +229,24 @@ img.account-img {
   }
   #recipes div, div.container { width: auto }
   #recipes center.container div div.form-group {
-    margin-left: 0;
-    margin-right: 0 !important
+    margin-right: 0 !important;
+    margin-left: 0
   }
   #additional-info-users-templates small { 
     float: left !important;
+    word-break: break-all;
     display: inline;
-    clear: both;
-    word-break: break-all
+    clear: both
   }
   #profile-details {
-    width: 100%;
-    word-wrap: break-word
+    word-wrap: break-word;
+    width: 100%
+  }
+  #profile-details h2 {
+    margin-top: 10px
+  }
+  #profile-details h2 a {
+    float: right
   }
   #profile-details-sub-container { 
     float: left !important;
@@ -248,6 +262,12 @@ img.account-img {
   }
 
   #goodbye-image { width: 100% }
+
+
+  /* LOGOUT Goodbye message */
+  #goodbye-message {
+    font-size: 100px !important
+  }
   /* END of USER APP */
 }
 
@@ -261,20 +281,28 @@ img.account-img {
     margin-top: 20px;
     width: 100%
   }
-  #search-form div[name="filter-container"] ul li ul li {
+  #search-form div[name="filter-container"] ul li ul[name="nationality-children"] li {
     margin-top: 0
   }
   /* Search filter Nationality */
   .bootstrap-select.countrypicker button.btn.dropdown-toggle {
     margin-top: -10px !important
   }
-  #search-form div[name="filter-container"] ul li[name="nationality"] ul li {
-    display: block !important;
+  #search-form div[name="filter-container"] ul li[name="nationality"] ul[name="nationality-children"] > li {
+    display: block !important
   }
-  #search-form div[name="filter-container"] ul li[name="nationality"] ul li:nth-of-type(3) {
+  #search-form div[name="filter-container"] ul li[name="nationality"] ul[name="nationality-children"] > li:nth-of-type(3) {
     padding-top: 10px !important;
     float: left
   }
+
+  /* USER APP */
+  /* LOGOUT Goodbye message */
+  #goodbye-message {
+    margin-bottom: -50px !important;
+    font-size: 80px !important
+  }
+  /* END of USER APP */
 
 }
 
@@ -313,14 +341,14 @@ img.account-img {
     margin-top: 20px;
     width: 100%
   }
-  #search-form div[name="filter-container"] ul li[name="nationality"] ul li {
+  #search-form div[name="filter-container"] ul li[name="nationality"] ul[name="nationality-children"] > li {
     margin-right: 10px;
     display: inline
   }
-  #search-form div[name="filter-container"] ul li[name="nationality"] ul li:nth-of-type(3) {
-    float: right;
-    padding-top: 0;
+  #search-form div[name="filter-container"] ul li[name="nationality"] ul[name="nationality-children"] > li:nth-of-type(3) {
     margin-right: 0;
+    padding-top: 0;
+    float: right
   }
   /* end of search-form */
 }
