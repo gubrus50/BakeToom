@@ -2,196 +2,219 @@
 {% load recipes_extras %}
 {% block content %}
   {% load static %}
+  {% if recipe.published or recipe.publisher == request.user %}
 
-
-  <center class="container recipe-container">
-    <p>
-      <i class="fa fa-info-circle mr-1 mt-4"></i>
-      Przejdź do menu nawigacyjnego i naciśnij "Narzędzia", aby wyświetlić dostępne opcje.
-    </p>
-  </center>
-
-
-  <!-- Background Image -->
-  <div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('{% static 'recipes/img/background_notepad.png' %}'); background-size: 15px 15px">
     <center class="container recipe-container">
+      <p>
+        <i class="fa fa-info-circle mr-1 mt-4"></i>
+        Przejdź do menu nawigacyjnego i naciśnij "Narzędzia", aby wyświetlić dostępne opcje.
+      </p>
+    </center>
 
 
-    <!-- Recipe container -->
-    <div class="border m-1 btn-light p-2" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
-      <article>
-        <img class="float-right" width="150px" height="100px" style="border-radius: 5px 5px 5px 75px" src="{{ recipe.image.url }}">
-        <h3>{{ recipe.title }}</h3>
-        <p>{{ recipe.description }}</p>
-        <small class="f16">
-          {% if recipe.nationality %}
-            narodowość:
-            <li class="flag {{ recipe.nationality|lower }}"></li>
-          {% else %}
-            narodowość: międzynarodowy
-          {% endif %},
-          
-          {% if recipe.publisher %}
-            wydawca: <a href="{% url 'user-recipes' recipe.publisher.username %}">{{ recipe.publisher }}</a> 
-          {% else %}
-            wydawca: null 
-          {% endif %},
-
-          {% if recipe.recipe_type %}
-            typ: {{ recipe.recipe_type }}
-          {% else %}
-            typ: inne
-          {% endif %},
-
-          id_przepisu: {{ recipe.id }}
-          {% if recipe.certified %}
-            <img class="float-right" height="30" src="{% static 'recipes/img/icons/flaticon/contract.svg' %}" />
-          {% endif %}
-        </small>
+    <!-- Background Image -->
+    <div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('{% static 'recipes/img/background_notepad.png' %}'); background-size: 15px 15px">
+      <center class="container recipe-container">
 
 
-        <hr/>
-
-        <article name="recipe-history">
-          <h5 class="mt-3">Historia</h5>
-          <small>
-            Przepis został umieszczony na BakeToom - 
-            {{ recipe.date_created|date:"d-m-Y, " }}o 
-            {{ recipe.date_created|date:"H:i" }}
-
-            i pierwszy raz został opublikowany - 
-            {{ recipe.date_posted_old|date:"d-m-Y, " }}o 
-            {{ recipe.date_posted_old|date:"H:i" }}.
-
-            {% if recipe.date_created != recipe.date_edited %}
-              <br/>
-              Przepis ostatnio edytowano -
-              {{ recipe.date_edited|date:"d-m-Y, " }}o 
-              {{ recipe.date_edited|date:"H:i" }}.
+      <!-- Recipe container -->
+      <div class="border m-1 btn-light p-2" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
+        <article>
+          <img class="float-right" width="150px" height="100px" style="border-radius: 5px 5px 5px 75px" src="{{ recipe.image.url }}">
+          <h3>{{ recipe.title }}</h3>
+          <p>{{ recipe.description }}</p>
+          <small class="f16">
+            {% if recipe.nationality %}
+              narodowość:
+              <li class="flag {{ recipe.nationality|lower }}"></li>
             {% else %}
-              Od tamtego czasu, nigdy nie był edytowany. 
+              narodowość: międzynarodowy
+            {% endif %},
+            
+            {% if recipe.publisher %}
+              wydawca: <a href="{% url 'user-recipes' recipe.publisher.username %}">{{ recipe.publisher }}</a> 
+            {% else %}
+              wydawca: null 
+            {% endif %},
+
+            {% if recipe.recipe_type %}
+              typ: {{ recipe.recipe_type }}
+            {% else %}
+              typ: inne
+            {% endif %},
+
+            {% if not recipe.published %}
+              <b>nie opublikowany</b> ,
             {% endif %}
 
-            {% if recipe.date_posted != recipe.date_posted_old %}
-              {% if recipe.date_created != recipe.date_edited %}
-                i został ponownie opulikowany -
-              {% else %}
-                Przepis ponownie opulikowano -
-              {% endif %} 
-              {{ recipe.date_posted|date:"d-m-Y, " }}o
-              {{ recipe.date_posted|date:"H:i" }}.
+            id_przepisu: {{ recipe.id }}
+            {% if recipe.certified %}
+              <img class="float-right" height="30" src="{% static 'recipes/img/icons/flaticon/contract.svg' %}" />
             {% endif %}
           </small>
-        </article>
-      </article>
-    </div>
 
 
-    <!-- Ingredients container -->
-    <div class="border m-1 btn-light p-2" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
-      <article class="recipe-ingredients custom-scroll empty-h-scroll">
-        <h3>Składniki</h3>
-        <hr/>
-        {% if categories %}
-          {% for category in categories %}
-            {% if category.recipe == object %}
+          <hr/>
 
-              <section>
-                <h5>{{ category.name }}</h5>
-                {% if category.ingredients %}
-                  <ul class="ingredients">
-                    {{ category.ingredients|endline_split|unordered_list }}
-                  </ul>
+          <article name="recipe-history">
+            <h5 class="mt-3">Historia</h5>
+            <small>
+              Przepis został umieszczony na BakeToom - 
+              {{ recipe.date_created|date:"d-m-Y, " }}o 
+              {{ recipe.date_created|date:"H:i" }}
+
+              {% if recipe.date_posted_old %}
+                i pierwszy raz został opublikowany - 
+                {{ recipe.date_posted_old|date:"d-m-Y, " }}o 
+                {{ recipe.date_posted_old|date:"H:i" }}.
+              {% endif %}
+
+              {% if recipe.date_edited and recipe.date_edited != recipe.date_created %}
+
+                {% if recipe.date_posted and recipe.date_posted != recipe.date_created %}
+                  <br/>Przepis edytowano i ponownie go opulikowano -
+                  {{ recipe.date_posted|date:"d-m-Y, " }}o
+                  {{ recipe.date_posted|date:"H:i" }}.
+
                 {% else %}
-                  <p>...</p>
+                  {% if not recipe.date_posted_old %}
+                    i ostatnio go edytowano
+                  {% else %}
+                    <br/>Przepis ostatnio edytowano - 
+                  {% endif %}
+                  {{ recipe.date_edited|date:"d-m-Y, " }}o
+                  {{ recipe.date_edited|date:"H:i" }}{% if recipe.date_posted and recipe.date_posted == recipe.date_created %}
+                    i został on usunięty z wiadomości publicznej na czas nieokreślony.
+                  {% else %}.{% endif %}
                 {% endif %}
-              </section>
 
-            {% endif %}
-          {% endfor %}
-        {% else %}
-          <p>...</p>
-        {% endif %}
-      </article>
+              {% elif recipe.date_posted_old %}
+                Od tamtego czasu, nigdy nie był edytowany. 
+              {% else %}
+                i od tamtego czasu, nigdy nie był edytowany. 
+              {% endif %}
+            </small>
+          </article>
+        </article>
+      </div>
+
+
+      <!-- Ingredients container -->
+      <div class="border m-1 btn-light p-2" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
+        <article class="recipe-ingredients custom-scroll empty-h-scroll">
+          <h3>Składniki</h3>
+          <hr/>
+          {% if categories %}
+            {% for category in categories %}
+              {% if category.recipe == object %}
+
+                <section>
+                  <h5>{{ category.name }}</h5>
+                  {% if category.ingredients %}
+                    <ul class="ingredients">
+                      {{ category.ingredients|endline_split|unordered_list }}
+                    </ul>
+                  {% else %}
+                    <p>...</p>
+                  {% endif %}
+                </section>
+
+              {% endif %}
+            {% endfor %}
+          {% else %}
+            <p>...</p>
+          {% endif %}
+        </article>
+      </div>
+
+
+      <!-- Method container -->
+      <div class="border m-1 btn-light p-2 recipe-method" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
+        <!-- Expand list button -->
+        <span class="button-checkbox float-right">
+          <input type="checkbox" onchange="updateMethodListBreaks(this)" class="d-none" />
+          <button id="expand-list" type="button" class="btn btn-default" data-color="primary">
+            Rozszerz Listę
+          </button>
+        </span>
+        <article id="recipe-method-list">
+          <h3>Metoda</h3>
+          <hr/>
+          {% if object.method %}
+            {{ object.method|linenumbers|linebreaks }}
+          {% else %}
+            ...
+          {% endif %}
+        </article>
+      </div>
+
+
+      <!-- License container -->
+      <div class="border m-1 btn-light p-2" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
+        <article>
+          <h3>Licencja</h3>
+          <hr/>
+          {% if object.license %}
+            {{ object.license|linebreaks }}
+          {% else %}
+            ...
+          {% endif %}
+        </article>
+      </div>
+
+
+      </center>
+    </div>
+    <!-- End of Background Image -->
+
+
+    <!-- Share container -->
+    <div class="text-center container mb-5 h-mobile">
+      <h3 class="mb-4">
+        Udostępnij przepis znajomym
+      </h3>
+      <ul class="list-inline social-media-icons">
+        <li class="list-inline-item" name="facebook-icon">
+          <a href="#share">
+            <img height="75" src="{% static 'recipes/img/icons/flaticon/facebook.svg' %}" />
+          </a>
+        </li>
+        <li class="list-inline-item" name="reddit-icon">
+          <a href="#share">
+            <img height="75" src="{% static 'recipes/img/icons/flaticon/reddit.svg' %}" />
+          </a>
+        </li>
+        <li class="list-inline-item" name="twitter-icon">
+          <a href="#share">
+            <img height="75" src="{% static 'recipes/img/icons/flaticon/twitter.svg' %}" />
+          </a>
+        </li>
+        <li class="list-inline-item" name="mail-icon">
+          <a href="#share">
+            <img height="75" src="{% static 'recipes/img/icons/flaticon/mail.svg' %}" />
+          </a>
+        </li>
+      </ul>
     </div>
 
 
-    <!-- Method container -->
-    <div class="border m-1 btn-light p-2 recipe-method" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
-      <!-- Expand list button -->
-      <span class="button-checkbox float-right">
-        <input type="checkbox" onchange="updateMethodListBreaks(this)" class="d-none" />
-        <button id="expand-list" type="button" class="btn btn-default" data-color="primary">
-          Rozszerz Listę
-        </button>
-      </span>
-      <article id="recipe-method-list">
-        <h3>Metoda</h3>
-        <hr/>
-        {% if object.method %}
-          {{ object.method|linenumbers|linebreaks }}
-        {% else %}
-          ...
-        {% endif %}
-      </article>
+    <script type="text/javascript">
+      var editing_tools = {% if object.publisher == request.user %}true{% else %}false{% endif %};
+      var recipe_title = {% if object.title %}'{{ object.title }}'{% else %}'Przepis'{% endif %};
+      var recipe_nationality = {% if recipe.nationality.name %}'{{ recipe.nationality.name }}'{% else %}'międzynarodowy'{% endif %}
+    </script>
+    <script src="{% static 'recipes/js/recipe_detail.js' %}"></script>
+
+
+  {% else %}
+    <!-- Background Image -->
+    <div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('{% static 'recipes/img/background_notepad.png' %}'); background-size: 15px 15px">
+      <center class="container recipe-container">
+        <!-- No results msg -->
+        <div class="d-flex justify-content-center text-dark p-5 text-center" style="background-color: #f8f9fa">
+          <h2>Przepis jest sprywatyzowany</h2>
+        </div>
+      </center>
     </div>
-
-
-    <!-- License container -->
-    <div class="border m-1 btn-light p-2" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
-      <article>
-        <h3>Licencja</h3>
-        <hr/>
-        {% if object.license %}
-          {{ object.license|linebreaks }}
-        {% else %}
-          ...
-        {% endif %}
-      </article>
-    </div>
-
-
-    </center>
-  </div>
-  <!-- End of Background Image -->
-
-
-  <!-- Share container -->
-  <div class="text-center container mb-5 h-mobile">
-    <h3 class="mb-4">
-      Udostępnij przepis znajomym
-    </h3>
-    <ul class="list-inline social-media-icons">
-      <li class="list-inline-item" name="facebook-icon">
-        <a href="#share">
-          <img height="75" src="{% static 'recipes/img/icons/flaticon/facebook.svg' %}" />
-        </a>
-      </li>
-      <li class="list-inline-item" name="reddit-icon">
-        <a href="#share">
-          <img height="75" src="{% static 'recipes/img/icons/flaticon/reddit.svg' %}" />
-        </a>
-      </li>
-      <li class="list-inline-item" name="twitter-icon">
-        <a href="#share">
-          <img height="75" src="{% static 'recipes/img/icons/flaticon/twitter.svg' %}" />
-        </a>
-      </li>
-      <li class="list-inline-item" name="mail-icon">
-        <a href="#share">
-          <img height="75" src="{% static 'recipes/img/icons/flaticon/mail.svg' %}" />
-        </a>
-      </li>
-    </ul>
-  </div>
-
-
-  <script type="text/javascript">
-    var editing_tools = {% if authenticated_user == object.publisher %}true{% else %}false{% endif %};
-    var recipe_title = {% if object.title %}'{{ object.title }}'{% else %}'Przepis'{% endif %};
-    var recipe_nationality = {% if recipe.nationality.name %}'{{ recipe.nationality.name }}'{% else %}'międzynarodowy'{% endif %}
-  </script>
-  <script src="{% static 'recipes/js/recipe_detail.js' %}"></script>
-
-
+  {% endif %}
 {% endblock content %}

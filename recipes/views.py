@@ -159,7 +159,6 @@ class RecipeDetailView(DetailView):
 	def get_context_data(self, **kwargs):
 		context = super(RecipeDetailView, self).get_context_data(**kwargs)
 		context['categories'] = Category.objects.all()
-		context['authenticated_user'] = self.request.user
 		return context
 
 
@@ -239,7 +238,8 @@ class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 		'description',
 		'method',
 		'license',
-		'nationality'
+		'nationality',
+		'published'
 	]
 
 
@@ -410,7 +410,6 @@ class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 		######################################################
 		# END OF -> CATEGORIES VALIDATION AND IMPLEMENTATION #
 		######################################################
-
 
 
 		form.instance.publisher = self.request.user

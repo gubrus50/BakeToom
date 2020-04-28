@@ -68,6 +68,12 @@ class Recipe(models.Model):
 		default=False
 	)
 
+	published = models.BooleanField(
+		blank=False,
+		default=False,
+		verbose_name=_('Zgadzam się z przectawionymi warunkami i opublikuj mój przepis')
+	)
+
 	image = models.ImageField(
 		default='default_recipe.jpg',
 		upload_to='recipe_pics',
@@ -100,10 +106,10 @@ class Recipe(models.Model):
 		verbose_name=_('Wybierz narodowość przepisu')
 	)
 
-	date_posted_old = models.DateTimeField(blank=False, default=timezone.now)
-	date_posted		= models.DateTimeField(blank=False, default=timezone.now)
+	date_posted_old = models.DateTimeField(blank=True, null=True)
+	date_posted		= models.DateTimeField(blank=True, null=True)
 	date_created	= models.DateTimeField(blank=False, default=timezone.now)
-	date_edited		= models.DateTimeField(blank=False, default=timezone.now)
+	date_edited		= models.DateTimeField(blank=True, null=True)
 
 
 	def __str__(self):
@@ -111,8 +117,29 @@ class Recipe(models.Model):
 
 	def save(self, *args, **kwargs):
 
-		self.date_posted = timezone.now()
-		self.date_edited = timezone.now()
+
+		if not self.date_edited:
+			self.date_edited = self.date_created
+		else:
+			self.date_edited = timezone.now()
+
+		if self.published:
+			if self.date_posted == self.date_created:
+				self.date_posted = timezone.now()
+
+			elif not self.date_posted_old:
+				self.date_posted_old = timezone.now()
+		else:
+			if not self.date_posted and self.date_posted_old:
+				self.date_posted = self.date_posted_old
+
+			if self.date_posted_old and self.date_posted == self.date_posted_old:
+				self.date_posted = self.date_created
+
+			elif self.date_posted:
+				self.date_posted = self.date_created
+
+
 		super().save(*args, **kwargs)
 
 		img = Image.open(self.image.path)

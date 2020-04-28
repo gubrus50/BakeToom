@@ -1,9 +1,9 @@
 /* Recipe category form container */
 .recipe-category {
-  width: 30% !important;
   background-color: #e8e8e8;
-  margin: 10px;
+  width: 30% !important;
   margin-left: 20px;
+  margin: 10px;
   float: left
 }
 
@@ -13,7 +13,7 @@
 }
 
 /* Submit form button at the bottom */
-#new-recipe-submit-form input {
+#new-recipe-submit-form input[type="submit"] {
   width: 500px
 }
 
@@ -34,26 +34,31 @@
 /* Following forms width is adjusted to
    auto to fill their parent container */
 
-#div_id_title { width: auto !important }
-#div_id_title div { width: auto !important }
+#div_id_title,
+#div_id_title div,
 
-#div_id_description { width: auto !important }
-#div_id_description div { width: auto !important }
+#div_id_description,
+#div_id_description div,
 
-#div_id_image { width: auto !important }
-#div_id_image div { width: auto !important }
+#div_id_image,
+#div_id_image div,
 
-#div_id_recipe_type { width: auto !important }
-#div_id_recipe_type div { width: auto !important }
+#div_id_recipe_type,
+#div_id_recipe_type div,
 
-#div_id_method { width: auto !important }
-#div_id_method div { width: auto !important }
+#div_id_method,
+#div_id_method div,
 
-#div_id_license { width: auto !important }
-#div_id_license div { width: auto !important }
+#div_id_license,
+#div_id_license div,
 
-#div_id_nationality { width: auto !important }
-#div_id_nationality div { width: auto !important }
+#div_id_nationality,
+#div_id_nationality div,
+
+#div_id_published,
+#div_id_published div { 
+  width: auto !important
+}
 
 /**//* ------------------ *//**/
 /**//* END of Django form *//**/
@@ -75,9 +80,13 @@
 @media only screen and (max-width: 1000px) {
   /* Recipe categories container */
   .recipe-category {
-  	float: none;
-	  width: auto !important;
-    margin-left: 10px
+    width: auto !important;
+    margin-left: 10px;
+    float: none
+  }
+  /* Publish recipe checkbox */
+  .form-check-input {
+    margin-left: 0
   }
 }
 
@@ -100,7 +109,7 @@
   }
 
   /* Submit form button at the bottom */
-  #new-recipe-submit-form input {
+  #new-recipe-submit-form input[type="submit"] {
     width: 80%;
     font-size: 15px
   }

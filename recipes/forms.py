@@ -12,7 +12,8 @@ class RecipeForm(forms.ModelForm):
 			'description',
 			'method',
 			'license',
-			'nationality'
+			'nationality',
+			'published'
 		]
 
 class CategoryForm(forms.ModelForm):

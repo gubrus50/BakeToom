@@ -6,7 +6,11 @@
 
   <!-- Publisher of recipes message -->
   <h5 class="mb-4 ml-1 mr-1 mt-4 text-center text-dark h4-mobile">
-    Przepisy opublikowane przez "{{ view.kwargs.username }}"
+    {% if view.kwargs.username == user.username %}
+      Moja biblioteka przepisów
+    {% else %}
+      Przepisy opublikowane przez "{{ view.kwargs.username }}"
+    {% endif %}
   </h5>
 
 
@@ -27,32 +31,38 @@
     <center class="container recipe-container">
       {% if recipes %}
         {% for recipe in recipes %}
-          <div class="border m-1 btn-light p-2 recipe-container" onclick="$(this).fadeOut(500); setTimeout(function(){window.location='{% url 'recipe-detail' recipe.id %}'}, 500)" style="overflow: auto; border-radius: 5px">
-            <article>
-              <img class="float-right" width="150px" height="100px" style="border-radius: 5px 5px 5px 75px" src="{{ recipe.image.url }}">
-              <h3>{{ recipe.title }}</h3>
-              <p>{{ recipe.description }}</p>
-              <small class="f16">
-                {% if recipe.nationality %}
-                  narodowość:
-                  <li class="flag {{ recipe.nationality|lower }}"></li>
-                {% else %}
-                  narodowość: międzynarodowy
-                {% endif %},
+          {% if recipe.published or recipe.publisher == request.user %}
+            <div class="border m-1 btn-light p-2 recipe-container" onclick="$(this).fadeOut(500); setTimeout(function(){window.location='{% url 'recipe-detail' recipe.id %}'}, 500)" style="overflow: auto; border-radius: 5px">
+              <article>
+                <img class="float-right" width="150px" height="100px" style="border-radius: 5px 5px 5px 75px" src="{{ recipe.image.url }}">
+                <h3>{{ recipe.title }}</h3>
+                <p>{{ recipe.description }}</p>
+                <small class="f16">
+                  {% if recipe.nationality %}
+                    narodowość:
+                    <li class="flag {{ recipe.nationality|lower }}"></li>
+                  {% else %}
+                    narodowość: międzynarodowy
+                  {% endif %},
 
-                {% if recipe.recipe_type %}
-                  typ: {{ recipe.recipe_type }}
-                {% else %}
-                  typ: inne
-                {% endif %},
+                  {% if recipe.recipe_type %}
+                    typ: {{ recipe.recipe_type }}
+                  {% else %}
+                    typ: inne
+                  {% endif %},
 
-                id_przepisu: {{ recipe.id }}
-                {% if recipe.certified %}
-                  <img class="float-right" height="25" src="{% static 'recipes/img/icons/flaticon/certificate.svg' %}" />
-                {% endif %}
-              </small>
-            </article>
-          </div>
+                  {% if not recipe.published %}
+                    <b>nie opublikowany</b> ,
+                  {% endif %}
+
+                  id_przepisu: {{ recipe.id }}
+                  {% if recipe.certified %}
+                    <img class="float-right" height="25" src="{% static 'recipes/img/icons/flaticon/certificate.svg' %}" />
+                  {% endif %}
+                </small>
+              </article>
+            </div>
+          {% endif %}
         {% endfor %}
       {% else %}
         <!-- No results msg -->
