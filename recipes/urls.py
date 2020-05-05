@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import (
+	ContactUsForm,
 	MoreInformation,
 	PrivacyAndPolicy,
 	RecipeListView,
@@ -20,6 +21,7 @@ urlpatterns = [
 	path('recipe/<int:pk>/update/', RecipeUpdateView.as_view(), name='recipe-update'),
 	path('recipe/<int:pk>/delete/', RecipeDeleteView.as_view(), name='recipe-delete'),
 	path('more/information', MoreInformation, name='more-information'),
+	path('more/contact-us-form', ContactUsForm, name='contact-us-form'),
 	path('more/privacy-and-policy/', PrivacyAndPolicy, name='privacy-and-policy'),
 	path('more/terms-and-conditions/', TermsAndConditions, name='terms-and-conditions')
 ]

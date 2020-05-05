@@ -20,6 +20,7 @@ from django.db.models import F, Q
 from datetime import datetime, timedelta
 from .models import Recipe, Category
 from .forms import RecipeForm, CategoryForm
+import os
 
 
 
@@ -446,3 +447,9 @@ def TermsAndConditions(request):
 
 def PrivacyAndPolicy(request):
 	return render(request, 'recipes/privacy_and_policy_pl.html')
+
+def ContactUsForm(request):
+	context = {
+		'BAKETOOM_MAIL_USER': os.environ.get('BAKETOOM_MAIL_USER')
+	}
+	return render(request, 'recipes/contact_us_form.html', context)

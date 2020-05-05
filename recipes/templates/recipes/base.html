@@ -84,7 +84,7 @@
               <span name="tools">Narzędzia</span>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item disabled" href="#" name="report">Zreportuj</a>
+              <a class="dropdown-item disabled" href="{% url 'contact-us-form' %}" name="report">Zreportuj</a>
               {% if user.is_authenticated %}
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{% url 'recipe-create' %}" name="create_recipe">Utwórz przepis</a>
@@ -138,7 +138,7 @@
 
 
   <!-- Bootstrap-Cookie-Alert -->
-  <div id="cookieConsent" style="visibility: hidden" class="alert text-center cookiealert" role="alert">
+  <div id="cookieConsent" style="visibility: hidden" class="alert text-center cookiealert f-mobile" role="alert">
     <b>Cookies?</b> &#x1F36A; Używamy plików cookie, aby zapewnić najlepszą jakość korzystania z naszej witryny. 
     <a href="https://wszystkoociasteczkach.pl/polityka-cookies/" target="_blank">dowiedz się więcej</a>
     <button type="button" class="btn btn-warning btn-sm acceptcookies" aria-label="Close">Okej, schowaj</button>

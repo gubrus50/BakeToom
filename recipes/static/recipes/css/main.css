@@ -151,6 +151,8 @@ img.account-img {
 
 @media only screen and (max-width: 600px) {
 
+  .f-mobile { font-size: 14px }
+
   .h-mobile h1 { font-size: 30px }
   .h-mobile h2 { font-size: 25px }
   .h-mobile h3 { font-size: 20px }
@@ -215,7 +217,10 @@ img.account-img {
   /* Search form -> previous btn */
   #previous-page-btn { display: none }
 
+
+  /************/
   /* USER APP */
+  /************/
   img.account-img {
     border-right: 30px solid #dee2e6;
     border-left: 30px solid #dee2e6;
@@ -245,9 +250,6 @@ img.account-img {
   #profile-details h2 {
     margin-top: 10px
   }
-  #profile-details h2 a {
-    float: right
-  }
   #profile-details-sub-container { 
     float: left !important;
     width: 100%
@@ -261,14 +263,14 @@ img.account-img {
     color: #495057
   }
 
-  #goodbye-image { width: 100% }
-
-
   /* LOGOUT Goodbye message */
+  #goodbye-image { width: 100% }
   #goodbye-message {
     font-size: 100px !important
   }
+  /*******************/
   /* END of USER APP */
+  /*******************/
 }
 
 
@@ -297,6 +299,10 @@ img.account-img {
   }
 
   /* USER APP */
+  /* hyper link in profile settings */
+  a[name="change-password"] {
+    float: left !important
+  }
   /* LOGOUT Goodbye message */
   #goodbye-message {
     margin-bottom: -50px !important;

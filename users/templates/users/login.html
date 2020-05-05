@@ -3,9 +3,16 @@
 {% block content %}
 
 
+  <center class="container recipe-container">
+    <p>
+      <i class="fa fa-info-circle mr-1 mt-4"></i>
+      Strona rejestracyjna jest na razie prywatna.
+    </p>
+  </center>
+
   <br/>
   <center class="container">
-  	<div class="border m-1 bg-light p-2 container" style="overflow: auto; border-radius: 5px">
+    <div class="border m-1 bg-light p-2 container" style="overflow: auto; border-radius: 5px">
       <div class="content-section">
 
 
@@ -23,7 +30,7 @@
             <button class="btn btn-outline-info" type="submit">
               Zaloguj się
             </button>
-            <a href="#" class="float-right">
+            <a href="{% url 'password_reset' %}" class="float-right">
               Nie pamięntam hasła
             </a>
           </div>

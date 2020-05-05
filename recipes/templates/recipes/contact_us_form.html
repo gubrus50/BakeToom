@@ -1,0 +1,19 @@
+{% extends "recipes/base.html" %}
+{% block content %}
+  {% load static %}
+
+
+  <div class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('{% static 'recipes/img/background_notepad.png' %}'); background-size: 15px 15px">
+    <center class="recipe-container pb-2">
+      <div class="container m-1 h-mobile bg-light p-4 border" style="border-radius: 5px">
+      
+        <h2><strong>Skontaktuj się z nami</strong></h2>
+
+        <p>Jeśli skontaktujesz się z nami bezpośrednio, możemy otrzymać dodatkowe informacje o tobie, takie jak imię i nazwisko, adres e-mail, numer telefonu, treść wiadomości i / lub załączniki, które możesz nam wysłać, oraz wszelkie inne informacje, które możesz podać. <a href="{% url 'privacy-and-policy' %}">Naciśnij mnie</a>, aby dowiedzieć się więcej o tym, jak korzystamy z twoich danych.</p>
+        <p>Możesz skontaktować się z nami bezpośrednio za pośrednictwem następującego e-maila - <b>{{ BAKETOOM_MAIL_USER }}</b>.<!-- Możesz również skorzystać z dostępnego formularza, który poprowadzi Cię i dostarczy nam Twoją wiadomość w najczystszej formie.--></p>
+
+      </div>
+    </center>
+  </div>
+
+{% endblock content %}

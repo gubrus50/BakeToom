@@ -9,14 +9,11 @@
 
 
     <!-- Profile Container -->
-    <div class="border m-1 bg-light p-2 container" style="clear: both; overflow: auto; border-radius: 5px">
+    <div class="border m-1 bg-light p-2 container f-mobile" style="clear: both; overflow: auto; border-radius: 5px">
       <img name="profile-image" class="rounded account-img float-left mr-3" width="155" height="155" src="{{ user.profile.image.url }}" />
     
       <div id="profile-details" class="col-xs-6 h-mobile float-left">
         <h2>
-          <a title="Wyloguj się" name="logout" href="{% url 'logout' %}" style="text-decoration: none">
-            <i class="fas fa-door-open" style="font-size:30px"></i>
-          </a>
           {{ user.username }}
         </h2>
         <hr/>
@@ -55,6 +52,9 @@
         <fieldset class="form-group">
           <legend class="border-bottom mb-4">
             Zarządzaj kontem
+            <a name="change-password" class="float-right" href="{% url 'password_reset' %}">
+              <small>Zmień hasło</small>
+            </a>
           </legend>
           {{ u_form|crispy }}
           {{ p_form|crispy }}

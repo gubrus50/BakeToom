@@ -48,6 +48,14 @@ window.addEventListener('scroll', scrollFunc);
 $(document).ready(function()
 {
 	$('#scroll-to-top-button').hide();
+	$('a.disabled').click(function() {
+    	if ($(this).hasClass('disabled')) {
+    		return false
+    	}
+    	else {
+    		$(this).trigger('click')
+    	}
+    });
 
 	/* Cookies toggle animation */
 	if (!getCookie('hide_cookies_popup')) { 

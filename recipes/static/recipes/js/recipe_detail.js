@@ -286,6 +286,7 @@ window.onload = function()
 	edit_recipe = $(tools).find('a[name="edit_recipe"]');
 	update_recipe = $(tools).find('a[name="update_recipe"]');
 	delete_recipe = $(tools).find('a[name="delete_recipe"]');
+	report_tool = $(tools).find('a[name="report"]');
 	download_tool = $(tools).find('a[name="download"]');
 	print_tool = $(tools).find('a[name="print"]');
 
@@ -307,6 +308,8 @@ window.onload = function()
 		$(edit_recipe).removeClass('disabled');
 		$(delete_recipe).attr('href', window.location.pathname+"delete");
 		$(delete_recipe).removeClass('disabled')
+	} else {
+		$(report_tool).removeClass('disabled')
 	}
 
 
