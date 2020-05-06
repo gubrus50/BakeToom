@@ -137,7 +137,7 @@ LOGIN_URL = 'login'
 
 EMAIL_HOST_USER = os.environ.get('BAKETOOM_MAIL_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('BAKETOOM_MAIL_PASS')
-DEFAULT_FROM_EMAIL = '(BakeToom) <'+os.environ.get('BAKETOOM_MAIL_USER')+'>'
+DEFAULT_FROM_EMAIL = str('(BakeToom) <'+os.environ.get('BAKETOOM_MAIL_USER')+'>')
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.zoho.eu'
