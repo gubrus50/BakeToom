@@ -20,12 +20,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '67^j^*dv$mhd^9#lms0+&3)+-ywp&ims$_z*#7r5g3%w12(hi7'
+# SECRET_KEY = '67^j^*dv$mhd^9#lms0+&3)+-ywp&ims$_z*#7r5g3%w12(hi7'
+SECRET_KEY = os.environ.get('BAKETOOM_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['baketoom.herokuapp.com']
 
 
 # Application definition
@@ -137,7 +138,7 @@ LOGIN_URL = 'login'
 
 EMAIL_HOST_USER = os.environ.get('BAKETOOM_MAIL_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('BAKETOOM_MAIL_PASS')
-DEFAULT_FROM_EMAIL = '(BakeToom) <administration@baketoom.com>'
+DEFAULT_FROM_EMAIL = '(BakeToom) <'+EMAIL_HOST_USER+'>'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.zoho.eu'
