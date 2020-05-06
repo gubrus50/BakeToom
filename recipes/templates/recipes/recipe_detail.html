@@ -72,9 +72,18 @@
               {% if recipe.date_edited and recipe.date_edited != recipe.date_created %}
 
                 {% if recipe.date_posted and recipe.date_posted != recipe.date_created %}
-                  <br/>Przepis edytowano i ponownie go opulikowano -
-                  {{ recipe.date_posted|date:"d-m-Y, " }}o
-                  {{ recipe.date_posted|date:"H:i" }}.
+                  {% if recipe.date_posted == recipe.date_edited %}
+                    <br/>Przepis edytowano i ponownie go opulikowano -
+                    {{ recipe.date_posted|date:"d-m-Y, " }}o
+                    {{ recipe.date_posted|date:"H:i" }}.
+                  {% else %}
+                    <br/>Przepis ostatnio opublikowano -
+                    {{ recipe.date_posted|date:"d-m-Y, " }}o
+                    {{ recipe.date_posted|date:"H:i" }}, 
+                    i ostatnio go edytowano - 
+                    {{ recipe.date_edited|date:"d-m-Y, " }}o
+                    {{ recipe.date_edited|date:"H:i" }}.
+                  {% endif %}
 
                 {% else %}
                   {% if not recipe.date_posted_old %}
