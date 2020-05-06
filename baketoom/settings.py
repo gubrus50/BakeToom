@@ -123,6 +123,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -136,7 +137,7 @@ LOGIN_URL = 'login'
 
 EMAIL_HOST_USER = os.environ.get('BAKETOOM_MAIL_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('BAKETOOM_MAIL_PASS')
-DEFAULT_FROM_EMAIL = '(BakeToom) <'+EMAIL_HOST_USER+'>'
+DEFAULT_FROM_EMAIL = '(BakeToom) <'+os.environ.get('BAKETOOM_MAIL_USER')+'>'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.zoho.eu'
