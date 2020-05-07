@@ -6,15 +6,19 @@ from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
 @login_required
 def register(request):
-	if request.method == 'POST':
-		form = UserRegisterForm(request.POST)
-		if form.is_valid():
-			form.save()
-			username = form.cleaned_data.get('username')
-			messages.success(request, f'Gratulacje! Konto \'{username}\' zostało pomyślnie zarejestrowane.')
-			return redirect('login')
+	if request.user.is_superuser:
+		if request.method == 'POST':
+			form = UserRegisterForm(request.POST)
+			if form.is_valid():
+				form.save()
+				username = form.cleaned_data.get('username')
+				messages.success(request, f'Gratulacje! Konto \'{username}\' zostało pomyślnie zarejestrowane.')
+				return redirect('login')
+		else:
+			form = UserRegisterForm()
 	else:
-		form = UserRegisterForm()
+		messages.error(request, f'ERROR - Nie masz uprawnień do rejestracji.')
+		return render(request, 'recipes/home.html')
 	return render(request, 'users/register.html', {'form': form})
 
 
