@@ -94,6 +94,11 @@
 /* If user on mobile display */
 @media only screen and (max-width: 800px) {
 
+  .recipe-container {
+    padding-left: 1% !important;
+    padding-right: 1% !important
+  }
+
   /* Recipe category -> ingredients form (textarea) */
   .recipe-category div textarea[name="ingredients"] {
     min-height: 250px
@@ -101,6 +106,8 @@
 
   /* Submit form warning message ("Uwaga!") */
   #new-recipe-submit-form section {
+    margin-right: 5% !important;
+    margin-left: 5% !important;
     font-size: 12px
   }
 

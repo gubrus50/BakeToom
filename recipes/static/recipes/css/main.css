@@ -3,10 +3,30 @@ html {
   position: relative;
   min-height: 100%
 }
+body {
+  height: 100%;
+  min-height: 100%;
+  padding-top: 62px;
+  padding-bottom: 200px
+}
+.footer {
+  background-color: #282c30;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 200px
+}
+.footer-copyright ul li { font-size: 12px; list-style: none }
 
-body { margin-bottom: 240px }
 
 
+/* Global Messages */
+.alert-danger a { color: #721c24 }
+.alert-success a { color: #155724 }
+
+
+/* Search Form */
 #search-form { padding: 0; text-align: left }
 #search-form div[name="filter-container"] {
   margin: 20px 0 0 0 !important;
@@ -22,7 +42,6 @@ body { margin-bottom: 240px }
   list-style: none;
   padding-left: 0
 }
-
 /* Navbar section: <!-- Login / Profile --> */
 .nav-icon-item {
   display: inline-block;
@@ -30,17 +49,7 @@ body { margin-bottom: 240px }
   width: 20px
 }
 
-.footer {
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  left: 0
-}
-.footer-copyright ul li { font-size: 14px }
 
-/* Global Messages */
-.alert-danger a { color: #721c24 }
-.alert-success a { color: #155724 }
 
 #scroll-to-top-button {
   -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.6);
@@ -151,6 +160,9 @@ img.account-img {
 
 @media only screen and (max-width: 600px) {
 
+  ul.mobile-pis-1,
+  .mobile-pis-1 ul { padding-inline-start: 20px !important }
+
   .f-mobile { font-size: 14px }
 
   .h-mobile h1 { font-size: 30px }
@@ -188,7 +200,6 @@ img.account-img {
   h3.h5-mobile,
   h4.h5-mobile,
   h5.h5-mobile { font-size: 10px !important }
-  
 
   #scroll-to-top-button { opacity: 0.5 }
 
@@ -197,8 +208,28 @@ img.account-img {
   a[name="user"] > span { display: inline !important }
   a[name="user"] > i { font-size: 15px !important }
 
-  .footer-copyright ul li,
-  .footer-copyright ul span { font-size: 12px }
+
+  /* Footer */
+  .footer-copyright ul li { font-size: 10px }
+  .footer {
+    height: 350px;
+    flex-direction: column;
+    flex-flow: wrap;
+    align-items: flex-start;
+    width: auto !important
+  }
+  .footer section:last-child {
+    order: -1;
+    width: auto !important;
+    text-align: center;
+    color: #282c30
+  }
+  .footer section:last-child > ul li {
+    margin-top: 0px !important;
+    margin-bottom: 2px !important;
+    color: #c9c9c9
+  }
+  body { padding-bottom: 350px }
 
 
 
@@ -226,7 +257,7 @@ img.account-img {
     border-left: 30px solid #dee2e6;
     border-radius: 5px !important;
     margin-bottom: 5px;
-    object-fit: cover;
+    /*object-fit: cover; keep this feature only when AWS S3 images are croped to 300x300 */
     border-bottom: 0;
     border-top: 0;
     height: 200px;
@@ -276,11 +307,14 @@ img.account-img {
 
 @media only screen and (max-width: 320px) {
 
+  /* Search Form */
   #search-form {
     text-align: left
   }
+  #search-form div[name="filter-container"] ul li h5:first-child {
+    margin-top: 20px
+  }
   #search-form div[name="filter-container"] ul li {
-    margin-top: 20px;
     width: 100%
   }
   #search-form div[name="filter-container"] ul li ul[name="nationality-children"] li {
@@ -297,13 +331,38 @@ img.account-img {
     padding-top: 10px !important;
     float: left
   }
+  /* Search button icons */
+  #search-form button[name="search-query"] i:first-child {
+    display: none
+  }
+  #search-form button[name="search-query"] i:last-child {
+    display: block !important
+  }
+  /* Search Input Parent Division */
+  #search-form div.form-control {
+    width: 80% !important
+  }
+  /* End of Search Form */
+
+
+  /* Footer */
+  .footer {
+    padding-left: 0 !important;
+    padding-right: 0 !important
+  }
+
 
   /* USER APP */
-  /* hyper link in profile settings */
+  /* Profile template -> account settings */
+  img.account-img {
+    border-right: 10px solid #dee2e6;
+    border-left: 10px solid #dee2e6
+  }
   a[name="change-password"] {
     float: left !important
   }
-  /* LOGOUT Goodbye message */
+
+  /* Logout template */
   #goodbye-message {
     margin-bottom: -50px !important;
     font-size: 80px !important
@@ -318,7 +377,23 @@ img.account-img {
 /**//* --------------------- *//**/
 
 
+
+
 @media only screen and (max-width: 1000px) {
+
+  /* Footer */
+  .footer {
+    padding-left: 5% !important;
+    padding-right: 5% !important
+  }
+  .footer section:last-child {
+    width: 300px;
+    color: #282c30
+  }
+  .footer section:last-child > ul li {
+    color: #c9c9c9
+  }
+
   /* search-form */
   #search-form {
     text-align: center;
@@ -341,10 +416,10 @@ img.account-img {
   /* Search filter Nationality */
   .bootstrap-select.countrypicker {
     width: 100% !important;
-    margin-top: 10px
+    margin-top: 20px
   }
   #search-form div[name="filter-container"] ul li[name="nationality"] {
-    margin-top: 20px;
+    margin-top: auto;
     width: 100%
   }
   #search-form div[name="filter-container"] ul li[name="nationality"] ul[name="nationality-children"] > li {

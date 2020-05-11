@@ -52,7 +52,7 @@
 
       <!-- Logo -->
       <a title="Strona główna" name="home-page" class="navbar-brand" href="{% url 'recipes-home' %}"><img height="35" src="{% static 'recipes/img/baketoom_logo.png' %}"/></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="outline: none; box-shadow: none">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -127,18 +127,16 @@
 
     </nav>
   </header>
-  <br/>
-  <br/>
 
 
   <!-- Banner -->
-  <div id="base-banner" class="d-flex h-mobile justify-content-center mt-4 text-center text-dark bg-light">
+  <div id="base-banner" class="d-flex h-mobile justify-content-center mt-2 mb-2 text-center text-dark bg-light">
     <h3>PRZECHOWYWAJ I ZARZĄDZAJ<br/>SWE ULUBIONE PRZEPISY</h3>
   </div>
 
 
-  <!-- Bootstrap-Cookie-Alert -->
-  <div id="cookieConsent" style="visibility: hidden" class="alert text-center cookiealert f-mobile" role="alert">
+  <!-- Cookie-Alert -->
+  <div id="cookieConsent" style="visibility: hidden; font-family: Calibri" class="alert text-center cookiealert f-mobile" role="alert">
     <b>Cookies?</b> &#x1F36A; Używamy plików cookie, aby zapewnić najlepszą jakość korzystania z naszej witryny. 
     <a href="https://wszystkoociasteczkach.pl/polityka-cookies/" target="_blank">dowiedz się więcej</a>
     <button type="button" class="btn btn-warning btn-sm acceptcookies" aria-label="Close">Okej, schowaj</button>
@@ -149,9 +147,9 @@
     <!-- Global messages -->
     {% for message in messages %}
       {% if message.tags == "error" %}
-        <div class="global-message-container alert alert-danger">
+        <div class="f-mobile global-message-container alert alert-danger">
       {% else %}
-        <div class="global-message-container alert alert-{{ message.tags }}">
+        <div class="f-mobile global-message-container alert alert-{{ message.tags }}">
       {% endif %}
         {{ message }}
         <a style="cursor:pointer" onclick="$(this).hide(); $(this).parent().fadeOut(); hidden_alert_count++; window.location.href=window_location+'#hidden-alert-'+hidden_alert_count.toString()">
@@ -173,18 +171,17 @@
   {% block content %}{% endblock %}
 
 
-  <footer class="footer font-small bg-dark pt-4">
-    <section class="footer-copyright py-3" style="background-color: #282c30">
-      <!--Temporary template message -->
-      <ul class="mb-4 text-light text-center container">
-        <span>
-          Najmilsze wspomnienia powstają, gdy zgromadzą się wszyscy przy stole
-        </span>
+  <footer class="footer font-small py-4 pl-5 pr-5 d-flex justify-content-around">
+    <section class="footer-copyright py-3">
+      <ul class="text-light container">
+        <li>
+          NAJMILSZE WSPOMNIENIA POWSTAJĄ, GDY ZGROMADZĄ SIĘ WSZYSCY PRZY STOLE
+        </li>
       </ul>
       <!-- Copyright -->
-      <ul class="container list-inline text-center text-secondary">
+      <ul class="container list-inline text-secondary">
         <li class="mb-2">
-          © 2020 Copyright
+          <b>© 2020 Copyright</b>
         </li>
         <!-- WARNING - DO NOT REMOVE FOLLOWING LISTS, THEY MUST BE DISPLAYED DUE TO THE LICENSE AGREEMENT -->
         <li>
@@ -214,6 +211,27 @@
           <a href="https://fonts.google.com/" target="_blank">
             Fonts.google.com
           </a>
+        </li>
+      </ul>
+    </section>
+    <section class="footer-copyright py-3">
+      <ul class="text-light container">
+        <li style="color: #FFD700">
+          DODATKOWE INFORMACJE
+        </li>
+      </ul>
+      <ul class="container list-inline text-secondary">
+        <li class="mb-2">
+          <i class="mr-1 fa fa-phone"></i>
+          +44 XXX XXX XXX
+        </li>
+        <li class="mt-2">
+          <i class="mr-1 fa fa-envelope"></i>
+          administration@baketoom.com
+        </li>
+        <li class="mt-2">
+          <i class="mr-1 fab fa-paypal"></i>
+          Wesprzyj nas <a style="color: #2ab243" href="https://www.paypal.me/mcrazick">paypal.me/mcrazick</a>
         </li>
       </ul>
     </section>

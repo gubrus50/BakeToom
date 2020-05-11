@@ -14,7 +14,7 @@
       <input type="search" name="q" value="{{ query }}" placeholder="Czego dzisiaj pragniesz?" aria-label="Search" style="border: 0; width: 90%; outline: none; box-shadow: none">
       <a id="search-filter-btn" href="#filter" class="text-secondary float-right"><i class="fas fa-filter"></i></a>
     </div>
-    <button type="submit" class="btn btn-outline-secondary" style="border-radius: 0; height: 38px; outline: none; box-shadow: none">Wyszukaj</button>
+    <button name="search-query" type="submit" class="btn btn-outline-secondary" style="border-radius: 0; height: 38px; outline: none; box-shadow: none"><i>Wyszukaj</i><i class="d-none fa fa-search"></i></button>
 
     <div name="filter-container" style="margin: 20px 10% 0px 10%; display: none">
       <ul class="list-inline">
@@ -169,7 +169,7 @@
         {% endfor %}
       {% else %}
         <!-- No results msg -->
-        <div class="d-flex justify-content-center text-dark p-5 text-center" style="background-color: #f8f9fa">
+        <div class="d-flex justify-content-center text-dark p-5 text-center h-mobile" style="background-color: #f8f9fa">
           <h2>Zero rezultatów</h2>
         </div>
       {% endif %}
