@@ -51,6 +51,8 @@ class RecipeListView(ListView):
 
 
 		query_set = Q()
+		query_set &= Q(published=True)
+
 		if query:
 			if recipe_title:
 				query_set &= Q(title__icontains=query)
@@ -124,8 +126,8 @@ class RecipeListView(ListView):
 
 
 
-		if len(query_set) <= 0:
-			object_list = self.model.objects.all().order_by(F('title').asc(nulls_last=True))
+		if len(query_set) == 1:
+			object_list = self.model.objects.filter(query_set).order_by(F('title').asc(nulls_last=True))
 		else:
 			object_list = self.model.objects.filter(query_set).order_by(F('title').asc(nulls_last=True))
 
