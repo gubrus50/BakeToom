@@ -4,18 +4,16 @@ html {
   min-height: 100%
 }
 body {
-  height: 100%;
   min-height: 100%;
-  padding-top: 62px;
-  padding-bottom: 200px
+  height: 100%
 }
 .footer {
   background-color: #282c30;
-  width: 100%;
   position: absolute;
+  min-height: 200px;
+  width: 100%;
   bottom: 0;
-  left: 0;
-  height: 200px
+  left: 0
 }
 .footer-copyright ul li { font-size: 12px; list-style: none }
 
@@ -212,7 +210,6 @@ img.account-img {
   /* Footer */
   .footer-copyright ul li { font-size: 10px }
   .footer {
-    height: 350px;
     flex-direction: column;
     flex-flow: wrap;
     align-items: flex-start;
@@ -229,7 +226,6 @@ img.account-img {
     margin-bottom: 2px !important;
     color: #c9c9c9
   }
-  body { padding-bottom: 350px }
 
 
 

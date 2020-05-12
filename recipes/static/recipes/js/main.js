@@ -29,6 +29,18 @@ function getCookie(cname)
 
 
 
+/* Prevent Header and Footer from interfering the Body */
+function adjustHeaderAndFooter()
+{
+	$('body').css({
+		'padding-top': $('header > nav').outerHeight()+'px',
+		'padding-bottom': $('footer').outerHeight()+'px'
+	})
+}
+
+
+
+
 /* shows scroll-to-top button if we scroll 
 beyond the height of the initial window. */
 const scrollFunc = () => {
@@ -45,17 +57,30 @@ window.addEventListener('scroll', scrollFunc);
 
 
 
+
 $(document).ready(function()
 {
+	adjustHeaderAndFooter();
+	$(window).resize((function() {
+		var timeout = null;
+		return function() {
+			if (timeout) clearTimeout(timeout);
+			timeout = setTimeout(adjustHeaderAndFooter(), 250)
+		}
+	})());
+
+
 	$('#scroll-to-top-button').hide();
-	$('a.disabled').click(function() {
-    	if ($(this).hasClass('disabled')) {
-    		return false
-    	}
-    	else {
-    		$(this).trigger('click')
-    	}
-    });
+	$('a.disabled').click( function()
+	{
+		if ($(this).hasClass('disabled')) {
+			return false
+		}
+		else {
+			$(this).trigger('click')
+		}
+	});
+
 
 	/* Cookies toggle animation */
 	if (!getCookie('hide_cookies_popup')) { 
