@@ -61,6 +61,15 @@ window.addEventListener('scroll', scrollFunc);
 $(document).ready(function()
 {
 	adjustHeaderAndFooter();
+
+	$('#navbarSupportedContent').on('shown.bs.collapse', function () {
+	  adjustHeaderAndFooter()
+	});
+
+	$('#navbarSupportedContent').on('hidden.bs.collapse', function () {
+	  adjustHeaderAndFooter()
+	});
+
 	$(window).resize((function() {
 		var timeout = null;
 		return function() {
