@@ -24,11 +24,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Qwigley&display=swap" rel="stylesheet">
 
   <link rel="shortcut icon" href="{% static 'recipes/img/icons/baketoom_icon.svg' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/main.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/home.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/recipe_detail.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/recipe_form.css' %}">
+  <link rel="stylesheet" href="{% static 'recipes/css/main.css' %}">
+  <link rel="stylesheet" href="{% static 'recipes/css/recipe_detail.css' %}">
+  <link rel="stylesheet" href="{% static 'recipes/css/recipe_form.css' %}">
   
+  <script name="jQuery" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" crossorigin="anonymous"></script>
+
+  {% block head %}{% endblock %}
 
   {% if title %}
     <title>BakeToom - {{ title }}</title>
@@ -47,27 +49,21 @@
 <body>
 
   <header class="site-header fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-
-
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
       <!-- Logo -->
       <a title="Strona główna" name="home-page" class="navbar-brand" href="{% url 'recipes-home' %}"><img height="35" src="{% static 'recipes/img/baketoom_logo.png' %}"/></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="outline: none; box-shadow: none">
         <span class="navbar-toggler-icon"></span>
       </button>
-
-
       <!-- Menu / Navigation options -->
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-
           <li class="nav-item">
             <a class="nav-link" href="{% url 'more-information' %}">
              <i class="align-icon-item fa fa-book"></i>
              <span name="more-information">Więcej informacji</span>
             </a>
           </li>
-
           {% if messages %}
           <li class="nav-item">
             <a class="nav-link" href="#" onclick="$('.global-message-container > a').show(); $('.global-message-container').fadeIn(); hidden_alert_count=0">
@@ -76,7 +72,6 @@
             </a>
           </li>
           {% endif %}
-
           <!-- Tools dropdown -->
           <li class="nav-item dropdown">
             <a title="Menedżer przepisów" name="recipe-manager" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -96,9 +91,7 @@
               <a class="dropdown-item disabled" href="#" name="print">Wydrukuj</a>
             </div>
           </li>
-
         </ul>
-
         <!-- Login / Profile -->
         <ul class="navbar-nav ml-auto">
           <li class="nav-item dropdown">
@@ -124,12 +117,10 @@
         </ul>
       </div>
       <!-- End of Menu / Navigation options -->
-
     </nav>
   </header>
 
 
-  <!-- Banner -->
   <div id="base-banner" class="d-flex h-mobile justify-content-center mt-2 mb-2 text-center text-dark bg-light">
     <h3>PRZECHOWYWAJ I ZARZĄDZAJ<br/>SWE ULUBIONE PRZEPISY</h3>
   </div>
@@ -152,7 +143,7 @@
         <div class="f-mobile global-message-container alert alert-{{ message.tags }}">
       {% endif %}
         {{ message }}
-        <a style="cursor:pointer" onclick="$(this).hide(); $(this).parent().fadeOut(); hidden_alert_count++; window.location.href=window_location+'#hidden-alert-'+hidden_alert_count.toString()">
+        <a style="cursor: pointer" onclick="$(this).hide(); $(this).parent().fadeOut(); hidden_alert_count++; window.location.href=window_location+'#hidden-alert-'+hidden_alert_count.toString()">
           <u>Okej, schowaj</u>
         </a> 
         </div>
@@ -173,7 +164,7 @@
 
 
   <footer>
-    <div class="font-small py-4 d-flex flex-wrap text-secondary">
+    <div class="footer-body font-small py-4 d-flex flex-wrap text-secondary">
       <section name="copyright-and-sources" class="p-3">
         <p class="text-uppercase mb-4" style="color: #9b9b9b">
           <b>Najmilsze wspomnienia powstają, gdy zgromadzą się wszyscy przy stole</b>
@@ -220,13 +211,13 @@
   </footer>
 
 
-  <script name="jQuery" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" crossorigin="anonymous"></script>
   <script name="Popper.js" src='https://kit.fontawesome.com/a076d05399.js' crossorigin="anonymous"></script>
   <script name="Fontawesome.js" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script name="Bootstrap JS" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script name="Bootstrap-select" src="//unpkg.com/bootstrap-select@1.12.4/dist/js/bootstrap-select.min.js"></script>
   <script name="Bootstrap-select-country" src="//unpkg.com/bootstrap-select-country@4.0.0/dist/js/bootstrap-select-country.min.js"></script>
   <script name="main.js" src="{% static 'recipes/js/main.js' %}" crossorigin="anonymous"></script>
+  {% block base %}{% endblock %}
 
 
 </body>

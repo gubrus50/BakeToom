@@ -7,6 +7,9 @@ body {
   min-height: 100%;
   height: 100%
 }
+header > nav {
+  background-color: #282c30
+}
 footer {
   background-color: #282c30;
   position: absolute;
@@ -15,19 +18,18 @@ footer {
   bottom: 0;
   left: 0
 }
-footer > div {
+footer > div.footer-body {
   justify-content: space-between;
-  border-top: 10px solid #343a40;
   padding-left: 50px;
   padding-right: 50px
 }
-footer > div a {
+footer > div.footer-body a {
   color: #445a70
 }
-footer > div a:hover {
+footer > div.footer-body a:hover {
   color: #445a70
 }
-footer > div section {
+footer > div.footer-body section {
   font-size: 12px
 }
 .align-icon-item {
@@ -166,6 +168,38 @@ img.account-img {
 
 
 
+@media only screen and (max-width: 709px) {
+  /* Footer */
+  footer > div.footer-body section ul li {
+    font-size: 10px
+  }
+  footer > div.footer-body {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: auto !important
+  }
+  footer > div.footer-body > section:last-child {
+    width: auto !important;
+    text-align: center;
+    order: -1
+  }
+  footer > div.footer-body .align-icon-item {
+    margin-right: 5px;
+    width: auto
+  }
+  footer > div.footer-body > section:last-child > ul li {
+    margin-top: 0px !important;
+    margin-bottom: 2px !important
+  }
+  footer > div.footer-body {
+    padding-left: 0 !important;
+    padding-right: 0 !important
+  }
+  footer > div.footer-body > section:first-child > p:nth-child(2) {
+    margin-bottom: 20px !important
+  }
+}
+
 /**//* -------------- *//**/
 /**//* User on Mobile *//**/
 /**//* ---------------*//**/
@@ -214,41 +248,6 @@ img.account-img {
   h5.h5-mobile { font-size: 10px !important }
 
 
-
-  /* Footer */
-  footer > div section ul li {
-    font-size: 10px
-  }
-  footer > div {
-    flex-wrap: wrap;
-    justify-content: center;
-    width: auto !important
-  }
-  footer > div > section:last-child {
-    width: auto !important;
-    text-align: center;
-    order: -1
-  }
-  footer > div .align-icon-item {
-    margin-right: 5px;
-    width: auto
-  }
-  footer > div > section:last-child > ul li {
-    margin-top: 0px !important;
-    margin-bottom: 2px !important
-  }
-  footer > div {
-    padding-left: 0 !important;
-    padding-right: 0 !important
-  }
-  footer > div > section:first-child > p:nth-child(2) {
-    margin-bottom: 20px !important
-  }
-
-
-
-
-
   .recipe-container { font-size: 12px }
   .recipe-container h3 { font-size: 20px }
   .recipe-button img {
@@ -260,7 +259,7 @@ img.account-img {
   .f16 li { margin-top: -2px }
 
   /* Search form -> previous btn */
-  #previous-page-btn { display: none }
+  #previous-page-btn { display: none !important }
 
 
   /************/
@@ -398,11 +397,11 @@ img.account-img {
   a[name="user"] > i { font-size: 15px !important }
 
   /* Footer */
-  footer > div {
+  footer > div.footer-body {
     padding-left: 5% !important;
     padding-right: 5% !important
   }
-  footer > div > section {
+  footer > div.footer-body > section {
     font-size: 10px !important;
   }
 
