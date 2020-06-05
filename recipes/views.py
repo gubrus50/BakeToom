@@ -29,7 +29,7 @@ class RecipeListView(ListView):
 	model = Recipe
 	template_name = 'recipes/home.html' # <app>/<model>_<viewtype>.html
 	context_object_name = 'recipes'
-	paginate_by = 10
+	paginate_by = 12
 
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
