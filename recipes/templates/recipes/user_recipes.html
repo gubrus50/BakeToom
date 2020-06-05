@@ -1,8 +1,36 @@
 {% extends "recipes/base.html" %}
 {% load recipes_extras %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'recipes/css/extensions/recipe_container.css' %}">
+<style>
+/*-- Search Form --*/
+#previous-page-btn {
+  border-radius: 0;
+  height: 38px;
+  outline: none;
+  box-shadow: none;
+}
+.form-control {
+  border-radius: 0;
+  width: 70% !important;
+  height: 38px;
+}
+.form-control > input[type="search"] {
+  border: 0;
+  width: 100%;
+  outline: none;
+  box-shadow: none;
+}
+#search-form > button[name="search-query"] {
+  border-radius: 0;
+  height: 38px;
+  outline: none;
+  box-shadow: none;
+}
+</style>
+{% endblock %}
 {% block content %}
-  {% load static %}
-
 
   <!-- Publisher of recipes message -->
   <h5 class="mb-4 ml-1 mr-1 mt-4 text-center text-dark h4-mobile">
@@ -16,185 +44,18 @@
 
   <!-- Search form -->
   <form id="search-form" method="GET" action="{% url 'user-recipes' view.kwargs.username %}" class="container form-inline my-4 d-flex justify-content-center h-mobile">
-    <a id="previous-page-btn" href="javascript:if(window.location.href!=window.location.origin+'/user/{{ view.kwargs.username }}/'){history.back()}" class="btn text-secondary" style="border-radius: 0; height: 38px; outline: none; box-shadow: none">
+    <a id="previous-page-btn" href="javascript:if(window.location.href!=window.location.origin+'/user/{{ view.kwargs.username }}/'){history.back()}" class="btn text-secondary">
       <i class="fa fa-arrow-left" style="font-size: 20px"></i>
     </a>
-    <div class="form-control" style="border-radius: 0; width: 70%; height: 38px">
-      <input type="search" name="q" value="{{ request.GET.q }}" placeholder="Czego dzisiaj pragniesz?" aria-label="Search" style="border: 0; width: 100%; outline: none; box-shadow: none">
+    <div class="form-control">
+      <input type="search" name="q" value="{{ request.GET.q }}" placeholder="Czego dzisiaj pragniesz?" aria-label="Search">
     </div>
-    <button name="search-query" type="submit" class="btn btn-outline-secondary" style="border-radius: 0; height: 38px; outline: none; box-shadow: none"><i>Wyszukaj</i><i class="d-none fa fa-search"></i></button>
+    <button name="search-query" type="submit" class="btn btn-outline-secondary"><i>Wyszukaj</i><i class="d-none fa fa-search"></i></button>
   </form>
 
-
-  <!-- Recipes container -->
-  <div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('{% static 'recipes/img/background_notepad.png' %}'); background-size: 15px 15px">
-    <center class="container recipe-container">
-      {% if recipes %}
-        {% for recipe in recipes %}
-          {% if recipe.published or recipe.publisher == request.user %}
-            <div class="border m-1 btn-light p-2 recipe-container" onclick="$(this).fadeOut(500); setTimeout(function(){window.location='{% url 'recipe-detail' recipe.id %}'}, 500)" style="overflow: auto; border-radius: 5px">
-              <article>
-                <img class="float-right" width="150px" height="100px" style="border-radius: 5px 5px 5px 75px" src="{{ recipe.image.url }}">
-                <h3>{{ recipe.title }}</h3>
-                <p>{{ recipe.description }}</p>
-                <small class="f16">
-                  {% if recipe.nationality %}
-                    narodowość:
-                    <li class="flag {{ recipe.nationality|lower }}"></li>
-                  {% else %}
-                    narodowość: międzynarodowy
-                  {% endif %},
-
-                  {% if recipe.recipe_type %}
-                    typ: {{ recipe.recipe_type }}
-                  {% else %}
-                    typ: inne
-                  {% endif %},
-
-                  {% if not recipe.published %}
-                    <b>nie opublikowany</b> ,
-                  {% endif %}
-
-                  id_przepisu: {{ recipe.id }}
-                  {% if recipe.certified %}
-                    <img class="float-right" height="25" src="{% static 'recipes/img/icons/flaticon/certificate.svg' %}" />
-                  {% endif %}
-                </small>
-              </article>
-            </div>
-          {% endif %}
-        {% endfor %}
-      {% else %}
-        <!-- No results msg -->
-        <div class="d-flex justify-content-center text-dark p-5 text-center" style="background-color: #f8f9fa">
-          <h2>Zero rezultatów</h2>
-        </div>
-      {% endif %}
-    </center>
-  </div>
-
-
-  <!-- Pagination -->
-  {% if is_paginated %}
-    <center class="pagination justify-content-center">
-      <nav id="home-pagination" aria-label="Page navigation example">
-
-        <div>
-          <ul class="pagination pagination-circle pg-blue mb-0">
-            <!-- To first page -->
-            <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
-              <a class="page-link" style="border-right: 0" aria-label="First"
-              
-                {% if page_obj.has_previous %}
-                  {% if request.GET.q %}
-                    href="#"
-                    onclick="paginateToPage(1)"
-                  {% else %}
-                    href="?page=1"
-                  {% endif %}
-                {% else %}
-                  href="#"
-                {% endif %}
-
-              >Początek</a>
-            </li>
-            <!-- Direct page choice -->
-            {% for num in page_obj.paginator.page_range %}
-              {% if page_obj.number == num %}
-                <li class="page-item active">
-                  <a class="page-link page-link-active-fancy"
-
-                    {% if request.GET.q %}
-                      href="#"
-                      onclick="paginateToPage({{ num }})"
-                    {% else %}
-                      href="?page={{ num }}"
-                    {% endif %}
-                  
-                  >{{ num }}</a>
-                </li>
-              {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                <li class="page-item">
-                  <a class="page-link page-link-fancy"
-
-                    {% if request.GET.q %}
-                      href="#"
-                      onclick="paginateToPage({{ num }})"
-                    {% else %}
-                      href="?page={{ num }}"
-                    {% endif %}
-                  
-                  >{{ num }}</a>
-                </li>
-              {% endif %}
-            {% endfor %}
-            <!-- To last page -->
-            <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
-              <a class="page-link" style="border-left: 0" aria-label="Last"
-
-                {% if page_obj.has_next %}
-                  {% if request.GET.q %}
-                    href="#"
-                    onclick="paginateToPage({{ page_obj.paginator.num_pages }})"
-                  {% else %}
-                    href="?page={{ page_obj.paginator.num_pages }}"
-                  {% endif %}
-                {% else %}
-                  href="#"
-                {% endif %}
-
-              >Koniec</a>
-            </li>
-          </ul>
-        </div>
-
-        <div name="page-flip">
-          <!-- Previous page action -->
-          <a style="border-right: 0" class="{% if not page_obj.has_previous %}disabled{% endif %}" aria-label="Previous"
-
-            {% if page_obj.has_previous %}
-              {% if request.GET.q %}
-                href="#"
-                onclick="paginateToPage({{ page_obj.previous_page_number }})"
-              {% else %}
-                href="?page={{ page_obj.previous_page_number }}"
-              {% endif %}
-            {% else %}
-              href="#"
-            {% endif %}
-
-          ><span aria-hidden="true">&laquo;</span></a>
-
-          <!-- Result counter -->
-          <a style="width: 60%; border-left: 0; border-right: 0; color: #6c757d; cursor: default">
-            <span id="search-result-counter">{{ page_obj.paginator.count }}</span>
-              rezultatów
-          </a>
-
-          <!-- Next page action -->
-          <a style="border-left: 0" class="{% if not page_obj.has_next %}disabled{% endif %}" aria-label="Next"
-
-            {% if page_obj.has_next %}
-              {% if request.GET.q %}
-                href="#"
-                onclick="paginateToPage({{ page_obj.next_page_number }})"
-              {% else %}
-                href="?page={{ page_obj.next_page_number }}"
-              {% endif %}
-            {% else %}
-              href="#"
-            {% endif %}
-
-          ><span aria-hidden="true">&raquo;</span></a>
-        </div>
-
-      </nav>
-    </center>
-  {% endif %}
-  <!-- End of Pagination -->
-
-
-  <script name="main.js" src="{% static 'recipes/js/filter_search_with_pagination.js' %}" crossorigin="anonymous"></script>
-
+  {% include "recipes/extensions/recipe_container.html" %}
 
 {% endblock content %}
+{% block base %}
+<script name="search-form" src="{% static 'recipes/js/filter_search_with_pagination.js' %}" crossorigin="anonymous"></script>
+{% endblock %}
