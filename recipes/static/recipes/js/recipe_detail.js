@@ -17,6 +17,14 @@ function getCurrentDate()
 }
 
 
+function activeSelf(this_button, section_id) {
+	$('#recipe-detail-navbar button').removeClass('active');
+	$(this_button).addClass('active');
+
+	$('#recipe-detail-content > div').addClass('d-none');
+	$('#'+section_id).removeClass('d-none');
+}
+
 
 function getBase64(url, callback)
 {
@@ -50,18 +58,16 @@ function isEmpty(element)
 
 
 
-/* Applies scrolls if category ingredients
-   content is on word-break             */
-function applyApropiateScrolls()
+function applyApropiateScrollsToIngredients()
 {
-	$('.recipe-ingredients > section').each(function(){
+	$('#ingredients > article > section').each(function(){
 		if (this.scrollHeight > this.clientHeight) {
 			// If section from .recipe-ingredients has vertical scrollbar
-			$(this).css('border-radius','10px 0px 0px 10px')
+			$(this).css('border-radius','5px 0px 0px 5px')
 			$(this).removeClass('empty-v-scroll')
 		} else {
 			// If not, hide empty vertical scrollbar
-			$(this).css('border-radius','10px')
+			$(this).css('border-radius','5px')
 			$(this).addClass('empty-v-scroll')
 		}
 	})	
@@ -73,7 +79,7 @@ function applyApropiateScrolls()
    container by applying/removing break tags */
 function updateMethodListBreaks(checkbox)
 {
-	var rml = $('#recipe-method-list').children().eq(2);
+	var rml = $('#recipe-method-list').children();
 
 	if (checkbox.checked) {
 		$(rml).html(
@@ -87,11 +93,7 @@ function updateMethodListBreaks(checkbox)
 }
 
 
-
-/* Includes fancy chebox bulletpoint for each
-   categories ingredients list element, which
-   is located in categories container      */
-function replaceIngredientsList()
+function replaceIngredientsListBulletPointToCheckbox()
 {
 	$('.ingredients').each(function(){
 		$(this).html(
@@ -107,9 +109,8 @@ function replaceIngredientsList()
 
 
 
-/* Removes null/spaced objects from the
-   method container list             */
-function replaceMethodList()
+
+function RemoveEmptyMethodListElements()
 {
 	// Get list
 	var new_method_list = []
@@ -287,7 +288,7 @@ window.onload = function()
 	update_recipe = $(tools).find('a[name="update_recipe"]');
 	delete_recipe = $(tools).find('a[name="delete_recipe"]');
 	report_tool = $(tools).find('a[name="report"]');
-	download_tool = $(tools).find('a[name="download"]');
+	/*download_tool = $(tools).find('a[name="download"]');
 	print_tool = $(tools).find('a[name="print"]');
 
 	// Enable print tool (Wydrukuj)
@@ -300,7 +301,7 @@ window.onload = function()
 		"returnPageToNormal(originalContents)"
 	);
 	$(download_tool).attr('download', recipe_title+'.html');
-	$(download_tool).removeClass('disabled');
+	$(download_tool).removeClass('disabled'); */
 
 	if (editing_tools) {
 		// The following script enables editing_tools for the owner of the recipe
@@ -361,9 +362,10 @@ window.onload = function()
 		$('#recipe-image').attr('src' , dataUrl)
 	});
 
-	replaceIngredientsList();
-	applyApropiateScrolls();
-	replaceMethodList();
+
+	replaceIngredientsListBulletPointToCheckbox();
+	applyApropiateScrollsToIngredients();
+	RemoveEmptyMethodListElements();
 	applyCheckboxFunctionality()
 }
 
@@ -371,5 +373,5 @@ window.onload = function()
 
 
 window.onresize = function(event) {
-	applyApropiateScrolls()
+	applyApropiateScrollsToIngredients()
 }
