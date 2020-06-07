@@ -17,10 +17,7 @@ function getCurrentDate()
 }
 
 
-function activeSelf(this_button, section_id) {
-	$('#recipe-detail-navbar button').removeClass('active');
-	$(this_button).addClass('active');
-
+function showSection(section_id) {
 	$('#recipe-detail-content > div').addClass('d-none');
 	$('#'+section_id).removeClass('d-none');
 }
@@ -56,22 +53,6 @@ function isEmpty(element)
 	return false
 }
 
-
-
-function applyApropiateScrollsToIngredients()
-{
-	$('#ingredients > article > section').each(function(){
-		if (this.scrollHeight > this.clientHeight) {
-			// If section from .recipe-ingredients has vertical scrollbar
-			$(this).css('border-radius','5px 0px 0px 5px')
-			$(this).removeClass('empty-v-scroll')
-		} else {
-			// If not, hide empty vertical scrollbar
-			$(this).css('border-radius','5px')
-			$(this).addClass('empty-v-scroll')
-		}
-	})	
-}
 
 
 
@@ -269,10 +250,18 @@ function applyCheckboxFunctionality()
 					$button
 						.removeClass('btn-default')
 						.addClass('btn-' + color + ' active')
+					$button
+						.children('i').eq(0).addClass('d-none')
+					$button
+						.children('i').eq(1).removeClass('d-none')
 				} else {
 					$button
 						.removeClass('btn-' + color + ' active')
 						.addClass('btn-default')
+					$button
+						.children('i').eq(0).removeClass('d-none')
+					$button
+						.children('i').eq(1).addClass('d-none')
 				}
 			}
 		})
@@ -364,14 +353,6 @@ window.onload = function()
 
 
 	replaceIngredientsListBulletPointToCheckbox();
-	applyApropiateScrollsToIngredients();
 	RemoveEmptyMethodListElements();
 	applyCheckboxFunctionality()
-}
-
-
-
-
-window.onresize = function(event) {
-	applyApropiateScrollsToIngredients()
 }

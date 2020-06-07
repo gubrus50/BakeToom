@@ -74,33 +74,36 @@
 #recipe-detail-content {
   border-radius: 3px;
 }
-#recipe-detail-content .title {
-  font-size: 2.5rem;
-  font-weight: 300;
-  line-height: 1.2;
-}
 
 #recipe-detail-navbar {
-  background-color: #eee;
+  background-color: #d1d5da;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1px;
-  border-bottom: 1px solid #eee;
-  border-top: 1px solid #eee;
 }
 #recipe-detail-navbar button {
   border-radius: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(248,249,250,1) 100%);
+}
+#recipe-detail-navbar button:hover {
+  border-color: #dbdbdb;
+  background: linear-gradient(180deg, rgba(250,250,250,1) 0%, rgba(242,242,242,1) 100%);
 }
 #recipe-detail-navbar i {
   margin-right: 10px;
 }
 
-#recipe { overflow: auto; }
+#recipe { overflow: auto }
 #recipe > article > div.wrapper {
   display: grid;
   grid-template-columns: 3fr 1fr;
+  font-family: calibri;
   font-size: 14px;
   grid-gap: 15px;
+}
+
+#method > article {
+  font-family: calibri;
 }
 
 #ingredients > article {
@@ -112,14 +115,30 @@
   height: 250px;
   padding: 10px;
   overflow: scroll;
-  border-radius: 5px;
-  border: 1px solid #d3d3d3;
+  border-radius: 3px;
+  background-color: #fcfcfc;
+}
+#ingredients > article > section::-webkit-scrollbar-thumb:vertical,
+#ingredients > article > section ::-webkit-scrollbar-thumb:vertical {
+  height: 30px;
+  background-color: #d1d1d1;
+}
+#ingredients > article > section::-webkit-scrollbar-track-piece,
+#ingredients > article > section ::-webkit-scrollbar-track-piece {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.05);
 }
 #ingredients > article > section > ul {
   padding-inline-start: 20px;
   list-style-type: none;
 }
+#ingredients > article > section .title {
+  font-weight: 300;
+  line-height: 1.2;
+}
 
+#license > article {
+  font-family: monospace;
+}
 
 @media only screen and (max-width: 991px) {
   #recipe > article > div.wrapper {
@@ -165,7 +184,11 @@
     grid-template-columns: 1fr;
   }
   #recipe-detail-navbar {
+    border-radius: 0 !important;
     grid-template: 1fr 1fr / 1fr 1fr;
+  }
+  #recipe-detail-navbar button {
+    border-radius: 0 !important;
   }
 }
 @media only screen and (max-width: 483px) {
@@ -201,8 +224,7 @@
 
 /**//* ----------------------- *//**/
 /**//* END of Recipe Container *//**/
-/**//* ----------------------- *//**/
-
+/**//* ----------------------- *//**/ 
 
 
 /* Social Media Icons */
@@ -210,6 +232,14 @@
 	opacity: 0.9;
 	border: 2px solid white;
 	border-radius: 50%
+}
+
+
+#expand-list.active {
+  border-top: 2px solid #9c9c9c;
+  border-left: 2px solid #9c9c9c;
+  border-right: 2px solid #eee;
+  border-bottom: 2px solid #eee;
 }
 
 

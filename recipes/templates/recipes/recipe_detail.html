@@ -5,29 +5,29 @@
   {% if recipe.published or recipe.publisher == request.user %}
 
     <center class="container recipe-container">
-      <h3 class="text-uppercase">{{ recipe.title }}</h3>
+      <h3 class="text-uppercase mt-5">{{ recipe.title }}</h3>
       <p><i class="fa fa-info-circle mr-1 mt-2"></i>
         Przejdź do głównego menu nawigacyjnego i naciśnij "Narzędzia", aby wyświetlić dostępne opcje.
       </p>
     </center>
 
-    <div id="recipe-detail-navbar" class="container p-0">
-      <button name="recipe" class="btn btn-light text-lowercase active" onclick="activeSelf(this,'recipe')">
+    <div id="recipe-detail-navbar" class="container border p-0" style="border-radius: 3px 3px 0px 0px; border-bottom: 0px !important">
+      <button name="recipe" class="btn btn-light text-lowercase" onclick="showSection('recipe')" style="border-radius: 3px 0px 0px 0px">
         <i class="fas fa-utensils"></i>przepis
       </button>
-      <button name="ingredients" class="btn btn-light text-lowercase" onclick="activeSelf(this,'ingredients')">
+      <button name="ingredients" class="btn btn-light text-lowercase" onclick="showSection('ingredients')">
         <i class="fas fa-clipboard-list"></i>składniki
       </button>
-      <button name="method" class="btn btn-light text-lowercase" onclick="activeSelf(this,'method')">
+      <button name="method" class="btn btn-light text-lowercase" onclick="showSection('method')">
         <i class="fas fa-blender"></i>metoda
       </button>
-      <button name="license" class="btn btn-light text-lowercase" onclick="activeSelf(this,'license')">
+      <button name="license" class="btn btn-light text-lowercase" onclick="showSection('license')" style="border-radius: 0px 3px 0px 0px">
         <i class="fas fa-gavel"></i>licencja
       </button>
     </div>
 
-    <div id="recipe-detail-content" class="container bg-light mb-5">
-      <div id="recipe" class="p-3">
+    <div id="recipe-detail-content" class="container bg-white border mb-5" style="border-radius: 0px 0px 3px 3px">
+      <div id="recipe" class="p-4">
         <article>
           <div class="wrapper mb-3">
             <section name="description">
@@ -80,7 +80,7 @@
                 {% endif %}
               </div>
             </section>
-            <img width="100%" height="175px" class="border" src="{{ recipe.image.url }}">
+            <img width="100%" height="175px" src="{{ recipe.image.url }}">
           </div>
           <section name="data">
             <h5 style="font-weight: 400">Dane</h5>
@@ -124,13 +124,13 @@
           </section>
         </article>
       </div>
-      <div id="ingredients" class="p-3 d-none">
+      <div id="ingredients" class="p-4 d-none">
         <article class="custom-scroll empty-h-scroll">
           {% if categories %}
             {% for category in categories %}
               {% if category.recipe == object %}
                 <section>
-                  <h5 class="text-uppercase">{{ category.name }}</h5>
+                  <h5 class="title text-uppercase">{{ category.name }}</h5>
                   <hr>
                   {% if category.ingredients %}
                     <ul class="ingredients">
@@ -143,19 +143,22 @@
           {% else %}...{% endif %}
         </article>
       </div>
-      <div id="method" class="p-3 d-none">
+      <div id="method" class="p-4 d-none">
         <!-- Expand list button -->
-        <span class="button-checkbox">
+        <span class="button-checkbox float-right">
           <input type="checkbox" onchange="updateMethodListBreaks(this)" class="d-none" />
-          <button id="expand-list" type="button" class="btn btn-default" data-color="primary">Rozszerz Listę</button>
+          <button id="expand-list" type="button" class="bg-white" style="outline: none">
+            <i name="expan-list" title="Rozszerz listę" class="fas fa-expand-alt"></i>
+            <i name="compress-list" title="Skompresuj liste" class="fas fa-compress-alt d-none"></i>
+          </button>
         </span>
-        <article id="recipe-method-list" class="mt-3" style="word-wrap: break-word">
+        <article id="recipe-method-list" style="word-wrap: break-word">
           {% if object.method %}
             {{ object.method|linenumbers|linebreaks }}
           {% else %}...{% endif %}
         </article> 
       </div>
-      <div id="license" class="p-3 d-none">
+      <div id="license" class="p-4 d-none">
         <article>
           {% if object.license %}
             {{ object.license|linebreaks }}
@@ -166,29 +169,29 @@
 
 
     <!-- Share container -->
-    <div class="text-center container mb-3 h-mobile">
-      <h3 class="mb-4">
+    <div class="text-center container h-mobile pt-5">
+      <h3 class="mb-3">
         Udostępnij przepis znajomym
       </h3>
       <ul class="list-inline social-media-icons">
         <li class="list-inline-item" name="facebook-icon">
           <a href="#share">
-            <img height="75" src="{% static 'recipes/img/icons/flaticon/facebook.svg' %}" />
+            <img height="50" src="{% static 'recipes/img/icons/flaticon/facebook.svg' %}" />
           </a>
         </li>
         <li class="list-inline-item" name="reddit-icon">
           <a href="#share">
-            <img height="75" src="{% static 'recipes/img/icons/flaticon/reddit.svg' %}" />
+            <img height="50" src="{% static 'recipes/img/icons/flaticon/reddit.svg' %}" />
           </a>
         </li>
         <li class="list-inline-item" name="twitter-icon">
           <a href="#share">
-            <img height="75" src="{% static 'recipes/img/icons/flaticon/twitter.svg' %}" />
+            <img height="50" src="{% static 'recipes/img/icons/flaticon/twitter.svg' %}" />
           </a>
         </li>
         <li class="list-inline-item" name="mail-icon">
           <a href="#share">
-            <img height="75" src="{% static 'recipes/img/icons/flaticon/mail.svg' %}" />
+            <img height="50" src="{% static 'recipes/img/icons/flaticon/mail.svg' %}" />
           </a>
         </li>
       </ul>
