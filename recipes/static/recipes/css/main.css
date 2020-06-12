@@ -86,7 +86,7 @@ footer > div.footer-body section {
 
 ::-webkit-scrollbar { width: 5px; height: 15px }
 ::-webkit-scrollbar-track-piece { background-color: #353535 }
-::-webkit-scrollbar-thumb:vertical { height: 30px; background-color: Darkgray } 
+::-webkit-scrollbar-thumb:vertical { height: 30px; background-color: Darkgray }
 
 /* Hide horizontal scrollbar */
 .empty-h-scroll::-webkit-scrollbar:horizontal,

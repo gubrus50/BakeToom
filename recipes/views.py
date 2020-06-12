@@ -20,7 +20,7 @@ from django.db.models import F, Q
 from datetime import datetime, timedelta
 from .models import Recipe, Category
 from .forms import RecipeForm, CategoryForm
-import os
+import os, base64, requests
 
 
 
@@ -166,6 +166,24 @@ class RecipeDetailView(DetailView):
 
 
 
+
+class RecipePlainView(DetailView):
+	model = Recipe
+	template_name = 'recipes/recipe_plain.html'
+
+	def get_context_data(self, **kwargs):
+		context = super(RecipePlainView, self).get_context_data(**kwargs)
+		context['categories'] = Category.objects.all()
+
+		url = self.object.image.url
+		r = requests.get(url)
+		if r.status_code == 200:
+			byteBase64 = base64.b64encode(requests.get(url).content)
+			context['recipe_image_base64'] = byteBase64.decode("utf-8")
+		else:
+			context['recipe_image_base64'] = False
+		
+		return context
 
 
 

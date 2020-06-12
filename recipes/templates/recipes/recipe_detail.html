@@ -196,7 +196,6 @@
         </li>
       </ul>
     </div>
-
   {% else %}
     <!-- Background Image -->
     <div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('{% static 'recipes/img/background_notepad.png' %}'); background-size: 15px 15px">
@@ -213,7 +212,8 @@
 <script>
 var editing_tools = {% if object.publisher == request.user %}true{% else %}false{% endif %};
 var recipe_title = {% if object.title %}'{{ object.title }}'{% else %}'Przepis'{% endif %};
-var recipe_nationality = {% if recipe.nationality.name %}'{{ recipe.nationality.name }}'{% else %}'międzynarodowy'{% endif %}
+var recipe_nationality = {% if recipe.nationality.name %}'{{ recipe.nationality.name }}'{% else %}'międzynarodowy'{% endif %};
+var recipe_plain = '{% url 'recipe-plain' recipe.id %}';
 </script>
 <script src="{% static 'recipes/js/recipe_detail.js' %}"></script>
 {% endblock %}
