@@ -2,6 +2,23 @@
 /**//* Checkbox Bullet *//**/
 /**//* --------------- *//**/
 
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 6px;
+  left: -20px;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background-color: #e5e5e5
+}
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none
+}
+
 /* The container */
 .checkbox-container {
   display: block;
@@ -13,7 +30,6 @@
   -ms-user-select: none;
   user-select: none
 }
-
 /* Hide the browser's default checkbox */
 .checkbox-container input {
   position: absolute;
@@ -22,35 +38,14 @@
   height: 0;
   width: 0
 }
-
-/* Create a custom checkbox */
-.checkmark {
-  position: absolute;
-  top: 6px;
-  left: -20px;
-  height: 10px;
-  width: 10px;
-  border-radius: 50%;
-  background-color: #e5e5e5
-}
-
 /* When the checkbox is checked, add a blue background */
 .checkbox-container input:checked ~ .checkmark {
   background-color: #2196F3
 }
-
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none
-}
-
 /* Show the checkmark when checked */
 .checkbox-container input:checked ~ .checkmark:after {
   display: block
 }
-
 /* Style the checkmark/indicator */
 .checkbox-container .checkmark:after {
   left: 4px;
@@ -72,47 +67,164 @@
 
 
 
+/**//* ---------------- *//**/
+/**//* Recipe Container *//**/
+/**//* ---------------- *//**/
 
-
-
-
-
-/**//* ----------------- *//**/
-/**//* Recipe Containers *//**/
-/**//* ----------------- *//**/
-
-/* Hide categories list bullet */
-.recipe-ingredients section ul {
-  padding-inline-start: 20px;
-  list-style-type: none
+#recipe-detail-content {
+  border-radius: 3px;
 }
 
-/* Ingredients categories container */
-.recipe-ingredients section {
-  float: left;
-  width: 30%;
+#recipe-detail-navbar {
+  background-color: #d1d5da;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1px;
+}
+#recipe-detail-navbar button {
+  border-radius: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(248,249,250,1) 100%);
+}
+#recipe-detail-navbar button:hover {
+  border-color: #dbdbdb;
+  background: linear-gradient(180deg, rgba(250,250,250,1) 0%, rgba(242,242,242,1) 100%);
+}
+#recipe-detail-navbar i {
+  margin-right: 10px;
+}
+
+#recipe { overflow: auto }
+#recipe > article > div.wrapper {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  font-family: calibri;
+  font-size: 14px;
+  grid-gap: 15px;
+}
+
+#method > article {
+  font-family: calibri;
+}
+
+#ingredients > article {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 15px;
+}
+#ingredients > article > section {
   height: 250px;
-  border: 1px solid lightGray;
-  border-radius: 10px;
   padding: 10px;
-  margin: 10px;
-  margin-left: 20px;
-  overflow: scroll
+  overflow: scroll;
+  border-radius: 3px;
+  background-color: #fcfcfc;
+}
+#ingredients > article > section::-webkit-scrollbar-thumb:vertical,
+#ingredients > article > section ::-webkit-scrollbar-thumb:vertical {
+  height: 30px;
+  background-color: #d1d1d1;
+}
+#ingredients > article > section::-webkit-scrollbar-track-piece,
+#ingredients > article > section ::-webkit-scrollbar-track-piece {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.05);
+}
+#ingredients > article > section > ul {
+  padding-inline-start: 20px;
+  list-style-type: none;
+}
+#ingredients > article > section .title {
+  font-weight: 300;
+  line-height: 1.2;
 }
 
-/**//* ------------------------ *//**/
-/**//* END of Recipe Containers *//**/
-/**//* ------------------------ *//**/
+#license > article {
+  font-family: monospace;
+}
+
+@media only screen and (max-width: 991px) {
+  #recipe > article > div.wrapper {
+    grid-template-columns: 3fr 1.5fr;
+    font-size: 12px;
+  }
+  #ingredients > article {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  #method > article, #license > article {
+    font-size: 16px;
+  }
+}
+@media only screen and (max-width: 767px) {
+  #recipe > article > div.wrapper {
+    display: block;
+  }
+  #recipe > article > div.wrapper img {
+    margin-top: 20px;
+    height: 150px;
+    width: 200px;
+    float: right;
+  }
+  #recipe > article > div.wrapper section[name="description"] {
+    width: 100%;
+  }
+  #recipe > article > section[name="data"] {
+    float: left;
+    font-size: 12px;
+  }
+  #recipe > article > section[name="data"] > ul > li {
+    display: block;
+  }
+  #method > article, #license > article {
+    font-size: 14px;
+  }
+  .off-w767 {
+    display: none;
+  }
+}
+@media only screen and (max-width: 575px) {
+  #ingredients > article {
+    grid-template-columns: 1fr;
+  }
+  #recipe-detail-navbar {
+    border-radius: 0 !important;
+    grid-template: 1fr 1fr / 1fr 1fr;
+  }
+  #recipe-detail-navbar button {
+    border-radius: 0 !important;
+  }
+}
+@media only screen and (max-width: 483px) {
+  #recipe-detail-navbar button {
+    font-size: 12px;
+  }
+  #recipe > article > div.wrapper img {
+    width: 100%;
+    height: 250px;
+    float: auto;
+    margin-bottom: 20px;
+  }
+  #method > article, #license > article {
+    font-size: 12px;
+  }
+}
+@media only screen and (max-width: 400px) {
+  #recipe > article > div.wrapper img {
+    height: 200px;
+  }
+}
+@media only screen and (max-width: 338px) {
+  #recipe > article > div.wrapper img {
+    height: 150px;
+  }
+}
+@media only screen and (max-width: 260px) {
+  #recipe-detail-navbar {
+    grid-template: 1fr / 1fr;
+  }
+}
 
 
-
-
-
-
-
-
-
-
+/**//* ----------------------- *//**/
+/**//* END of Recipe Container *//**/
+/**//* ----------------------- *//**/ 
 
 
 /* Social Media Icons */
@@ -123,33 +235,17 @@
 }
 
 
-
-
-
-
-/* Center categories */
-@media only screen and (max-width: 1200px) {
-  /* Recipe categories container */
-  .recipe-ingredients section {
-    margin-left: 16px
-  }
-}
-@media only screen and (max-width: 1000px) {
-  /* Recipe categories container */
-  .recipe-ingredients section {
-    margin-left: 10px
-  }
+#expand-list.active {
+  border-top: 2px solid #9c9c9c;
+  border-left: 2px solid #9c9c9c;
+  border-right: 2px solid #eee;
+  border-bottom: 2px solid #eee;
 }
 
 
-
-
-
-/* If user on mobile display */
 @media only screen and (max-width: 800px) {
 
 	.social-media-icons li a img { height: 50px }
-
 
 	/* Recipe Categories ingredients list */
 	.checkbox-container {
@@ -160,23 +256,4 @@
 		left: -19px
 	}
 	/* END of Recipe Categories ingredients list */
-
-
-	/* Recipe categories container */
-	.recipe-ingredients section {
-    float: none;
-	  width: auto;
-	  height: 250px
-	}
-	/* END of Recipe categories container */
-
-
-	/* Recipe method Expan button (Rozszerz Listę btn) */
-	.recipe-method span button {
-		padding: .25rem .5rem;
-    font-size: .875rem;
-    line-height: 1.5;
-    border-radius: .2rem
-	}
-
 }
