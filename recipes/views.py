@@ -231,7 +231,7 @@ def RecipeCreateView(request):
 	# category_creation_count can be set to 0 - 9
 	# It creates empty categories in the recipe-form
 	if categories is None or ingredients is None:
-		args['category_creation_count'] = 1
+		args['category_creation_count'] = 0
 		args['categories'] = 'null'
 		args['ingredients'] = 'null'
 	else:

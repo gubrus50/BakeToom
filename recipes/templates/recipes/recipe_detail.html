@@ -1,6 +1,9 @@
 {% extends "recipes/base.html" %}
 {% load recipes_extras %}
 {% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'recipes/css/recipe_detail.css' %}">
+{% endblock %}
 {% block content %}
   {% if recipe.published or recipe.publisher == request.user %}
 

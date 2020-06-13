@@ -25,8 +25,6 @@
 
   <link rel="shortcut icon" href="{% static 'recipes/img/icons/baketoom_icon.svg' %}">
   <link rel="stylesheet" href="{% static 'recipes/css/main.css' %}">
-  <link rel="stylesheet" href="{% static 'recipes/css/recipe_detail.css' %}">
-  <link rel="stylesheet" href="{% static 'recipes/css/recipe_form.css' %}">
   
   <script name="jQuery" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" crossorigin="anonymous"></script>
 
@@ -73,7 +71,7 @@
           </li>
           {% endif %}
           <!-- Tools dropdown -->
-          <li class="nav-item dropdown">
+          <li id="tools-dropdown" class="nav-item dropdown">
             <a title="Menedżer przepisów" name="recipe-manager" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="align-icon-item fa fa-edit"></i>
               <span name="tools">Narzędzia</span>

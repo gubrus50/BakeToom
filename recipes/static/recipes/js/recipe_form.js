@@ -2,20 +2,20 @@ var category_count = 0;
 function createCategoryInIngredientsForm(loop)
 {
 	for (i=0; i<loop; i++) {
-		$("#ingredientsForm").append('\
-			<div class="p-3 mb-2 rounded recipe-category">\
+		$("#ingredients-form").append('\
+			<div class="rounded recipe-category">\
 			  <!-- Category Title -->\
 			  <div class="form-group">\
 			    <label>Tytuł kategorii</label>\
 			    <input type="text" name="category" maxlength="100" class="form-control" required>\
 			  </div>\
-			  <br/><br/>\
+			  <br/>\
 			  <!-- Category Ingredients -->\
-			  <div class="form-group custom-scroll empty-h-scroll">\
+			  <div class="form-group">\
 			    <label>Wprowadź listę składników do następującej kategorii</label>\
-			    <textarea name="ingredients" maxlength="500" class="form-control" rows="3" required></textarea>\
+			    <textarea name="ingredients" maxlength="500" class="form-control" rows="10" required></textarea>\
 			  </div>\
-			  <button type="button" class="btn btn-outline-danger" onclick="category_count--;updateCategoryButtonInIngredientsForm(); $(this).closest(\'div\').remove();">Usuń kategorie</button>\
+			  <button type="button" class="btn btn-outline-danger w-100" onclick="category_count--;updateCategoryButtonInIngredientsForm(); $(this).closest(\'div\').remove();">Usuń kategorie</button>\
 			</div>\
 		');
 		category_count++
