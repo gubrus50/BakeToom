@@ -1,38 +1,97 @@
-/* Recipe category form container */
-.recipe-category {
-  background-color: #e8e8e8;
-  width: 30% !important;
-  margin-left: 20px;
-  margin: 10px;
-  float: left
+#tools-dropdown {
+  display: none;
 }
 
-/* Recipe category -> ingredients form (textarea) */
-.recipe-category div textarea[name="ingredients"] {
+
+
+.recipe-form-container {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 30px;
+  border: 1px solid #ced4da;
+  background-color: #fff;
+  border-radius: 3px;
+  overflow: auto;
+}
+.recipe-form-container .title {
+  font-weight: 300;
+}
+
+
+
+#recipe-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 15px;
+}
+#recipe-form > .title {
+  display: grid;
+  grid-column: 1 / 3;
+}
+#recipe-form .form-group:nth-of-type(1) {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-bottom: 0;
+}
+#recipe-form .form-group:nth-of-type(1) #div_id_title {
+  margin-bottom: 1rem;
+}
+#recipe-form .form-group:nth-of-type(1) #id_image {
+  margin: 0;
+}
+#recipe-form #div_id_description,
+#recipe-form #div_id_description > div {
+  height: 100%;
+}
+#recipe-form #div_id_description textarea[name="description"] {
+  height: 100% !important;
+}
+#recipe-form #id_image {
+  border: 1px solid #ced4da;
+  border-radius: 3px;
+  padding: .375rem;
+}
+
+
+
+#ingredients-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 15px;
+}
+#ingredients-form > div:nth-of-type(1) {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-column: 1 / 4;
+  grid-gap: 30px;
+}
+/* Recipe category form container */
+#ingredients-form .recipe-category {
+  background-color: #fcfcfc;
+  padding: 30px;
+  width: 100%;
+}
+#ingredients-form .recipe-category textarea[name="ingredients"] {
   min-height: 150px
 }
 
-/* Submit form button at the bottom */
-#new-recipe-submit-form input[type="submit"] {
+
+
+#recipe-submit-form input[type="submit"] {
   width: 500px
 }
-
-/* Submit form buttons ("Zaktualizuj dane", "Przerwij akcję") at the bottom */
-#new-recipe-submit-form div.btn-group button {
+/* Update and Deny action */
+#recipe-submit-form div.btn-group button {
   width: 300px
 }
 
 
 
-
-
-
 /**//* ----------- *//**/
-/**//* Django form *//**/
+/**//* Form Inputs *//**/
 /**//* ----------- *//**/
-
-/* Following forms width is adjusted to
-   auto to fill their parent container */
 
 #div_id_title,
 #div_id_title div,
@@ -57,69 +116,129 @@
 
 #div_id_published,
 #div_id_published div { 
-  width: auto !important
+  width: auto !important;
+}
+
+#div_id_published > label {
+  text-align: left;
 }
 
 /**//* ------------------ *//**/
-/**//* END of Django form *//**/
+/**//* END of Form Inputs *//**/
 /**//* ------------------ *//**/
 
 
-
-
-
-
-
-/* Center categories */
-@media only screen and (max-width: 1200px) {
-  /* Recipe category form container */
-  .recipe-category {
-    margin-left: 16px
+@media only screen and (max-width: 991px) {
+  .recipe-form-container {
+    margin-top: 25px;
+    margin-bottom: 25px;
   }
-}
-@media only screen and (max-width: 1000px) {
-  /* Recipe categories container */
-  .recipe-category {
-    width: auto !important;
-    margin-left: 10px;
-    float: none
-  }
-}
-
-
-
-
-
-
-/* If user on mobile display */
-@media only screen and (max-width: 800px) {
-
-  .recipe-container {
-    padding-left: 1% !important;
-    padding-right: 1% !important
+  .recipe-form-container textarea {
+    font-size: 14px;
   }
 
-  /* Recipe category -> ingredients form (textarea) */
-  .recipe-category div textarea[name="ingredients"] {
-    min-height: 250px
+
+  #ingredients-form {
+    grid-template-columns: 1fr 1fr;
+  }
+  #ingredients-form > div:nth-of-type(1) {
+    grid-template-columns: 1fr 1fr;
+    grid-column: 1 / 3;
+    grid-gap: 15px;
   }
 
-  /* Submit form warning message ("Uwaga!") */
-  #new-recipe-submit-form section {
+
+  #recipe-submit-form section {
     margin-right: 5% !important;
     margin-left: 5% !important;
     font-size: 12px
   }
-
-  /* Submit form button at the bottom */
-  #new-recipe-submit-form input[type="submit"] {
+  #recipe-submit-form input[type="submit"] {
     width: 80%;
     font-size: 15px
   }
-
-  /* Submit form buttons ("Zaktualizuj dane", "Przerwij akcję") at the bottom */
-  #new-recipe-submit-form div.btn-group button { 
+  /* Update and Deny action */
+  #recipe-submit-form div.btn-group button { 
     font-size: 16px;
     width: auto
+  }
+}
+
+
+
+@media only screen and (max-width: 767px) {
+  #recipe-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 15px;
+  }
+  #recipe-form > .title {
+    display: grid;
+    grid-column: 1;
+  }
+
+
+  #ingredients-form {
+    grid-template-columns: 1fr;
+  }
+  #ingredients-form > div:nth-of-type(1) {
+    grid-template-columns: 1fr 1fr;
+    grid-column: 1 / 2;
+    grid-gap: 15px;
+  }
+}
+
+
+
+@media only screen and (max-width: 575px) {
+  .recipe-form-container {
+    font-size: 14px;
+    padding: 20px;
+  }
+  .recipe-form-container .title,
+  #recipe-submit-form .warning-title {
+    font-size: 24px;
+  }
+
+
+  #ingredients-form .recipe-category {
+    padding: 15px;
+  }
+}
+
+
+
+@media only screen and (max-width: 370px) {
+  .recipe-form-container {
+    font-size: 12px;
+    padding: 20px;
+  }
+  .recipe-form-container textarea {
+    font-size: 12px;
+  }
+
+
+  #ingredients-form > div:nth-of-type(1) {
+    grid-template-columns: 1fr;
+    grid-column: 1;
+  }
+  #ingredients-form .recipe-category {
+    margin-top: 15px;
+    padding: 5px;
+  }
+
+
+  #recipe-submit-form {
+    text-align: justify;
+  }
+
+
+  #recipe-submit-form .warning-title {
+    text-align: center;
+  }
+  /* Update and Deny action */
+  #recipe-submit-form .recipe-form-buttons {
+    display: flex;
+    justify-content: center;
   }
 }

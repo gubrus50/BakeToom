@@ -113,10 +113,10 @@ data-tag {
         Typ: {{ recipe.recipe_type|title }}
       {% else %}Typ: inne{% endif %},
 
-      ID: {{ recipe.id }},
+      ID: {{ recipe.id }}
 
       {% if recipe.certified %}
-        Atestowany
+        , Atestowany
       {% endif %}
 
       {% if not recipe.published %}
