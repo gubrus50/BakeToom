@@ -81,12 +81,15 @@ class RecipeListView(ListView):
 		elif nationality_mode == 'international':
 			query_set &= Q(nationality__iexact='')
 
+		# general upload date
 		if search_by_date and search_by_date != 'GUD':
 			t = timezone.localtime(timezone.now())
 
 			# today's upload date
 			if search_by_date == 'TUD':
 				query_set &= Q(date_posted__day=t.day)
+				query_set &= Q(date_posted__month=t.month)
+				query_set &= Q(date_posted__year=t.year)
 
 			# this week upload date
 			elif search_by_date == 'TWUD':
@@ -95,10 +98,13 @@ class RecipeListView(ListView):
 				week_end = week_start + timedelta(days=7)
 				query_set &= Q(date_posted__gte=week_start)
 				query_set &= Q(date_posted__lt=week_end)
+				query_set &= Q(date_posted__month=t.month)
+				query_set &= Q(date_posted__year=t.year)
 
 			# this month upload date
 			elif search_by_date == 'TMUD':
 				query_set &= Q(date_posted__month=t.month)
+				query_set &= Q(date_posted__year=t.year)
 
 			# this year upload date
 			elif search_by_date == 'TYUD':
@@ -160,8 +166,9 @@ class UserRecipeListView(ListView):
 class RecipeDetailView(DetailView):
 	model = Recipe
 	def get_context_data(self, **kwargs):
+		recipe_id = self.kwargs['pk']
 		context = super(RecipeDetailView, self).get_context_data(**kwargs)
-		context['categories'] = Category.objects.all()
+		context['categories'] = Category.objects.select_related().filter(recipe=recipe_id)
 		return context
 
 
