@@ -4,6 +4,7 @@
 {% block head %}
 <link rel="stylesheet" href="{% static 'recipes/css/home.css' %}">
 <link rel="stylesheet" href="{% static 'recipes/css/extensions/recipe_container.css' %}">
+<link rel="stylesheet" href="{% static 'recipes/plugins/slide-in-scroll/slidein.css' %}">
 <style>
 /*-- Search Form --*/
 #previous-page-btn {
@@ -105,4 +106,5 @@
 {% endblock content %}
 {% block base %}
 <script name="search-form" src="{% static 'recipes/js/filter_search_with_pagination.js' %}" crossorigin="anonymous"></script>
+<script name="js-slidein" src="{% static 'recipes/plugins/slide-in-scroll/slideIn.min.js' %}"></script>
 {% endblock %}

@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="{% static 'recipes/css/recipe_form.css' %}">
 {% endblock %}
 {% block content %}
+
   <form method="POST" enctype="multipart/form-data" class="mb-5">
     {% csrf_token %}
     <div class="container custom-scroll empty-h-scroll">
@@ -79,6 +80,7 @@
     </center>
 
   </form>
+
 {% endblock content %}
 {% block base %}
 <script type="text/javascript">

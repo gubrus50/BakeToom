@@ -1,132 +1,154 @@
 {% extends "recipes/base.html" %}
 {% load recipes_extras %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'recipes/css/recipe_detail.css' %}">
+<style>
+.title {
+  font-weight: 300;
+  line-height: 1.2;
+}
+.underline-font {
+  font-family: sans-serif;
+  border-bottom: 1px solid red;
+  margin: 0px 5px 0px 5px;
+}
+form > article {
+  font-family: calibri;
+  font-size: 16px;
+}
+#recipe-form form > a { 
+  float: right;
+}
+@media only screen and (max-width: 483px) {
+  #recipe-form > article {
+    font-size: 14px;
+  }
+  #recipe-form form > button,
+  #recipe-form form > a { width: 100%; }
+  #recipe-form form > button {
+    margin-bottom: 10px;
+  }
+}
+</style>
+{% endblock %}
 {% block content %}
-  {% load static %}
-
-
-  <!-- Background Image -->
-  <div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('{% static 'recipes/img/background_notepad.png' %}'); background-size: 15px 15px">
-    <center class="container recipe-container">
-
-
-    <!-- Recipe container -->
-    <div class="border m-1 btn-light p-2" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
+  <div id="recipe-detail-content" class="container bg-white border mb-5 mt-5" style="border-radius: 3px">
+    <div id="recipe" class="p-4">
+      <h3 class="title text-uppercase">{{ recipe.title }}</h3>
       <article>
-        <img class="float-right" width="150px" height="100px" style="border-radius: 5px 5px 5px 75px" src="{{ object.image.url }}">
-        <h3>{{ object.title }}</h3>
-        <p>{{ object.description }}</p>
-        <small class="f16">
-          {% if object.nationality %}
-            narodowość:
-            <li class="flag {{ object.nationality|lower }}"></li>
-          {% else %}
-            narodowość: międzynarodowy
-          {% endif %},
-          
-          {% if object.publisher %}
-            wydawca: <a href="{% url 'user-recipes' object.publisher.username %}">{{ object.publisher }}</a> 
-          {% else %}
-            wydawca: null 
-          {% endif %},
+        <div class="wrapper mb-3">
+          <section name="description">
+            <div>
+              {{ recipe.description }}
+            </div>
+            <div class="mt-3">
+              Przepis został umieszczony na BakeToom - 
+              {{ recipe.date_created|date:"d-m-Y, " }}o 
+              {{ recipe.date_created|date:"H:i" }}
 
-          {% if object.recipe_type %}
-            typ: {{ object.recipe_type }}
-          {% else %}
-            typ: inne
-          {% endif %},
-
-          {% if not recipe.published %}
-            <b>nie opublikowany</b> ,
-          {% endif %}
-
-          id_przepisu: {{ object.id }}
-          {% if object.certified %}
-            <img class="float-right" height="30" src="{% static 'recipes/img/icons/flaticon/contract.svg' %}" />
-          {% endif %}
-        </small>
-
-
-        <hr/>
-
-        <article name="recipe-history">
-          <h5 class="mt-3">Historia</h5>
-          <small>
-            Przepis został umieszczony na BakeToom - 
-            {{ recipe.date_created|date:"d-m-Y, " }}o 
-            {{ recipe.date_created|date:"H:i" }}
-
-            {% if recipe.date_posted_old %}
-              i pierwszy raz został opublikowany - 
-              {{ recipe.date_posted_old|date:"d-m-Y, " }}o 
-              {{ recipe.date_posted_old|date:"H:i" }}.
-            {% endif %}
-
-            {% if recipe.date_edited and recipe.date_edited != recipe.date_created %}
-
-              {% if recipe.date_posted and recipe.date_posted != recipe.date_created %}
-                {% if recipe.date_posted == recipe.date_edited %}
-                  <br/>Przepis edytowano i ponownie go opulikowano -
-                  {{ recipe.date_posted|date:"d-m-Y, " }}o
-                  {{ recipe.date_posted|date:"H:i" }}.
-                {% else %}
-                  <br/>Przepis ostatnio opublikowano -
-                  {{ recipe.date_posted|date:"d-m-Y, " }}o
-                  {{ recipe.date_posted|date:"H:i" }}, 
-                  i ostatnio go edytowano - 
-                  {{ recipe.date_edited|date:"d-m-Y, " }}o
-                  {{ recipe.date_edited|date:"H:i" }}.
-                {% endif %}
-
-              {% else %}
-                {% if not recipe.date_posted_old %}
-                  i ostatnio go edytowano
-                {% else %}
-                  <br/>Przepis ostatnio edytowano - 
-                {% endif %}
-                {{ recipe.date_edited|date:"d-m-Y, " }}o
-                {{ recipe.date_edited|date:"H:i" }}{% if recipe.date_posted and recipe.date_posted == recipe.date_created %}
-                  i został on usunięty z wiadomości publicznej na czas nieokreślony.
-                {% else %}.{% endif %}
+              {% if recipe.date_posted_old %}
+                i pierwszy raz został opublikowany - 
+                {{ recipe.date_posted_old|date:"d-m-Y, " }}o 
+                {{ recipe.date_posted_old|date:"H:i" }}.
               {% endif %}
 
-            {% elif recipe.date_posted_old %}
-              Od tamtego czasu, nigdy nie był edytowany. 
-            {% else %}
-              i od tamtego czasu, nigdy nie był edytowany. 
+              {% if recipe.date_edited and recipe.date_edited != recipe.date_created %}
+
+                {% if recipe.date_posted and recipe.date_posted != recipe.date_created %}
+                  {% if recipe.date_posted == recipe.date_edited %}
+                    Przepis edytowano i ponownie go opulikowano -
+                    {{ recipe.date_posted|date:"d-m-Y, " }}o
+                    {{ recipe.date_posted|date:"H:i" }}.
+                  {% else %}
+                    Przepis ostatnio opublikowano -
+                    {{ recipe.date_posted|date:"d-m-Y, " }}o
+                    {{ recipe.date_posted|date:"H:i" }}, 
+                    i ostatnio go edytowano - 
+                    {{ recipe.date_edited|date:"d-m-Y, " }}o
+                    {{ recipe.date_edited|date:"H:i" }}.
+                  {% endif %}
+
+                {% else %}
+                  {% if not recipe.date_posted_old %}
+                    i ostatnio go edytowano
+                  {% else %}
+                    Przepis ostatnio edytowano - 
+                  {% endif %}
+                  {{ recipe.date_edited|date:"d-m-Y, " }}o
+                  {{ recipe.date_edited|date:"H:i" }}{% if recipe.date_posted and recipe.date_posted == recipe.date_created %}
+                    i został on usunięty z wiadomości publicznej na czas nieokreślony.
+                  {% else %}.{% endif %}
+                {% endif %}
+
+              {% elif recipe.date_posted_old %}
+                Od tamtego czasu, nigdy nie był edytowany. 
+              {% else %}
+                i od tamtego czasu, nigdy nie był edytowany. 
+              {% endif %}
+            </div>
+          </section>
+          <img width="100%" height="175px" src="{{ recipe.image.url }}">
+        </div>
+        <section name="data">
+          <h5 style="font-weight: 400">Dane</h5>
+          <ul class="list-inline f16" style="font-family: monospace">
+            <li class="list-inline-item m-0">
+              {% if recipe.nationality %}
+                Narodowość:
+                <span class="flag {{ recipe.nationality|lower }}"></span>
+              {% else %}
+                Narodowość: Międzynarodowy
+              {% endif %}
+            </li>
+            <i class="off-w767">,</i>
+            <li class="list-inline-item m-0">
+              {% if recipe.publisher %}
+                Wydawca: <a href="{% url 'user-recipes' recipe.publisher.username %}">{{ recipe.publisher }}</a>
+              {% else %}Wydawca: ...{% endif %}
+            </li>
+            <i class="off-w767">,</i>
+            <li class="list-inline-item m-0">
+              {% if recipe.recipe_type %}
+                Typ: {{ recipe.recipe_type|title }}
+              {% else %}Typ: inne{% endif %}
+            </li>
+            <i class="off-w767">,</i>
+            <li class="list-inline-item m-0">
+              ID: {{ recipe.id }}
+            </li>
+            {% if recipe.certified %}
+              <i class="off-w767">,</i>
+              <li class="list-inline-item m-0">
+                Atestowany <img height="30" src="{% static 'recipes/img/icons/flaticon/contract.svg' %}">
+              </li>
             {% endif %}
-          </small>
-        </article>
+            {% if not recipe.published %}
+              <li class="list-inline-item m-0">
+                <b class="text-uppercase" style="color: red">nie opublikowany</b>
+              </li>
+            {% endif %}
+          </ul>
+        </section>
       </article>
     </div>
-
-
-      <!-- Delete Form -->
-      <form method="POST">
+    <div id="recipe-form" class="p-4 border-top" style="overflow: auto">
+      <h3 class="title text-uppercase">Uwaga, zamierzasz usunąć przepis!</h3>
+      <article>
+        Po naciśnięciu przycisku <span class="underline-font">Usuń przepis</span> zgadzasz się na to by wszystkie dane
+        następującego przepisu zostały permanentnie wyczyszczone z naszej platformy.
+        <span class="underline-font">Czy napewno chcesz usunąć ten oto przepis?</span>
+      </article>
+      <form method="POST" class="mb-3 mt-5">
         {% csrf_token %}
-        <div class="border m-1 btn-light p-2" style="background-color: #f8f9fa; overflow: auto; border-radius: 5px">
-          <article>
-            <h3>Uwaga, zamierzasz usunąć przepis!</h3>
-            <hr/>
-            Po naciśnięciu przycisku <b>"Usuń przepis"</b> zgadzasz się na to by wszystkie dane
-            następującego przepisu zostały permanentnie wyczyszczone z naszej platformy.
-            <u>Czy napewno chcesz usunąć ten oto przepis?</u>
-          </article>
-          <br/>
-          <!-- Delete and Deny action -->
-          <button class="btn btn-outline-danger" type="submit">
-            Usuń przepis
-          </button>
-          <a class="btn btn-outline-info float-right" href="{% url 'recipe-detail' object.id %}">
-            Przerwij akcję
-          </a>
-        </div>
+        <!-- Delete and Deny action -->
+        <button class="btn btn-outline-danger" type="submit">
+          Usuń przepis
+        </button>
+        <a class="btn btn-outline-dark" href="{% url 'recipe-detail' object.id %}">
+          Przerwij akcję
+        </a>
       </form>
-
-
-    </center>
+    </div>
   </div>
-  <br/>
-  <!-- End of Background Image -->
-
-
 {% endblock content %}
