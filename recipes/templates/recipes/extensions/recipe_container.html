@@ -1,9 +1,9 @@
 {% load static %}
 {% if recipes %}
-  <div id="recipe-wrapper" class="container mb-3 px-0">
+  <div id="recipe-wrapper" class="container mb-5 px-0">
     {% for recipe in recipes %}
       {% if recipe.published or recipe.publisher == request.user %}
-        <a class="btn btn-light border-0 m-2" style="padding: 1px; border-radius: 0" href="{% url 'recipe-detail' recipe.id %}">
+        <a class="btn btn-light js-slidein m-2" style="padding: 1px; border-radius: 0" href="{% url 'recipe-detail' recipe.id %}">
           <div class="recipe-item">
             <div class="recipe-image">
               <img width="100%" height="175px" alt="Recipe" src="{{ recipe.image.url }}" style="{% if not recipe.published %}opacity: 0.3{% endif %}">
@@ -24,7 +24,7 @@
                 {% endif %}
               </h7>
               {% if recipe.certified %}
-                <img class="ml-1" height="30" src="{% static 'recipes/img/icons/flaticon/contract.svg' %}">
+                <img class="ml-1 mt-1" height="20" src="{% static 'recipes/img/icons/flaticon/contract.svg' %}">
               {% endif %}
             </div>
           </div>
@@ -33,7 +33,7 @@
     {% endfor %}
   </div>
 {% else %}
-  <div name="no-rezults" class="text-center text-uppercase p-3 my-5 bg-light">
+  <div name="no-results" class="text-center text-uppercase p-3 my-5 bg-light">
     <h2 style="font-weight: 300">Zero rezultatów</h2>
   </div>
 {% endif %}
@@ -41,7 +41,7 @@
 
 {% if is_paginated %}
   <!-- Pagination -->
-  <center class="pagination justify-content-center">
+  <center class="pagination js-slidein justify-content-center">
     <nav id="home-pagination" aria-label="Page navigation example">
 
       <div>
