@@ -1,0 +1,85 @@
+body {
+  background-color: #fbfbfb;
+}
+
+#document-container {
+  margin: auto;
+  width: 80%;
+}
+
+#menu {
+  font-size: 26px;
+  text-align: right;
+}
+
+#document {
+  border-radius: 3px;
+}
+#document p {
+  font-family: calibri;
+}
+#document .title {
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+#document h3.title {
+  margin-top: 30px;
+}
+#document .sub-title {
+  margin-bottom: 50px;
+}
+
+@media only screen and (max-width: 991px) {
+  #document-container {
+    width: auto;
+  }
+  #document p,
+  #document li {
+    font-size: 12px;
+  }
+  #document .title {
+    font-size: 30px;
+  }
+  #document h3.title {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  #document .sub-title {
+    font-size: 14px;
+    margin-bottom: 40px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  #document p,
+  #document li {
+    font-size: 10px;
+  }
+  #document .title {
+    font-size: 26px;
+  }
+  #document h3.title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  #document .sub-title {
+    margin-bottom: 30px;
+    font-size: 12px;
+  }
+}
+@media only screen and (max-width: 400px) {
+  #document p,
+  #document li {
+    font-size: 8px;
+  }
+  #document .title {
+    font-size: 22px;
+  }
+  #document h3.title {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  #document .sub-title {
+    margin-bottom: 20px;
+    font-size: 10px;
+  }
+}

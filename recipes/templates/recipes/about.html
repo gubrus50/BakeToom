@@ -1,0 +1,36 @@
+{% extends "recipes/base.html" %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'recipes/css/about.css' %}">
+{% endblock %}
+{% block content %}
+
+  <div id="about-container" class="container my-5 p-4">
+    <div name="terms-and-conditions" class="document border p-3" onclick="windowLocate(this, '{% url 'terms-and-conditions' %}')">
+      <img height="125" src="{% static 'recipes/img/icons/flaticon/book.svg' %}">
+      <h5 class="title text-uppercase">Zasady i Warunki</h5>
+      <p>Niniejszy regulamin określa zasady korzystania z witryny internetowej BakeToom, znajdującej się pod adresem baketoom.com. Uzyskując dostęp do tej witryny, przyjmujemy, że akceptujesz te warunki... (kliknij mnie, aby dowiedzieć się więcej)</p>
+    </div>
+    <div name="privacy-and-policy" class="document border p-3" onclick="windowLocate(this, '{% url 'privacy-and-policy' %}')">
+      <img src="{% static 'recipes/img/icons/flaticon/law.svg' %}">
+      <h5 class="title text-uppercase">Prywatność i Polityka</h5>
+      <p>W BakeToom, dostępnym z baketoom.com, jednym z naszych głównych priorytetów jest prywatność naszych gości. Niniejszy dokument Polityki prywatności zawiera rodzaje informacji, które są gromadzone i rejestrowane przez BakeToom oraz sposób ich wykorzystania... (kliknij mnie, aby dowiedzieć się więcej)</p>
+    </div>
+    <div name="contact-us" class="document border p-3" onclick="windowLocate(this, '{% url 'contact-us-form' %}')">
+      <img src="{% static 'recipes/img/icons/flaticon/email.svg' %}">
+      <h5 class="title text-uppercase">Skontaktuj się z nami</h5>
+      <p>Jeśli skontaktujesz się z nami bezpośrednio, możemy otrzymać dodatkowe informacje o tobie, takie jak imię i nazwisko, adres e-mail, numer telefonu, treść wiadomości i / lub załączniki, które możesz nam wysłać, oraz wszelkie inne informacje, które możesz podać... (kliknij mnie, aby dowiedzieć się więcej)</p>
+    </div>
+  </div>
+
+{% endblock content %}
+{% block base %}
+<script>
+function windowLocate(element, url) {
+  $(element).fadeOut(500);
+  setTimeout(function() {
+    window.location = url
+  }, 500);
+}
+</script>
+{% endblock %}
