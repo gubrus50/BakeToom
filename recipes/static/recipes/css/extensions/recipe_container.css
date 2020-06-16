@@ -58,6 +58,15 @@
 #recipe-wrapper a {
   color: inherit;
   text-decoration: inherit;
+  padding: 0;
+  border-radius: 0;
+  background-color: #fff;
+  transition: transform .2s;
+}
+#recipe-wrapper a:hover {
+  -ms-transform: scale(1.02); /* IE 9 */
+  -webkit-transform: scale(1.02); /* Safari 3-8 */
+  transform: scale(1.02);
 }
 #recipe-wrapper div.recipe-item {
   width: 250px;
