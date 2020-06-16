@@ -1,0 +1,109 @@
+body { 
+  background-color: #fbfbfb;
+}
+
+#about-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+#about-container > .document {
+  cursor: pointer;
+  border-radius: 3px;
+  transition: transform .2s;
+}
+#about-container > .document:hover {
+  -ms-transform: scale(1.02); /* IE 9 */
+  -webkit-transform: scale(1.02); /* Safari 3-8 */
+  transform: scale(1.02);
+}
+#about-container > .document > img {
+  margin: auto;
+  margin-top: 20px;
+  display: block;
+  padding: 10px;
+  height: 150px;
+}
+#about-container > .document > .title {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-weight: 300;
+  text-align: center;
+}
+#about-container > .document > p {
+  font-weight: 300;
+  font-size: 14px;
+  padding: 10px;
+}
+
+@media only screen and (max-width: 991px) {
+  #about-container > .document > img {
+    height: 115px;
+  }
+  #about-container > .document > .title {
+    font-size: 14px;
+  }
+  #about-container > .document > p {
+    font-size: 10px;
+  }
+}
+@media only screen and (max-width: 767px) {
+  #about-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  #about-container > .document {
+    width: 45%;
+    margin: 10px;
+    flex-wrap: wrap;
+  }
+  #about-container > .document > .title {
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+@media only screen and (max-width: 575px) {
+  #about-container {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  #about-container > .document {
+    display: block;
+    width: auto;
+    margin: auto;
+  }
+  #about-container > .document > img {
+    height: 150px;
+  }
+  #about-container > .document > .title {
+    font-size: 20px;
+  }
+  #about-container > .document > p {
+    font-size: 14px;
+  }
+}
+@media only screen and (max-width: 400px) {
+  #about-container > .document > img {
+    height: 115px;
+  }
+  #about-container > .document > .title {
+    font-size: 14px;
+  }
+  #about-container > .document > p {
+    font-size: 10px;
+  }
+}
+@media only screen and (max-width: 300px) {
+  #about-container > .document > img {
+    height: 80px;
+  }
+  #about-container > .document > .title {
+    font-size: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  #about-container > .document > p {
+    font-size: 8px;
+  }
+}
