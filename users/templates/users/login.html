@@ -4,10 +4,13 @@
 {% block head %}
 <link rel="stylesheet" href="{% static 'recipes/css/users-app-global-forms.css' %}">
 <style>
+label[for="id_username"],
+label[for="id_password"] { display: none; }
+
 #login-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 15px;
+  grid-gap: 30px;
 }
 #login-form #right-container,
 #login-form #div_id_description > div {
@@ -43,9 +46,9 @@
         <div class="form-group">
           <h2 name="login" class="title text-uppercase mb-4">Zaloguj się</h2>
           {{ form|crispy }}
-          <small>Zapomniałeś hasło? <a href="{% url 'password_reset' %}">Zmień teraz</a></small>
+          <small>Nie pamiętasz hasła? <a href="{% url 'password_reset' %}">Zmień teraz</a></small>
           <div id="submission" class="mt-4">
-            <button class="btn btn-outline-primary w-100" type="submit">Zaloguj się</button>
+            <button class="btn btn-outline-success w-100" type="submit">Zaloguj się</button>
           </div>
         </div>
         <div id="right-container">
@@ -53,11 +56,18 @@
           <p>Odkryj przepisy z całego świata!</p>
           <p style="font-family: calibri">Po krótkiej rejestracji będziesz mógł podzielić się z naszą społecznością swoimi przepisami i mieć szansę na zdobycie uznania od naszych ekspertów, abyś mógł dalej rozwijać swoje dzieła.</p>
           <p style="font-family: calibri">Zapoznaj się z naszymi <a href="{% url 'terms-and-conditions' %}">Zasadami i Warunkami</a> i dołącz do naszego świata smakoszy - <a href="{% url 'register' %}">Zarejestruj się</a>.</p>
-          <p class="text-center"><br><b>Strona rejestracyjna jest na razie prywatna</b></p>
+          <p><br><b>Strona rejestracyjna jest na razie prywatna</b></p>
         </div>
       </div>
 
     </div>
   </form>
-
 {% endblock content %}
+{% block base %}
+<script>
+$(function(){
+  $('#id_username').attr('placeholder', 'Nazwa urzytkownika');
+  $('#id_password').attr('placeholder', 'Hasło');
+})
+</script>
+{% endblock %}

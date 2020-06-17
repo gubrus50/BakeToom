@@ -112,11 +112,8 @@
   grid-gap: 15px;
 }
 #ingredients > article > section {
-  height: 250px;
   padding: 10px;
-  overflow: scroll;
   border-radius: 3px;
-  background-color: #fcfcfc;
 }
 #ingredients > article > section::-webkit-scrollbar-thumb:vertical,
 #ingredients > article > section ::-webkit-scrollbar-thumb:vertical {
@@ -209,6 +206,9 @@
   #recipe > article > div.wrapper img {
     height: 200px;
   }
+  #recipe, #ingredients, #method, #license {
+    padding: 30px 10px 30px 10px !important;
+  }
 }
 @media only screen and (max-width: 338px) {
   #recipe > article > div.wrapper img {
@@ -234,18 +234,6 @@
 	border-radius: 50%
 }
 
-#expand-list {
-  border-top: 2px solid #eee;
-  border-left: 2px solid #eee;
-  border-right: 2px solid #9c9c9c;
-  border-bottom: 2px solid #9c9c9c;
-}
-#expand-list.active {
-  border-top: 2px solid #9c9c9c;
-  border-left: 2px solid #9c9c9c;
-  border-right: 2px solid #eee;
-  border-bottom: 2px solid #eee;
-}
 
 
 @media only screen and (max-width: 800px) {

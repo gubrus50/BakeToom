@@ -17,25 +17,6 @@ function showSection(section_id) {
 
 
 
-/* Expands/shrinks the list from method
-   container by applying/removing break tags */
-function updateMethodListBreaks(checkbox) {
-	var rml = $('#recipe-method-list').children();
-
-	if (checkbox.checked) {
-		$(rml).html(
-			$(rml).html().replace(new RegExp('<br>','g'),'<br><br>')
-		)
-	} else {
-		$(rml).html(
-			$(rml).html().replace(new RegExp('<br><br>','g'),'<br>')
-		)
-	}
-}
-
-
-
-
 function replaceIngredientsListBulletPointToCheckbox() {
 	$('.ingredients').each(function(){
 		$(this).html(
@@ -75,7 +56,7 @@ function RemoveEmptyMethodListElements() {
 		new_method_list[i]= x + (i+1) + '.' + new_method_list[i]+'<br>'
 	}
 
-	$('#recipe-method-list > p').html(new_method_list)
+	$('#recipe-method-list > p').html(new_method_list.join("<br>"));
 }
 
 
