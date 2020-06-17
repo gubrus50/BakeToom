@@ -2,48 +2,19 @@
 {% load crispy_forms_tags %}
 {% load static %}
 {% block head %}
-<link rel="stylesheet" href="{% static 'recipes/css/users-app-global-forms.css' %}">
+<link rel="stylesheet" href="{% static 'recipes/css/app_users_simple_form.css' %}">
 <style>
 label[for="id_username"],
 label[for="id_password"] { display: none; }
-
-#login-form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 30px;
-}
-#login-form #right-container,
-#login-form #div_id_description > div {
-  height: 100%;
-}
-@media only screen and (max-width: 767px) {
-  #login-form {
-    grid-template-columns: 1fr;
-    grid-gap: 20px;
-  }
-  #right-container {
-    border-top: 1px solid #ccc;
-  }
-  #right-container > .title {
-    margin-top: 30px;
-  }
-}
-@media only screen and (max-width: 400px) {
-  #login-form .title,
-  #right-container p {
-    text-align: center;
-  }
-}
 </style>
 {% endblock %}
 {% block content %}
-
   <form method="POST" enctype="multipart/form-data" class="mb-5">
     {% csrf_token %}
     <div class="container">
+      <div class="simple-form simple-form-split">
 
-      <div id="login-form" class="users-global-form users-global-form-container">
-        <div class="form-group">
+        <div>
           <h2 name="login" class="title text-uppercase mb-4">Zaloguj się</h2>
           {{ form|crispy }}
           <small>Nie pamiętasz hasła? <a href="{% url 'password_reset' %}">Zmień teraz</a></small>
@@ -51,15 +22,15 @@ label[for="id_password"] { display: none; }
             <button class="btn btn-outline-success w-100" type="submit">Zaloguj się</button>
           </div>
         </div>
-        <div id="right-container">
-          <h2 name="welcome at baketoom" class="title text-uppercase mb-4">Witaj w BakeToom</h2>
+        <div class="simple-form-split-right">
+          <h2 name="welcome-at-baketoom" class="title text-uppercase mb-4">Witaj w BakeToom</h2>
           <p>Odkryj przepisy z całego świata!</p>
           <p style="font-family: calibri">Po krótkiej rejestracji będziesz mógł podzielić się z naszą społecznością swoimi przepisami i mieć szansę na zdobycie uznania od naszych ekspertów, abyś mógł dalej rozwijać swoje dzieła.</p>
-          <p style="font-family: calibri">Zapoznaj się z naszymi <a href="{% url 'terms-and-conditions' %}">Zasadami i Warunkami</a> i dołącz do naszego świata smakoszy - <a href="{% url 'register' %}">Zarejestruj się</a>.</p>
+          <p style="font-family: calibri">Zapoznaj się z naszymi <a href="{% url 'terms-and-conditions' %}" target="_blank">Zasadami i Warunkami</a> i dołącz do naszego świata smakoszy - <a href="{% url 'register' %}">Zarejestruj się</a>.</p>
           <p><br><b>Strona rejestracyjna jest na razie prywatna</b></p>
         </div>
-      </div>
 
+      </div>
     </div>
   </form>
 {% endblock content %}

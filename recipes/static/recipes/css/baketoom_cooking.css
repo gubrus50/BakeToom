@@ -1,0 +1,78 @@
+#container > div {
+  text-align: center;
+}
+#container > div > div {
+  margin-left: 400px;
+}
+#baketoom-cook {
+  width: 500px;
+  margin-top: -200px;
+  margin-right: 200px;
+}
+#container .title {
+  font-size: 125px;
+  font-family: 'Qwigley', cursive;
+  color: #343a40;
+}
+
+@media only screen and (max-width: 991px) {
+  #container > div > div {
+    margin-left: 200px;
+  }
+  #container .title {
+    font-size: 80px;
+  }
+  #container .btn {
+    font-size: 14px;
+  }
+  #baketoom-cook {
+    width: 300px;
+    margin-top: -150px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  #container > div > div {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #container .title {
+    font-size: 80px;
+  }
+  #container .btn {
+    font-size: 14px;
+  }
+  #baketoom-cook {
+    width: 300px;
+    margin-top: -50px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+@media only screen and (max-width: 400px) {
+  #container .title {
+    font-size: 60px;
+  }
+  #container .btn {
+    font-size: 12px;
+  }
+  #baketoom-cook {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 300px) {
+  #container .title {
+    font-size: 45px;
+  }
+  #container .btn {
+    font-size: 10px;
+  }
+}
+@media only screen and (max-width: 200px) {
+  #container .title {
+    font-size: 40px;
+  }
+  #container .btn {
+    font-size: 8px;
+    padding: 5px;
+  }
+}
