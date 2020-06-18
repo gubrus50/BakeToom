@@ -1,79 +1,52 @@
 {% extends "recipes/base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'recipes/css/app_users_simple_form.css' %}">
+<link rel="stylesheet" href="{% static 'recipes/css/profile.css' %}">
+{% endblock %}
 {% block content %}
-  {% load static %}
 
+  <form method="POST" enctype="multipart/form-data" class="mb-5">
+    {% csrf_token %}
+    <div class="container">
+      <div class="simple-form simple-form-split">
 
-  <br/>
-  <center class="container">
-
-
-    <!-- Profile Container -->
-    <div class="border m-1 bg-light p-2 container f-mobile" style="clear: both; overflow: auto; border-radius: 5px">
-      <img name="profile-image" class="rounded account-img float-left mr-3" width="155" height="155" src="{{ user.profile.image.url }}" />
-    
-      <div id="profile-details" class="col-xs-6 h-mobile float-left">
-        <h2>
-          {{ user.username }}
-        </h2>
-        <hr/>
-        <p>
-          <font style="font-weight: 600; color: #252b2b">Pełne imię: </font>
-          {{ user.first_name }} {{ user.last_name }}
-          <br/>
-          <font style="font-weight: 600; color: #252b2b">Email: </font>
-          {{ user.email }}
-        </p>
-      </div>
-
-      <div id="profile-details-sub-container" class="float-right text-right">
-        <ul class="list-group text-cener">
-          <a title="Zarządzaj kontem" name="account-manager" class="list-group-item list-group-item-action" onclick="$('#profile-update-details-form').fadeToggle()">
-            <img height="25" src="{% static 'recipes/img/icons/flaticon/gear.svg' %}" />
-            <label class="ml-2 d-none">Zarządzaj kontem</label>
-          <a title="Moje przepisy" name="my-recipes" class="list-group-item list-group-item-action" href="{% url 'user-recipes' user.username %}">
-            <img height="25" src="{% static 'recipes/img/icons/flaticon/my_recipes.svg' %}" />
-            <label class="ml-2 d-none">Moje przepisy</label>
-          </a>
-          <a title="Dodaj przepis" name="add-recipe" class="list-group-item list-group-item-action" href="{% url 'recipe-create' %}">
-            <img height="25" src="{% static 'recipes/img/icons/flaticon/create_recipe.svg' %}" />
-            <label class="ml-2 d-none">Dodaj przepis</label>
-          </a>
-        </ul>
-      </div>
-    </div>
-
-
-    <div id="profile-update-details-form" class="border m-1 bg-light p-2 container mt-2" style="overflow: auto; border-radius: 5px; display: none">
-      <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-
-        <!-- Manage account form -->
-        <fieldset class="form-group">
-          <legend class="border-bottom mb-4">
-            Zarządzaj kontem
-            <a name="change-password" class="float-right" href="{% url 'password_reset' %}">
-              <small>Zmień hasło</small>
+        <div id="profile">
+          <h2 name="profile" class="title text-uppercase mb-4">Twój profil</h2>
+          <div class="menu">
+            <a title="Moje przepisy" name="my-recipes" href="{% url 'user-recipes' user.username %}">
+              <img height="25" src="{% static 'recipes/img/icons/flaticon/my_recipes.svg' %}">
+              <label class="ml-2 d-none">Moje przepisy</label>
             </a>
-          </legend>
-          {{ u_form|crispy }}
-          {{ p_form|crispy }}
-        </fieldset>
-
-        <div class="form-group">
-          <!-- Update and deny action -->
-          <button class="btn btn-outline-info" type="submit">
-            Zatwierdź zmiany
-          </button>
-          <input type="button" value="Anuluj" class="btn btn-outline-danger float-right" onclick="$('#profile-update-details-form').fadeOut()" />
+            <a title="Dodaj przepis" name="add-recipe" href="{% url 'recipe-create' %}">
+              <img height="25" src="{% static 'recipes/img/icons/flaticon/create_recipe.svg' %}">
+              <label class="ml-2 d-none">Dodaj przepis</label>
+            </a>
+            <a title="Moje zakładki" name="my-bookmarks" href="#">
+              <img height="25" src="{% static 'recipes/img/icons/flaticon/sticky-notes.svg' %}">
+              <label class="ml-2 d-none">Moje zakładki</label>
+            </a>
+          </div>
+          <div class="profile-pic-container">
+            <img src="{{ user.profile.image.url }}">
+          </div>
         </div>
 
-      </form>
+        <div class="simple-form-split-right">
+          <div id="form">
+            <h2 name="change-data" class="title text-uppercase mb-4">Zmień dane</h2>
+            <small class="d-block mb-4">Nie pamiętasz hasła? <a href="{% url 'password_reset' %}">Zmień teraz</a></small>
+            {{ u_form|crispy }}
+            {{ p_form|crispy }}
+            <div id="submission" class="mt-4">
+              <button class="btn btn-outline-success w-100" type="submit">Zatwierdź zmiany</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
-
-
-  </center>
-  <br/>
-
+  </form>
 
 {% endblock content %}

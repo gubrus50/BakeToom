@@ -2,10 +2,15 @@
 {% load recipes_extras %}
 {% load static %}
 {% block head %}
-<link rel="stylesheet" href="{% static 'recipes/css/home.css' %}">
 <link rel="stylesheet" href="{% static 'recipes/css/extensions/recipe_container.css' %}">
 <link rel="stylesheet" href="{% static 'recipes/plugins/slide-in-scroll/slidein.css' %}">
 <style>
+/* Search filter Nationality */
+.bootstrap-select.countrypicker button.btn.dropdown-toggle {
+  margin-top: -10px;
+  padding: 0;
+}
+
 /*-- Search Form --*/
 #previous-page-btn {
   border-radius: 0;

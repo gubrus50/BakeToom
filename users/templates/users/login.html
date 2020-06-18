@@ -1,63 +1,44 @@
 {% extends "recipes/base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'recipes/css/app_users_simple_form.css' %}">
+<style>
+label[for="id_username"],
+label[for="id_password"] { display: none; }
+</style>
+{% endblock %}
 {% block content %}
+  <form method="POST" enctype="multipart/form-data" class="mb-5">
+    {% csrf_token %}
+    <div class="container">
+      <div class="simple-form simple-form-split">
 
-
-  <center class="container recipe-container">
-    <p>
-      <i class="fa fa-info-circle mr-1 mt-4"></i>
-      Strona rejestracyjna jest na razie prywatna.
-    </p>
-  </center>
-
-
-  <center class="container">
-    <div class="border m-1 mt-4 mb-5 bg-light p-2 container" style="overflow: auto; border-radius: 5px">
-      <div class="content-section f-mobile">
-
-
-        <!-- Register form -->
-        <form method="POST">
-          {% csrf_token %}
-          <fieldset class="form-group mobile-pis-1">
-            <legend class="border-bottom mb-4">
-              Zaloguj się do Świata smakoszy
-            </legend>
-            {{ form|crispy }}
-          </fieldset>
-          <div class="form-group">
-            <!-- Sign-Up button -->
-            <button class="btn btn-outline-info" type="submit">
-              Zaloguj się
-            </button>
-            <a href="{% url 'password_reset' %}" class="float-right">
-              Nie pamięntam hasła
-            </a>
+        <div>
+          <h2 name="login" class="title text-uppercase mb-4">Zaloguj się</h2>
+          {{ form|crispy }}
+          <small>Nie pamiętasz hasła? <a href="{% url 'password_reset' %}">Zmień teraz</a></small>
+          <div id="submission" class="mt-4">
+            <button class="btn btn-outline-success w-100" type="submit">Zaloguj się</button>
           </div>
-        </form>
-
-
-        <!-- Additional info -->
-        <div id="additional-info-users-templates" class="border-top pt-3">
-          <small name="to-register-page" class="text-muted">
-            Nie posiadasz konta?
-            <a class="ml-2" href="{% url 'register' %}">
-              Zarejestruj się
-            </a>
-          </small>
-          <small name="terms-and-conditions" class="text-muted float-right">
-            Zapoznaj się <code>></code>
-            <a href="{% url 'terms-and-conditions' %}">
-              Zasady i warunki
-            </a>
-          </small>
         </div>
-
+        <div class="simple-form-split-right">
+          <h2 name="welcome-at-baketoom" class="title text-uppercase mb-4">Witaj w BakeToom</h2>
+          <p>Odkryj przepisy z całego świata!</p>
+          <p style="font-family: calibri">Po krótkiej rejestracji będziesz mógł podzielić się z naszą społecznością swoimi przepisami i mieć szansę na zdobycie uznania od naszych ekspertów, abyś mógł dalej rozwijać swoje dzieła.</p>
+          <p style="font-family: calibri">Zapoznaj się z naszymi <a href="{% url 'terms-and-conditions' %}" target="_blank">Zasadami i Warunkami</a> i dołącz do naszego świata smakoszy - <a href="{% url 'register' %}">Zarejestruj się</a>.</p>
+          <p><br><b>Strona rejestracyjna jest na razie prywatna</b></p>
+        </div>
 
       </div>
     </div>
-  </center>
-  <br/>
-
-
+  </form>
 {% endblock content %}
+{% block base %}
+<script>
+$(function(){
+  $('#id_username').attr('placeholder', 'Nazwa urzytkownika');
+  $('#id_password').attr('placeholder', 'Hasło');
+})
+</script>
+{% endblock %}

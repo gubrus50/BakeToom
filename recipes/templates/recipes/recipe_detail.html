@@ -132,8 +132,8 @@
           {% if categories %}
             {% for category in categories %}
               {% if category.recipe == object %}
-                <section>
-                  <h5 class="title text-uppercase">{{ category.name }}</h5>
+                <section class="border">
+                  <h5 class="title text-uppercase my-2">{{ category.name }}</h5>
                   <hr>
                   {% if category.ingredients %}
                     <ul class="ingredients">
@@ -147,15 +147,7 @@
         </article>
       </div>
       <div id="method" class="p-4 d-none">
-        <!-- Expand list button -->
-        <span class="button-checkbox float-right">
-          <input type="checkbox" onchange="updateMethodListBreaks(this)" class="d-none" />
-          <button id="expand-list" type="button" class="bg-white" style="outline: none">
-            <i name="expan-list" title="Rozszerz listę" class="fas fa-expand-alt"></i>
-            <i name="compress-list" title="Skompresuj liste" class="fas fa-compress-alt d-none"></i>
-          </button>
-        </span>
-        <article id="recipe-method-list" style="word-wrap: break-word">
+        <article id="recipe-method-list" class="mt-2" style="word-wrap: break-word">
           {% if object.method %}
             {{ object.method|linenumbers|linebreaks }}
           {% else %}...{% endif %}

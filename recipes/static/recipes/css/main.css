@@ -5,7 +5,7 @@ html {
 }
 body {
   min-height: 100%;
-  height: 100%
+  height: 100%;
 }
 header > nav {
   background-color: #282c30
@@ -301,11 +301,6 @@ img.account-img {
     color: #495057
   }
 
-  /* LOGOUT Goodbye message */
-  #goodbye-image { width: 100% }
-  #goodbye-message {
-    font-size: 100px !important
-  }
   /*******************/
   /* END of USER APP */
   /*******************/
