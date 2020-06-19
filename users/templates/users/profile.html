@@ -4,6 +4,20 @@
 {% block head %}
 <link rel="stylesheet" href="{% static 'recipes/css/app_users_simple_form.css' %}">
 <link rel="stylesheet" href="{% static 'recipes/css/profile.css' %}">
+<style>
+@media only screen and (max-width: 991px) {
+  .simple-form-split {
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+  }
+  .simple-form-split-right {
+    border-top: 1px solid #ccc;
+  }
+  .simple-form-split-right > .title {
+    margin-top: 30px;
+  }
+}
+</style>
 {% endblock %}
 {% block content %}
 
@@ -36,11 +50,11 @@
         <div class="simple-form-split-right">
           <div id="form">
             <h2 name="change-data" class="title text-uppercase mb-4">Zmień dane</h2>
-            <small class="d-block mb-4">Nie pamiętasz hasła? <a href="{% url 'password_reset' %}">Zmień teraz</a></small>
+            <small class="d-block mb-3">Nie pamiętasz hasła? <a href="{% url 'password_reset' %}">Zmień teraz</a></small>
             {{ u_form|crispy }}
             {{ p_form|crispy }}
             <div id="submission" class="mt-4">
-              <button class="btn btn-outline-success w-100" type="submit">Zatwierdź zmiany</button>
+              <button class="btn btn-outline-info w-100" type="submit">Zatwierdź zmiany</button>
             </div>
           </div>
         </div>
