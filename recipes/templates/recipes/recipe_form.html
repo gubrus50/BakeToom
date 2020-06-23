@@ -26,8 +26,12 @@
       <div id="ingredients-form" class="recipe-form-container">
         <div>
           <h2 class="title text-uppercase">Składniki</h2>
-          <button id="create-category-btn" type="button" class="btn btn-outline-dark" onclick="createCategoryInIngredientsForm(1); updateCategoryButtonInIngredientsForm()">Utwórz kategorie</button>
+          <button id="create-category-btn" type="button" class="btn btn-outline-dark" onclick="createEmptyCategoryObject()">Utwórz kategorie</button>
         </div>
+        {{ categories.management_form|crispy }}
+        {% for category in categories %}
+          <div class="recipe-category">{{ category|crispy }}</div>
+        {% endfor %}
       </div>
 
       <div class="recipe-form-container">
@@ -84,10 +88,11 @@
 {% endblock content %}
 {% block base %}
 <script type="text/javascript">
-var category_creation_count = {{ category_creation_count }};
-var categories = {{ categories|safe }};
-var ingredients = {{ ingredients|safe }};
+var categories_max_num = {{ categories_max_num }};
+var categories_name_label = '{{ categories_name_label }}';
+var categories_ingredients_label = '{{ categories_ingredients_label }}';
 var user_fullname = '{{ user.get_full_name }}';
+var recipe_id = {% if on_update_view %}{{ object.id }}{% else %}false{% endif %}; 
 </script>
 <script src="{% static 'recipes/js/recipe_form.js' %}"></script>
 {% endblock %}

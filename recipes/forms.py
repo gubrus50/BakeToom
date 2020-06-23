@@ -1,3 +1,4 @@
+from django.forms.models import inlineformset_factory
 from django import forms
 from .models import Recipe, Category
 
@@ -24,3 +25,7 @@ class CategoryForm(forms.ModelForm):
 			'ingredients'
 		]
 
+CategoriesFormSet = inlineformset_factory(
+	Recipe, Category, form=CategoryForm,
+	extra=9, can_delete=True, max_num=9
+)

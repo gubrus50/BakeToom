@@ -23,7 +23,7 @@ class Recipe(models.Model):
 	DEFAULT_LICENSE = (
 		'MIT License'
 		'\n\n'
-		'Copyright (c) [rok] [pełne imię i nazwisko]'
+		'Copyright (c) [year] [fullname]'
 		'\n\n'
 		'Permission is hereby granted, free of charge, to any person obtaining a copy '
 		'of this software and associated documentation files (the "Software"), to deal '
