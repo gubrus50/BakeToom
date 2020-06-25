@@ -2,34 +2,10 @@
 {% load recipes_extras %}
 {% load static %}
 {% block head %}
+<link rel="stylesheet" href="{% static 'recipes/css/extensions/search_bar.css' %}">
 <link rel="stylesheet" href="{% static 'recipes/css/extensions/recipe_container.css' %}">
 <link rel="stylesheet" href="{% static 'recipes/plugins/slide-in-scroll/slidein.css' %}">
-<style>
-/*-- Search Form --*/
-#previous-page-btn {
-  border-radius: 0;
-  height: 38px;
-  outline: none;
-  box-shadow: none;
-}
-.form-control {
-  border-radius: 0;
-  width: 70% !important;
-  height: 38px;
-}
-.form-control > input[type="search"] {
-  border: 0;
-  width: 100%;
-  outline: none;
-  box-shadow: none;
-}
-#search-form > button[name="search-query"] {
-  border-radius: 0;
-  height: 38px;
-  outline: none;
-  box-shadow: none;
-}
-</style>
+<style>#search-filter-btn { display: none; }</style>
 {% endblock %}
 {% block content %}
 
@@ -42,16 +18,9 @@
     {% endif %}
   </h5>
 
-
   <!-- Search form -->
   <form id="search-form" method="GET" action="{% url 'user-recipes' view.kwargs.username %}" class="container form-inline my-4 d-flex justify-content-center h-mobile">
-    <a id="previous-page-btn" href="javascript:if(window.location.href!=window.location.origin+'/user/{{ view.kwargs.username }}/'){history.back()}" class="btn text-secondary">
-      <i class="fa fa-arrow-left" style="font-size: 20px"></i>
-    </a>
-    <div class="form-control">
-      <input type="search" name="q" value="{{ request.GET.q }}" placeholder="Czego dzisiaj pragniesz?" aria-label="Search">
-    </div>
-    <button name="search-query" type="submit" class="btn btn-outline-secondary"><i>Wyszukaj</i><i class="d-none fa fa-search"></i></button>
+    {% include "recipes/extensions/search_bar.html" %}
   </form>
 
   {% include "recipes/extensions/recipe_container.html" %}
@@ -60,4 +29,11 @@
 {% block base %}
 <script name="search-form" src="{% static 'recipes/js/filter_search_with_pagination.js' %}" crossorigin="anonymous"></script>
 <script name="js-slidein" src="{% static 'recipes/plugins/slide-in-scroll/slideIn.min.js' %}"></script>
+<script name="search-bar">
+$(document).ready(function() {
+  $('#filter-container').remove();
+  $('#search-filter-btn').remove();
+  $("#previous-page-btn").attr("href", "javascript:if(window.location.href!=window.location.origin+'/user/{{ view.kwargs.username }}/'){history.back()}");
+});
+</script>
 {% endblock %}

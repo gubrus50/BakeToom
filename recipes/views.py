@@ -33,7 +33,7 @@ import os, base64, requests
 
 class RecipeListView(ListView):
 	model = Recipe
-	template_name = 'recipes/home.html' # <app>/<model>_<viewtype>.html
+	template_name = 'recipes/home.html'
 	context_object_name = 'recipes'
 	paginate_by = 32
 
@@ -151,9 +151,9 @@ class RecipeListView(ListView):
 
 class UserRecipeListView(ListView):
 	model = Recipe
-	template_name = 'recipes/user_recipes.html' # <app>/<model>_<viewtype>.html
+	template_name = 'recipes/user_recipes.html'
 	context_object_name = 'recipes'
-	paginate_by = 10
+	paginate_by = 32
 
 	def get_queryset(self):
 		user = get_object_or_404(User, username=self.kwargs.get('username'))

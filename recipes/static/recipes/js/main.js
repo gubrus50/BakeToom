@@ -82,12 +82,8 @@ $(document).ready(function()
 	$('#scroll-to-top-button').hide();
 	$('a.disabled').click( function()
 	{
-		if ($(this).hasClass('disabled')) {
-			return false
-		}
-		else {
-			$(this).trigger('click')
-		}
+		if ($(this).hasClass('disabled')) { return false }
+		else { $(this).trigger('click') }
 	});
 
 
@@ -97,9 +93,8 @@ $(document).ready(function()
 			$("#cookieConsent").css('visibility', 'visible').hide().fadeIn(500) 
 		}, 250)
 	}
-	else {
-		$("#cookieConsent").css('display', 'none')
-	}
+	else { $("#cookieConsent").css('display', 'none') }
+
 	$("ignorecookies, .acceptcookies").click(function() {
 		setCookie('hide_cookies_popup',true,1)
 		$("#cookieConsent").fadeOut(200)

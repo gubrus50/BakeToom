@@ -73,74 +73,6 @@ function printExternalPage(url) {
 
 
 
-/* Fancy checkbox button functionality */
-function applyCheckboxFunctionality()
-{
-	$(function () {
-		$('.button-checkbox').each(function () {
-
-			// Settings
-			var $widget = $(this),
-				$button = $widget.find('button'),
-				$checkbox = $widget.find('input:checkbox'),
-				color = $button.data('color'),
-				settings = {
-					on: {
-						icon: 'glyphicon glyphicon-check'
-					},
-					off: {
-						icon: 'glyphicon glyphicon-unchecked'
-					}
-				}
-
-			// Event Handlers
-			$button.on('click', function () {
-				$checkbox.prop('checked', !$checkbox.is(':checked'));
-				$checkbox.triggerHandler('change');
-				updateDisplay()
-			})
-			$checkbox.on('change', function () {
-				updateDisplay()
-			})
-
-			// Actions
-			function updateDisplay() {
-				var isChecked = $checkbox.is(':checked');
-
-				// Set the button's state
-				$button.data('state', (isChecked) ? "on" : "off");
-
-				// Set the button's icon
-				$button.find('.state-icon')
-					.removeClass()
-					.addClass('state-icon ' + settings[$button.data('state')].icon)
-
-				// Update the button's color
-				if (isChecked) {
-					$button
-						.removeClass('btn-default')
-						.addClass('btn-' + color + ' active')
-					$button
-						.children('i').eq(0).addClass('d-none')
-					$button
-						.children('i').eq(1).removeClass('d-none')
-				} else {
-					$button
-						.removeClass('btn-' + color + ' active')
-						.addClass('btn-default')
-					$button
-						.children('i').eq(0).removeClass('d-none')
-					$button
-						.children('i').eq(1).addClass('d-none')
-				}
-			}
-		})
-	})
-}
-
-
-
-
 window.onload = function()
 {
 	var	tools     = $('div[aria-labelledby="navbarDropdown"]');
@@ -216,5 +148,4 @@ window.onload = function()
 
 	replaceIngredientsListBulletPointToCheckbox();
 	RemoveEmptyMethodListElements();
-	applyCheckboxFunctionality();
 }

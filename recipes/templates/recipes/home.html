@@ -2,108 +2,14 @@
 {% load recipes_extras %}
 {% load static %}
 {% block head %}
+<link rel="stylesheet" href="{% static 'recipes/css/extensions/search_bar.css' %}">
 <link rel="stylesheet" href="{% static 'recipes/css/extensions/recipe_container.css' %}">
 <link rel="stylesheet" href="{% static 'recipes/plugins/slide-in-scroll/slidein.css' %}">
-<style>
-/* Search filter Nationality */
-.bootstrap-select.countrypicker button.btn.dropdown-toggle {
-  margin-top: -10px;
-  padding: 0;
-}
-
-/*-- Search Form --*/
-#previous-page-btn {
-  border-radius: 0;
-  height: 38px;
-  outline: none;
-  box-shadow: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-size: 20px;
-}
-.form-control {
-  border-radius: 0;
-  width: 70% !important;
-  height: 38px;
-}
-.form-control > input[type="search"] {
-  border: 0;
-  width: 90%;
-  outline: none;
-  box-shadow: none;
-}
-#search-form > button[name="search-query"] {
-  border-radius: 0;
-  height: 38px;
-  outline: none;
-  box-shadow: none;
-}
-#search-form > div[name="filter-container"] {
-  margin: 20px 10% 0px 10%;
-  display: none;
-}
-</style>
 {% endblock %}
 {% block content %}
 
-
   <form id="search-form" method="GET" action="{% url 'recipes-home' %}" class="container form-inline my-4 d-flex justify-content-center h-mobile">
-    <a id="previous-page-btn" href="javascript:if(window.location.href!=window.location.origin+'/'){history.back()}" class="btn text-secondary">
-      <i class="fa fa-arrow-left"></i>
-    </a>
-    <div class="form-control">
-      <input type="search" name="q" value="{{ query }}" placeholder="Czego dzisiaj pragniesz?" aria-label="Search">
-      <a id="search-filter-btn" href="#filter" class="text-secondary float-right">
-        <i class="fas fa-filter"></i>
-      </a>
-    </div>
-    <button name="search-query" type="submit" class="btn btn-outline-secondary">
-      <i>Wyszukaj</i><i class="d-none fa fa-search"></i>
-    </button>
-    <div name="filter-container">
-      <ul class="list-inline">
-        <li name="search-by" class="list-inline-item">
-          <h5 class="h4-mobile">Szukaj według</h5><hr>
-          <ul name="search-by-children">
-            <li><input type="checkbox" name="title" value="true" checked> nazwy przepisu</li>
-            <li><input type="checkbox" name="publisher" value="true" checked> nazwy wydawcy</li>
-            <li><input type="checkbox" name="certified" value="true"> tylko certyfikowe</li>
-            <li><input type="checkbox" name="search_by_date" value="DOC"> daty utworzenia</li>
-            <li><input type="checkbox" name="id" value="true"> id przepisu</li>
-          </ul>
-        </li>
-        <li name="upload-date" class="list-inline-item">
-          <h5 class="h4-mobile">Data przesłania</h5><hr>
-          <ul name="upload-date-children">
-            <li><input type="radio" name="search_by_date" value="GUD" checked> obojętna</li>
-            <li><input type="radio" name="search_by_date" value="TUD"> dzisiejsza</li>
-            <li><input type="radio" name="search_by_date" value="TWUD"> tego tygodnia</li>
-            <li><input type="radio" name="search_by_date" value="TMUD"> tego miesiąca</li>
-            <li><input type="radio" name="search_by_date" value="TYUD"> tego rocznika</li>
-          </ul>
-        </li>
-        <li name="categories" class="list-inline-item">
-          <h5 class="h4-mobile">Kategorie</h5><hr>
-          <ul name="categories-children">
-            <li><input type="radio" name="type" value="general" checked> ogólne</li>
-            <li><input type="radio" name="type" value="wypiek"> wypieki</li>
-            <li><input type="radio" name="type" value="deser"> desery</li>
-            <li><input type="radio" name="type" value="zupa"> zupy</li>
-            <li><input type="radio" name="type" value="inne"> inne</li>
-          </ul>
-        </li>
-        <li name="nationality" class="list-inline-item">
-          <h5 class="h4-mobile">Narodowość</h5><hr>
-          <ul name="nationality-children">
-            <li><input type="radio" name="nationality_mode" value="general" checked> ogólna</li>
-            <li><input type="radio" name="nationality_mode" value="international"> międzynarodowa</li>
-            <li><input type="radio" name="nationality_mode" value="specific"> specyficzna</li>
-            <li><select class="selectpicker countrypicker custom-scroll d-none" name="nationality" data-default="PL" data-flag="true"></select></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
+    {% include "recipes/extensions/search_bar.html" %}
   </form>
 
   {% include "recipes/extensions/recipe_container.html" %}
@@ -112,4 +18,9 @@
 {% block base %}
 <script name="search-form" src="{% static 'recipes/js/filter_search_with_pagination.js' %}" crossorigin="anonymous"></script>
 <script name="js-slidein" src="{% static 'recipes/plugins/slide-in-scroll/slideIn.min.js' %}"></script>
+<script name="search-bar">
+$(document).ready(function(){
+  $("#previous-page-btn").attr("href", "javascript:if(window.location.href!=window.location.origin+'/'){history.back()}");
+});
+</script>
 {% endblock %}

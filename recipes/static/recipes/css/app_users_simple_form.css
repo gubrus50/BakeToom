@@ -12,8 +12,6 @@
 }
 
 
-
-
 @media only screen and (max-width: 991px) {
   .simple-form {
     margin-top: 25px;
@@ -23,6 +21,7 @@
     font-size: 14px;
   }
 }
+
 @media only screen and (max-width: 575px) {
   .simple-form {
     font-size: 14px;
@@ -35,6 +34,7 @@
     font-size: 14px;
   }
 }
+
 @media only screen and (max-width: 370px) {
   .simple-form {
     font-size: 12px;
@@ -52,6 +52,7 @@
   grid-template-columns: 1fr 1fr;
   grid-gap: 30px;
 }
+
 @media only screen and (max-width: 767px) {
   .simple-form-split {
     grid-template-columns: 1fr;
@@ -64,6 +65,7 @@
     margin-top: 30px;
   }
 }
+
 @media only screen and (max-width: 400px) {
   .simple-form-split .title,
   .simple-form-split-right p {

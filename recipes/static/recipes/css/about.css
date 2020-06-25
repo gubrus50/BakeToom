@@ -47,6 +47,7 @@ body {
     font-size: 10px;
   }
 }
+
 @media only screen and (max-width: 767px) {
   #about-container {
     display: flex;
@@ -63,6 +64,8 @@ body {
     margin-top: 10px;
     margin-bottom: 10px;
   }
+}
+
 @media only screen and (max-width: 575px) {
   #about-container {
     display: grid;
@@ -83,6 +86,7 @@ body {
     font-size: 14px;
   }
 }
+
 @media only screen and (max-width: 400px) {
   #about-container > .document > img {
     height: 115px;
@@ -94,6 +98,7 @@ body {
     font-size: 10px;
   }
 }
+
 @media only screen and (max-width: 300px) {
   #about-container > .document > img {
     height: 80px;

@@ -61,6 +61,7 @@ div.menu > a:hover {
     width: 380px;
   }
 }
+
 @media only screen and (max-width: 991px) {
   .simple-form-split-right div .title {
     margin-top: 30px;
@@ -78,34 +79,34 @@ div.menu > a:hover {
     float: left;
     width: 100%;
   }
-  #form > small:nth-of-type(1) {
-    float: left;
-    display: block;
-  }
   
   .profile-pic-container > img {
     height: 350px;
     width: 350px;
   }
 }
+
 @media only screen and (max-width: 575px) {
   .profile-pic-container {
     border: 1px solid #ced4da;
     border-top: 0;
   }
 }
+
 @media only screen and (max-width: 500px) {
   .profile-pic-container > img {
     height: 325px;
     width: 325px;
   }
 }
+
 @media only screen and (max-width: 450px) {
   .profile-pic-container > img {
     height: 275px;
     width: 275px;
   }
 }
+
 @media only screen and (max-width: 400px) {
   #profile {
     display: flex;
@@ -126,6 +127,11 @@ div.menu > a:hover {
     display: inline !important;
   }
 
+  #form > small:nth-of-type(1) {
+    float: none;
+    display: block;
+  }
+
   .profile-pic-container {
     order: 1;
     -webkit-order: 1;
@@ -138,24 +144,28 @@ div.menu > a:hover {
     width: 270px;
   }
 }
+
 @media only screen and (max-width: 375px) {
   .profile-pic-container > img {
     height: 250px;
     width: 250px;
   }
 }
+
 @media only screen and (max-width: 350px) {
   .profile-pic-container > img {
     height: 200px;
     width: 200px;
   }
 }
+
 @media only screen and (max-width: 300px) {
   .profile-pic-container > img {
     height: 150px;
     width: 150px;
   }
 }
+
 @media only screen and (max-width: 250px) {
   .profile-pic-container > img {
     height: 125px;

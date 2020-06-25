@@ -1,14 +1,14 @@
 html {
   scroll-behavior: smooth;
   position: relative;
-  min-height: 100%
+  min-height: 100%;
 }
 body {
   min-height: 100%;
   height: 100%;
 }
 header > nav {
-  background-color: #282c30
+  background-color: #282c30;
 }
 footer {
   background-color: #282c30;
@@ -16,53 +16,26 @@ footer {
   min-height: 200px;
   width: 100%;
   bottom: 0;
-  left: 0
+  left: 0;
 }
 footer > div.footer-body {
   justify-content: space-between;
   padding-left: 50px;
-  padding-right: 50px
+  padding-right: 50px;
 }
-footer > div.footer-body a {
-  color: #445a70
-}
-footer > div.footer-body a:hover {
-  color: #445a70
-}
-footer > div.footer-body section {
-  font-size: 12px
-}
+footer > div.footer-body a { color: #445a70; }
+footer > div.footer-body a:hover { color: #445a70; }
+footer > div.footer-body section { font-size: 12px; }
+/* found in header navbar and footer */
 .align-icon-item {
   display: inline-block;
   text-align: left;
-  width: 20px
+  width: 20px;
 }
-
-
 
 /* Global Messages */
-.alert-danger a { color: #721c24 }
-.alert-success a { color: #155724 }
-
-
-/* Search Form */
-#search-form { padding: 0; text-align: left }
-#search-form div[name="filter-container"] {
-  margin: 20px 0 0 0 !important;
-  font-size: 12px
-}
-#search-form div[name="filter-container"] > ul > li {
-  vertical-align: top !important;
-  margin-right: 20px;
-  margin-left: 0;
-  margin-top: 0
-}
-#search-form div[name="filter-container"] ul {
-  list-style: none;
-  padding-left: 0
-}
-
-
+.alert-danger a { color: #721c24; }
+.alert-success a { color: #155724; }
 
 #scroll-to-top-button {
   -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.6);
@@ -74,98 +47,48 @@ footer > div.footer-body section {
   z-index: 10000;
   opacity: 0.5;
   bottom: 10px;
-  right: 10px
+  right: 10px;
 }
-
-
 
 
 /**//* ---------- *//**/
 /**//* Scrollbars *//**/
 /**//* ---------- *//**/
 
-::-webkit-scrollbar { width: 5px; height: 15px }
-::-webkit-scrollbar-track-piece { background-color: #353535 }
-::-webkit-scrollbar-thumb:vertical { height: 30px; background-color: Darkgray }
+::-webkit-scrollbar { width: 5px; height: 15px; }
+::-webkit-scrollbar-track-piece { background-color: #353535; }
+::-webkit-scrollbar-thumb:vertical { height: 30px; background-color: Darkgray; }
 
 /* Hide horizontal scrollbar */
 .empty-h-scroll::-webkit-scrollbar:horizontal,
-.empty-h-scroll ::-webkit-scrollbar:horizontal { width: 0px; height: 0px }
+.empty-h-scroll ::-webkit-scrollbar:horizontal { width: 0px; height: 0px; }
 
 /* Hide vertical scrollbar */
 .empty-v-scroll::-webkit-scrollbar:vertical,
-.empty-v-scroll ::-webkit-scrollbar:vartical { width: 0px; height: 0px }
+.empty-v-scroll ::-webkit-scrollbar:vartical { width: 0px; height: 0px; }
 
 /* Unique scrollbar for website content */
 .custom-scroll::-webkit-scrollbar-track-piece,
 .custom-scroll ::-webkit-scrollbar-track-piece {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
   background-color: #f8f9fa;
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2)
 }
 .custom-scroll::-webkit-scrollbar-thumb:vertical,
 .custom-scroll ::-webkit-scrollbar-thumb:vertical {
+  background-color: gray;
   height: 1px;
-  background-color: gray
 }
 .custom-scroll::-webkit-scrollbar-corner:vertical,
-.custom-scroll ::-webkit-scrollbar-corner:vertical { background-color: red }
+.custom-scroll ::-webkit-scrollbar-corner:vertical { background-color: red; }
 
 /**//* ----------------- *//**/
 /**//* END of Scrollbars *//**/
 /**//* ----------------- *//**/
 
 
-
-
-
-
-
-/**//* ----------------- *//**/
-/**//* Recipe Containers *//**/
-/**//* ----------------- *//**/
-
-/* Main container (usually center tag) */
-#recipes div, div.container {
-  text-align: left;
-  width: 95%
-}
-
-#recipes center.container div div.form-group {
-  margin-left: 5px
-}
-
-.recipe-container > div {
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.1);
-  margin-bottom: 5px !important
-}
-.recipe-container > form > div {
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.1);
-  margin-bottom: 5px !important
-}
-
-/* flag icon recipe detail container */
-.f16 li { margin-top: 1.25px }
-
-/**//* ------------------------ *//**/
-/**//* END of Recipe Containers *//**/
-/**//* ------------------------ *//**/
-
-
-
-
-
-
-/* USER APP */
-img.account-img {
-  border: 5px solid #dee2e6
-}
-
-
-
 @media only screen and (max-width: 709px) {
-  /* Footer */
   footer > div.footer-body section ul li {
-    font-size: 10px
+    font-size: 10px;
   }
   footer > div.footer-body {
     flex-wrap: wrap;
@@ -175,211 +98,68 @@ img.account-img {
   footer > div.footer-body > section:last-child {
     width: auto !important;
     text-align: center;
-    order: -1
+    order: -1;
   }
   footer > div.footer-body .align-icon-item {
     margin-right: 5px;
-    width: auto
+    width: auto;
   }
   footer > div.footer-body > section:last-child > ul li {
     margin-top: 0px !important;
-    margin-bottom: 2px !important
+    margin-bottom: 2px !important;
   }
   footer > div.footer-body {
     padding-left: 0 !important;
-    padding-right: 0 !important
+    padding-right: 0 !important;
   }
   footer > div.footer-body > section:first-child > p:nth-child(2) {
-    margin-bottom: 20px !important
+    margin-bottom: 20px !important;
   }
 }
 
-/**//* -------------- *//**/
-/**//* User on Mobile *//**/
-/**//* ---------------*//**/
+@media only screen and (max-width: 767px) {
 
-@media only screen and (max-width: 600px) {
+  .f-mobile { font-size: 14px; }
 
-  ul.mobile-pis-1,
-  .mobile-pis-1 ul { padding-inline-start: 20px !important }
+  .h-mobile h1 { font-size: 30px; }
+  .h-mobile h2 { font-size: 25px; }
+  .h-mobile h3 { font-size: 20px; }
+  .h-mobile h4 { font-size: 14px; }
+  .h-mobile h5 { font-size: 10px; }
 
-  .f-mobile { font-size: 14px }
-
-  .h-mobile h1 { font-size: 30px }
-  .h-mobile h2 { font-size: 25px }
-  .h-mobile h3 { font-size: 20px }
-  .h-mobile h4 { font-size: 14px }
-  .h-mobile h5 { font-size: 10px }
-
-  h1.h-mobile { font-size: 30px !important }
-  h2.h-mobile { font-size: 25px !important }
-  h3.h-mobile { font-size: 20px !important }
-  h4.h-mobile { font-size: 14px !important }
-  h5.h-mobile { font-size: 10px !important }
+  h1.h-mobile { font-size: 30px !important; }
+  h2.h-mobile { font-size: 25px !important; }
+  h3.h-mobile { font-size: 20px !important; }
+  h4.h-mobile { font-size: 14px !important; }
+  h5.h-mobile { font-size: 10px !important; }
 
   h1.h2-mobile,
   h2.h2-mobile,
   h3.h2-mobile,
   h4.h2-mobile,
-  h5.h2-mobile { font-size: 25px !important }
+  h5.h2-mobile { font-size: 25px !important; }
 
   h1.h3-mobile,
   h2.h3-mobile,
   h3.h3-mobile,
   h4.h3-mobile,
-  h5.h3-mobile { font-size: 20px !important }
+  h5.h3-mobile { font-size: 20px !important; }
 
   h1.h4-mobile,
   h2.h4-mobile,
   h3.h4-mobile,
   h4.h4-mobile,
-  h5.h4-mobile { font-size: 14px !important }
+  h5.h4-mobile { font-size: 14px !important; }
 
   h1.h5-mobile,
   h2.h5-mobile,
   h3.h5-mobile,
   h4.h5-mobile,
-  h5.h5-mobile { font-size: 10px !important }
-
-
-  .recipe-container { font-size: 12px }
-  .recipe-container h3 { font-size: 20px }
-  .recipe-button img {
-    border-radius: 5px 5px 5px 50px !important;
-    width: 100px;
-    height: 75px
-  }
-  /* flag icon recipe detail container */
-  .f16 li { margin-top: -2px }
-
-  /* Search form -> previous btn */
-  #previous-page-btn { display: none !important }
-
-
-  /************/
-  /* USER APP */
-  /************/
-  img.account-img {
-    border-right: 30px solid #dee2e6;
-    border-left: 30px solid #dee2e6;
-    border-radius: 5px !important;
-    margin-bottom: 5px;
-    /*object-fit: cover; keep this feature only when AWS S3 images are croped to 300x300 */
-    border-bottom: 0;
-    border-top: 0;
-    height: 200px;
-    width: 100%
-  }
-  #recipes div, div.container { width: auto }
-  #recipes center.container div div.form-group {
-    margin-right: 0 !important;
-    margin-left: 0
-  }
-  #additional-info-users-templates small { 
-    float: left !important;
-    word-break: break-all;
-    display: inline;
-    clear: both
-  }
-  #profile-details {
-    word-wrap: break-word;
-    width: 100%
-  }
-  #profile-details h2 {
-    margin-top: 10px
-  }
-  #profile-details-sub-container { 
-    float: left !important;
-    width: 100%
-  }
-  #profile-details-sub-container ul { 
-    text-align: left !important
-  }
-  #profile-details-sub-container ul a label { 
-    display: block !important;
-    float: right !important;
-    color: #495057
-  }
-
-  /*******************/
-  /* END of USER APP */
-  /*******************/
-}
-
-
-@media only screen and (max-width: 320px) {
-
-  /* Search Form */
-  #search-form {
-    text-align: left
-  }
-  #search-form div[name="filter-container"] ul li h5:first-child {
-    margin-top: 20px
-  }
-  #search-form div[name="filter-container"] ul li {
-    width: 100%
-  }
-  #search-form div[name="filter-container"] ul li ul[name="nationality-children"] li {
-    margin-top: 0
-  }
-  /* Search filter Nationality */
-  .bootstrap-select.countrypicker button.btn.dropdown-toggle {
-    margin-top: -10px !important
-  }
-  #search-form div[name="filter-container"] ul li[name="nationality"] {
-    margin-top: auto !important
-  }
-  #search-form div[name="filter-container"] ul li[name="nationality"] ul[name="nationality-children"] > li {
-    display: block !important
-  }
-  #search-form div[name="filter-container"] ul li[name="nationality"] ul[name="nationality-children"] > li:nth-of-type(3) {
-    padding-top: 10px !important;
-    float: left
-  }
-  /* Search button icons */
-  #search-form button[name="search-query"] i:first-child {
-    display: none
-  }
-  #search-form button[name="search-query"] i:last-child {
-    display: block !important
-  }
-  /* Search Input Parent Division */
-  #search-form div.form-control {
-    width: 80% !important
-  }
-  /* End of Search Form */
-
-
-
-  /* USER APP */
-  /* Profile template -> account settings */
-  img.account-img {
-    border-right: 10px solid #dee2e6;
-    border-left: 10px solid #dee2e6
-  }
-  a[name="change-password"] {
-    float: left !important
-  }
-
-  /* Logout template */
-  #goodbye-message {
-    margin-bottom: -50px !important;
-    font-size: 80px !important
-  }
-  /* END of USER APP */
+  h5.h5-mobile { font-size: 10px !important; }
 
 }
-
-
-/**//* --------------------- *//**/
-/**//* END of User on Mobile *//**/
-/**//* --------------------- *//**/
-
-
-
 
 @media only screen and (max-width: 1000px) {
-
   /* Navbar section: <!-- Login / Profile --> */
   .nav-icon-item { width: 25px }
   a[name="user"] > span { display: inline !important }
@@ -393,43 +173,4 @@ img.account-img {
   footer > div.footer-body > section {
     font-size: 10px !important;
   }
-
-  /* search-form */
-  #search-form {
-    text-align: center;
-    padding: 0
-  }
-  #search-form div[name="filter-container"] {
-    margin: 20px 5% 0 5% !important
-  }
-  #search-form div[name="filter-container"] ul li {
-    padding-top: 10px;
-    margin-right: 0;
-    text-align: left
-  }
-  #search-form div[name="filter-container"] ul li[name="categories"] {
-    float: right
-  }
-  #search-form div[name="filter-container"] ul li[name="search-by"] {
-    float: left
-  }
-  /* Search filter Nationality */
-  .bootstrap-select.countrypicker {
-    width: 100% !important;
-    margin-top: 20px
-  }
-  #search-form div[name="filter-container"] ul li[name="nationality"] {
-    margin-top: 20px;
-    width: 100%
-  }
-  #search-form div[name="filter-container"] ul li[name="nationality"] ul[name="nationality-children"] > li {
-    margin-right: 10px;
-    display: inline
-  }
-  #search-form div[name="filter-container"] ul li[name="nationality"] ul[name="nationality-children"] > li:nth-of-type(3) {
-    margin-right: 0;
-    padding-top: 0;
-    float: right
-  }
-  /* end of search-form */
 }
