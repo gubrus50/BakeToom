@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ['baketoom.herokuapp.com']
 INSTALLED_APPS = [
     'recipes.apps.RecipesConfig',
     'users.apps.UsersConfig',
+    'validate_email',
     'crispy_forms',
     'django_cleanup',
     'django_countries',

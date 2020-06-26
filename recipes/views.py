@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from validate_email import validate_email
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import (
@@ -10,7 +11,8 @@ from django.views.generic import (
 	DetailView,
 	UpdateView,
 	DeleteView,
-	CreateView
+	CreateView,
+	FormView
 )
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
@@ -24,6 +26,7 @@ from .models import Recipe, Category
 from .forms import (
 	RecipeForm,
 	CategoryForm,
+	ContactUsForm,
 	CategoriesFormSet
 )
 import os, base64, requests
@@ -344,8 +347,37 @@ def TermsAndConditions(request):
 def PrivacyAndPolicy(request):
 	return render(request, 'recipes/privacy_and_policy_pl.html')
 
-def ContactUsForm(request):
-	context = {
-		'BAKETOOM_MAIL_USER': os.environ.get('BAKETOOM_MAIL_USER')
-	}
-	return render(request, 'recipes/contact_us_form.html', context)
+
+
+
+
+class ContactUsForm(FormView):
+	template_name = 'recipes/contact_us_form.html'
+	form_class = ContactUsForm
+
+	def get_context_data(self, *args, **kwargs):
+		context = super(ContactUsForm, self).get_context_data(**kwargs)
+		context['BAKETOOM_MAIL_USER'] = os.environ.get('BAKETOOM_MAIL_USER')
+		return context
+
+	def form_valid(self, form, **kwargs):
+		email = form.cleaned_data['email']
+		baketoom_email = os.environ.get('BAKETOOM_MAIL_USER')
+
+		if email != baketoom_email:
+			if validate_email(email):
+				form.send_email()
+			else:
+				messages.error(self.request, f'ERROR 405 - Twoja wiadomość została wstrzymana.')
+				messages.error(self.request, f'Podany adres e-mail jest nieprawidłowy.')
+				return self.form_invalid(form, **kwargs)
+		else:
+			messages.error(self.request, f'ERROR 405 - Twoja wiadomość została wstrzymana.')
+			messages.error(self.request, f'Nie masz uprawnień do korzystania z adresu e-mail BakeToom - ' + baketoom_email)
+			return self.form_invalid(form, **kwargs)
+
+		return super().form_valid(form)
+
+	def get_success_url(self):
+		messages.success(self.request, f'Twoja wiadomość została pomyślnie wysłana.')
+		return reverse_lazy('contact-us-form')

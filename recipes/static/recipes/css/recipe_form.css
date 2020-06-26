@@ -74,58 +74,19 @@
   width: 100%;
 }
 #ingredients-form .recipe-category textarea[name="ingredients"] {
-  min-height: 150px
+  min-height: 150px;
 }
 
 
 
 #recipe-submit-form input[type="submit"] {
-  width: 500px
+  width: 650px;
 }
 /* Update and Deny action */
 #recipe-submit-form div.btn-group button {
-  width: 300px
+  width: 300px;
 }
 
-
-
-/**//* ----------- *//**/
-/**//* Form Inputs *//**/
-/**//* ----------- *//**/
-
-#div_id_title,
-#div_id_title div,
-
-#div_id_description,
-#div_id_description div,
-
-#div_id_image,
-#div_id_image div,
-
-#div_id_recipe_type,
-#div_id_recipe_type div,
-
-#div_id_method,
-#div_id_method div,
-
-#div_id_license,
-#div_id_license div,
-
-#div_id_nationality,
-#div_id_nationality div,
-
-#div_id_published,
-#div_id_published div { 
-  width: auto !important;
-}
-
-#div_id_published > label {
-  text-align: left;
-}
-
-/**//* ------------------ *//**/
-/**//* END of Form Inputs *//**/
-/**//* ------------------ *//**/
 
 
 @media only screen and (max-width: 991px) {
@@ -151,19 +112,18 @@
   #recipe-submit-form section {
     margin-right: 5% !important;
     margin-left: 5% !important;
-    font-size: 12px
+    font-size: 12px;
   }
-  #recipe-submit-form input[type="submit"] {
-    width: 80%;
-    font-size: 15px
+  #recipe-submit-form .recipe-form-buttons input {
+    width: 70%;
+    font-size: 15px;
   }
   /* Update and Deny action */
   #recipe-submit-form div.btn-group button { 
     font-size: 16px;
-    width: auto
+    width: 225px;
   }
 }
-
 
 
 @media only screen and (max-width: 767px) {
@@ -186,8 +146,12 @@
     grid-column: 1 / 2;
     grid-gap: 15px;
   }
-}
 
+  #recipe-submit-form .recipe-form-buttons input {
+    width: 90%;
+    font-size: 15px;
+  }
+}
 
 
 @media only screen and (max-width: 575px) {
@@ -204,8 +168,19 @@
   #ingredients-form .recipe-category {
     padding: 15px;
   }
-}
 
+
+  /* Update and Deny action */
+  #recipe-submit-form div.btn-group { 
+    display: block;
+    width: 100%;
+  }
+  #recipe-submit-form div.btn-group button { 
+    width: 80%;
+    border-radius: .3rem;
+    margin-bottom: 10px;
+  }
+}
 
 
 @media only screen and (max-width: 370px) {
@@ -236,9 +211,16 @@
   #recipe-submit-form .warning-title {
     text-align: center;
   }
-  /* Update and Deny action */
-  #recipe-submit-form .recipe-form-buttons {
-    display: flex;
-    justify-content: center;
+  #recipe-submit-form div.btn-group button,
+  #recipe-submit-form .recipe-form-buttons input {
+    width: 100%;
+  }
+}
+
+
+@media only screen and (max-width: 320px) {
+  #recipe-submit-form div.btn-group button,
+  #recipe-submit-form .recipe-form-buttons input { 
+    font-size: 12px;
   }
 }
