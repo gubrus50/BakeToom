@@ -73,12 +73,12 @@
       {% if on_update_view %}
         <!-- Update and deny action -->
         <div class="btn-group recipe-form-buttons">
-          <button type="submit" class="btn btn-warning btn-lg">Zaktualizuj dane</button>
-          <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='{% url 'recipe-detail' object.id %}'">Przerwij akcję</button>
+          <button type="submit" class="btn btn-outline-info btn-lg">Zaktualizuj dane</button>
+          <button type="button" class="btn btn-outline-danger btn-lg" onclick="window.location.href='{% url 'recipe-detail' object.id %}'">Przerwij akcję</button>
         </div>
       {% else %}
         <div class="recipe-form-buttons">
-          <input type="submit" class="btn btn-success btn-lg btn-block" value="Stwórz następujący przepis" />
+          <input type="submit" class="btn btn-outline-success btn-lg btn-block" value="Stwórz następujący przepis" />
         </div>
       {% endif %}
     </center>

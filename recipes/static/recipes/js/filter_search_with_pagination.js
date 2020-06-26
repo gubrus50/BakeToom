@@ -1,16 +1,17 @@
 function paginateToPage(index) {
-	var url = window.location.href
+	var url = window.location.href;
 
-	if (/&page=\d+/g.test(url)) {
-		window.location = url.replace(/&page=\d+/g,'&page='+index)
-	} else {
+	if (/&page=\d+/g.test(url)) { window.location = url.replace(/&page=\d+/g,'&page='+index)
+	} else { 
 		window.location = url+'&page='+index
 	}
 }
 
+
+
 window.onload = function()
 {
-	/* Search filter container toggle animation */
+	/* Search filter-container/(fc) toggle animation */
 	var fc = $('div[name="filter-container"]');
 	$('#search-filter-btn').on('click', function() {
 		if ($(fc).is(':hidden')) {
@@ -30,8 +31,10 @@ window.onload = function()
 	
 
 	// Disable upload date checkbox if publish/edit date is checked
-	function disableOrEnableUploadDateFilter() {
+	function disableOrEnableUploadDateFilter()
+	{
 		if (publish_date.checked) {
+
 			// disable upload date radio buttons from search filter-container
 			$('ul[name="upload-date-children"]').children('li').each(function(index) {
 				$(this).children('input[type="radio"]').prop('disabled', true)
@@ -39,7 +42,9 @@ window.onload = function()
 			$('ul[name="search-by-children"]').find('input[name="title"]').prop('disabled', true);
 			$('ul[name="search-by-children"]').find('input[name="publisher"]').prop('disabled', true);
 			$('ul[name="search-by-children"]').find('input[name="id"]').prop('disabled', true)
+		
 		} else {
+
 			// enable upload date radio buttons from search filter-container
 			$('ul[name="upload-date-children"]').children('li').each(function(index) {
 				$(this).children('input[type="radio"]').prop('disabled', false)
@@ -51,8 +56,10 @@ window.onload = function()
 	}
 
 
-	function disableAllFilters() {
+	function disableAllFilters()
+	{
 		if (recipe_id.checked) {
+
 			$('ul[name="search-by-children"]').children('li').each(function(index) {
 				$(this).children('input').prop('disabled', true)
 			});
@@ -66,8 +73,9 @@ window.onload = function()
 				$(this).children('input').prop('disabled', true)
 			});
 			$('ul[name="search-by-children"]').find('input[name="id"]').prop('disabled', false)
-		}
-		else {
+		
+		} else {
+
 			$('ul[name="search-by-children"]').children('li').each(function(index) {
 				$(this).children('input').prop('disabled', false)
 			});
@@ -79,14 +87,16 @@ window.onload = function()
 			});
 			$('ul[name="nationality-children"]').children('li').each(function(index) {
 				$(this).children('input').prop('disabled', false)
-			})
+			});
 		}
 	}
 
 
-	if (publish_date && specific && recipe_id) {	
+	if (publish_date && specific && recipe_id)
+	{	
 		publish_date.onclick = function() { disableOrEnableUploadDateFilter() }
 		recipe_id.onclick = function() { disableAllFilters() }
+
 		// Disable or enable countrypicker in nationality filter
 		$(nationality_mode).on('change', function() {
 			if (specific.checked) {
@@ -95,6 +105,6 @@ window.onload = function()
 				}
 				else { $('.countrypicker').show() }
 			} else { $('.countrypicker').hide() }	
-		})
+		});
 	}
 }

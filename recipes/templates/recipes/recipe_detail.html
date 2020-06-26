@@ -7,7 +7,7 @@
 {% block content %}
   {% if recipe.published or recipe.publisher == request.user %}
 
-    <center class="container recipe-container">
+    <center class="container f-mobile h-mobile">
       <h3 class="text-uppercase mt-5">{{ recipe.title }}</h3>
       <p><i class="fa fa-info-circle mr-1 mt-2"></i>
         Przejdź do głównego menu nawigacyjnego i naciśnij "Narzędzia", aby wyświetlić dostępne opcje.
@@ -194,7 +194,7 @@
   {% else %}
     <!-- Background Image -->
     <div id="recipes" class="mt-4 mb-5 pt-4 pb-4" style="background-image: url('{% static 'recipes/img/background_notepad.png' %}'); background-size: 15px 15px">
-      <center class="container recipe-container">
+      <center class="container f-mobile h-mobile">
         <!-- No results msg -->
         <div class="d-flex justify-content-center text-dark p-5 text-center" style="background-color: #f8f9fa">
           <h2>Przepis jest sprywatyzowany</h2>

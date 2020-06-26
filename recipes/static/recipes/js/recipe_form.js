@@ -52,7 +52,7 @@ function updateCreateCategoryBtn()
 
 
 
-function forLicenseInclude(year, fullname)
+function setYearAndFullnameAtLicense(year, fullname)
 {
 	$('#id_license')
 	.val(
@@ -77,6 +77,6 @@ window.onload = function()
 	});
 
 	updateCreateCategoryBtn();
-	forLicenseInclude(new Date().getFullYear(), user_fullname);
+	setYearAndFullnameAtLicense(new Date().getFullYear(), user_fullname);
 	$('textarea').addClass('custom-scroll empty-h-scroll');
 }

@@ -1,7 +1,44 @@
 {% extends "recipes/base.html" %}
+{% load crispy_forms_tags %}
 {% load static %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'recipes/css/document_template.css' %}">
+<style>
+#div_id_email,
+#div_id_topic {
+  width: 49%;
+  display: inline-block;
+}
+#div_id_topic {
+  float: right;
+}
+
+textarea::-webkit-scrollbar-track-piece,
+textarea ::-webkit-scrollbar-track-piece {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+  background-color: #f8f9fa;
+}
+
+@media only screen and (max-width: 767px) {
+  #div_id_email,
+  #div_id_topic {
+    float: none;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  label { font-size: 14px; }
+}
+
+@media only screen and (max-width: 370px) {
+  label { font-size: 12px; }
+  button[type="submit"] {
+    font-size: 12px;
+    width: 100%;
+  }
+}
+</style>
 {% endblock %}
 {% block content %}
   <div id="document-container" class="container my-5">
@@ -11,7 +48,13 @@
       <h5 class="sub-title text-center">Witamy w BakeToom!</h5>
 
       <p>Jeśli skontaktujesz się z nami bezpośrednio, możemy otrzymać dodatkowe informacje o tobie, takie jak imię i nazwisko, adres e-mail, numer telefonu, treść wiadomości i / lub załączniki, które możesz nam wysłać, oraz wszelkie inne informacje, które możesz podać. <a href="{% url 'privacy-and-policy' %}">Naciśnij mnie</a>, aby dowiedzieć się więcej o tym, jak korzystamy z twoich danych.</p>
-      <p>Możesz skontaktować się z nami bezpośrednio za pośrednictwem następującego e-maila - <b>{{ BAKETOOM_MAIL_USER }}</b>.<!-- Możesz również skorzystać z dostępnego formularza, który poprowadzi Cię i dostarczy nam Twoją wiadomość w najczystszej formie.--></p>
+      <p>Możesz skontaktować się z nami bezpośrednio za pośrednictwem następującego e-maila - <b>{{ BAKETOOM_MAIL_USER }}</b>. Możesz również skorzystać z dostępnego formularza, który pomorze Ci dostarczy nam Twoją wiadomość w najczystszej formie.</p>
+
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-outline-dark">Wyślij formularz</button>
+      </form>
 
     </div>
   </div>

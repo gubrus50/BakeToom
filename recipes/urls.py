@@ -23,7 +23,7 @@ urlpatterns = [
 	path('recipe/<int:pk>/update/', RecipeUpdateView.as_view(), name='recipe-update'),
 	path('recipe/<int:pk>/delete/', RecipeDeleteView.as_view(), name='recipe-delete'),
 	path('about/', AboutView, name='about'),
-	path('about/contact-us-form', ContactUsForm, name='contact-us-form'),
+	path('about/contact-us-form', ContactUsForm.as_view(), name='contact-us-form'),
 	path('about/privacy-and-policy/', PrivacyAndPolicy, name='privacy-and-policy'),
 	path('about/terms-and-conditions/', TermsAndConditions, name='terms-and-conditions')
 ]

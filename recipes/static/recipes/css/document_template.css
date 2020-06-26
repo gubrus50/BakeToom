@@ -29,6 +29,8 @@ body {
   margin-bottom: 50px;
 }
 
+
+
 @media only screen and (max-width: 991px) {
   #document-container {
     width: auto;
@@ -49,6 +51,14 @@ body {
     margin-bottom: 40px;
   }
 }
+
+@media only screen and (max-width: 767px) {
+  ul.mobile-pis-1,
+  .mobile-pis-1 ul {
+    padding-inline-start: 20px !important;
+  }
+}
+
 @media only screen and (max-width: 500px) {
   #document p,
   #document li {
@@ -66,6 +76,7 @@ body {
     font-size: 12px;
   }
 }
+
 @media only screen and (max-width: 400px) {
   #document p,
   #document li {
