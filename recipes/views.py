@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from validate_email import validate_email
+from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import (
@@ -29,7 +30,7 @@ from .forms import (
 	ContactUsForm,
 	CategoriesFormSet
 )
-import os, base64, requests
+import os, re, base64, requests
 
 
 
@@ -355,25 +356,30 @@ class ContactUsForm(FormView):
 	template_name = 'recipes/contact_us_form.html'
 	form_class = ContactUsForm
 
-	def get_context_data(self, *args, **kwargs):
-		context = super(ContactUsForm, self).get_context_data(**kwargs)
-		context['BAKETOOM_MAIL_USER'] = os.environ.get('BAKETOOM_MAIL_USER')
-		return context
-
 	def form_valid(self, form, **kwargs):
-		email = form.cleaned_data['email']
-		baketoom_email = os.environ.get('BAKETOOM_MAIL_USER')
+		sender_email = form.cleaned_data['email']
+		baketoom_mail = os.environ.get('BAKETOOM_MAIL_USER')
+		is_baketoom_mail = re.search('@baketoom.com', sender_email)
 
-		if email != baketoom_email:
-			if validate_email(email):
-				form.send_email()
+		if not is_baketoom_mail:
+			if validate_email(sender_email):
+				subject = form.cleaned_data['subject']
+				message = form.cleaned_data['message']
+				message = sender_email+'\n\n'+message
+
+				recipients = ['support@baketoom.com']
+				send_mail(subject, message, baketoom_mail, recipients)
+
+				recipients = [sender_email]
+				message = 'Wysłałeś następującą wiadomość do BakeToom-Support:\n\n "' + message
+				message += '"\n\nPoczekaj co najmniej 30 minut na odpowiedź od support@baketoom.com.'
+				send_mail(subject, message, baketoom_mail, recipients)
+				
 			else:
-				messages.error(self.request, f'ERROR 405 - Twoja wiadomość została wstrzymana.')
-				messages.error(self.request, f'Podany adres e-mail jest nieprawidłowy.')
+				messages.error(self.request, f'ERROR 405 - Podany adres e-mail jest nieprawidłowy.')
 				return self.form_invalid(form, **kwargs)
 		else:
-			messages.error(self.request, f'ERROR 405 - Twoja wiadomość została wstrzymana.')
-			messages.error(self.request, f'Nie masz uprawnień do korzystania z adresu e-mail BakeToom - ' + baketoom_email)
+			messages.error(self.request, f'ERROR 405 - Nie masz uprawnień do korzystania z adresu e-mail BakeToom - ' + sender_email)
 			return self.form_invalid(form, **kwargs)
 
 		return super().form_valid(form)

@@ -5,11 +5,11 @@
 <link rel="stylesheet" href="{% static 'recipes/css/document_template.css' %}">
 <style>
 #div_id_email,
-#div_id_topic {
+#div_id_subject {
   width: 49%;
   display: inline-block;
 }
-#div_id_topic {
+#div_id_subject {
   float: right;
 }
 
@@ -21,7 +21,7 @@ textarea ::-webkit-scrollbar-track-piece {
 
 @media only screen and (max-width: 767px) {
   #div_id_email,
-  #div_id_topic {
+  #div_id_subject {
     float: none;
     width: 100%;
   }
@@ -48,7 +48,7 @@ textarea ::-webkit-scrollbar-track-piece {
       <h5 class="sub-title text-center">Witamy w BakeToom!</h5>
 
       <p>Jeśli skontaktujesz się z nami bezpośrednio, możemy otrzymać dodatkowe informacje o tobie, takie jak imię i nazwisko, adres e-mail, numer telefonu, treść wiadomości i / lub załączniki, które możesz nam wysłać, oraz wszelkie inne informacje, które możesz podać. <a href="{% url 'privacy-and-policy' %}">Naciśnij mnie</a>, aby dowiedzieć się więcej o tym, jak korzystamy z twoich danych.</p>
-      <p>Możesz skontaktować się z nami bezpośrednio za pośrednictwem następującego e-maila - <b>{{ BAKETOOM_MAIL_USER }}</b>. Możesz również skorzystać z dostępnego formularza, który pomorze Ci dostarczy nam Twoją wiadomość w najczystszej formie.</p>
+      <p>Możesz skontaktować się z nami bezpośrednio za pośrednictwem następującego e-maila - <b>support@baketoom.com</b>. Możesz również skorzystać z dostępnego formularza, który pomorze Ci dostarczy nam Twoją wiadomość w najczystszej formie.</p>
 
       <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
