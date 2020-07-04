@@ -20,7 +20,7 @@ class ContactUsForm(forms.Form):
 		max_length=150
 	)
 
-	topic = forms.ChoiceField(
+	subject = forms.ChoiceField(
 		choices=TOPIC_CHOICES,
 		label='Kategoria',
 		initial='',
@@ -33,9 +33,6 @@ class ContactUsForm(forms.Form):
 		initial='',
 		max_length=10000,
 	)
-
-	def send_email(self):
-		print('EMAIL HAS BEEN SEND')
 
 
 class RecipeForm(forms.ModelForm):
