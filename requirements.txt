@@ -1,9 +1,11 @@
+appdirs==1.4.4
 asgiref==3.2.5
 beautifulsoup4==4.8.1
 boto3==1.13.3
 botocore==1.16.3
 certifi==2019.9.11
 chardet==3.0.4
+distlib==0.3.1
 dj-database-url==0.5.0
 Django==3.0.6
 django-cleanup==4.0.0
@@ -12,9 +14,11 @@ django-crispy==1.8.1
 django-crispy-forms==1.9.0
 django-heroku==0.3.1
 django-money==0.15.1
+django-resized==0.3.11
 django-storages==1.9.1
 docopt==0.6.2
 docutils==0.15.2
+filelock==3.0.12
 gunicorn==20.0.4
 html5lib==1.0.1
 idna==2.8

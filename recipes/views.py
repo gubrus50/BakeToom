@@ -77,7 +77,7 @@ class RecipeListView(ListView):
 					# Id must be an integer.
 					messages.error(self.request, f'ERROR - Identyfikator musi być liczbą całkowitą.')
 				else:
-					query_set |= Q(id__exact=query)
+					query_set &= Q(id__exact=query)
 
 		if certified:
 			query_set &= Q(certified=True)
