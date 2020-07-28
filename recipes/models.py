@@ -4,11 +4,7 @@ from django.contrib.auth.models import User
 from django_countries.fields import CountryField
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
-from PIL import Image
-
-
-# Create your models here.
-# For python manage.py Use makemigrations Then migrate To apply changes.
+from django_resized import ResizedImageField
 
 
 class Recipe(models.Model):
@@ -74,9 +70,13 @@ class Recipe(models.Model):
 		verbose_name=_('Zgadzam się z przectawionymi warunkami i opublikuj mój przepis')
 	)
 
-	image = models.ImageField(
-		default='default_recipe.jpg',
+	image = ResizedImageField(
+		size=[300, 300],
+		crop=['middle', 'center'],
+		quality=75,
+		force_format='JPEG',
 		upload_to='recipe_pics',
+		default='default_recipe.jpg',
 		verbose_name=_('Wprowadź Obraz')
 	)
 
@@ -139,18 +139,7 @@ class Recipe(models.Model):
 			elif self.date_posted:
 				self.date_posted = self.date_created
 
-		
 		super().save(*args, **kwargs)
-		"""
-		img = Image.open(self.image.path)
-
-		if img.height > 300 or img.width > 300:
-			output_size = (300, 300)
-			img.thumbnail(output_size)
-			img.save(self.image.path)
-		"""
-
-
 
 	def get_absolute_url(self):
 		return reverse('recipe-detail', kwargs={'pk': self.pk})
