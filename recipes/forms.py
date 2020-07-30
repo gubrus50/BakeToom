@@ -7,12 +7,16 @@ import os
 
 class ContactUsForm(forms.Form):
 	TOPIC_CHOICES = (
-		('other', 'Inne'),
-		('forgot_emai', 'Nie pamiętam adres email'),
-		('forgot_username', 'Nie pamiętam nazwy użytkownika'),
-		('bug_report', 'Potencjalny błąd strony'),
-		('reported_recipe', 'Przepis narusza warunki i usługi'),
-		('reported_user', 'Użytkownik narusza warunki i usługi'),
+		('other',          'Inne'),
+		('auth_failure',   'Nie mogę dostać się do mojego konta'),
+		('forgot_email',   'Nie pamiętam mojego adresu email'),
+		('forgot_username','Nie pamiętam nazwy użytkownika'),
+		('impersonation',  'Ktoś podszywa się pode mnie'),
+		('user_claim',     'Użytkownik narusza warunki i usługi'),
+		('user_claim',     'Użytkownik rozprowadza mój przepis bez mojej zgody'),
+		('recipe_claim',   'Przepis narusza warunki i usługi'),
+		('recipe_claim',   'Przepis narusza prawa autorskie'),
+		('bug_report',     'Potencjalny błąd strony')
 	)
 
 	email = forms.CharField(

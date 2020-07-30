@@ -64,8 +64,7 @@
             swój przepis,
           {% endif %}
 
-          jesteś w pełni świadomy <a href="#">prawa autorskiego</a>. Jeśli któreś z powyższych danych które wprowadziłeś(ąś) narusza nasze <a href="#">warunki i usługi</a>, to przepis zostanie usunięty z wiadomości publicznej i możesz ponieść konsekwencje karne.
-          <a href="#">Kliknij mnie </a>jeśli chcesz wiedzieć jak się chronić przed nieuczciwymi oskarżeniami.
+          jesteś w pełni świadomy <a href="https://pl.qwe.wiki/wiki/Copyright" target="_blank">prawa autorskiego</a>. Jeśli któreś z powyższych danych które wprowadziłeś(ąś) narusza nasze <a href="{% url 'terms-and-conditions' %}" target="_blank">warunki i usługi</a>, to przepis zostanie usunięty z wiadomości publicznej.
         </p>
         {{ form.published|as_crispy_field }}
       </section>
