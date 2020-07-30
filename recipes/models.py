@@ -67,7 +67,7 @@ class Recipe(models.Model):
 	published = models.BooleanField(
 		blank=False,
 		default=False,
-		verbose_name=_('Zgadzam się z przectawionymi warunkami i opublikuj mój przepis')
+		verbose_name=_('Zgadzam się z przedstawionymi mi warunkami i opublikuj mój przepis')
 	)
 
 	image = ResizedImageField(

@@ -374,6 +374,9 @@ class ContactUsForm(FormView):
 				message = 'Wysłałeś następującą wiadomość do BakeToom-Support:\n\n "' + message
 				message += '"\n\nPoczekaj co najmniej 30 minut na odpowiedź od support@baketoom.com.'
 				send_mail(subject, message, baketoom_mail, recipients)
+
+				messages.success(self.request, f'Twoja wiadomość została pomyślnie wysłana.')
+				messages.success(self.request, f'Przejdź do wprowadzonego przez ciebie adresu e-mail \''+sender_email+'\', aby uzyskać naszą odpowiedź.')
 				
 			else:
 				messages.error(self.request, f'ERROR 405 - Podany adres e-mail jest nieprawidłowy.')
@@ -385,5 +388,4 @@ class ContactUsForm(FormView):
 		return super().form_valid(form)
 
 	def get_success_url(self):
-		messages.success(self.request, f'Twoja wiadomość została pomyślnie wysłana.')
 		return reverse_lazy('contact-us-form')
