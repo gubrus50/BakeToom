@@ -13,9 +13,9 @@
             </div>
             <div class="recipe-detail text-center mb-3 mt-3 mx-2 f16">
               <h4 class="recipe-title text-uppercase">{{ recipe.title }}</h4>
-              <h7>Wydawca : {{ recipe.publisher }}</h7>
+              <h7 class="recipe-publisher">Wydawca : {{ recipe.publisher }}</h7>
               <br>
-              <h7>
+              <h7 class="recipe-region">
                 {% if recipe.nationality %}
                   <span class="flag {{ recipe.nationality|lower }}"></span>
                   {{ recipe.nationality.name|title }}
@@ -24,7 +24,7 @@
                 {% endif %}
               </h7>
               {% if recipe.certified %}
-                <img class="ml-1 mt-1" height="20" src="{% static 'recipes/img/icons/flaticon/contract.svg' %}">
+                <img alt="certification" height="20" src="{% static 'recipes/img/icons/flaticon/contract.svg' %}">
               {% endif %}
             </div>
           </div>

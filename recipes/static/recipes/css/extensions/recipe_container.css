@@ -70,6 +70,7 @@
 }
 #recipe-wrapper div.recipe-item {
   width: 250px;
+  height: 100%;
   font-family: monospace;
 }
 #recipe-wrapper div.recipe-image {
@@ -89,6 +90,13 @@
   white-space: nowrap; 
   width: 95%; 
   overflow: hidden; 
+}
+#recipe-wrapper .recipe-detail > img[alt="certification"] {
+  margin-top: 2px;
+}
+#recipe-wrapper .recipe-region {
+  display: inline-block;
+  margin-top: 0px;
 }
 
 
@@ -110,6 +118,9 @@
   }
   #recipe-wrapper div.recipe-image > .unpublished {
     font-size: 18px;
+  }
+  #recipe-wrapper .recipe-region {
+    margin-top: 2px;
   }
 }
 
