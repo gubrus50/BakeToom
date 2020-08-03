@@ -4,13 +4,13 @@
 <html lang="pl">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>BakeToom - {{ recipe.title }}</title>
 <style>
 body { font-family: calibri; }
-data-tag {
-  display: block;
-  padding: 10px;
-  margin-bottom: 10px;
+comma-break:before { 
+  content: ",";
+  display: inline;
 }
 
 #recipe, #method, #license {
@@ -38,16 +38,79 @@ data-tag {
 #license {
   font-family: monospace;
 }
+
+
+@media only screen and (max-width: 450px) {
+  #recipe > img:first-child {
+    width: 100% !important;
+    height: 225px !important;
+    object-fit: cover;
+    padding-bottom: 10px;
+  }
+  /* Recipe title */
+  #recipe > section[name="description"] > h1 {
+    text-align: center;
+  }
+
+  #ingredients > article {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  comma-break:before { 
+    content: "";
+    display: table;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  #recipe,
+  #method,
+  #license,
+  #ingredients > article > section {
+    font-size: 10px !important;
+  }
+
+  #recipe > img:first-child {
+    height: 100px;
+    width: 150px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #recipe {
+    display: block;
+  }
+  #recipe > img:first-child {
+    height: 125px;
+    width: 175px;
+  }
+
+  #ingredients > article {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  #recipe,
+  #method,
+  #license,
+  #ingredients > article > section {
+    font-size: 12px;
+  }
+
+  #recipe > img:first-child {
+    margin-right: 15px;
+  }
+}
 </style>
 </head>
 <body>
 {% if recipe.published or recipe.publisher == request.user %}
-  
-  <data-tag>[UTC {% now "j F Y H:i" %}] - URL: {{ request.META.HTTP_HOST }}{% url 'recipe-detail' recipe.id %}</data-tag>
-
   <div id="recipe">
     <img src="data:image;base64,{{ recipe_image_base64 }}" alt="{{ recipe.image.name }}">
-    <section>
+    <section name="description">
       <h1 style="margin-top: 0px">{{ recipe.title|upper }}</h1>
       <p>{{ recipe.description }}</p>
       <p>
@@ -103,25 +166,32 @@ data-tag {
         Narodowość: {{ recipe.nationality.name|title }}
       {% else %}
         Narodowość: Międzynarodowy
-      {% endif %},
+      {% endif %}
+      <comma-break>
 
       {% if recipe.publisher %}
         Wydawca: {{ recipe.publisher }}
-      {% else %}Wydawca: ...{% endif %},
+      {% else %}Wydawca: ...{% endif %}
+      <comma-break>
 
       {% if recipe.recipe_type %}
         Typ: {{ recipe.recipe_type|title }}
-      {% else %}Typ: inne{% endif %},
+      {% else %}Typ: inne{% endif %}
+      <comma-break>
 
       ID: {{ recipe.id }}
 
       {% if recipe.certified %}
-        , Atestowany
+        <comma-break> Atestowany
       {% endif %}
 
       {% if not recipe.published %}
         <b style="color: red">NIE OPUBLIKOWANY</b>
       {% endif %}
+    </p>
+    <p>
+      SESSION-DATE: UTC - {% now "j F Y H:i" %} <comma-break>
+      SOURCE: URL - {{ request.META.HTTP_HOST }}{% url 'recipe-detail' recipe.id %}
     </p>
   </section>
   <br>
@@ -196,7 +266,7 @@ function RemoveEmptyIngredientListElements() {
 
 function RemoveEmptyMethodListElements() {
   // Get list
-  var new_method_list = []
+  var new_method_list = [];
   var method_data = document.getElementById('recipe-method-list').children[0].innerHTML;
   var method_list = method_data.split('<br>');
 
