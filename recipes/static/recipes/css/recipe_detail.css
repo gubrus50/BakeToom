@@ -9,14 +9,15 @@
   left: -20px;
   height: 10px;
   width: 10px;
-  border-radius: 50%;
-  background-color: #e5e5e5
+  border-radius: 1px;
+  background-color: #fbfbfb;
+  box-shadow: 0 0 0 1px #dee2e6;
 }
 /* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
   content: "";
   position: absolute;
-  display: none
+  display: none;
 }
 
 /* The container */
@@ -28,7 +29,7 @@
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none
+  user-select: none;
 }
 /* Hide the browser's default checkbox */
 .checkbox-container input {
@@ -36,11 +37,12 @@
   opacity: 0;
   cursor: pointer;
   height: 0;
-  width: 0
+  width: 0;
 }
 /* When the checkbox is checked, add a blue background */
 .checkbox-container input:checked ~ .checkmark {
-  background-color: #2196F3
+  background-color: #2196F3;
+  box-shadow: 0 0 0 1px #217EF3FF;
 }
 /* Show the checkmark when checked */
 .checkbox-container input:checked ~ .checkmark:after {
@@ -71,9 +73,14 @@
 /**//* Recipe Container *//**/
 /**//* ---------------- *//**/
 
+.recipe-title {
+  font-family: 'Raleway', sans-serif;
+}
 
 #recipe-detail-content {
-  border-radius: 3px;
+  border-radius: 0px 0px 3px 3px;
+  padding: 0px;
+  background-color: #fbfbfb;
 }
 
 #recipe-detail-navbar {
@@ -100,11 +107,36 @@
   grid-template-columns: 3fr 1fr;
   font-family: calibri;
   font-size: 14px;
-  grid-gap: 15px;
+  grid-gap: 0;
+}
+#recipe > article section {
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  padding: 15px;
+}
+#recipe > article section[name="description"] {
+  border-right: 0;
+}
+#recipe > article section[name="data"] {
+  grid-column: 1 / 3;
+  border-top: 0;
+}
+#recipe > article .recipe-image {
+  border: 1px solid #dee2e6;
+  padding: 15px;
+  border-left: 0;
+  background-color: #fff;
+  min-height: 175px;
 }
 
 #method > article {
   font-family: calibri;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  padding: 15px;
+}
+#method > article > p {
+  margin: 0;
 }
 
 #ingredients > article {
@@ -136,6 +168,9 @@
 
 #license > article {
   font-family: monospace;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  padding: 15px;
 }
 
 
@@ -155,23 +190,24 @@
 
 @media only screen and (max-width: 767px) {
   #recipe > article > div.wrapper {
-    display: block;
+    grid-column-gap: 0px;
   }
-  #recipe > article > div.wrapper img {
-    margin-top: 20px;
-    height: 150px;
-    width: 200px;
-    float: right;
+  #recipe > article section[name="description"] {
+    grid-column: 1 / 3;
+    border-right: 1px solid #dee2e6;
   }
-  #recipe > article > div.wrapper section[name="description"] {
-    width: 100%;
-  }
-  #recipe > article > section[name="data"] {
-    float: left;
+  #recipe > article section[name="data"] {
+    border-right: 0;
+    grid-column: 1;
     font-size: 12px;
   }
-  #recipe > article > section[name="data"] > ul > li {
+  #recipe > article section[name="data"] > ul > li {
     display: block;
+  }
+  #recipe > article .recipe-image {
+    width: 200px;
+    border-top: 0;
+    order: 3;
   }
   #method > article, #license > article {
     font-size: 14px;
@@ -198,11 +234,24 @@
   #recipe-detail-navbar button {
     font-size: 12px;
   }
-  #recipe > article > div.wrapper img {
+  #recipe > article > div.wrapper {
+    grid-template-columns: 1fr;
+  }
+  #recipe > article section[name="description"] {
+    border-top: 0;
+    order: 1;
+  }
+  #recipe > article .recipe-image {
+    border-top: 1px solid #dee2e6;
+    border-left: 1px solid #dee2e6;
+    height: 225px;
     width: 100%;
-    height: 250px;
-    float: auto;
-    margin-bottom: 20px;
+    order: 0;
+  }
+  #recipe > article section[name="data"] {
+    border-right: 1px solid #dee2e6;
+    grid-column: 1;
+    font-size: 12px;
   }
   #method > article, #license > article {
     font-size: 12px;
@@ -210,16 +259,13 @@
 }
 
 @media only screen and (max-width: 400px) {
-  #recipe > article > div.wrapper img {
-    height: 200px;
-  }
   #recipe, #ingredients, #method, #license {
     padding: 30px 10px 30px 10px !important;
   }
 }
 
 @media only screen and (max-width: 338px) {
-  #recipe > article > div.wrapper img {
+  #recipe > article .recipe-image {
     height: 150px;
   }
 }

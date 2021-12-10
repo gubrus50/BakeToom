@@ -14,14 +14,17 @@
   <link rel="stylesheet" href="//unpkg.com/bootstrap-select@1.12.4/dist/css/bootstrap-select.min.css" type="text/css">
   <link rel="stylesheet" href="//unpkg.com/bootstrap-select-country@4.0.0/dist/css/bootstrap-select-country.min.css" type="text/css">
   <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/bootstrap4_select_beta2.css' %}">
+  <!-- Fontawesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- World-Flags-Sprite
   https://github.com/lafeber/world-flags-sprite/blob/master/LICENSE
   -->
   <link rel="stylesheet" type="text/css" href="//github.com/downloads/lafeber/world-flags-sprite/flags32.css">
 
-  <!-- Qwigley font-family -->
+  <!-- External fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Qwigley&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
 
   <link rel="shortcut icon" href="{% static 'recipes/img/icons/baketoom_icon.svg' %}">
   <link rel="stylesheet" href="{% static 'recipes/css/main.css' %}">
@@ -119,15 +122,16 @@
   </header>
 
 
-  <div id="base-banner" class="d-flex h-mobile justify-content-center my-2 text-center text-dark bg-light">
-    <h3 class="mb-1">PRZECHOWYWAJ I ZARZĄDZAJ<br/>SWE ULUBIONE PRZEPISY</h3>
+  <div id="base-banner" class="d-flex h-mobile mb-2 justify-content-center text-center text-white" style="background-image: url({% static 'recipes/img/pexels-august-de-richelieu-4262010.jpg' %})">
+    <a href="https://www.pexels.com/photo/family-preparing-food-in-the-kitchen-4262010/" target="_blank">Fotografia zrobiona przez August de Richelieu z Pexels</a>
+    <h3 class="banner-motto mb-1 align-self-center display-4">PRZECHOWYWAJ I ZARZĄDZAJ<br/>SWOJE ULUBIONE PRZEPISY</h3>
   </div>
 
 
   <!-- Cookie-Alert -->
   <div id="cookieConsent" style="visibility: hidden; font-family: Calibri" class="alert text-center cookiealert f-mobile" role="alert">
     <b>Cookies?</b> &#x1F36A; Używamy plików cookie, aby zapewnić najlepszą jakość korzystania z naszej witryny. 
-    <a href="https://wszystkoociasteczkach.pl/polityka-cookies/" target="_blank">dowiedz się więcej</a>
+    <a href="https://wszystkoociasteczkach.pl/polityka-cookies/" target="_blank">Dowiedz się więcej</a>
     <button type="button" class="btn btn-warning btn-sm acceptcookies" aria-label="Close">Okej, schowaj</button>
   </div>
 
@@ -211,8 +215,8 @@
   </footer>
 
 
-  <script name="Popper.js" src='https://kit.fontawesome.com/a076d05399.js' crossorigin="anonymous"></script>
   <script name="Fontawesome.js" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script name="Fontawesome.js" src="https://use.fontawesome.com/f98f48837f.js"></script>
   <script name="Bootstrap JS" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script name="Bootstrap-select" src="//unpkg.com/bootstrap-select@1.12.4/dist/js/bootstrap-select.min.js"></script>
   <script name="Bootstrap-select-country" src="//unpkg.com/bootstrap-select-country@4.0.0/dist/js/bootstrap-select-country.min.js"></script>

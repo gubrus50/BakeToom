@@ -1,3 +1,4 @@
+{% load static %}
 html {
   scroll-behavior: smooth;
   position: relative;
@@ -9,6 +10,33 @@ body {
 }
 header > nav {
   background-color: #282c30;
+}
+#base-banner {
+  position: relative;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: contain;
+  height: 300px;
+
+}
+#base-banner > a {
+  position: absolute;
+  left: 5px;
+  color: #ffff;
+}
+#base-banner .banner-motto {
+  z-index: 1;
+  font-weight: 400;
+}
+#base-banner::before {
+  content: "";
+  background-color: rgba(0,0,0,.25);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
 }
 footer {
   background-color: #282c30;
@@ -157,6 +185,9 @@ footer > div.footer-body section { font-size: 12px; }
   h4.h5-mobile,
   h5.h5-mobile { font-size: 10px !important; }
 
+  #base-banner .banner-motto {
+    font-size: auto;
+  }
 }
 
 @media only screen and (max-width: 1000px) {
@@ -172,5 +203,11 @@ footer > div.footer-body section { font-size: 12px; }
   }
   footer > div.footer-body > section {
     font-size: 10px !important;
+  }
+  #base-banner {
+    height: 200px;
+  }
+  #base-banner .banner-motto {
+    font-size: 1.75em;
   }
 }

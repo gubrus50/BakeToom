@@ -96,7 +96,7 @@ class Recipe(models.Model):
 		max_length=10000,
 		blank=False,
 		default=DEFAULT_LICENSE,
-		verbose_name=_('Utwórz wiarygodną licencję')
+		verbose_name=_('Utwórz licencję')
 	)
 
 	nationality	= CountryField(
