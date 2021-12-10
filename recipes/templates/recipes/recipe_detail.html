@@ -7,12 +7,12 @@
 {% block content %}
   {% if recipe.published or recipe.publisher == request.user %}
 
-    <center class="container f-mobile h-mobile">
-      <h3 class="text-uppercase mt-5">{{ recipe.title }}</h3>
+    <div class="container f-mobile h-mobile my-5 text-center">
+      <h1 class="recipe-title text-uppercase">{{ recipe.title }}</h1>
       <p><i class="fa fa-info-circle mr-1 mt-2"></i>
         Przejdź do głównego menu nawigacyjnego i naciśnij "Narzędzia", aby wyświetlić dostępne opcje.
       </p>
-    </center>
+    </div>
 
     <div id="recipe-detail-navbar" class="container border p-0" style="border-radius: 3px 3px 0px 0px; border-bottom: 0px !important">
       <button name="recipe" class="btn btn-light text-lowercase" onclick="showSection('recipe')" style="border-radius: 3px 0px 0px 0px">
@@ -29,7 +29,7 @@
       </button>
     </div>
 
-    <div id="recipe-detail-content" class="container bg-white border mb-5" style="border-radius: 0px 0px 3px 3px">
+    <div id="recipe-detail-content" class="container border mb-5">
       <div id="recipe" class="p-4">
         <article>
           <div class="wrapper mb-3">
@@ -83,48 +83,49 @@
                 {% endif %}
               </div>
             </section>
-            <img width="100%" height="175px" src="{{ recipe.image.url }}">
-          </div>
-          <section name="data">
-            <h5 style="font-weight: 400">Dane</h5>
-            <ul class="list-inline f16" style="font-family: monospace">
-              <li class="list-inline-item m-0">
-                {% if recipe.nationality %}
-                  Narodowość:
-                  <span class="flag {{ recipe.nationality|lower }}"></span>
-                {% else %}
-                  Narodowość: Międzynarodowy
-                {% endif %}
-              </li>
-              <i class="off-w767">,</i>
-              <li class="list-inline-item m-0">
-                {% if recipe.publisher %}
-                  Wydawca: <a href="{% url 'user-recipes' recipe.publisher.username %}">{{ recipe.publisher }}</a>
-                {% else %}Wydawca: ...{% endif %}
-              </li>
-              <i class="off-w767">,</i>
-              <li class="list-inline-item m-0">
-                {% if recipe.recipe_type %}
-                  Typ: {{ recipe.recipe_type|title }}
-                {% else %}Typ: inne{% endif %}
-              </li>
-              <i class="off-w767">,</i>
-              <li class="list-inline-item m-0">
-                ID: {{ recipe.id }}
-              </li>
-              {% if recipe.certified %}
+            <img alt="recipe image" class="recipe-image" width="100%" height="100%" src="{{ recipe.image.url }}">
+            <section name="data">
+              <h5 style="font-weight: 400">Dane</h5>
+              <ul class="list-inline f16" style="font-family: monospace">
+                <li class="list-inline-item m-0">
+                  {% if recipe.nationality %}
+                    Narodowość:
+                    <span class="flag {{ recipe.nationality|lower }}"></span>
+                    {{ recipe.nationality.name|title }}
+                  {% else %}
+                    Narodowość: Międzynarodowy
+                  {% endif %}
+                </li>
                 <i class="off-w767">,</i>
                 <li class="list-inline-item m-0">
-                  Atestowany <img height="30" src="{% static 'recipes/img/icons/flaticon/contract.svg' %}">
+                  {% if recipe.publisher %}
+                    Wydawca: <a href="{% url 'user-recipes' recipe.publisher.username %}">{{ recipe.publisher }}</a>
+                  {% else %}Wydawca: ...{% endif %}
                 </li>
-              {% endif %}
-              {% if not recipe.published %}
+                <i class="off-w767">,</i>
                 <li class="list-inline-item m-0">
-                  <b class="text-uppercase" style="color: red">nie opublikowany</b>
+                  {% if recipe.recipe_type %}
+                    Typ: {{ recipe.recipe_type|title }}
+                  {% else %}Typ: inne{% endif %}
                 </li>
-              {% endif %}
-            </ul>
-          </section>
+                <i class="off-w767">,</i>
+                <li class="list-inline-item m-0">
+                  ID: {{ recipe.id }}
+                </li>
+                {% if recipe.certified %}
+                  <i class="off-w767">,</i>
+                  <li class="list-inline-item m-0">
+                    Atestowany <img height="30" src="{% static 'recipes/img/icons/flaticon/contract.svg' %}">
+                  </li>
+                {% endif %}
+                {% if not recipe.published %}
+                  <li class="list-inline-item m-0">
+                    <b class="text-uppercase" style="color: red">nie opublikowany</b>
+                  </li>
+                {% endif %}
+              </ul>
+            </section>
+          </div>
         </article>
       </div>
       <div id="ingredients" class="p-4 d-none">
@@ -132,7 +133,7 @@
           {% if categories %}
             {% for category in categories %}
               {% if category.recipe == object %}
-                <section class="border">
+                <section class="border bg-white">
                   <h5 class="title text-uppercase my-2">{{ category.name }}</h5>
                   <hr>
                   {% if category.ingredients %}
@@ -147,7 +148,7 @@
         </article>
       </div>
       <div id="method" class="p-4 d-none">
-        <article id="recipe-method-list" class="mt-2" style="word-wrap: break-word">
+        <article id="recipe-method-list" style="word-wrap: break-word">
           {% if object.method %}
             {{ object.method|linenumbers|linebreaks }}
           {% else %}...{% endif %}
@@ -164,10 +165,8 @@
 
 
     <!-- Share container -->
-    <div class="text-center container h-mobile pt-5">
-      <h3 class="mb-3">
-        Udostępnij przepis znajomym
-      </h3>
+    <div class="text-center container h-mobile pt-5" style="font-family: 'Raleway', sans-serif;">
+      <h3 class="mb-3">Udostępnij przepis znajomym</h3>
       <ul class="list-inline social-media-icons">
         <li class="list-inline-item" name="facebook-icon">
           <a href="#share">
