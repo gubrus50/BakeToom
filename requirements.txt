@@ -25,7 +25,7 @@ idna==2.8
 jmespath==0.9.5
 Js2Py==0.66
 packaging==19.2
-Pillow==7.1.2
+Pillow==9.0.0
 psycopg2==2.8.5
 py-moneyed==0.8.0
 pyjsparser==2.7.1
