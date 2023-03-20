@@ -4,7 +4,7 @@ function createEmptyCategoryObject() {
 		updateCreateCategoryBtn(); return;
 	}
 
-	var delete_label = "Usuń";
+	var delete_label = "Delete";
 	if (recipe_id) { category_value = 'value="'+recipe_id+'"' }
 	else { category_value = '' }
 

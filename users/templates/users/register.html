@@ -7,7 +7,7 @@
 {% block content %}
 
   <div class="container text-center">
-    <p><i class="fa fa-info-circle mr-1 mt-4"></i> Przejdź do menu nawigacyjnego i naciśnij "Więcej informacji", aby dowiedzieć się więcej o nas i naszych warunkach.</p>
+    <p><i class="fa fa-info-circle mr-1 mt-4"></i> Head to the navigation bar and press <strong>About BakeToom</strong> to find out more about us and our terms.</p>
   </div>
   
   <form method="POST" enctype="multipart/form-data" class="mb-5">
@@ -16,19 +16,19 @@
       <div class="simple-form simple-form-split">
 
         <div>
-          <h2 name="register" class="title text-uppercase mb-4">Rejestracja</h2>
+          <h2 name="register" class="title text-uppercase mb-4">Registration</h2>
           {{ form|crispy }}
           <div id="submission" class="mt-4">
-            <button class="btn btn-outline-info w-100" type="submit">Zarejestruj się</button>
+            <button class="btn btn-outline-info w-100" type="submit">Register account</button>
           </div>
         </div>
         
         <div class="simple-form-split-right">
-          <h2 name="welcome-at-baketoom" class="title text-uppercase mb-4">Witaj w BakeToom</h2>
-          <p>Odkryj przepisy z całego świata!</p>
-          <p style="font-family: calibri">BakeToom to świetne miejsce dla fanów kulinarnych, gdzie każdy ma szansę zdobyć uznanie, na które zasługuje. Po krótkiej rejestracji będziesz mógł(a) opublikować swoje przepisy na naszej platformie i rozszerzać swoje relacje na skalę międzynarodową abyś dalej rozwijał(a) swoje dzieła.</p>
-          <p style="font-family: calibri">Zapoznaj się z naszymi <a href="{% url 'terms-and-conditions' %}" target="_blank">Zasadami i Warunkami</a> i dołącz do naszego świata smakoszy. Posiadasz konto? <a href="{% url 'login' %}">Zaloguj się</a>.</p>
-          <p><br><b>Strona rejestracyjna jest na razie prywatna</b></p>
+          <h2 name="welcome-to-baketoom" class="title text-uppercase mb-4">Welcome to BakeToom</h2>
+          <p>Discover recipes from around the world!</p>
+          <p style="font-family: calibri">BakeToom is a great place for culinary fans, where everyone has a chance to get the recognition they deserve. After a short registration, you will be able to publish your recipes on our platform and expand your relations on an international scale to further develop your creations.</p>
+          <p style="font-family: calibri">Check the <a href="{% url 'terms-and-conditions' %}" target="_blank">Terms & Conditions</a> and join our gourmet world.<br>You have an account? <a href="{% url 'login' %}">Login now</a>.</p>
+          <p><br><b>The registration page is private for now</b></p>
         </div>
 
       </div>

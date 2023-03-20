@@ -75,7 +75,7 @@ class RecipeListView(ListView):
 					int(query)
 				except:
 					# Id must be an integer.
-					messages.error(self.request, f'ERROR - Identyfikator musi być liczbą całkowitą.')
+					messages.error(self.request, f'ERROR - The identifier must be an integer.')
 				else:
 					query_set &= Q(id__exact=query)
 
@@ -130,7 +130,7 @@ class RecipeListView(ListView):
 						datetime.strptime(query, '%d-%m-%Y')
 					except:
 						# Invalid data form error.
-						messages.error(self.request, f'ERROR - Wprowadzona data musi być ułożona w następującej formie - DD/MM/YYYY.')
+						messages.error(self.request, f'ERROR - The entered date must be arranged in the following form - DD/MM/YYYY.')
 					else:
 						date = datetime.strptime(query, '%d-%m-%Y')
 				else:
@@ -254,7 +254,7 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
 
 
 	def get_success_url(self):
-		messages.success(self.request, f'Twój przepis został pomyślnie utworzony.')
+		messages.success(self.request, f'Your recipe has been successfully created.')
 		return reverse_lazy('recipe-detail', kwargs={'pk': self.object.pk})
 
 
@@ -313,7 +313,7 @@ class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 
 	def get_success_url(self):
-		messages.success(self.request, f'Twój przepis został pomyślnie zaktualizowany.')
+		messages.success(self.request, f'Your recipe has been successfully updated.')
 		return reverse_lazy('recipe-detail', kwargs={'pk': self.object.pk})
 
 
@@ -343,10 +343,10 @@ def AboutView(request):
 	return render(request, 'recipes/about.html')
 
 def TermsAndConditions(request):
-	return render(request, 'recipes/terms_and_conditions_pl.html')
+	return render(request, 'recipes/terms_and_conditions.html')
 
 def PrivacyAndPolicy(request):
-	return render(request, 'recipes/privacy_and_policy_pl.html')
+	return render(request, 'recipes/privacy_and_policy.html')
 
 
 
@@ -371,18 +371,18 @@ class ContactUsForm(FormView):
 				send_mail(subject, message, baketoom_mail, recipients)
 
 				recipients = [sender_email]
-				message = 'Wysłałeś następującą wiadomość do BakeToom-Support:\n\n "' + message
-				message += '"\n\nPoczekaj co najmniej 30 minut na odpowiedź od support@baketoom.com.'
+				message = 'You have sent the following message to BakeToom-Support:\n\n "' + message
+				message += '"\n\nPlease wait at least 30 minutes for a response from support@baketoom.com'
 				send_mail(subject, message, baketoom_mail, recipients)
 
-				messages.success(self.request, f'Twoja wiadomość została pomyślnie wysłana.')
-				messages.success(self.request, f'Przejdź do wprowadzonego przez ciebie adresu e-mail \''+sender_email+'\', aby uzyskać naszą odpowiedź.')
+				messages.success(self.request, f'Your message has been successfully sent.')
+				messages.success(self.request, f'Navigate to the email address you entered \''+sender_email+'\', to get our answer.')
 				
 			else:
-				messages.error(self.request, f'ERROR 405 - Podany adres e-mail jest nieprawidłowy.')
+				messages.error(self.request, f'ERROR 405 - The e-mail address provided is invalid.')
 				return self.form_invalid(form, **kwargs)
 		else:
-			messages.error(self.request, f'ERROR 405 - Nie masz uprawnień do korzystania z adresu e-mail BakeToom - ' + sender_email)
+			messages.error(self.request, f'ERROR 405 - You are not authorized to use the BakeToom email address - ' + sender_email)
 			return self.form_invalid(form, **kwargs)
 
 		return super().form_valid(form)

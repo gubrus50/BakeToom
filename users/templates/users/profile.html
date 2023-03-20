@@ -27,19 +27,19 @@
       <div class="simple-form simple-form-split">
 
         <div id="profile">
-          <h2 name="profile" class="title text-uppercase mb-4">Mój profil</h2>
+          <h2 name="profile" class="title text-uppercase mb-4">My Profile</h2>
           <div class="menu">
-            <a title="Moje przepisy" name="my-recipes" href="{% url 'user-recipes' user.username %}">
+            <a title="My recipes" name="my-recipes" href="{% url 'user-recipes' user.username %}">
               <img height="25" src="{% static 'recipes/img/icons/flaticon/my_recipes.svg' %}">
-              <label class="ml-2 d-none">Moje przepisy</label>
+              <label class="ml-2 d-none">My recipes</label>
             </a>
-            <a title="Dodaj przepis" name="add-recipe" href="{% url 'recipe-create' %}">
+            <a title="Add a recipe" name="add-recipe" href="{% url 'recipe-create' %}">
               <img height="25" src="{% static 'recipes/img/icons/flaticon/create_recipe.svg' %}">
-              <label class="ml-2 d-none">Dodaj przepis</label>
+              <label class="ml-2 d-none">Add a recipe</label>
             </a>
-            <a title="Moje zakładki" name="my-bookmarks" href="#">
+            <a title="My bookmarks" name="my-bookmarks" href="#">
               <img height="25" src="{% static 'recipes/img/icons/flaticon/sticky-notes.svg' %}">
-              <label class="ml-2 d-none">Moje zakładki</label>
+              <label class="ml-2 d-none">My bookmarks</label>
             </a>
           </div>
           <div class="profile-pic-container">
@@ -49,12 +49,12 @@
 
         <div class="simple-form-split-right">
           <div id="form">
-            <h2 name="change-data" class="title text-uppercase mb-4">Zmień dane</h2>
-            <small class="d-block mb-3">Nie pamiętasz hasła? <a href="{% url 'password_reset' %}">Zmień teraz</a></small>
+            <h2 name="change-data" class="title text-uppercase mb-4">Change data</h2>
+            <small class="d-block mb-3">Forgot your password? <a href="{% url 'password_reset' %}">Change it now</a>.</small>
             {{ u_form|crispy }}
             {{ p_form|crispy }}
             <div id="submission" class="mt-4">
-              <button class="btn btn-outline-info w-100" type="submit">Zatwierdź zmiany</button>
+              <button class="btn btn-outline-info w-100" type="submit">Update changes</button>
             </div>
           </div>
         </div>

@@ -1,22 +1,21 @@
 from django.forms.models import inlineformset_factory
 from django import forms
 from .models import Recipe, Category
-import os
 
 
 
 class ContactUsForm(forms.Form):
 	TOPIC_CHOICES = (
-		('other',          'Inne'),
-		('auth_failure',   'Nie mogę dostać się do mojego konta'),
-		('forgot_email',   'Nie pamiętam mojego adresu email'),
-		('forgot_username','Nie pamiętam nazwy użytkownika'),
-		('impersonation',  'Ktoś podszywa się pode mnie'),
-		('user_claim',     'Użytkownik narusza warunki i usługi'),
-		('user_claim',     'Użytkownik rozprowadza mój przepis bez mojej zgody'),
-		('recipe_claim',   'Przepis narusza warunki i usługi'),
-		('recipe_claim',   'Przepis narusza prawa autorskie'),
-		('bug_report',     'Potencjalny błąd strony')
+		('other',          'Other'),
+		('auth_failure',   'I can\'t access my account'),
+		('forgot_email',   'I don\'t remember my email address'),
+		('forgot_username','I don\'t remember my username'),
+		('impersonation',  'Someone is impersonating me'),
+		('user_claim',     'The user violates the terms and services'),
+		('user_claim',     'A user distributes my recipe without my consent'),
+		('recipe_claim',   'The recipe violates terms and services'),
+		('recipe_claim',   'The recipe violates copyright'),
+		('bug_report',     'Potential page error')
 	)
 
 	email = forms.CharField(
@@ -26,13 +25,11 @@ class ContactUsForm(forms.Form):
 
 	subject = forms.ChoiceField(
 		choices=TOPIC_CHOICES,
-		label='Kategoria',
 		initial='',
 		required=True,
 	)
 
 	message = forms.CharField(
-		label='Wiadomość',
 		widget=forms.Textarea,
 		initial='',
 		max_length=10000,

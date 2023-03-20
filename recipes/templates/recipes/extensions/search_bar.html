@@ -1,56 +1,56 @@
-<a id="previous-page-btn" class="btn text-secondary">
-  <i class="fa fa-arrow-left"></i>
+<a id="previous-page-btn" class="btn text-secondary" title="Return">
+  <i class="fa-solid fa-arrow-left-long"></i>
 </a>
 
 <div class="form-control">
-  <input type="search" name="q" value="{{ query }}" placeholder="Czego dzisiaj pragniesz?" aria-label="Search">
-  <a id="search-filter-btn" href="#filter" class="text-secondary float-right">
+  <input type="search" name="q" value="{{ query }}" placeholder="Search" aria-label="Search">
+  <a id="search-filter-btn" href="#filter" class="text-secondary float-right" title="Filters">
     <i class="fas fa-filter"></i>
   </a>
 </div>
 
-<button name="search-query" type="submit" class="btn btn-outline-secondary">
-  <i>Wyszukaj</i><i class="d-none fa fa-search"></i>
+<button title="Search" name="search-query" type="submit" class="btn btn-outline-secondary">
+  <i>Submit</i><i class="d-none fa fa-search"></i>
 </button>
 
 <div name="filter-container">
   <ul class="list-inline">
     <li name="search-by" class="list-inline-item">
-      <h5 class="h4-mobile">Szukaj według</h5><hr>
+      <h5 class="h4-mobile">Sort by</h5><hr>
       <ul name="search-by-children">
-        <li><input type="checkbox" name="title" value="true" checked> nazwy przepisu</li>
-        <li><input type="checkbox" name="publisher" value="true" checked> nazwy wydawcy</li>
-        <li><input type="checkbox" name="certified" value="true"> tylko certyfikowe</li>
-        <li><input type="checkbox" name="search_by_date" value="DOC"> daty utworzenia</li>
-        <li><input type="checkbox" name="id" value="true"> id przepisu</li>
+        <li><input type="checkbox" name="title" value="true" checked> recipe name</li>
+        <li><input type="checkbox" name="publisher" value="true" checked> publisher</li>
+        <li><input type="checkbox" name="certified" value="true"> only certified</li>
+        <li><input type="checkbox" name="search_by_date" value="DOC"> creation date</li>
+        <li><input type="checkbox" name="id" value="true"> recipe ID</li>
       </ul>
     </li>
     <li name="upload-date" class="list-inline-item">
-      <h5 class="h4-mobile">Data przesłania</h5><hr>
+      <h5 class="h4-mobile">Upload date</h5><hr>
       <ul name="upload-date-children">
-        <li><input type="radio" name="search_by_date" value="GUD" checked> obojętna</li>
-        <li><input type="radio" name="search_by_date" value="TUD"> dzisiejsza</li>
-        <li><input type="radio" name="search_by_date" value="TWUD"> tego tygodnia</li>
-        <li><input type="radio" name="search_by_date" value="TMUD"> tego miesiąca</li>
-        <li><input type="radio" name="search_by_date" value="TYUD"> tego rocznika</li>
+        <li><input type="radio" name="search_by_date" value="GUD" checked> general</li>
+        <li><input type="radio" name="search_by_date" value="TUD"> today</li>
+        <li><input type="radio" name="search_by_date" value="TWUD"> this week</li>
+        <li><input type="radio" name="search_by_date" value="TMUD"> this month</li>
+        <li><input type="radio" name="search_by_date" value="TYUD"> this year</li>
       </ul>
     </li>
     <li name="categories" class="list-inline-item">
-      <h5 class="h4-mobile">Kategorie</h5><hr>
+      <h5 class="h4-mobile">Categories</h5><hr>
       <ul name="categories-children">
-        <li><input type="radio" name="type" value="general" checked> ogólne</li>
-        <li><input type="radio" name="type" value="wypiek"> wypieki</li>
-        <li><input type="radio" name="type" value="deser"> desery</li>
-        <li><input type="radio" name="type" value="zupa"> zupy</li>
-        <li><input type="radio" name="type" value="inne"> inne</li>
+        <li><input type="radio" name="type" value="general" checked> general</li>
+        <li><input type="radio" name="type" value="pastry"> pastries</li>
+        <li><input type="radio" name="type" value="dessert"> desserts</li>
+        <li><input type="radio" name="type" value="soup"> soups</li>
+        <li><input type="radio" name="type" value="other"> other</li>
       </ul>
     </li>
     <li name="nationality" class="list-inline-item">
-      <h5 class="h4-mobile">Narodowość</h5><hr>
+      <h5 class="h4-mobile">Nationality</h5><hr>
       <ul name="nationality-children">
-        <li><input type="radio" name="nationality_mode" value="general" checked> ogólna</li>
-        <li><input type="radio" name="nationality_mode" value="international"> międzynarodowa</li>
-        <li><input type="radio" name="nationality_mode" value="specific"> specyficzna</li>
+        <li><input type="radio" name="nationality_mode" value="general" checked> general</li>
+        <li><input type="radio" name="nationality_mode" value="international"> international</li>
+        <li><input type="radio" name="nationality_mode" value="specific"> specific</li>
         <li><select class="selectpicker countrypicker custom-scroll d-none" name="nationality" data-default="PL" data-flag="true"></select></li>
       </ul>
     </li>

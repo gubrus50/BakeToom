@@ -1,4 +1,3 @@
-{% load static %}
 html {
   scroll-behavior: smooth;
   position: relative;
@@ -9,56 +8,7 @@ body {
   height: 100%;
 }
 header > nav {
-  background-color: #282c30;
-}
-#base-banner {
-  position: relative;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: contain;
-  height: 300px;
-
-}
-#base-banner > a {
-  position: absolute;
-  left: 5px;
-  color: #ffff;
-}
-#base-banner .banner-motto {
-  z-index: 1;
-  font-weight: 400;
-}
-#base-banner::before {
-  content: "";
-  background-color: rgba(0,0,0,.25);
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-
-}
-footer {
-  background-color: #282c30;
-  position: absolute;
-  min-height: 200px;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-}
-footer > div.footer-body {
-  justify-content: space-between;
-  padding-left: 50px;
-  padding-right: 50px;
-}
-footer > div.footer-body a { color: #445a70; }
-footer > div.footer-body a:hover { color: #445a70; }
-footer > div.footer-body section { font-size: 12px; }
-/* found in header navbar and footer */
-.align-icon-item {
-  display: inline-block;
-  text-align: left;
-  width: 20px;
+ background: #0D1317;
 }
 
 /* Global Messages */
@@ -79,71 +29,8 @@ footer > div.footer-body section { font-size: 12px; }
 }
 
 
-/**//* ---------- *//**/
-/**//* Scrollbars *//**/
-/**//* ---------- *//**/
-
-::-webkit-scrollbar { width: 5px; height: 15px; }
-::-webkit-scrollbar-track-piece { background-color: #353535; }
-::-webkit-scrollbar-thumb:vertical { height: 30px; background-color: Darkgray; }
-
-/* Hide horizontal scrollbar */
-.empty-h-scroll::-webkit-scrollbar:horizontal,
-.empty-h-scroll ::-webkit-scrollbar:horizontal { width: 0px; height: 0px; }
-
-/* Hide vertical scrollbar */
-.empty-v-scroll::-webkit-scrollbar:vertical,
-.empty-v-scroll ::-webkit-scrollbar:vartical { width: 0px; height: 0px; }
-
-/* Unique scrollbar for website content */
-.custom-scroll::-webkit-scrollbar-track-piece,
-.custom-scroll ::-webkit-scrollbar-track-piece {
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
-  background-color: #f8f9fa;
-}
-.custom-scroll::-webkit-scrollbar-thumb:vertical,
-.custom-scroll ::-webkit-scrollbar-thumb:vertical {
-  background-color: gray;
-  height: 1px;
-}
-.custom-scroll::-webkit-scrollbar-corner:vertical,
-.custom-scroll ::-webkit-scrollbar-corner:vertical { background-color: red; }
-
-/**//* ----------------- *//**/
-/**//* END of Scrollbars *//**/
-/**//* ----------------- *//**/
 
 
-@media only screen and (max-width: 709px) {
-  footer > div.footer-body section ul li {
-    font-size: 10px;
-  }
-  footer > div.footer-body {
-    flex-wrap: wrap;
-    justify-content: center;
-    width: auto !important
-  }
-  footer > div.footer-body > section:last-child {
-    width: auto !important;
-    text-align: center;
-    order: -1;
-  }
-  footer > div.footer-body .align-icon-item {
-    margin-right: 5px;
-    width: auto;
-  }
-  footer > div.footer-body > section:last-child > ul li {
-    margin-top: 0px !important;
-    margin-bottom: 2px !important;
-  }
-  footer > div.footer-body {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-  footer > div.footer-body > section:first-child > p:nth-child(2) {
-    margin-bottom: 20px !important;
-  }
-}
 
 @media only screen and (max-width: 767px) {
 
@@ -185,29 +72,11 @@ footer > div.footer-body section { font-size: 12px; }
   h4.h5-mobile,
   h5.h5-mobile { font-size: 10px !important; }
 
-  #base-banner .banner-motto {
-    font-size: auto;
-  }
 }
 
 @media only screen and (max-width: 1000px) {
   /* Navbar section: <!-- Login / Profile --> */
   .nav-icon-item { width: 25px }
-  a[name="user"] > span { display: inline !important }
-  a[name="user"] > i { font-size: 15px !important }
-
-  /* Footer */
-  footer > div.footer-body {
-    padding-left: 5% !important;
-    padding-right: 5% !important
-  }
-  footer > div.footer-body > section {
-    font-size: 10px !important;
-  }
-  #base-banner {
-    height: 200px;
-  }
-  #base-banner .banner-motto {
-    font-size: 1.75em;
-  }
+  a[name="account"] > span { display: inline !important }
+  a[name="account"] > i { font-size: 15px !important }
 }

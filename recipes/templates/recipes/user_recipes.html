@@ -12,9 +12,9 @@
   <!-- Publisher of recipes message -->
   <h5 class="mb-4 ml-1 mr-1 mt-4 text-center text-dark h4-mobile">
     {% if view.kwargs.username == user.username %}
-      Moja biblioteka przepisów
+      My Recipes
     {% else %}
-      Przepisy opublikowane przez "{{ view.kwargs.username }}"
+      Recipes published by "{{ view.kwargs.username }}"
     {% endif %}
   </h5>
 

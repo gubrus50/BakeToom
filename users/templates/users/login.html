@@ -15,19 +15,19 @@ label[for="id_password"] { display: none; }
       <div class="simple-form simple-form-split">
 
         <div>
-          <h2 name="login" class="title text-uppercase mb-4">Zaloguj się</h2>
+          <h2 name="login" class="title text-uppercase mb-4">Login</h2>
           {{ form|crispy }}
-          <small>Nie pamiętasz hasła? <a href="{% url 'password_reset' %}">Zmień teraz</a></small>
+          <small>Forgot your password? <a href="{% url 'password_reset' %}">Change it now</a>.</small>
           <div id="submission" class="mt-4">
-            <button class="btn btn-outline-success w-100" type="submit">Zaloguj się</button>
+            <button class="btn btn-outline-success w-100" type="submit">Login</button>
           </div>
         </div>
         <div class="simple-form-split-right">
-          <h2 name="welcome-at-baketoom" class="title text-uppercase mb-4">Witaj w BakeToom</h2>
-          <p>Odkryj przepisy z całego świata!</p>
-          <p style="font-family: calibri">BakeToom to świetne miejsce dla fanów kulinarnych, gdzie każdy ma szansę zdobyć uznanie, na które zasługuje. Po krótkiej rejestracji będziesz mógł(a) opublikować swoje przepisy na naszej platformie i rozszerzać swoje relacje na skalę międzynarodową abyś dalej rozwijał(a) swoje dzieła.</p>
-          <p style="font-family: calibri">Zapoznaj się z naszymi <a href="{% url 'terms-and-conditions' %}" target="_blank">Zasadami i Warunkami</a> i dołącz do naszego świata smakoszy - <a href="{% url 'register' %}">Zarejestruj się</a>.</p>
-          <p><br><b>Strona rejestracyjna jest na razie prywatna</b></p>
+          <h2 name="welcome-to-baketoom" class="title text-uppercase mb-4">Welcome to BakeToom</h2>
+          <p>Discover recipes from around the world!</p>
+          <p style="font-family: calibri">BakeToom is a great place for culinary fans, where everyone has a chance to get the recognition they deserve. After a short registration, you will be able to publish your recipes on our platform and expand your relations on an international scale to further develop your creations.</p>
+          <p style="font-family: calibri">Check the <a href="{% url 'terms-and-conditions' %}" target="_blank">Terms & Conditions</a> and join our gourmet world - <a href="{% url 'register' %}">register now</a>.</p>
+          <p><br><b>The registration page is private for now</b></p>
         </div>
 
       </div>
@@ -37,8 +37,8 @@ label[for="id_password"] { display: none; }
 {% block base %}
 <script>
 $(function(){
-  $('#id_username').attr('placeholder', 'Nazwa urzytkownika');
-  $('#id_password').attr('placeholder', 'Hasło');
+  $('#id_username').attr('placeholder', 'Username');
+  $('#id_password').attr('placeholder', 'Password');
 })
 </script>
 {% endblock %}

@@ -44,16 +44,16 @@ textarea ::-webkit-scrollbar-track-piece {
   <div id="document-container" class="container my-5">
     <div id="document" class="bg-white border p-4">
       
-      <h1 class="title text-uppercase text-center mt-5"><strong>Skontaktuj się z nami</strong></h1>
-      <h5 class="sub-title text-center">Witamy w BakeToom!</h5>
+      <h1 class="title text-uppercase text-center mt-5"><strong>Contact and Support</strong></h1>
+      <h5 class="sub-title text-center">Welcome to BakeToom!</h5>
 
-      <p>Jeśli skontaktujesz się z nami bezpośrednio, możemy otrzymać dodatkowe informacje o tobie, takie jak imię i nazwisko, adres e-mail, numer telefonu, treść wiadomości i / lub załączniki, które możesz nam wysłać, oraz wszelkie inne informacje, które możesz podać. <a href="{% url 'privacy-and-policy' %}">Naciśnij mnie</a>, aby dowiedzieć się więcej o tym, jak korzystamy z twoich danych.</p>
-      <p>Możesz skontaktować się z nami bezpośrednio za pośrednictwem następującego e-maila - <b>support@baketoom.com</b>. Możesz również skorzystać z dostępnego formularza, który pomorze Ci dostarczy nam Twoją wiadomość w najczystszej formie.</p>
+      <p>If you contact us directly, we may receive additional information about you, such as your name, email address, telephone number, message content and/or attachments you may send us, and any other information you may provide. Check our <a href="{% url 'privacy-and-policy' %}">Privacy and Policy</a>, to learn more about how we manage your data.</p>
+      <p>You can contact us directly via the following email - <b>support@baketoom.com</b><br>You can also use the available form to help you deliver your message safely to our support team:</p>
 
       <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form|crispy }}
-        <button type="submit" class="btn btn-outline-dark">Wyślij formularz</button>
+        <button type="submit" class="btn btn-outline-dark">Send form</button>
       </form>
 
     </div>

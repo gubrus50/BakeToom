@@ -114,13 +114,13 @@ comma-break:before {
       <h1 style="margin-top: 0px">{{ recipe.title|upper }}</h1>
       <p>{{ recipe.description }}</p>
       <p>
-        Przepis został umieszczony na BakeToom - 
-        {{ recipe.date_created|date:"d-m-Y, " }}o 
+        The recipe was posted on BakeToom - 
+        {{ recipe.date_created|date:"d-m-Y, " }} 
         {{ recipe.date_created|date:"H:i" }}
 
         {% if recipe.date_posted_old %}
-          i pierwszy raz został opublikowany - 
-          {{ recipe.date_posted_old|date:"d-m-Y, " }}o 
+          and was published for the first time - 
+          {{ recipe.date_posted_old|date:"d-m-Y, " }} 
           {{ recipe.date_posted_old|date:"H:i" }}.
         {% endif %}
 
@@ -128,34 +128,34 @@ comma-break:before {
 
           {% if recipe.date_posted and recipe.date_posted != recipe.date_created %}
             {% if recipe.date_posted == recipe.date_edited %}
-              Przepis edytowano i ponownie go opulikowano -
+              Recipe was edited and republished -
               {{ recipe.date_posted|date:"d-m-Y, " }}o
               {{ recipe.date_posted|date:"H:i" }}.
             {% else %}
-              Przepis ostatnio opublikowano -
-              {{ recipe.date_posted|date:"d-m-Y, " }}o
+              Recipe was last published -
+              {{ recipe.date_posted|date:"d-m-Y, " }}
               {{ recipe.date_posted|date:"H:i" }}, 
-              i ostatnio go edytowano - 
-              {{ recipe.date_edited|date:"d-m-Y, " }}o
+              and recently edited - 
+              {{ recipe.date_edited|date:"d-m-Y, " }}
               {{ recipe.date_edited|date:"H:i" }}.
             {% endif %}
 
           {% else %}
             {% if not recipe.date_posted_old %}
-              i ostatnio go edytowano
+              and was recently edited
             {% else %}
-              Przepis ostatnio edytowano - 
+              Recipe was recently edited - 
             {% endif %}
-            {{ recipe.date_edited|date:"d-m-Y, " }}o
+            {{ recipe.date_edited|date:"d-m-Y, " }}
             {{ recipe.date_edited|date:"H:i" }}{% if recipe.date_posted and recipe.date_posted == recipe.date_created %}
-              i został on usunięty z wiadomości publicznej na czas nieokreślony.
+              and it has been removed from the public for an indefinite period.
             {% else %}.{% endif %}
           {% endif %}
 
         {% elif recipe.date_posted_old %}
-          Od tamtego czasu, nigdy nie był edytowany. 
+          Since then, it has never been edited. 
         {% else %}
-          i od tamtego czasu, nigdy nie był edytowany. 
+          and since then, it has never been edited. 
         {% endif %}
       </p>
     </section>
@@ -163,30 +163,30 @@ comma-break:before {
   <section name="data" style="font-family: monospace; font-size: 13px; background-color: #fbfbfb; padding: 10px">
     <p>
       {% if recipe.nationality %}
-        Narodowość: {{ recipe.nationality.name|title }}
+        Nationality: {{ recipe.nationality.name|title }}
       {% else %}
-        Narodowość: Międzynarodowy
+        Nationality: International
       {% endif %}
       <comma-break>
 
       {% if recipe.publisher %}
-        Wydawca: {{ recipe.publisher }}
-      {% else %}Wydawca: ...{% endif %}
+        Publisher: {{ recipe.publisher }}
+      {% else %}Publisher: ...{% endif %}
       <comma-break>
 
       {% if recipe.recipe_type %}
-        Typ: {{ recipe.recipe_type|title }}
-      {% else %}Typ: inne{% endif %}
+        Type: {{ recipe.recipe_type|title }}
+      {% else %}Type: Other{% endif %}
       <comma-break>
 
       ID: {{ recipe.id }}
 
       {% if recipe.certified %}
-        <comma-break> Atestowany
+        <comma-break> Certified
       {% endif %}
 
       {% if not recipe.published %}
-        <b style="color: red">NIE OPUBLIKOWANY</b>
+        <b style="color: red">UNPUBLISHED</b>
       {% endif %}
     </p>
     <p>
@@ -216,7 +216,7 @@ comma-break:before {
   </div>
   <br>
   <div id="method">
-    <h3>METODA</h3>
+    <h3>METHOD</h3>
     <article id="recipe-method-list" style="word-wrap: break-word">
       {% if object.method %}
         {{ object.method|linenumbers|linebreaks }}
@@ -225,7 +225,7 @@ comma-break:before {
   </div>
   <br>
   <div id="license">
-    <h3 style="font-family: calibri">LICENCJA</h3>
+    <h3 style="font-family: calibri">LICENSE</h3>
     <article>
       {% if object.license %}
         {{ object.license|linebreaks }}
@@ -237,7 +237,7 @@ comma-break:before {
     <center>
       <!-- No results msg -->
       <div style="background-color: #fbfbfb; padding: 10px">
-        <h2>Przepis jest sprywatyzowany</h2>
+        <h2>The recipe is privatized</h2>
       </div>
     </center>
   </div>

@@ -12,12 +12,12 @@ def register(request):
 			if form.is_valid():
 				form.save()
 				username = form.cleaned_data.get('username')
-				messages.success(request, f'Gratulacje! Konto \'{username}\' zostało pomyślnie zarejestrowane.')
+				messages.success(request, f'Congratulations! Account \'{username}\' has been successfully registered.')
 				return redirect('login')
 		else:
 			form = UserRegisterForm()
 	else:
-		messages.error(request, f'ERROR - Nie masz uprawnień do rejestracji.')
+		messages.error(request, f'ERROR - You are not authorized to register.')
 		return render(request, 'recipes/home.html')
 	return render(request, 'users/register.html', {'form': form})
 
@@ -38,7 +38,7 @@ def profile(request):
 		if u_form.is_valid() and p_form.is_valid():
 			u_form.save()
 			p_form.save()
-			messages.success(request, f'Twoje konto zostało pomyślnie zaktualizowane.')
+			messages.success(request, f'Your account has been successfully updated.')
 			return redirect('profile')
 
 	else:

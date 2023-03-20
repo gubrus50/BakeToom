@@ -8,19 +8,19 @@
             <div class="recipe-image">
               <img width="100%" height="175px" alt="Recipe" src="{{ recipe.image.url }}" style="{% if not recipe.published %}opacity: 0.3{% endif %}">
               {% if not recipe.published %}
-                <div class="unpublished text-uppercase">nie opublikowany</div>
+                <div class="unpublished text-uppercase">unpublished</div>
               {% endif %}
             </div>
             <div class="recipe-detail text-center mb-3 mt-3 mx-2 f16">
-              <h4 class="recipe-title text-uppercase">{{ recipe.title }}</h4>
-              <h7 class="recipe-publisher">Wydawca : {{ recipe.publisher }}</h7>
+              <h5 class="recipe-title text-uppercase">{{ recipe.title }}</h5>
+              <h7 class="recipe-publisher">Publisher - {{ recipe.publisher }}</h7>
               <br>
               <h7 class="recipe-region">
                 {% if recipe.nationality %}
                   <span class="flag {{ recipe.nationality|lower }}"></span>
                   {{ recipe.nationality.name|title }}
                 {% else %}
-                  Międzynarodowy
+                  international
                 {% endif %}
               </h7>
               {% if recipe.certified %}
@@ -33,8 +33,8 @@
     {% endfor %}
   </div>
 {% else %}
-  <div name="no-results" class="text-center text-uppercase p-3 my-5 bg-light">
-    <h2 style="font-weight: 300">Zero rezultatów</h2>
+  <div name="no-results" class="text-center p-3 my-5 bg-light">
+    <h2 style="font-weight: 300">Oops... We were unable to find a match :(</h2>
   </div>
 {% endif %}
 
@@ -61,7 +61,7 @@
                 href="#"
               {% endif %}
 
-            >Początek</a>
+            >First</a>
           </li>
           <!-- Direct page choice -->
           {% for num in page_obj.paginator.page_range %}
@@ -108,7 +108,7 @@
                 href="#"
               {% endif %}
 
-            >Koniec</a>
+            >Last</a>
           </li>
         </ul>
       </div>
@@ -133,7 +133,7 @@
         <!-- Result counter -->
         <a style="width: 60%; border-left: 0; border-right: 0; color: #6c757d; cursor: default">
           <span id="search-result-counter">{{ page_obj.paginator.count }}</span>
-            rezultatów
+            results
         </a>
 
         <!-- Next page action -->
