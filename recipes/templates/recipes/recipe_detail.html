@@ -10,22 +10,22 @@
     <div class="container f-mobile h-mobile my-5 text-center">
       <h1 class="recipe-title text-uppercase">{{ recipe.title }}</h1>
       <p><i class="fa fa-info-circle mr-1 mt-2"></i>
-        Przejdź do głównego menu nawigacyjnego i naciśnij "Narzędzia", aby wyświetlić dostępne opcje.
+        Go to the main navigation menu and hit <strong>Recipe Manager</strong> to see the available options.
       </p>
     </div>
 
     <div id="recipe-detail-navbar" class="container border p-0" style="border-radius: 3px 3px 0px 0px; border-bottom: 0px !important">
-      <button name="recipe" class="btn btn-light text-lowercase" onclick="showSection('recipe')" style="border-radius: 3px 0px 0px 0px">
-        <i class="fas fa-utensils"></i>przepis
+      <button name="recipe" class="btn btn-light text-capitalize" onclick="showSection('recipe')" style="border-radius: 3px 0px 0px 0px">
+        <i class="fas fa-utensils"></i>Recipe
       </button>
-      <button name="ingredients" class="btn btn-light text-lowercase" onclick="showSection('ingredients')">
-        <i class="fas fa-clipboard-list"></i>składniki
+      <button name="ingredients" class="btn btn-light text-capitalize" onclick="showSection('ingredients')">
+        <i class="fas fa-clipboard-list"></i>Ingredients
       </button>
-      <button name="method" class="btn btn-light text-lowercase" onclick="showSection('method')">
-        <i class="fas fa-blender"></i>metoda
+      <button name="method" class="btn btn-light text-capitalize" onclick="showSection('method')">
+        <i class="fas fa-blender"></i>Method
       </button>
-      <button name="license" class="btn btn-light text-lowercase" onclick="showSection('license')" style="border-radius: 0px 3px 0px 0px">
-        <i class="fas fa-gavel"></i>licencja
+      <button name="license" class="btn btn-light text-capitalize" onclick="showSection('license')" style="border-radius: 0px 3px 0px 0px">
+        <i class="fas fa-gavel"></i>License
       </button>
     </div>
 
@@ -38,75 +38,75 @@
                 {{ recipe.description }}
               </div>
               <div class="mt-3">
-                Przepis został umieszczony na BakeToom - 
-                {{ recipe.date_created|date:"d-m-Y, " }}o 
+                The recipe was posted on BakeToom - 
+                {{ recipe.date_created|date:"d-m-Y, " }} 
                 {{ recipe.date_created|date:"H:i" }}
-
+  
                 {% if recipe.date_posted_old %}
-                  i pierwszy raz został opublikowany - 
-                  {{ recipe.date_posted_old|date:"d-m-Y, " }}o 
+                  and was published for the first time - 
+                  {{ recipe.date_posted_old|date:"d-m-Y, " }} 
                   {{ recipe.date_posted_old|date:"H:i" }}.
                 {% endif %}
-
+  
                 {% if recipe.date_edited and recipe.date_edited != recipe.date_created %}
-
+  
                   {% if recipe.date_posted and recipe.date_posted != recipe.date_created %}
                     {% if recipe.date_posted == recipe.date_edited %}
-                      Przepis edytowano i ponownie go opulikowano -
+                      Recipe was edited and republished -
                       {{ recipe.date_posted|date:"d-m-Y, " }}o
                       {{ recipe.date_posted|date:"H:i" }}.
                     {% else %}
-                      Przepis ostatnio opublikowano -
-                      {{ recipe.date_posted|date:"d-m-Y, " }}o
+                      Recipe was last published -
+                      {{ recipe.date_posted|date:"d-m-Y, " }}
                       {{ recipe.date_posted|date:"H:i" }}, 
-                      i ostatnio go edytowano - 
-                      {{ recipe.date_edited|date:"d-m-Y, " }}o
+                      and recently edited - 
+                      {{ recipe.date_edited|date:"d-m-Y, " }}
                       {{ recipe.date_edited|date:"H:i" }}.
                     {% endif %}
-
+  
                   {% else %}
                     {% if not recipe.date_posted_old %}
-                      i ostatnio go edytowano
+                      and was recently edited
                     {% else %}
-                      Przepis ostatnio edytowano - 
+                      Recipe was recently edited - 
                     {% endif %}
-                    {{ recipe.date_edited|date:"d-m-Y, " }}o
+                    {{ recipe.date_edited|date:"d-m-Y, " }}
                     {{ recipe.date_edited|date:"H:i" }}{% if recipe.date_posted and recipe.date_posted == recipe.date_created %}
-                      i został on usunięty z wiadomości publicznej na czas nieokreślony.
+                      and it has been removed from the public for an indefinite period.
                     {% else %}.{% endif %}
                   {% endif %}
-
+  
                 {% elif recipe.date_posted_old %}
-                  Od tamtego czasu, nigdy nie był edytowany. 
+                  Since then, it has never been edited. 
                 {% else %}
-                  i od tamtego czasu, nigdy nie był edytowany. 
+                  and since then, it has never been edited. 
                 {% endif %}
               </div>
             </section>
             <img alt="recipe image" class="recipe-image" width="100%" height="100%" src="{{ recipe.image.url }}">
             <section name="data">
-              <h5 style="font-weight: 400">Dane</h5>
+              <h5 style="font-weight: 400">Data</h5>
               <ul class="list-inline f16" style="font-family: monospace">
                 <li class="list-inline-item m-0">
                   {% if recipe.nationality %}
-                    Narodowość:
+                    Nationality:
                     <span class="flag {{ recipe.nationality|lower }}"></span>
                     {{ recipe.nationality.name|title }}
                   {% else %}
-                    Narodowość: Międzynarodowy
+                    Nationality: International
                   {% endif %}
                 </li>
                 <i class="off-w767">,</i>
                 <li class="list-inline-item m-0">
                   {% if recipe.publisher %}
-                    Wydawca: <a href="{% url 'user-recipes' recipe.publisher.username %}">{{ recipe.publisher }}</a>
-                  {% else %}Wydawca: ...{% endif %}
+                    Publisher: <a href="{% url 'user-recipes' recipe.publisher.username %}">{{ recipe.publisher }}</a>
+                  {% else %}Publisher: ...{% endif %}
                 </li>
                 <i class="off-w767">,</i>
                 <li class="list-inline-item m-0">
                   {% if recipe.recipe_type %}
-                    Typ: {{ recipe.recipe_type|title }}
-                  {% else %}Typ: inne{% endif %}
+                    Type: {{ recipe.recipe_type|title }}
+                  {% else %}Type: Other{% endif %}
                 </li>
                 <i class="off-w767">,</i>
                 <li class="list-inline-item m-0">
@@ -115,12 +115,12 @@
                 {% if recipe.certified %}
                   <i class="off-w767">,</i>
                   <li class="list-inline-item m-0">
-                    Atestowany <img height="30" src="{% static 'recipes/img/icons/flaticon/contract.svg' %}">
+                    Certified <img height="30" src="{% static 'recipes/img/icons/flaticon/contract.svg' %}">
                   </li>
                 {% endif %}
                 {% if not recipe.published %}
                   <li class="list-inline-item m-0">
-                    <b class="text-uppercase" style="color: red">nie opublikowany</b>
+                    <b class="text-uppercase" style="color: red">unpublished</b>
                   </li>
                 {% endif %}
               </ul>
@@ -166,7 +166,7 @@
 
     <!-- Share container -->
     <div class="text-center container h-mobile pt-5" style="font-family: 'Raleway', sans-serif;">
-      <h3 class="mb-3">Udostępnij przepis znajomym</h3>
+      <h3 class="mb-3">Share the recipe with your friends</h3>
       <ul class="list-inline social-media-icons">
         <li class="list-inline-item" name="facebook-icon">
           <a href="#share">
@@ -196,7 +196,7 @@
       <center class="container f-mobile h-mobile">
         <!-- No results msg -->
         <div class="d-flex justify-content-center text-dark p-5 text-center" style="background-color: #f8f9fa">
-          <h2>Przepis jest sprywatyzowany</h2>
+          <h2>The recipe is privatized</h2>
         </div>
       </center>
     </div>
@@ -206,8 +206,8 @@
 {% block base %}
 <script>
 var editing_tools = {% if object.publisher == request.user %}true{% else %}false{% endif %};
-var recipe_title = {% if object.title %}'{{ object.title }}'{% else %}'Przepis'{% endif %};
-var recipe_nationality = {% if recipe.nationality.name %}'{{ recipe.nationality.name }}'{% else %}'międzynarodowy'{% endif %};
+var recipe_title = {% if object.title %}'{{ object.title }}'{% else %}'Recipe'{% endif %};
+var recipe_nationality = {% if recipe.nationality.name %}'{{ recipe.nationality.name }}'{% else %}'International'{% endif %};
 var recipe_plain = '{% url 'recipe-plain' recipe.id %}';
 </script>
 <script src="{% static 'recipes/js/recipe_detail.js' %}"></script>

@@ -10,10 +10,10 @@ from django_resized import ResizedImageField
 class Recipe(models.Model):
 
 	RECIPE_TYPE_CHOICES = (
-		('wypiek', 'wypiek'),
-		('deser', 'deser'),
-		('zupa', 'zupa'),
-		('inne', 'inne')
+		('pastry', 'pastry'),
+		('dessert', 'dessert'),
+		('soup', 'soup'),
+		('other', 'other')
 	)
 
 	DEFAULT_LICENSE = (
@@ -42,13 +42,13 @@ class Recipe(models.Model):
 
 	title = models.CharField(
 		max_length=100,
-		verbose_name=_('Tytuł przepisu')
+		verbose_name=_('Recipe name')
 	)
 
 	publisher = models.ForeignKey(
 		User,
 		on_delete=models.CASCADE,
-		verbose_name=_('Wydawca')
+		verbose_name=_('Publisher')
 	)
 
 	recipe_type	= models.CharField(
@@ -56,7 +56,7 @@ class Recipe(models.Model):
 		blank=False,
 		default=RECIPE_TYPE_CHOICES[3][1],
 		choices=RECIPE_TYPE_CHOICES,
-		verbose_name=_('Typ przepisu')
+		verbose_name=_('Recipe type')
 	)
 
 	certified = models.BooleanField(
@@ -67,7 +67,7 @@ class Recipe(models.Model):
 	published = models.BooleanField(
 		blank=False,
 		default=False,
-		verbose_name=_('Zgadzam się z przedstawionymi mi warunkami i opublikuj mój przepis')
+		verbose_name=_('I agree with the conditions presented to me and publish my recipe')
 	)
 
 	image = ResizedImageField(
@@ -77,33 +77,33 @@ class Recipe(models.Model):
 		force_format='JPEG',
 		upload_to='recipe_pics',
 		default='default_recipe.jpg',
-		verbose_name=_('Wprowadź Obraz')
+		verbose_name=_('Enter image')
 	)
 
 	description = models.TextField(
 		max_length=400,
 		blank=True,
-		verbose_name=_('Krutka deskrypcja przepisu')
+		verbose_name=_('A brief description of the recipe')
 	)
 
 	method = models.TextField(
 		max_length=10000,
 		blank=True,
-		verbose_name=_('Wprowadź instrukcję sukcesywnego wykonania produktu')
+		verbose_name=_('Recipe guide/instructions')
 	)
 
 	license	= models.TextField(
 		max_length=10000,
 		blank=False,
 		default=DEFAULT_LICENSE,
-		verbose_name=_('Utwórz licencję')
+		verbose_name=_('Create licence')
 	)
 
 	nationality	= CountryField(
 		max_length=100,
 		blank=True,
-		blank_label='Międzynarodowy',
-		verbose_name=_('Wybierz narodowość przepisu')
+		blank_label='International',
+		verbose_name=_('Select recipe\'s nationality')
 	)
 
 	date_posted_old = models.DateTimeField(blank=True, null=True)
@@ -158,13 +158,13 @@ class Category(models.Model):
 	name = models.CharField(
 		max_length=100,
 		blank=True,
-		verbose_name= _('Tytuł kategorii')
+		verbose_name= _('Categorie\'s title')
 	)
 
 	ingredients	= models.TextField(
 		max_length=500,
 		db_index=True,
-		verbose_name= _('Wprowadź listę składników do następującej kategorii')
+		verbose_name= _('Enter the list of ingredients into the following category')
 	)
 
 	class Meta:

@@ -11,7 +11,7 @@
     <div class="container custom-scroll empty-h-scroll">
 
       <div id="recipe-form" class="recipe-form-container">
-        <h2 class="title text-uppercase">Przepis</h2>
+        <h2 class="title text-uppercase">Recipe</h2>
         <div class="form-group">
           {{ form.title|as_crispy_field }}
           {{ form.nationality|as_crispy_field }}
@@ -25,8 +25,8 @@
 
       <div id="ingredients-form" class="recipe-form-container">
         <div>
-          <h2 class="title text-uppercase">Składniki</h2>
-          <button id="create-category-btn" type="button" class="btn btn-outline-dark" onclick="createEmptyCategoryObject()">Utwórz kategorie</button>
+          <h2 class="title text-uppercase">Ingredients</h2>
+          <button id="create-category-btn" type="button" class="btn btn-outline-dark" onclick="createEmptyCategoryObject()">Create category</button>
         </div>
         {{ categories.management_form|crispy }}
         {% for category in categories %}
@@ -35,14 +35,14 @@
       </div>
 
       <div class="recipe-form-container">
-        <h2 class="title text-uppercase">Metoda</h2>
+        <h2 class="title text-uppercase">Method</h2>
         <div class="form-group mt-4">
           {{ form.method|as_crispy_field }}
         </div>
       </div>
 
       <div class="recipe-form-container">
-        <h2 class="title text-uppercase">Licencja</h2>
+        <h2 class="title text-uppercase">License</h2>
         <div class="form-group mt-4">
           {{ form.license|as_crispy_field }}
         </div>
@@ -54,17 +54,17 @@
     <!-- Submittion -->
     <center id="recipe-submit-form" class="container">
       <section class="ml-5 mr-5">
-        <h2 class="warning-title text-uppercase">Proszę o uwagę!</h2>
+        <h2 class="warning-title text-uppercase">Attention please!</h2>
         <p>
-          Zanim udostępnisz
+          Before you share
           
           {% if on_update_view %}
-            ulepszoną wersję danego przepisu,
+            an improved version of the recipe,
           {% else %}
-            swój przepis,
+            your recipe,
           {% endif %}
 
-          jesteś w pełni świadomy <a href="https://pl.qwe.wiki/wiki/Copyright" target="_blank">prawa autorskiego</a>. Jeśli któreś z powyższych danych które wprowadziłeś(ąś) narusza nasze <a href="{% url 'terms-and-conditions' %}" target="_blank">warunki i usługi</a>, to przepis zostanie usunięty z wiadomości publicznej.
+          you are fully aware of the <a href="https://europa.eu/youreurope/business/running-business/intellectual-property/copyright/index_en.htm" target="_blank">Copyright Law</a>. If any of the above data you have entered violates our <a href="{% url 'terms-and-conditions' %}" target="_blank">Terms and Conditions</a>, then this recipe will be removed from the public.
         </p>
         {{ form.published|as_crispy_field }}
       </section>
@@ -72,12 +72,12 @@
       {% if on_update_view %}
         <!-- Update and deny action -->
         <div class="btn-group recipe-form-buttons">
-          <button type="submit" class="btn btn-outline-info btn-lg">Zaktualizuj dane</button>
-          <button type="button" class="btn btn-outline-danger btn-lg" onclick="window.location.href='{% url 'recipe-detail' object.id %}'">Przerwij akcję</button>
+          <button type="submit" class="btn btn-outline-info btn-lg">Update changes</button>
+          <button type="button" class="btn btn-outline-danger btn-lg" onclick="window.location.href='{% url 'recipe-detail' object.id %}'">Cancel</button>
         </div>
       {% else %}
         <div class="recipe-form-buttons">
-          <input type="submit" class="btn btn-outline-success btn-lg btn-block" value="Stwórz następujący przepis" />
+          <input type="submit" class="btn btn-outline-success btn-lg btn-block" value="Create the recipe" />
         </div>
       {% endif %}
     </center>

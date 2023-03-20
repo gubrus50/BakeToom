@@ -8,11 +8,6 @@
   font-weight: 300;
   line-height: 1.2;
 }
-.underline-font {
-  font-family: sans-serif;
-  border-bottom: 1px solid red;
-  margin: 0px 5px 0px 5px;
-}
 form > article {
   font-family: calibri;
   font-size: 16px;
@@ -20,7 +15,21 @@ form > article {
 #recipe-form form > a { 
   float: right;
 }
+
+@media only screen and (max-width: 767px) {
+  #recipeImage {
+    width: 150%;
+    height: calc(175px * 1.5);
+    border-top-width: 0 !important;
+  }
+}
+
 @media only screen and (max-width: 483px) {
+  #recipeImage {
+    width: 100%;
+    height: 175px;
+    border-top-width: 1px !important;
+  }
   #recipe-form > article {
     font-size: 14px;
   }
@@ -37,19 +46,19 @@ form > article {
     <div id="recipe" class="p-4">
       <h3 class="title text-uppercase">{{ recipe.title }}</h3>
       <article>
-        <div class="wrapper mb-3">
+        <div class="wrapper">
           <section name="description">
             <div>
               {{ recipe.description }}
             </div>
             <div class="mt-3">
-              Przepis został umieszczony na BakeToom - 
-              {{ recipe.date_created|date:"d-m-Y, " }}o 
+              The recipe was posted on BakeToom - 
+              {{ recipe.date_created|date:"d-m-Y, " }} 
               {{ recipe.date_created|date:"H:i" }}
 
               {% if recipe.date_posted_old %}
-                i pierwszy raz został opublikowany - 
-                {{ recipe.date_posted_old|date:"d-m-Y, " }}o 
+                and was published for the first time - 
+                {{ recipe.date_posted_old|date:"d-m-Y, " }} 
                 {{ recipe.date_posted_old|date:"H:i" }}.
               {% endif %}
 
@@ -57,61 +66,61 @@ form > article {
 
                 {% if recipe.date_posted and recipe.date_posted != recipe.date_created %}
                   {% if recipe.date_posted == recipe.date_edited %}
-                    Przepis edytowano i ponownie go opulikowano -
+                    Recipe was edited and republished -
                     {{ recipe.date_posted|date:"d-m-Y, " }}o
                     {{ recipe.date_posted|date:"H:i" }}.
                   {% else %}
-                    Przepis ostatnio opublikowano -
-                    {{ recipe.date_posted|date:"d-m-Y, " }}o
+                    Recipe was last published -
+                    {{ recipe.date_posted|date:"d-m-Y, " }}
                     {{ recipe.date_posted|date:"H:i" }}, 
-                    i ostatnio go edytowano - 
-                    {{ recipe.date_edited|date:"d-m-Y, " }}o
+                    and recently edited - 
+                    {{ recipe.date_edited|date:"d-m-Y, " }}
                     {{ recipe.date_edited|date:"H:i" }}.
                   {% endif %}
 
                 {% else %}
                   {% if not recipe.date_posted_old %}
-                    i ostatnio go edytowano
+                    and was recently edited
                   {% else %}
-                    Przepis ostatnio edytowano - 
+                    Recipe was recently edited - 
                   {% endif %}
-                  {{ recipe.date_edited|date:"d-m-Y, " }}o
+                  {{ recipe.date_edited|date:"d-m-Y, " }}
                   {{ recipe.date_edited|date:"H:i" }}{% if recipe.date_posted and recipe.date_posted == recipe.date_created %}
-                    i został on usunięty z wiadomości publicznej na czas nieokreślony.
+                    and it has been removed from the public for an indefinite period.
                   {% else %}.{% endif %}
                 {% endif %}
 
               {% elif recipe.date_posted_old %}
-                Od tamtego czasu, nigdy nie był edytowany. 
+                Since then, it has never been edited. 
               {% else %}
-                i od tamtego czasu, nigdy nie był edytowany. 
+                and since then, it has never been edited. 
               {% endif %}
             </div>
           </section>
-          <img width="100%" height="175px" src="{{ recipe.image.url }}">
+          <img id="recipeImage" class="border" width="100%" height="175px" src="{{ recipe.image.url }}">
         </div>
-        <section name="data">
-          <h5 style="font-weight: 400">Dane</h5>
+        <section name="data" class="border border-top-0">
+          <h5 style="font-weight: 400">Data</h5>
           <ul class="list-inline f16" style="font-family: monospace">
             <li class="list-inline-item m-0">
               {% if recipe.nationality %}
-                Narodowość:
+                Nationality:
                 <span class="flag {{ recipe.nationality|lower }}"></span>
               {% else %}
-                Narodowość: Międzynarodowy
+                Nationality: International
               {% endif %}
             </li>
             <i class="off-w767">,</i>
             <li class="list-inline-item m-0">
               {% if recipe.publisher %}
-                Wydawca: <a href="{% url 'user-recipes' recipe.publisher.username %}">{{ recipe.publisher }}</a>
-              {% else %}Wydawca: ...{% endif %}
+                Publisher: <a href="{% url 'user-recipes' recipe.publisher.username %}">{{ recipe.publisher }}</a>
+              {% else %}Publisher: ...{% endif %}
             </li>
             <i class="off-w767">,</i>
             <li class="list-inline-item m-0">
               {% if recipe.recipe_type %}
-                Typ: {{ recipe.recipe_type|title }}
-              {% else %}Typ: inne{% endif %}
+                Type: {{ recipe.recipe_type|title }}
+              {% else %}Type: Other{% endif %}
             </li>
             <i class="off-w767">,</i>
             <li class="list-inline-item m-0">
@@ -120,12 +129,12 @@ form > article {
             {% if recipe.certified %}
               <i class="off-w767">,</i>
               <li class="list-inline-item m-0">
-                Atestowany <img height="30" src="{% static 'recipes/img/icons/flaticon/contract.svg' %}">
+                Certified <img height="30" src="{% static 'recipes/img/icons/flaticon/contract.svg' %}">
               </li>
             {% endif %}
             {% if not recipe.published %}
               <li class="list-inline-item m-0">
-                <b class="text-uppercase" style="color: red">nie opublikowany</b>
+                <b class="text-uppercase" style="color: red">unpublished</b>
               </li>
             {% endif %}
           </ul>
@@ -133,20 +142,20 @@ form > article {
       </article>
     </div>
     <div id="recipe-form" class="p-4 border-top" style="overflow: auto">
-      <h3 class="title text-uppercase">Uwaga, zamierzasz usunąć przepis!</h3>
+      <h3 class="title text-uppercase">Warning, you are about to delete a recipe!</h3>
       <article>
-        Po naciśnięciu przycisku <span class="underline-font">Usuń przepis</span> zgadzasz się na to by wszystkie dane
-        następującego przepisu zostały permanentnie wyczyszczone z naszej platformy.
-        <span class="underline-font">Czy napewno chcesz usunąć ten oto przepis?</span>
+        After pressing the button <strong>Delete recipe</strong> you agree that all data relating to
+        the following recipe will be permanently deleted from our platform.
+        <strong>Are you sure you want to delete this recipe?</strong>
       </article>
       <form method="POST" class="mb-3 mt-5">
         {% csrf_token %}
         <!-- Delete and Deny action -->
         <button class="btn btn-outline-danger" type="submit">
-          Usuń przepis
+          Delete recipe
         </button>
         <a class="btn btn-outline-dark" href="{% url 'recipe-detail' object.id %}">
-          Przerwij akcję
+          Cancel
         </a>
       </form>
     </div>

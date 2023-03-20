@@ -12,8 +12,8 @@ https://webarchive.nationalarchives.gov.uk/+/http://www.cabinetoffice.gov.uk/med
 
 class UserRegisterForm(UserCreationForm):
 	email = forms.EmailField(max_length=150)
-	first_name = forms.CharField(max_length=35, label='Imię')
-	last_name = forms.CharField(max_length=35, label='Nazwisko')
+	first_name = forms.CharField(max_length=35, label='Forename')
+	last_name = forms.CharField(max_length=35, label='Lastname')
 
 	class Meta:
 		model = User
@@ -22,8 +22,8 @@ class UserRegisterForm(UserCreationForm):
 
 class UserUpdateForm(forms.ModelForm):
 	email = forms.EmailField(max_length=150)
-	first_name = forms.CharField(max_length=35, label='Imię')
-	last_name = forms.CharField(max_length=35, label='Nazwisko')
+	first_name = forms.CharField(max_length=35, label='Forename')
+	last_name = forms.CharField(max_length=35, label='Lastname')
 
 	class Meta:
 		model = User
