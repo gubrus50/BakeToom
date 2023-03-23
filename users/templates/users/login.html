@@ -17,6 +17,8 @@ label[for="id_password"] { display: none; }
         <div>
           <h2 name="login" class="title text-uppercase mb-4">Login</h2>
           {{ form|crispy }}
+          <div class="g-recaptcha" data-sitekey="{{ RECAPTCHA_PUBLIC_KEY }}"></div>
+          <br>
           <small>Forgot your password? <a href="{% url 'password_reset' %}">Change it now</a>.</small>
           <div id="submission" class="mt-4">
             <button class="btn btn-outline-success w-100" type="submit">Login</button>
@@ -35,6 +37,7 @@ label[for="id_password"] { display: none; }
   </form>
 {% endblock content %}
 {% block base %}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script>
 $(function(){
   $('#id_username').attr('placeholder', 'Username');

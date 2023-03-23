@@ -1,7 +1,7 @@
 from django.forms.models import inlineformset_factory
 from django import forms
 from .models import Recipe, Category
-
+from captcha.fields import ReCaptchaField
 
 
 class ContactUsForm(forms.Form):
@@ -34,6 +34,8 @@ class ContactUsForm(forms.Form):
 		initial='',
 		max_length=10000,
 	)
+
+	captcha = ReCaptchaField()
 
 
 class RecipeForm(forms.ModelForm):

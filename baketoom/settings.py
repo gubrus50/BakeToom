@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'storages',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -71,6 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'baketoom.context_processors.reCAPTCHA_keys',
             ],
         },
     },
@@ -147,6 +149,12 @@ EMAIL_HOST = 'smtp.zoho.eu'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+
+# Google reCAPTCHA
+
+RECAPTCHA_PUBLIC_KEY = '6Ld6ficlAAAAAKnv4AHI9P05LFYlGKilZaP8-SAb'
+RECAPTCHA_PRIVATE_KEY = '6Ld6ficlAAAAANWHgl_6PLlWIoo4lKSHIZzFb_pz'
 
 
 # AWS S3 BUCKETS CONFIG

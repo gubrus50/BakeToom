@@ -11,6 +11,8 @@ body {
   cursor: pointer;
   border-radius: 3px;
   transition: transform .2s;
+  text-decoration: none;
+  color: inherit;
 }
 #about-container > .document:hover {
   -ms-transform: scale(1.02); /* IE 9 */
