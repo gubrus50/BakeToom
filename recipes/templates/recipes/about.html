@@ -5,33 +5,23 @@
 {% endblock %}
 {% block content %}
 
-  <div id="about-container" class="container my-5 p-4">
-    <div name="terms-and-conditions" class="document border p-3" onclick="windowLocate(this, '{% url 'terms-and-conditions' %}')">
+  <section id="about-container" class="container my-5 p-4">
+    <a name="terms-and-conditions" class="document border p-3" href="{% url 'terms-and-conditions' %}">
       <img height="125" src="{% static 'recipes/img/icons/flaticon/book.svg' %}">
       <h5 class="title text-uppercase">Terms and Conditions</h5>
       <p>These terms and conditions outline the rules and regulations for the use of BakeToom's Website, located at baketoom.com. By accessing this website we assume you accept these terms and conditions. Do not continue to use BakeToom if you do not agree to take all of the terms and conditions... (click me to learn more)</p>
-    </div>
-    <div name="privacy-and-policy" class="document border p-3" onclick="windowLocate(this, '{% url 'privacy-and-policy' %}')">
+    </a>
+    <a name="privacy-and-policy" class="document border p-3" href="{% url 'privacy-and-policy' %}">
       <img src="{% static 'recipes/img/icons/flaticon/law.svg' %}">
       <h5 class="title text-uppercase">Privacy and Policy</h5>
       <p>At BakeToom, accessible from baketoom.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by BakeToom and how we use it... (click me to learn more)
       </p>
-    </div>
-    <div name="contact-us" class="document border p-3" onclick="windowLocate(this, '{% url 'contact-us-form' %}')">
+    </a>
+    <a name="contact-us" class="document border p-3" href="{% url 'contact-us-form' %}">
       <img src="{% static 'recipes/img/icons/flaticon/email.svg' %}">
       <h5 class="title text-uppercase">Contact and Support</h5>
       <p>If you contact us directly, we may receive additional information about you, such as your name, email address, telephone number, message content and/or attachments you may send us, and any other information you may provide... (click me to learn more)</p>
-    </div>
-  </div>
+    </a>
+  </section>
 
 {% endblock content %}
-{% block base %}
-<script>
-function windowLocate(element, url) {
-  $(element).fadeOut(500);
-  setTimeout(function() {
-    window.location = url
-  }, 500);
-}
-</script>
-{% endblock %}
