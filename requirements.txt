@@ -128,7 +128,7 @@ testpath==0.5.0
 toml==0.10.1
 tornado==6.1
 traitlets==5.1.1
-Twisted==20.3.0
+Twisted==22.10.0
 txaio==20.12.1
 tzlocal==2.0.0
 urllib3==1.25.8
