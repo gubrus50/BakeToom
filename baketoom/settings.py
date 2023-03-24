@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'recipes.apps.RecipesConfig',
     'users.apps.UsersConfig',
     'validate_email',
+    'crispy_bootstrap4',
     'crispy_forms',
     'django_cleanup',
     'django_countries',
