@@ -10,13 +10,13 @@
 {% block content %}
 
   <!-- Publisher of recipes message -->
-  <h5 class="mb-4 ml-1 mr-1 mt-4 text-center text-dark h4-mobile">
+  <h1 class="mb-4 ml-1 mr-1 mt-4 text-center text-dark h4-mobile">
     {% if view.kwargs.username == user.username %}
       My Recipes
     {% else %}
       Recipes published by "{{ view.kwargs.username }}"
     {% endif %}
-  </h5>
+  </h1>
 
   <!-- Search form -->
   <form id="search-form" method="GET" action="{% url 'user-recipes' view.kwargs.username %}" class="container form-inline my-4 d-flex justify-content-center h-mobile">
