@@ -2,7 +2,16 @@
 {% load recipes_extras %}
 {% load static %}
 {% block head %}
+
 <link rel="stylesheet" href="{% static 'recipes/css/recipe_detail.css' %}">
+
+{% if recipe.publisher %}<meta name="author" content="{{ recipe.publisher}}">{% endif %}
+<meta name="description" content="{{ recipe.description }}">
+<meta name="keywords" content="BakeToom, recipe, {{ recipe.title }}, {{ recipe.id }},
+{% if recipe.recipe_type %}{{ recipe.recipe_type|lower }},{% endif %}
+{% if recipe.certified %}certified,{% endif %}
+{% if recipe.nationality %}{{ recipe.nationality.name|title }}{% else %}International{% endif %}">
+
 {% endblock %}
 {% block content %}
   {% if recipe.published or recipe.publisher == request.user %}

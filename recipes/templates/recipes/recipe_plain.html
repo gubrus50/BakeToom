@@ -3,8 +3,16 @@
 {% load tz %}
 <html lang="pl">
 <head>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% if recipe.publisher %}<meta name="author" content="{{ recipe.publisher}}">{% endif %}
+<meta name="description" content="{{ recipe.description }}">
+<meta name="keywords" content="BakeToom, recipe, {{ recipe.title }}, {{ recipe.id }},
+{% if recipe.recipe_type %}{{ recipe.recipe_type|lower }},{% endif %}
+{% if recipe.certified %}certified,{% endif %}
+{% if recipe.nationality %}{{ recipe.nationality.name|title }}{% else %}International{% endif %}">
+
 <title>BakeToom - {{ recipe.title }}</title>
 <style>
 body { font-family: calibri; }
