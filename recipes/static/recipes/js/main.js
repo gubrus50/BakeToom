@@ -79,6 +79,17 @@ $(document).ready(function()
 	})());
 
 
+	/* Show "BakeToom - Consent" modal*/
+	if (!getCookie('client_consent')) {
+		$('#modalConsent').modal('show');
+	}
+	$('#modalConsent button[name="comply"]').click(function() {
+		setCookie('client_consent',true,1);
+		$('#modalConsent').modal('hide');
+	});
+
+
+
 	$('#scroll-to-top-button').hide();
 	$('a.disabled').click( function()
 	{
@@ -93,10 +104,14 @@ $(document).ready(function()
 			$("#cookieConsent").css('visibility', 'visible').hide().fadeIn(500) 
 		}, 250)
 	}
-	else { $("#cookieConsent").css('display', 'none') }
+	else {
+		$("#cookieConsent").css('display', 'none');
+		$(".acceptcookies").addClass('btn-success').removeClass('btn-warning').attr('disabled', true);
+	}
 
 	$("ignorecookies, .acceptcookies").click(function() {
-		setCookie('hide_cookies_popup',true,1)
-		$("#cookieConsent").fadeOut(200)
+		setCookie('hide_cookies_popup',true,1);
+		$("#cookieConsent").fadeOut(200);
+		$(".acceptcookies").addClass('btn-success').removeClass('btn-warning').attr('disabled', true);
 	})
 })

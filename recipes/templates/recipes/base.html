@@ -112,6 +112,41 @@
     </nav>
   </header>
 
+  
+  <!-- Modal -->
+  <div class="modal fade" id="modalConsent" tabindex="-1" role="dialog" aria-labelledby="modalConsentCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">BakeToom - Consent</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h4 class="modal-title text-center mb-3">Welcome to BakeToom!</h4>
+          <h5 class="modal-title text-center">Before you start using our website,<br>please take some time to carefully read the below statements:</h5>
+          <ol class="my-4">
+            <li>BakeToom is a personal project for education purposes only. Once you access our website, please use <strong>About BakeToom</strong> button, located in the top navigation bar, to learn how to access our <strong>Terms and Conditions</strong>, <strong>Privacy Policy</strong>, and <strong>Contact and Support</strong> page.</li>
+            <li>Our Terms and Conditions & Privacy Policy are not currently valid, as they are therefore to, simulate the real website experience for the time being.</li>
+            <li>This website is owned and maintained by <a href="https://github.com/gubrus50" target="_blank">McRaZick</a> who is broke to scale and fully protect users' data due to lack of experience.</li>
+            <li>Rights for BakeToom's account <strong>registry</strong> and <strong>recipe management</strong> in terms of recipes' creation, deletion & updation, are given by McRaZick. (This statement discludes guests).</li>
+            <li>Recipes are not verified, therefore, there is no guarantee that the recipe is reproducible nor edible.</li>
+            <li>You have to <strong>agree to cookies</strong>, in order to, use our website BakeToom.</li>
+            <li>You are <strong>free to contact us</strong> responsively at <a href="{% url 'contact-us-form' %}">Contact and Support</a> page. However, before you do so:</li>
+            <li>Guests are welcome to use and explore the BakeToom's, available to them, features for their personal use, as long as they, <strong>Comply/Acknowledge</strong> all mentioned statements from "BakeToom - Consent" popup.</li>
+          </ol>
+          <p>By pressing the <strong>Comply button</strong>, I the guest, acknowledge the presented to me statements, and I understand that I use BakeToom website at my own risk. Hence, I am not allowed to use BakeToom until I comply with all "BakeToom - Consent" popup's statements.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" name="comply">Comply</button>
+          <button type="button" class="btn btn-warning acceptcookies mr-auto" aria-label="Close">Agree to Cookies</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   {% if messages %}
     <!-- Global messages -->
