@@ -41,12 +41,11 @@
 #recipe-form .form-group:nth-of-type(1) #id_image {
   margin: 0;
 }
-#recipe-form #div_id_description,
-#recipe-form #div_id_description > div {
+#recipe-form #div_id_description {
   height: 100%;
 }
 #recipe-form #div_id_description textarea[name="description"] {
-  height: 100% !important;
+  height: 86% !important;
 }
 #recipe-form #id_image {
   border: 1px solid #ced4da;
@@ -78,7 +77,9 @@
 }
 
 
-
+#recipe-submit-form > .warning {
+  width: 75%;
+}
 #recipe-submit-form input[type="submit"] {
   width: 650px;
 }
@@ -86,6 +87,7 @@
 #recipe-submit-form div.btn-group button {
   width: 300px;
 }
+
 
 
 
@@ -109,9 +111,8 @@
   }
 
 
-  #recipe-submit-form section {
-    margin-right: 5% !important;
-    margin-left: 5% !important;
+  #recipe-submit-form > .warning {
+    width: 100%;
     font-size: 12px;
   }
   #recipe-submit-form .recipe-form-buttons input {
@@ -151,6 +152,14 @@
     width: 90%;
     font-size: 15px;
   }
+
+  #recipe-submit-form div.btn-group {
+    display: flex;
+    justify-content: center;
+  }
+  #recipe-submit-form .recipe-form-buttons input {
+    width: 100%;
+  }
 }
 
 
@@ -176,7 +185,7 @@
     width: 100%;
   }
   #recipe-submit-form div.btn-group button { 
-    width: 80%;
+    width: 100%;
     border-radius: .3rem;
     margin-bottom: 10px;
   }
@@ -210,10 +219,6 @@
 
   #recipe-submit-form .warning-title {
     text-align: center;
-  }
-  #recipe-submit-form div.btn-group button,
-  #recipe-submit-form .recipe-form-buttons input {
-    width: 100%;
   }
 }
 

@@ -1,58 +1,376 @@
-<a id="previous-page-btn" class="btn text-secondary" title="Return">
-  <i class="fa-solid fa-arrow-left-long"></i>
-</a>
-
-<div class="form-control">
-  <input type="search" name="q" value="{{ query }}" placeholder="Search" aria-label="Search">
-  <a id="search-filter-btn" href="#filter" class="text-secondary float-right" title="Filters">
-    <i class="fas fa-filter"></i>
+{% load static %}
+<div name="search-bar" class="d-flex justify-content-center ms-auto me-auto">
+  <a id="previous-page-btn" class="btn text-secondary rounded-0" title="Return">
+    <i class="fa-solid fa-arrow-left-long"></i>
   </a>
+  <div class="form-control rounded-0">
+    <input type="search" name="q" value="{{ query }}" placeholder="Search" aria-label="Search">
+    <a id="search-filter-btn" href="#filter" class="text-secondary" title="Filters" style="float: right">
+      <i class="fas fa-filter"></i>
+    </a>
+  </div>
+  <button title="Search" name="search-query" type="submit" class="btn btn-outline-secondary rounded-0">
+    <i>Submit</i><i class="d-none fa fa-search"></i>
+  </button>
 </div>
 
-<button title="Search" name="search-query" type="submit" class="btn btn-outline-secondary">
-  <i>Submit</i><i class="d-none fa fa-search"></i>
-</button>
-
-<div name="filter-container">
-  <ul class="list-inline">
-    <li name="search-by" class="list-inline-item">
-      <h5 class="h4-mobile">Sort by</h5><hr>
-      <ul name="search-by-children">
-        <li><input type="checkbox" name="title" value="true" checked> recipe name</li>
-        <li><input type="checkbox" name="publisher" value="true" checked> publisher</li>
-        <li><input type="checkbox" name="certified" value="true"> only certified</li>
-        <li><input type="checkbox" name="search_by_date" value="DOC"> creation date</li>
-        <li><input type="checkbox" name="id" value="true"> recipe ID</li>
-      </ul>
-    </li>
-    <li name="upload-date" class="list-inline-item">
-      <h5 class="h4-mobile">Upload date</h5><hr>
-      <ul name="upload-date-children">
-        <li><input type="radio" name="search_by_date" value="GUD" checked> general</li>
-        <li><input type="radio" name="search_by_date" value="TUD"> today</li>
-        <li><input type="radio" name="search_by_date" value="TWUD"> this week</li>
-        <li><input type="radio" name="search_by_date" value="TMUD"> this month</li>
-        <li><input type="radio" name="search_by_date" value="TYUD"> this year</li>
-      </ul>
-    </li>
-    <li name="categories" class="list-inline-item">
-      <h5 class="h4-mobile">Categories</h5><hr>
-      <ul name="categories-children">
-        <li><input type="radio" name="type" value="general" checked> general</li>
-        <li><input type="radio" name="type" value="pastry"> pastries</li>
-        <li><input type="radio" name="type" value="dessert"> desserts</li>
-        <li><input type="radio" name="type" value="soup"> soups</li>
-        <li><input type="radio" name="type" value="other"> other</li>
-      </ul>
-    </li>
-    <li name="nationality" class="list-inline-item">
-      <h5 class="h4-mobile">Nationality</h5><hr>
-      <ul name="nationality-children">
-        <li><input type="radio" name="nationality_mode" value="general" checked> general</li>
-        <li><input type="radio" name="nationality_mode" value="international"> international</li>
-        <li><input type="radio" name="nationality_mode" value="specific"> specific</li>
-        <li><select class="selectpicker countrypicker custom-scroll d-none" name="nationality" data-default="PL" data-flag="true"></select></li>
-      </ul>
-    </li>
-  </ul>
+<div name="filter-container" class="mt-4 ms-auto me-auto" style="display: none">
+  <section name="search-by">
+    <h1 class="fs-5 title">Sort by</h1>
+    <hr>
+    <ul name="search-by-children">
+      <li><input type="checkbox" name="title" value="true" checked> recipe name</li>
+      <li><input type="checkbox" name="publisher" value="true" checked> publisher</li>
+      <li><input type="checkbox" name="certified" value="true"> only certified</li>
+      <li><input type="checkbox" name="search_by_date" value="DOC"> creation date</li>
+      <li><input type="checkbox" name="id" value="true"> recipe ID</li>
+    </ul>
+  </section>
+  <section name="upload-date">
+    <h1 class="fs-5 title">Upload date</h1>
+    <hr>
+    <ul name="upload-date-children">
+      <li><input type="radio" name="search_by_date" value="GUD" checked> general</li>
+      <li><input type="radio" name="search_by_date" value="TUD"> today</li>
+      <li><input type="radio" name="search_by_date" value="TWUD"> this week</li>
+      <li><input type="radio" name="search_by_date" value="TMUD"> this month</li>
+      <li><input type="radio" name="search_by_date" value="TYUD"> this year</li>
+    </ul>
+  </section>
+  <section name="categories">
+    <h1 class="fs-5 title">Categories</h1>
+    <hr>
+    <ul name="categories-children">
+      <li><input type="radio" name="type" value="general" checked> general</li>
+      <li><input type="radio" name="type" value="pastry"> pastries</li>
+      <li><input type="radio" name="type" value="dessert"> desserts</li>
+      <li><input type="radio" name="type" value="soup"> soups</li>
+      <li><input type="radio" name="type" value="other"> other</li>
+    </ul>
+  </section>
+  <section name="nationality">
+    <h1 class="fs-5 title">Nationality</h1>
+    <hr>
+    <ul name="nationality-children">
+      <li><input type="radio" name="nationality_mode" value="general" checked> general</li>
+      <li><input type="radio" name="nationality_mode" value="international"> international</li>
+      <li><input type="radio" name="nationality_mode" value="specific"> specific</li>
+      <li name="nationality-dropdown" style="display: none">
+        <div id="select-country" class="input-group mt-1" style="height: 30px">
+          <label class="input-group-text h-100 rounded-0" style="width: 40px"></label>
+          <select name="nationality" class="form-select select-country h-100 padding-0" style="font-size: 12px" aria-label="Select country filter">
+            <option value="AF">Afghanistan</option>
+            <option value="AX">Aland Islands</option>
+            <option value="AL">Albania</option>
+            <option value="DZ">Algeria</option>
+            <option value="AS">American Samoa</option>
+            <option value="AD">Andorra</option>
+            <option value="AO">Angola</option>
+            <option value="AI">Anguilla</option>
+            <option value="AQ">Antarctica</option>
+            <option value="AG">Antigua and Barbuda</option>
+            <option value="AR">Argentina</option>
+            <option value="AM">Armenia</option>
+            <option value="AW">Aruba</option>
+            <option value="AU">Australia</option>
+            <option value="AT">Austria</option>
+            <option value="AZ">Azerbaijan</option>
+            <option value="BS">Bahamas</option>
+            <option value="BH">Bahrain</option>
+            <option value="BD">Bangladesh</option>
+            <option value="BB">Barbados</option>
+            <option value="BY">Belarus</option>
+            <option value="BE">Belgium</option>
+            <option value="BZ">Belize</option>
+            <option value="BJ">Benin</option>
+            <option value="BM">Bermuda</option>
+            <option value="BT">Bhutan</option>
+            <option value="BO">Bolivia</option>
+            <option value="BQ">Bonaire, Sint Eustatius and Saba</option>
+            <option value="BA">Bosnia and Herzegovina</option>
+            <option value="BW">Botswana</option>
+            <option value="BV">Bouvet Island</option>
+            <option value="BR">Brazil</option>
+            <option value="IO">British Indian Ocean Territory</option>
+            <option value="BN">Brunei Darussalam</option>
+            <option value="BG">Bulgaria</option>
+            <option value="BF">Burkina Faso</option>
+            <option value="BI">Burundi</option>
+            <option value="KH">Cambodia</option>
+            <option value="CM">Cameroon</option>
+            <option value="CA">Canada</option>
+            <option value="CV">Cape Verde</option>
+            <option value="KY">Cayman Islands</option>
+            <option value="CF">Central African Republic</option>
+            <option value="TD">Chad</option>
+            <option value="CL">Chile</option>
+            <option value="CN">China</option>
+            <option value="CX">Christmas Island</option>
+            <option value="CC">Cocos (Keeling) Islands</option>
+            <option value="CO">Colombia</option>
+            <option value="KM">Comoros</option>
+            <option value="CG">Congo</option>
+            <option value="CD">Congo, Democratic Republic of the Congo</option>
+            <option value="CK">Cook Islands</option>
+            <option value="CR">Costa Rica</option>
+            <option value="CI">Cote D'Ivoire</option>
+            <option value="HR">Croatia</option>
+            <option value="CU">Cuba</option>
+            <option value="CW">Curacao</option>
+            <option value="CY">Cyprus</option>
+            <option value="CZ">Czech Republic</option>
+            <option value="DK">Denmark</option>
+            <option value="DJ">Djibouti</option>
+            <option value="DM">Dominica</option>
+            <option value="DO">Dominican Republic</option>
+            <option value="EC">Ecuador</option>
+            <option value="EG">Egypt</option>
+            <option value="SV">El Salvador</option>
+            <option value="GQ">Equatorial Guinea</option>
+            <option value="ER">Eritrea</option>
+            <option value="EE">Estonia</option>
+            <option value="ET">Ethiopia</option>
+            <option value="FK">Falkland Islands (Malvinas)</option>
+            <option value="FO">Faroe Islands</option>
+            <option value="FJ">Fiji</option>
+            <option value="FI">Finland</option>
+            <option value="FR">France</option>
+            <option value="GF">French Guiana</option>
+            <option value="PF">French Polynesia</option>
+            <option value="TF">French Southern Territories</option>
+            <option value="GA">Gabon</option>
+            <option value="GM">Gambia</option>
+            <option value="GE">Georgia</option>
+            <option value="DE">Germany</option>
+            <option value="GH">Ghana</option>
+            <option value="GI">Gibraltar</option>
+            <option value="GR">Greece</option>
+            <option value="GL">Greenland</option>
+            <option value="GD">Grenada</option>
+            <option value="GP">Guadeloupe</option>
+            <option value="GU">Guam</option>
+            <option value="GT">Guatemala</option>
+            <option value="GG">Guernsey</option>
+            <option value="GN">Guinea</option>
+            <option value="GW">Guinea-Bissau</option>
+            <option value="GY">Guyana</option>
+            <option value="HT">Haiti</option>
+            <option value="HM">Heard Island and Mcdonald Islands</option>
+            <option value="VA">Holy See (Vatican City State)</option>
+            <option value="HN">Honduras</option>
+            <option value="HK">Hong Kong</option>
+            <option value="HU">Hungary</option>
+            <option value="IS">Iceland</option>
+            <option value="IN">India</option>
+            <option value="ID">Indonesia</option>
+            <option value="IR">Iran, Islamic Republic of</option>
+            <option value="IQ">Iraq</option>
+            <option value="IE">Ireland</option>
+            <option value="IM">Isle of Man</option>
+            <option value="IL">Israel</option>
+            <option value="IT">Italy</option>
+            <option value="JM">Jamaica</option>
+            <option value="JP">Japan</option>
+            <option value="JE">Jersey</option>
+            <option value="JO">Jordan</option>
+            <option value="KZ">Kazakhstan</option>
+            <option value="KE">Kenya</option>
+            <option value="KI">Kiribati</option>
+            <option value="KP">Korea, Democratic People's Republic of</option>
+            <option value="KR">Korea, Republic of</option>
+            <option value="XK">Kosovo</option>
+            <option value="KW">Kuwait</option>
+            <option value="KG">Kyrgyzstan</option>
+            <option value="LA">Lao People's Democratic Republic</option>
+            <option value="LV">Latvia</option>
+            <option value="LB">Lebanon</option>
+            <option value="LS">Lesotho</option>
+            <option value="LR">Liberia</option>
+            <option value="LY">Libyan Arab Jamahiriya</option>
+            <option value="LI">Liechtenstein</option>
+            <option value="LT">Lithuania</option>
+            <option value="LU">Luxembourg</option>
+            <option value="MO">Macao</option>
+            <option value="MK">Macedonia, the Former Yugoslav Republic of</option>
+            <option value="MG">Madagascar</option>
+            <option value="MW">Malawi</option>
+            <option value="MY">Malaysia</option>
+            <option value="MV">Maldives</option>
+            <option value="ML">Mali</option>
+            <option value="MT">Malta</option>
+            <option value="MH">Marshall Islands</option>
+            <option value="MQ">Martinique</option>
+            <option value="MR">Mauritania</option>
+            <option value="MU">Mauritius</option>
+            <option value="YT">Mayotte</option>
+            <option value="MX">Mexico</option>
+            <option value="FM">Micronesia, Federated States of</option>
+            <option value="MD">Moldova, Republic of</option>
+            <option value="MC">Monaco</option>
+            <option value="MN">Mongolia</option>
+            <option value="ME">Montenegro</option>
+            <option value="MS">Montserrat</option>
+            <option value="MA">Morocco</option>
+            <option value="MZ">Mozambique</option>
+            <option value="MM">Myanmar</option>
+            <option value="NA">Namibia</option>
+            <option value="NR">Nauru</option>
+            <option value="NP">Nepal</option>
+            <option value="NL">Netherlands</option>
+            <option value="AN">Netherlands Antilles</option>
+            <option value="NC">New Caledonia</option>
+            <option value="NZ">New Zealand</option>
+            <option value="NI">Nicaragua</option>
+            <option value="NE">Niger</option>
+            <option value="NG">Nigeria</option>
+            <option value="NU">Niue</option>
+            <option value="NF">Norfolk Island</option>
+            <option value="MP">Northern Mariana Islands</option>
+            <option value="NO">Norway</option>
+            <option value="OM">Oman</option>
+            <option value="PK">Pakistan</option>
+            <option value="PW">Palau</option>
+            <option value="PS">Palestinian Territory, Occupied</option>
+            <option value="PA">Panama</option>
+            <option value="PG">Papua New Guinea</option>
+            <option value="PY">Paraguay</option>
+            <option value="PE">Peru</option>
+            <option value="PH">Philippines</option>
+            <option value="PN">Pitcairn</option>
+            <option value="PL">Poland</option>
+            <option value="PT">Portugal</option>
+            <option value="PR">Puerto Rico</option>
+            <option value="QA">Qatar</option>
+            <option value="RE">Reunion</option>
+            <option value="RO">Romania</option>
+            <option value="RU">Russian Federation</option>
+            <option value="RW">Rwanda</option>
+            <option value="BL">Saint Barthelemy</option>
+            <option value="SH">Saint Helena</option>
+            <option value="KN">Saint Kitts and Nevis</option>
+            <option value="LC">Saint Lucia</option>
+            <option value="MF">Saint Martin</option>
+            <option value="PM">Saint Pierre and Miquelon</option>
+            <option value="VC">Saint Vincent and the Grenadines</option>
+            <option value="WS">Samoa</option>
+            <option value="SM">San Marino</option>
+            <option value="ST">Sao Tome and Principe</option>
+            <option value="SA">Saudi Arabia</option>
+            <option value="SN">Senegal</option>
+            <option value="RS">Serbia</option>
+            <option value="CS">Serbia and Montenegro</option>
+            <option value="SC">Seychelles</option>
+            <option value="SL">Sierra Leone</option>
+            <option value="SG">Singapore</option>
+            <option value="SX">Sint Maarten</option>
+            <option value="SK">Slovakia</option>
+            <option value="SI">Slovenia</option>
+            <option value="SB">Solomon Islands</option>
+            <option value="SO">Somalia</option>
+            <option value="ZA">South Africa</option>
+            <option value="GS">South Georgia and the South Sandwich Islands</option>
+            <option value="SS">South Sudan</option>
+            <option value="ES">Spain</option>
+            <option value="LK">Sri Lanka</option>
+            <option value="SD">Sudan</option>
+            <option value="SR">Suriname</option>
+            <option value="SJ">Svalbard and Jan Mayen</option>
+            <option value="SZ">Swaziland</option>
+            <option value="SE">Sweden</option>
+            <option value="CH">Switzerland</option>
+            <option value="SY">Syrian Arab Republic</option>
+            <option value="TW">Taiwan, Province of China</option>
+            <option value="TJ">Tajikistan</option>
+            <option value="TZ">Tanzania, United Republic of</option>
+            <option value="TH">Thailand</option>
+            <option value="TL">Timor-Leste</option>
+            <option value="TG">Togo</option>
+            <option value="TK">Tokelau</option>
+            <option value="TO">Tonga</option>
+            <option value="TT">Trinidad and Tobago</option>
+            <option value="TN">Tunisia</option>
+            <option value="TR">Turkey</option>
+            <option value="TM">Turkmenistan</option>
+            <option value="TC">Turks and Caicos Islands</option>
+            <option value="TV">Tuvalu</option>
+            <option value="UG">Uganda</option>
+            <option value="UA">Ukraine</option>
+            <option value="AE">United Arab Emirates</option>
+            <option value="GB">United Kingdom</option>
+            <option value="US">United States</option>
+            <option value="UM">United States Minor Outlying Islands</option>
+            <option value="UY">Uruguay</option>
+            <option value="UZ">Uzbekistan</option>
+            <option value="VU">Vanuatu</option>
+            <option value="VE">Venezuela</option>
+            <option value="VN">Viet Nam</option>
+            <option value="VG">Virgin Islands, British</option>
+            <option value="VI">Virgin Islands, U.s.</option>
+            <option value="WF">Wallis and Futuna</option>
+            <option value="EH">Western Sahara</option>
+            <option value="YE">Yemen</option>
+            <option value="ZM">Zambia</option>
+            <option value="ZW">Zimbabwe</option>
+          </select>
+        </div>
+      </li>
+    </ul>
+  </section>
 </div>
+<script name="select-country" defer>
+
+
+// Enable nationality_select and show nationality_dropdown, only if nationality_mode=specific is checked.
+// Otherwise, hide the nationality_dropdown and disable nationality_select.
+
+let nationality_section  = document.querySelector('section[name="nationality"]');
+let nationality_radios   = nationality_section.querySelectorAll('input[name="nationality_mode"]');
+let nationality_dropdown = nationality_section.querySelector('li[name="nationality-dropdown"]');
+let nationality_select   = nationality_dropdown.querySelector('select[name="nationality"]');
+
+[...nationality_radios].map(radio =>
+{
+  if (radio.value === 'specific') {
+    radio.addEventListener('click', () => {
+      if (radio.checked) {
+        nationality_dropdown.style.display = 'block';
+        nationality_select.removeAttribute('disabled');
+      }
+    });
+  }
+  else {
+    radio.addEventListener('click', () => {
+      if (radio.checked) {
+        nationality_dropdown.style.display = 'none';
+        nationality_select.setAttribute('disabled', true);
+      }
+    });
+  }
+
+  if (radio.checked) radio.click();
+});
+
+
+
+// Set flag icon for #select-country's label
+
+let __flags = `{% static 'recipes/img/icons/flags/' %}`;
+
+const selectCountryUpdateFlag = (selectElement) => {
+  let label = selectElement.parentElement.querySelector('.input-group-text');
+
+  label.style.backgroundImage  = `url('${__flags}${selectElement.value}.svg')`;
+  label.style.backgroundRepeat = 'no-repeat';
+  label.style.backgroundSize   = '100% 100%';
+}
+
+let selectCountryElements = document.querySelectorAll('.select-country');
+[...selectCountryElements].map(selectElement =>
+{
+  selectCountryUpdateFlag(selectElement);
+  selectElement.addEventListener('change', () => {
+    selectCountryUpdateFlag(selectElement);
+  });
+});
+
+</script>

@@ -1,90 +1,43 @@
-/* Search filter Nationality */
-.bootstrap-select.countrypicker button.btn.dropdown-toggle {
-  margin-top: -10px;
-  padding: 0;
-}
-
 #previous-page-btn {
-  border-radius: 0;
-  height: 38px;
-  outline: none;
-  box-shadow: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
   font-size: 20px;
 }
-
-.form-control {
-  border-radius: 0;
-  width: 70% !important;
-  height: 38px;
-}
+.form-control { height: 38px; }
 .form-control > input[type="search"] {
   border: 0;
-  width: 90%;
+  width: calc(100% - 20px);
   outline: none;
   box-shadow: none;
 }
 
-#search-form {
-  padding: 0;
-  text-align: left;
-}
-#search-form > button[name="search-query"] {
-  border-radius: 0;
-  height: 38px;
-  outline: none;
-  box-shadow: none;
-}
-#search-form > div[name="filter-container"] {
-  margin: 20px 10% 0px 10%;
-  display: none;
-}
+
+#search-form div[name="search-bar"] { width: 70%; }
+
+
 #search-form div[name="filter-container"] {
-  margin: 20px 0 0 0 !important;
-  font-size: 12px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 70%;
 }
 #search-form div[name="filter-container"] ul {
   list-style: none;
   padding-left: 0;
 }
-#search-form div[name="filter-container"] > ul > li {
-  vertical-align: top !important;
-  margin-right: 20px;
-  margin-left: 0;
-  margin-top: 0;
+#search-form div[name="filter-container"] ul li {
+  font-size: 1em;
 }
 
 
 
-@media only screen and (max-width: 320px) {
-  #search-form {
-    text-align: left;
+@media only screen and (max-width: 363px) {
+  #search-form div[name="filter-container"] {
+    grid-template-columns: 1fr !important;
   }
-  #search-form div[name="filter-container"] ul li h5:first-child {
-    margin-top: 20px;
-  }
-  #search-form div[name="filter-container"] ul li {
-    width: 100%;
-  }
-  #search-form div[name="filter-container"] ul li ul[name="nationality-children"] li {
-    margin-top: 0;
-  }
-  /* Search filter Nationality */
-  .bootstrap-select.countrypicker button.btn.dropdown-toggle {
-    margin-top: -10px !important;
-  }
-  #search-form div[name="filter-container"] ul li[name="nationality"] {
-    margin-top: auto !important;
-  }
-  #search-form div[name="filter-container"] ul li[name="nationality"] ul[name="nationality-children"] > li {
-    display: block !important;
-  }
-  #search-form div[name="filter-container"] ul li[name="nationality"] ul[name="nationality-children"] > li:nth-of-type(3) {
-    padding-top: 10px !important;
-    float: left;
-  }
+}
+
+@media only screen and (max-width: 412px) {
   /* Search button icons */
   #search-form button[name="search-query"] i:first-child {
     display: none;
@@ -92,52 +45,45 @@
   #search-form button[name="search-query"] i:last-child {
     display: block !important;
   }
-  /* Search Input Parent Division */
-  #search-form div.form-control {
-    width: 80% !important;
+}
+
+@media only screen and (max-width: 450px) {
+  #search-form div[name="search-bar"] {
+    width: 100% !important;
+  }
+}
+
+@media only screen and (max-width: 545px) {
+  #search-form div[name="filter-container"] {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 545px) and (min-width: 450px) {
+  #search-form div[name="search-bar"] {
+    width: 82% !important;
   }
 }
 
 @media only screen and (max-width: 600px) {
-  /* Search form -> previous btn */
-  #previous-page-btn { display: none !important; }
+  #previous-page-btn { display: none }
 }
 
-@media only screen and (max-width: 1000px) {
-  #search-form {
-    text-align: center;
-    padding: 0;
-  }
-  #search-form div[name="filter-container"] {
-    margin: 20px 5% 0 5% !important;
-  }
-  #search-form div[name="filter-container"] ul li {
-    padding-top: 10px;
-    margin-right: 0;
-    text-align: left;
-  }
-  #search-form div[name="filter-container"] ul li[name="categories"] {
-    float: right;
-  }
-  #search-form div[name="filter-container"] ul li[name="search-by"] {
-    float: left;
-  }
-  /* Search filter Nationality */
-  .bootstrap-select.countrypicker {
-    width: 100% !important;
-    margin-top: 20px;
-  }
-  #search-form div[name="filter-container"] ul li[name="nationality"] {
-    margin-top: 20px;
-    width: 100%;
-  }
-  #search-form div[name="filter-container"] ul li[name="nationality"] ul[name="nationality-children"] > li {
-    margin-right: 10px;
-    display: inline;
-  }
-  #search-form div[name="filter-container"] ul li[name="nationality"] ul[name="nationality-children"] > li:nth-of-type(3) {
-    margin-right: 0;
-    padding-top: 0;
-    float: right;
-  }
+@media only screen and (max-width: 719px) {
+  #search-form div[name="search-bar"] { width: 100%; }
+  #search-form div[name="filter-container"] { width: 80%; }
+}
+
+@media only screen and (max-width: 767px) {
+  #search-form div[name="search-bar"] { width: 100%; }
+  #search-form div[name="filter-container"] { padding: 0; }
+  #search-form div[name="filter-container"] ul li { font-size: 12px !important; }
+  #search-form div[name="filter-container"] .title { font-size: 16px !important; }
+}
+
+@media only screen and (max-width: 991px) {
+  #search-form div[name="filter-container"] ul li { font-size: .8em; }
+}
+@media only screen and (max-width: 1199px) {
+  #search-form div[name="search-bar"] { width: 75%; }
 }

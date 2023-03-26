@@ -7,7 +7,7 @@ body {
   min-height: 100%;
   height: 100%;
 }
-header > nav {
+header nav {
  background: #0D1317;
 }
 
@@ -77,6 +77,6 @@ header > nav {
 @media only screen and (max-width: 1000px) {
   /* Navbar section: <!-- Login / Profile --> */
   .nav-icon-item { width: 25px }
-  a[name="account"] > span { display: inline !important }
-  a[name="account"] > i { font-size: 15px !important }
+  #navbarDropdownAccount > span { display: inline !important }
+  #navbarDropdownAccount > i { font-size: 15px !important }
 }

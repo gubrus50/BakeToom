@@ -1,0 +1,39 @@
+{% extends "recipes/base.html" %}
+{% load static %}
+{% block head %}
+
+<link rel="stylesheet" href="{% static 'recipes/css/document_template.css' %}">
+<!-- <meta name="description" content=""> -->
+<meta name="keywords" content="BakeToom, credits">
+
+{% endblock %}
+{% block content %}
+  <div id="document-container" class="container my-5">
+    <ul id="menu" class="list-inline">
+      <li class="list-inline-item p-1">
+        <a id="print" href="#" class="text-dark" title="Print"><i class="fa fa-print"></i></a>
+      </li>
+      <li class="list-inline-item p-1">
+        <a id="download" href="#" class="text-dark" title="Download"><i class="fa fa-download"></i></a>
+      </li>
+    </ul>
+    <div id="document" class="bg-white border p-4">
+   
+      <h1 class="title text-uppercase text-center mt-5"><strong>Credits and Contributors</strong></h1>
+      <h5 class="sub-title text-center">Welcome to BakeToom!</h5>
+
+      
+      <p class="text-center">BakeToom would not exist without some help. That is why we would like to show appreciation towards the creators who co-create our website.<br> If you have additional questions or require more information about our credits page, do not hesitate to <a href="{% url 'contact-us-form' %}">contact us</a>.</p>
+
+      <h3 id="Bootstrap" class="title"><strong>Bootstrap</strong></h3>
+      
+      <h3 id="flaticon" class="title"><strong>Flaticon</strong></h3>
+
+      <p>Flaticon creators have been an instrumental part of our website's success in terms of icon design, and we can't thank them enough for all that they have done, especially for allowing us to use their assets free of charge.</p>
+
+    </div>
+  </div>
+{% endblock content %}
+{% block base %}
+<script name="print-and-download" src="{% static 'recipes/js/document-template.js' %}"></script>
+{% endblock %}

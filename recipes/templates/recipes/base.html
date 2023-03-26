@@ -8,142 +8,130 @@
   <meta name="description" content="BakeToom is a great place for culinary fans, where everyone has a chance to get the recognition they deserve. After a short registration, you will be able to publish your recipes on our platform and expand your relations on an international scale to further develop your culinary arts.">
   <meta name="keywords" content="BakeToom, recipe, recipes">
 
-  {% if title %}
-    <title>BakeToom - {{ title }}</title>
-  {% else %}
-    <title>BakeToom</title>
+  {% if title %}<title>BakeToom - {{ title }}</title>
+  {% else %}    <title>BakeToom</title>
   {% endif %}
 
   <link rel="shortcut icon" href="{% static 'recipes/img/icons/baketoom_icon.svg' %}">
-  <link name="main" rel="stylesheet" href="{% static 'recipes/css/main.css' %}">
-
-  <link name="bootstrap" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link name="fontawesome" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <!-- (world-flags-sprite) required stylesheets -->
-  <link name="world-flags-sprite" rel="stylesheet" href="//github.com/downloads/lafeber/world-flags-sprite/flags32.css">
-  <link name="bootstrap-select" rel="stylesheet" href="//unpkg.com/bootstrap-select@1.12.4/dist/css/bootstrap-select.min.css">
-  <link name="bootstrap-select" rel="stylesheet" href="{% static 'recipes/css/bootstrap4_select_beta2.css' %}">
-  <link name="bootstrap-select-country" rel="stylesheet" href="//unpkg.com/bootstrap-select-country@4.0.0/dist/css/bootstrap-select-country.min.css">
-
-  <!-- External fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Qwigley&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
+  <link name="main" href="{% static 'recipes/css/main.css' %}" rel="stylesheet">
+  <!-- Libraries -->
+  <link name="world-flags-sprite" href="//github.com/downloads/lafeber/world-flags-sprite/flags16.css" rel="stylesheet">
+  <link name="bootstrap5" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  <link name="fontawesome" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link name="googleFonts" href="https://fonts.googleapis.com/css2?family=Qwigley&display=swap" rel="stylesheet">
+  <link name="googleFonts" href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
 
   {% block head %}{% endblock %}
 
   {% if messages %}
-    <script type="text/javascript">
-      var hidden_alert_count = 0;
-      var window_location = window.location.href;
-    </script>
+  <script type="text/javascript">
+    var hidden_alert_count = 0;
+    var window_location = window.location.href;
+  </script>
   {% endif %}
 
 </head>
 <body>
-
   <header class="site-header fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-      <!-- Logo -->
-      <a title="Return to the main page" name="home-page" class="navbar-brand" href="{% url 'recipes-home' %}"><img height="35" src="{% static 'recipes/img/baketoom_logo.png' %}"/></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="outline: none; box-shadow: none">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <!-- Menu / Navigation options -->
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'about' %}">
-             <i class="align-icon-item fa fa-book"></i>
-             <span name="about">About BakeToom</span>
-            </a>
-          </li>
-          {% if messages %}
-          <li class="nav-item">
-            <a class="nav-link" href="#" onclick="$('.global-message-container > a').show(); $('.global-message-container').fadeIn(); hidden_alert_count=0">
-              <i class="align-icon-item fa fa-exclamation-circle"></i>
-              <span name="notifications">Notifications</span>
-            </a>
-          </li>
-          {% endif %}
-          <!-- Tools dropdown -->
-          <li id="tools-dropdown" class="nav-item dropdown">
-            <a name="recipe-manager" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="align-icon-item fa fa-edit"></i>
-              <span name="tools">Recipe manager</span>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{% url 'contact-us-form' %}" name="report">Report</a>
-              {% if user.is_authenticated %}
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <!-- Logo -->
+        <a name="home-page" class="navbar-brand" href="{% url 'recipes-home' %}" title="Return to the main page"><img height="35" src="{% static 'recipes/img/baketoom_logo.png' %}"/></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Navigation Bar Options -->
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'about' %}">
+               <i class="align-icon-item fa fa-book"></i>
+               <span name="about">About BakeToom</span>
+              </a>
+            </li>
+            {% if messages %}
+            <li class="nav-item">
+              <a class="nav-link" href="#" onclick="$('.global-message-container > a').show(); $('.global-message-container').fadeIn(); hidden_alert_count=0">
+                <i class="align-icon-item fa fa-exclamation-circle"></i>
+                <span name="notifications">Notifications</span>
+              </a>
+            </li>
+            {% endif %}
+            <!-- Recipe Manager Dropdown -->
+            <li id="recipe-manager-dropdown" class="nav-item dropdown">
+              <a id="navbarDropdownRecipeManager" name="recipe-manager" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="align-icon-item fa fa-edit"></i>
+                <span name="tools">Recipe manager</span>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownRecipeManager">
+                <li><a class="dropdown-item" href="{% url 'contact-us-form' %}" name="report">Report</a></li>
+                {% if user.is_authenticated %}
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{% url 'recipe-create' %}" name="create_recipe">Create recipe</a>
-                <a class="dropdown-item disabled" href="#" name="edit_recipe">Edit recipe</a>
-                <a class="dropdown-item disabled" href="#" name="delete_recipe">Delete recipe</a>
+                <li><a class="dropdown-item" href="{% url 'recipe-create' %}" name="create_recipe">Create recipe</a></li>
+                <li><a class="dropdown-item disabled" href="#" name="edit_recipe">Edit recipe</a></li>
+                <li><a class="dropdown-item disabled" href="#" name="delete_recipe">Delete recipe</a></li>
                 <div class="dropdown-divider"></div>
-              {% endif %}
-              <a class="dropdown-item disabled" href="#" name="download">Download</a>
-              <a class="dropdown-item disabled" href="#" name="print">Print</a>
-            </div>
-          </li>
-        </ul>
-        <!-- Login / Profile -->
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown">
-            <a title="Account" name="account" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              {% if user.is_authenticated %}
+                {% endif %}
+                <li><a class="dropdown-item disabled" href="#" name="download">Download</a></li>
+                <li><a class="dropdown-item disabled" href="#" name="print">Print</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="navbar-nav ms-auto">
+            <!-- Account Dropdown -->
+            <li id="account-dropdown" class="nav-item dropdown">
+              <a id="navbarDropdownAccount" name="recipe-manager" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {% if user.is_authenticated %}
                 <i class="align-icon-item fas fa-user-cog" style="font-size: 20px"></i>
                 <span name="account" class="d-none">Account</span>
-              {% else %}
+                {% else %}
                 <i class="align-icon-item fas fa-sign-in-alt" style="font-size: 20px"></i>
                 <span name="account" class="d-none">Account</span>
-              {% endif %}
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              {% if user.is_authenticated %}
-                <a class="dropdown-item" href="{% url 'profile' %}" name="my-profile">My profile</a>
-                <a class="dropdown-item" href="{% url 'logout' %}" name="logout">Logout</a>
-              {% else %}
-                <a class="dropdown-item" href="{% url 'login' %}" name="login">Login</a>
-                <a class="dropdown-item" href="{% url 'register' %}" name="register">Register</a>
-              {% endif %}
-            </div>
-          </li>
-        </ul>
+                {% endif %}
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownAccount">
+                {% if user.is_authenticated %}
+                <li><a class="dropdown-item" href="{% url 'profile' %}" name="my-profile">My profile</a></li>
+                <li><a class="dropdown-item" href="{% url 'logout' %}" name="logout">Logout</a></li>
+                {% else %}
+                <li><a class="dropdown-item" href="{% url 'login' %}" name="login">Login</a></li>
+                <li><a class="dropdown-item" href="{% url 'register' %}" name="register">Register</a></li>
+                {% endif %}
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
-      <!-- End of Menu / Navigation options -->
     </nav>
   </header>
-
   
+
   <!-- Modal -->
-  <div class="modal fade" id="modalConsent" tabindex="-1" role="dialog" aria-labelledby="modalConsentCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+  <div id="modalConsent" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h3 class="modal-title">BakeToom - Consent</h3>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <h1 class="modal-title fs-2" id="exampleModalLabel">BakeToom - Consent</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <h4 class="modal-title text-center mb-3">Welcome to BakeToom!</h4>
-          <h5 class="modal-title text-center">Before you start using our website,<br>please take some time and carefully read the below statements:</h5>
-          <ol class="my-4">
-            <li>BakeToom is a personal project for education purposes only. Once you access our website, please use the <strong>About BakeToom</strong> button (located in the top navigation bar) to learn how to access our <strong>Terms and Conditions</strong>, <strong>Privacy Policy</strong>, and <strong>Contact and Support</strong> page.</li>
-            <li>Our Terms and Conditions, Privacy Policy are not currently valid, as they are, therefore, to simulate the real website experience for the time being.</li>
-            <li>This website is owned and maintained by <a href="https://github.com/gubrus50" target="_blank">McRaZick</a>, who is broke to scale and fully protect users' data due to lack of experience.</li>
-            <li>Rights for BakeToom's account <strong>registry</strong> and <strong>recipe management</strong>, in terms of recipe creation, deletion & updation: Are granted by McRaZick. (This statement discludes guests).</li>
-            <li>Recipes are not verified. Therefore, there is no guarantee that the recipes are reproducible and edible.</li>
-            <li>To use our website BakeToom, you must <strong>agree to cookies.</strong></li>
-            <li>You are <strong>free to contact us</strong> responsively at <a href="{% url 'contact-us-form' %}">Contact and Support</a> page. However, before you do so:</li>
-            <li>Guests are welcome to use and explore the BakeTooms available features for personal use as long as they, <strong>Comply/Acknowledge</strong> all mentioned statements from the "BakeToom - Consent" popup.</li>
-          </ol>
-          <p>By pressing the <strong>Comply button,</strong> I, the guest, acknowledge the presented to me statements, and I understand that I use the BakeToom website at my own risk. Hence, I am forbidden to use BakeToom until I comply with all the statements from the "BakeToom - Consent" popup.</p>
+          <h1 class="modal-title fs-5">Welcome to BakeToom! Before you start using our website,<br>please take some time and carefully read the below statements:</h1>
+          <ul class="list-group list-group-flush my-4 fs-6">
+            <li class="list-group-item">BakeToom is a personal project for education purposes only. Once you access our website, please use the <strong>About BakeToom</strong> button (located in the top navigation bar) to learn more about us.</li>
+            <li class="list-group-item">Our <a href="{% url 'terms-and-conditions' %}">Terms and Conditions</a> & <a href="{% url 'privacy-and-policy' %}">Privacy Policy</a> are not currently valid, as they are, therefore, to simulate the real website experience for the time being.</li>
+            <li class="list-group-item">This website is owned and maintained by <a href="https://github.com/gubrus50" target="_blank">McRaZick</a>, who is broke to scale and fully protect users' data due to lack of experience.</li>
+            <li class="list-group-item">Rights for BakeToom's account <strong>registry</strong> and <strong>recipe management</strong>, in terms of recipe creation, deletion & updation: Are granted by McRaZick. (This statement discludes guests).</li>
+            <li class="list-group-item">Recipes are not verified. Therefore, there is no guarantee that the recipes are reproducible and edible.</li>
+            <li class="list-group-item">To use our website BakeToom, you must <strong>agree to cookies.</strong></li>
+            <li class="list-group-item">You are <strong>free to contact us</strong> responsively at <a href="{% url 'contact-us-form' %}">Contact and Support</a> page. However, before you do so:</li>
+            <li class="list-group-item">Guests are welcome to use and explore the BakeTooms available features for personal use as long as they, <strong>Comply/Acknowledge</strong> all mentioned statements from the "BakeToom - Consent" popup.</li>
+          </ul>
+          <p class="fs-6">By pressing the <strong>Comply button,</strong> I, the guest, acknowledge the presented to me statements, and I understand that I use the BakeToom website at my own risk. Hence, I am forbidden to use BakeToom until I comply with all the statements from the "BakeToom - Consent" popup.</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" name="comply">Comply</button>
-          <button type="button" class="btn btn-warning acceptcookies mr-auto" aria-label="Close">Agree to Cookies</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-warning acceptcookies me-auto" aria-label="Close">Agree to Cookies</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
@@ -154,15 +142,15 @@
     <!-- Global messages -->
     {% for message in messages %}
       {% if message.tags == "error" %}
-        <div class="f-mobile global-message-container alert alert-danger m-0 rounded-0">
+      <div class="f-mobile global-message-container alert alert-danger m-0 rounded-0 border-top-0">
       {% else %}
-        <div class="f-mobile global-message-container alert alert-{{ message.tags }} m-0 rounded-0">
+      <div class="f-mobile global-message-container alert alert-{{ message.tags }} m-0 rounded-0 border-top-0">
       {% endif %}
-        {{ message }}
-        <a style="cursor: pointer" onclick="$(this).hide(); $(this).parent().fadeOut(); hidden_alert_count++; window.location.href=window_location+'#hidden-alert-'+hidden_alert_count.toString()">
-          <u>Okay, hide</u>
-        </a> 
-        </div>
+      {{ message }}
+      <a style="cursor: pointer" onclick="$(this).hide(); $(this).parent().fadeOut(); hidden_alert_count++; window.location.href=window_location+'#hidden-alert-'+hidden_alert_count.toString()">
+        <u>Okay, hide</u>
+      </a> 
+      </div>
     {% endfor %}
   {% endif %}
 
@@ -174,19 +162,16 @@
   </div>
 
 
+  
   <!-- Main content of the page -->
   <main>{% block content %}{% endblock %}</main>
 
 
   <script name="jQuery" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" crossorigin="anonymous"></script>
-  <script name="fontawesome" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script name="popperjs" src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+  <script name="bootstrap5" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
   <script name="fontawesome" src="https://use.fontawesome.com/f98f48837f.js"></script>
-  <script name="bootstrap" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <script name="bootstrap-select" src="//unpkg.com/bootstrap-select@1.12.4/dist/js/bootstrap-select.min.js"></script>
-  <script name="bootstrap-select-country" src="//unpkg.com/bootstrap-select-country@4.0.0/dist/js/bootstrap-select-country.min.js"></script>
   <script name="main" src="{% static 'recipes/js/main.js' %}" crossorigin="anonymous"></script>
   {% block base %}{% endblock %}
-
-
 </body>
 </html>

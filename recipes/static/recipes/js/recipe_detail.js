@@ -41,19 +41,21 @@ function RemoveEmptyMethodListElements() {
 
 	for (var i=0; i<method_list.length; i++) {
 		// Remove |linenumbers
-		method_list[i]=method_list[i].replace(/^.+?\./g,'')
+		method_list[i] = method_list[i].replace(/^.+?\./g,'');
 
 		if (!isEmpty(method_list[i])) {
-			new_method_list.push(method_list[i])
+			new_method_list.push(method_list[i]);
 		}
 	}
 
 	// Apply |linenumbers for each element from method_list
-	var linenumbers = new_method_list.length.toString().replace(/\d/g,'0')
+	var linenumbers = new_method_list.length.toString().replace(/\d/g,'0');
+
 	for (var i=0; i<new_method_list.length; i++) {
-		x = linenumbers
-		x = x.slice((i+1).toString().length)
-		new_method_list[i]= x + (i+1) + '.' + new_method_list[i]+'<br>'
+		x = linenumbers;
+		x = x.slice((i+1).toString().length);
+		
+		new_method_list[i]= x + (i+1) + '.' + new_method_list[i]+'<br>';
 	}
 
 	$('#recipe-method-list > p').html(new_method_list.join("<br>"));
@@ -65,8 +67,7 @@ function RemoveEmptyMethodListElements() {
 function printExternalPage(url) {
 	var printWindow = window.open( url, 'Print', 'left=200, top=200, width=950, height=500, toolbar=0, resizable=0');
 	printWindow.addEventListener('load', function() {
-		setTimeout(function() { printWindow.print()
-		}, 500);
+		setTimeout(function() { printWindow.print() }, 500);
 	}, true);
 }
 
@@ -75,7 +76,7 @@ function printExternalPage(url) {
 
 window.onload = function()
 {
-	var	tools     = $('div[aria-labelledby="navbarDropdown"]');
+	var	tools     = $('#recipe-manager-dropdown');
 	edit_recipe   = $(tools).find('a[name="edit_recipe"]');
 	update_recipe = $(tools).find('a[name="update_recipe"]');
 	delete_recipe = $(tools).find('a[name="delete_recipe"]');
@@ -98,7 +99,8 @@ window.onload = function()
 		$(edit_recipe).removeClass('disabled');
 		$(delete_recipe).attr('href', window.location.pathname+"delete");
 		$(delete_recipe).removeClass('disabled')
-	} else {
+	}
+	else {
 		$(report_tool).removeClass('disabled')
 	}
 
@@ -106,9 +108,9 @@ window.onload = function()
 
 	/* Share container -> icons Functionality */
 
-	var share_url = window.location;
-	var share_title = recipe_title;
-	var share_via = 'BakeToom';
+	var share_url     = window.location;
+	var share_title   = recipe_title;
+	var share_via     = 'BakeToom';
 	var share_related = 'BakeToom,BakeToomTeam,BTChefs';
 
 	// Facebook

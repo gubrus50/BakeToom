@@ -80,12 +80,14 @@ $(document).ready(function()
 
 
 	/* Show "BakeToom - Consent" modal*/
+	let modal_consent = new bootstrap.Modal('#modalConsent');
+
 	if (!getCookie('client_consent')) {
-		$('#modalConsent').modal('show');
+		modal_consent.show();
 	}
 	$('#modalConsent button[name="comply"]').click(function() {
-		setCookie('client_consent',true,1);
-		$('#modalConsent').modal('hide');
+		setCookie('client_consent', true, 1);
+		modal_consent.hide();
 	});
 
 
@@ -110,7 +112,7 @@ $(document).ready(function()
 	}
 
 	$("ignorecookies, .acceptcookies").click(function() {
-		setCookie('hide_cookies_popup',true,1);
+		setCookie('hide_cookies_popup', true, 1);
 		$("#cookieConsent").fadeOut(200);
 		$(".acceptcookies").addClass('btn-success').removeClass('btn-warning').attr('disabled', true);
 	})
