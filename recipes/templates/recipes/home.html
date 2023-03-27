@@ -8,7 +8,7 @@
 {% endblock %}
 {% block content %}
 
-  <form id="search-form" method="GET" action="{% url 'recipes-home' %}" class="container form-inline my-4 d-flex justify-content-center h-mobile">
+  <form id="search-form" method="GET" action="{% url 'recipes-home' %}" class="container-lg my-4">
     {% include "recipes/extensions/search_bar.html" %}
   </form>
 

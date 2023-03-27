@@ -11,19 +11,19 @@ function createEmptyCategoryObject() {
 	$("#ingredients-form").append('\
 		<div class="recipe-category">\
 		  <div id="div_id_category_set-'+categories_count+'-name" class="form-group">\
-		    <label for="id_category_set-'+categories_count+'-name" class="">'+categories_name_label+'</label>\
+		    <label for="id_category_set-'+categories_count+'-name" class="mb-1">'+categories_name_label+'</label>\
 		    <div class="">\
 		      <input type="text" name="category_set-'+categories_count+'-name" maxlength="100" class="textinput textInput form-control" id="id_category_set-'+categories_count+'-name">\
 		    </div>\
 		  </div>\
 		  <div id="div_id_category_set-'+categories_count+'-ingredients" class="form-group">\
-		    <label for="id_category_set-'+categories_count+'-ingredients" class=" requiredField">'+categories_ingredients_label+'</label>\
+		    <label for="id_category_set-'+categories_count+'-ingredients" class=" requiredField mb-1 mt-3">'+categories_ingredients_label+'</label>\
 		    <div class="">\
 		      <textarea name="category_set-'+categories_count+'-ingredients" cols="40" rows="10" maxlength="500" class="textarea form-control custom-scroll empty-h-scroll" id="id_category_set-'+categories_count+'-ingredients"></textarea>\
 		    </div>\
 		  </div>\
 		  <input type="hidden" name="category_set-'+categories_count+'-id" id="id_category_set-'+categories_count+'-id">\
-		  <div class="form-group">\
+		  <div class="form-group mt-3">\
 		    <div id="div_id_category_set-'+categories_count+'-DELETE" class="form-check">\
 		      <input type="checkbox" name="category_set-'+categories_count+'-DELETE" class="checkboxinput form-check-input" id="id_category_set-'+categories_count+'-DELETE">\
 		        <label for="id_category_set-'+categories_count+'-DELETE" class="form-check-label">'+delete_label+'</label>\
@@ -67,6 +67,8 @@ function setYearAndFullnameAtLicense(year, fullname)
 
 window.onload = function() 
 {
+	$('#id_published').removeAttr('checked');
+
 	$('.recipe-category').each(function(index){
 		var name = $('#id_category_set-'+index+'-name');
 		var ingr = $('#id_category_set-'+index+'-ingredients');

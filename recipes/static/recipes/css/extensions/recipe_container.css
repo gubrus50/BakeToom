@@ -71,7 +71,6 @@
 #recipe-wrapper div.recipe-item {
   width: 250px;
   height: 100%;
-  font-family: monospace;
 }
 #recipe-wrapper div.recipe-image {
   position: relative;
@@ -98,6 +97,10 @@
   display: inline-block;
   margin-top: 0px;
 }
+#recipe-wrapper .recipe-region > .flag {
+  vertical-align: middle;
+  margin-bottom: 3px;
+}
 
 
 
@@ -105,13 +108,10 @@
 @media only screen and (max-width: 991px) {
   #recipe-wrapper div.recipe-item {
     width: 215px;
-    font-size: 10px;
+    font-size: 12px;
   }
   #recipe-wrapper .recipe-title {
     font-size: 18px;
-  }
-  #recipe-wrapper div.recipe-item .flag {
-    margin-top: -2px;
   }
   #recipe-wrapper div.recipe-image > img {
     height: 140px;
@@ -130,13 +130,10 @@
   }
   #recipe-wrapper div.recipe-item {
     width: 162px;
-    font-size: 8px;
+    font-size: 10px;
   }
   #recipe-wrapper .recipe-title {
     font-size: 14px;
-  }
-  #recipe-wrapper div.recipe-item .flag {
-    margin-top: -3px;
   }
   #recipe-wrapper div.recipe-image > img {
     height: 115px;
@@ -153,7 +150,7 @@
 @media only screen and (max-width: 545px) {
   #recipe-wrapper div.recipe-item {
     width: 200px;
-    font-size: 10px;
+    font-size: 12px;
   }
   #recipe-wrapper .recipe-title {
     font-size: 16px;
@@ -166,7 +163,7 @@
 @media only screen and (max-width: 440px) {
   #recipe-wrapper div.recipe-item {
     width: 162px;
-    font-size: 8px;
+    font-size: 10px;
   }
   #recipe-wrapper .recipe-title {
     font-size: 14px;

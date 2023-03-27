@@ -8,7 +8,7 @@
 
   <form method="POST" enctype="multipart/form-data" class="mb-5">
     {% csrf_token %}
-    <div class="container custom-scroll empty-h-scroll">
+    <div class="container">
 
       <div id="recipe-form" class="recipe-form-container">
         <h2 class="title text-uppercase">Recipe</h2>
@@ -52,8 +52,8 @@
 
 
     <!-- Submittion -->
-    <center id="recipe-submit-form" class="container">
-      <section class="ml-5 mr-5">
+    <section id="recipe-submit-form" class="container">
+      <div class="warning">
         <h2 class="warning-title text-uppercase">Attention please!</h2>
         <p>
           Before you share
@@ -67,7 +67,7 @@
           you are fully aware of the <a href="https://europa.eu/youreurope/business/running-business/intellectual-property/copyright/index_en.htm" target="_blank">Copyright Law</a>. If any of the above data you have entered violates our <a href="{% url 'terms-and-conditions' %}" target="_blank">Terms and Conditions</a>, then this recipe will be removed from the public.
         </p>
         {{ form.published|as_crispy_field }}
-      </section>
+      </div>
       <br>
       {% if on_update_view %}
         <!-- Update and deny action -->
@@ -80,18 +80,21 @@
           <input type="submit" class="btn btn-outline-success btn-lg btn-block" value="Create the recipe" />
         </div>
       {% endif %}
-    </center>
+      </section>
 
   </form>
 
 {% endblock content %}
 {% block base %}
 <script type="text/javascript">
-var categories_max_num = {{ categories_max_num }};
-var categories_name_label = '{{ categories_name_label }}';
+
+var categories_max_num           = {{ categories_max_num }};
+var categories_name_label        = '{{ categories_name_label }}';
 var categories_ingredients_label = '{{ categories_ingredients_label }}';
-var user_fullname = '{{ user.get_full_name }}';
-var recipe_id = {% if on_update_view %}{{ object.id }}{% else %}false{% endif %}; 
+var user_fullname                = '{{ user.get_full_name }}';
+
+var recipe_id = {% if on_update_view %}{{ object.id }}{% else %}false{% endif %};
+
 </script>
 <script src="{% static 'recipes/js/recipe_form.js' %}"></script>
 {% endblock %}

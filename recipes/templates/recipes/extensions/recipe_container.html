@@ -20,11 +20,11 @@
                   <span class="flag {{ recipe.nationality|lower }}"></span>
                   {{ recipe.nationality.name|title }}
                 {% else %}
-                  international
+                  International
                 {% endif %}
               </h7>
               {% if recipe.certified %}
-                <img alt="certification" height="20" src="{% static 'recipes/img/icons/flaticon/contract.svg' %}">
+                <img title="Certified recipe" alt="certification" height="20" src="{% static 'recipes/img/icons/flaticon/contract.svg' %}">
               {% endif %}
             </div>
           </div>

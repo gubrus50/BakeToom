@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'recipes.apps.RecipesConfig',
     'users.apps.UsersConfig',
     'validate_email',
-    'crispy_bootstrap4',
+    'crispy_bootstrap5',
     'crispy_forms',
     'django_cleanup',
     'django_countries',
@@ -135,7 +135,7 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 LOGIN_REDIRECT_URL = 'recipes-home'
 LOGIN_URL = 'login'

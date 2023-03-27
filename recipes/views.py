@@ -342,12 +342,14 @@ class RecipeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 def AboutView(request):
 	return render(request, 'recipes/about.html')
 
+def CreditsView(request):
+	return render(request, 'recipes/credits.html')
+
 def TermsAndConditions(request):
 	return render(request, 'recipes/terms_and_conditions.html')
 
 def PrivacyAndPolicy(request):
 	return render(request, 'recipes/privacy_and_policy.html')
-
 
 
 
