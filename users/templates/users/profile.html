@@ -30,7 +30,7 @@
           <h2 name="profile" class="title text-uppercase mb-4">My Profile</h2>
           <div class="menu">
             <a title="My recipes" name="my-recipes" href="{% url 'user-recipes' user.username %}">
-              <img height="25" src="{% static 'recipes/img/icons/flaticon/my_recipes.svg' %}">
+              <img height="25" src="{% static 'recipes/img/icons/flaticon/my_recipes.png' %}">
               <label class="ml-2 d-none">My recipes</label>
             </a>
             <a title="Add a recipe" name="add-recipe" href="{% url 'recipe-create' %}">
@@ -38,7 +38,7 @@
               <label class="ml-2 d-none">Add a recipe</label>
             </a>
             <a title="My bookmarks" name="my-bookmarks" href="#">
-              <img height="25" src="{% static 'recipes/img/icons/flaticon/sticky-notes.svg' %}">
+              <img height="25" src="{% static 'recipes/img/icons/flaticon/notes.png' %}">
               <label class="ml-2 d-none">My bookmarks</label>
             </a>
           </div>
