@@ -30,6 +30,7 @@ platformdirs==3.1.1
 psycopg2==2.9.5
 pycparser==2.21
 PyJWT==2.6.0
+python==3.9.16
 python-dateutil==2.8.2
 python3-openid==3.2.0
 pytz==2022.7.1
