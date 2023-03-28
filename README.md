@@ -11,9 +11,9 @@ Visit now at: www.baketoom.com
     <td><img src="https://github.com/gubrus50/BakeToom/blob/master/showcase/baketoom_3.png"/></td>
   </tr>
   <tr>
-    <td><img src="https://github.com/gubrus50/BakeToom/blob/master/showcase/baketoom_4.png"/><</td>
-    <td><img src="https://github.com/gubrus50/BakeToom/blob/master/showcase/baketoom_5.png"/><</td>
-    <td><img src="https://github.com/gubrus50/BakeToom/blob/master/showcase/baketoom_6.png"/><</td>
-    <td><img src="https://github.com/gubrus50/BakeToom/blob/master/showcase/baketoom_7.png"/><</td>
+    <td><img src="https://github.com/gubrus50/BakeToom/blob/master/showcase/baketoom_4.png"/></td>
+    <td><img src="https://github.com/gubrus50/BakeToom/blob/master/showcase/baketoom_5.png"/></td>
+    <td><img src="https://github.com/gubrus50/BakeToom/blob/master/showcase/baketoom_6.png"/></td>
+    <td><img src="https://github.com/gubrus50/BakeToom/blob/master/showcase/baketoom_7.png"/></td>
   </tr>
 </table>
