@@ -1,4 +1,4 @@
-# baketoom 
+# BakeToom 
 A website were you can store, share and manage your recipes. Visit now at: www.baketoom.com
 
 <table>
