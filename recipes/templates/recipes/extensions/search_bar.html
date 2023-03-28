@@ -319,15 +319,30 @@
 </div>
 <script name="select-country" defer>
 
-
-// Enable nationality_select and show nationality_dropdown, only if nationality_mode=specific is checked.
-// Otherwise, hide the nationality_dropdown and disable nationality_select.
-
 let nationality_section  = document.querySelector('section[name="nationality"]');
 let nationality_radios   = nationality_section.querySelectorAll('input[name="nationality_mode"]');
 let nationality_dropdown = nationality_section.querySelector('li[name="nationality-dropdown"]');
 let nationality_select   = nationality_dropdown.querySelector('select[name="nationality"]');
+let __flags              = `{% static 'recipes/img/icons/flags/' %}`;
 
+// Set flag icon for #select-country's label
+
+const selectCountryUpdateFlag = (selectElement) => {
+  let label  = selectElement.parentElement.querySelector('.input-group-text');
+  let __flag = selectElement.value.toLowerCase();
+
+  label.style.backgroundImage  = `url('${__flags}${__flag}.svg')`;
+  label.style.backgroundRepeat = 'no-repeat';
+  label.style.backgroundSize   = '100% 100%';
+}
+
+nationality_select.addEventListener('change', () => {
+    selectCountryUpdateFlag(nationality_select);
+});
+
+
+// Enable nationality_select and show nationality_dropdown, only if nationality_mode=specific is checked.
+// Otherwise, hide the nationality_dropdown and disable nationality_select.
 
 [...nationality_radios].map(radio =>
 {
@@ -348,22 +363,10 @@ let nationality_select   = nationality_dropdown.querySelector('select[name="nati
     });
   }
 
-  if (radio.checked) radio.click();
+  if (radio.checked) {
+    radio.click();
+    selectCountryUpdateFlag(nationality_select);
+  }
 });
-
-
-
-// Set flag icon for #select-country's label
-
-let __flags = `{% static 'recipes/img/icons/flags/' %}`;
-
-const selectCountryUpdateFlag = (selectElement) => {
-  let label  = selectElement.parentElement.querySelector('.input-group-text');
-  let __flag = selectElement.value.toLowerCase();
-
-  label.style.backgroundImage  = `url('${__flags}${__flag}.svg')`;
-  label.style.backgroundRepeat = 'no-repeat';
-  label.style.backgroundSize   = '100% 100%';
-}
 
 </script>
