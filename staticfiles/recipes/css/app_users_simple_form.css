@@ -1,0 +1,74 @@
+.simple-form {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 30px;
+  border: 1px solid #ced4da;
+  background-color: #fff;
+  border-radius: 3px;
+  overflow: auto;
+}
+.simple-form .title {
+  font-weight: 300;
+}
+
+
+@media only screen and (max-width: 991px) {
+  .simple-form {
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+  .simple-form p {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .simple-form {
+    font-size: 14px;
+    padding: 20px;
+  }
+  .simple-form .title {
+    font-size: 24px;
+  }
+  .simple-form p {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  .simple-form {
+    font-size: 12px;
+    padding: 20px;
+  }
+  .simple-form-container p {
+    font-size: 12px;
+  }
+}
+
+
+
+.simple-form-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 30px;
+}
+
+@media only screen and (max-width: 767px) {
+  .simple-form-split {
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+  }
+  .simple-form-split-right {
+    border-top: 1px solid #ccc;
+  }
+  .simple-form-split-right > .title {
+    margin-top: 30px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .simple-form-split .title,
+  .simple-form-split-right p {
+    text-align: center;
+  }
+}

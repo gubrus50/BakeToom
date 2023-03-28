@@ -1,0 +1,307 @@
+/**//* --------------- *//**/
+/**//* Checkbox Bullet *//**/
+/**//* --------------- *//**/
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 6px;
+  left: -20px;
+  height: 10px;
+  width: 10px;
+  border-radius: 1px;
+  background-color: #fbfbfb;
+  box-shadow: 0 0 0 1px #dee2e6;
+}
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* The container */
+.checkbox-container {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 14px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* Hide the browser's default checkbox */
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+/* When the checkbox is checked, add a blue background */
+.checkbox-container input:checked ~ .checkmark {
+  background-color: #2196F3;
+  box-shadow: 0 0 0 1px #217EF3FF;
+}
+/* Show the checkmark when checked */
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block
+}
+/* Style the checkmark/indicator */
+.checkbox-container .checkmark:after {
+  left: 4px;
+  top: 2px;
+  width: 2px;
+  height: 5px;
+  border: solid white;
+  border-width: 0 1px 1px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/**//* ---------------------- *//**/
+/**//* END of Checkbox Bullet *//**/
+/**//* ---------------------- *//**/
+
+
+
+
+
+/**//* ---------------- *//**/
+/**//* Recipe Container *//**/
+/**//* ---------------- *//**/
+
+.recipe-title {
+  font-family: 'Raleway', sans-serif;
+}
+
+#recipe-detail-content {
+  border-radius: 0px 0px 3px 3px;
+  padding: 0px;
+  background-color: #fbfbfb;
+}
+
+#recipe-detail-navbar {
+  background-color: #d1d5da;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1px;
+}
+#recipe-detail-navbar button {
+  border-radius: 0;
+  background: #fff;
+}
+#recipe-detail-navbar button:hover {
+  border-color: #f4f4f4;
+  background: #f4f4f4;
+}
+#recipe-detail-navbar i {
+  margin-right: 10px;
+}
+
+#recipe { overflow: auto }
+#recipe > article > div.wrapper {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  font-family: calibri;
+  font-size: 14px;
+  grid-gap: 0;
+}
+#recipe > article section {
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  padding: 15px;
+}
+#recipe > article section[name="description"] {
+  border-right: 0;
+}
+#recipe > article section[name="data"] {
+  grid-column: 1 / 3;
+  border-top: 0;
+}
+#recipe > article .recipe-image {
+  border: 1px solid #dee2e6;
+  padding: 15px;
+  border-left: 0;
+  background-color: #fff;
+  min-height: 175px;
+}
+
+#method > article {
+  font-family: calibri;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  padding: 15px;
+}
+#method > article > p {
+  margin: 0;
+}
+
+#ingredients > article {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 15px;
+}
+#ingredients > article > section {
+  padding: 10px;
+  border-radius: 3px;
+}
+#ingredients > article > section::-webkit-scrollbar-thumb:vertical,
+#ingredients > article > section ::-webkit-scrollbar-thumb:vertical {
+  height: 30px;
+  background-color: #d1d1d1;
+}
+#ingredients > article > section::-webkit-scrollbar-track-piece,
+#ingredients > article > section ::-webkit-scrollbar-track-piece {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.05);
+}
+#ingredients > article > section > ul {
+  padding-inline-start: 20px;
+  list-style-type: none;
+}
+#ingredients > article > section .title {
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+#license > article {
+  font-family: monospace;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  padding: 15px;
+}
+
+
+
+@media only screen and (max-width: 991px) {
+  #recipe > article > div.wrapper {
+    grid-template-columns: 3fr 1.5fr;
+    font-size: 12px;
+  }
+  #ingredients > article {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  #method > article, #license > article {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #recipe > article > div.wrapper {
+    grid-column-gap: 0px;
+  }
+  #recipe > article section[name="description"] {
+    grid-column: 1 / 3;
+    border-right: 1px solid #dee2e6;
+  }
+  #recipe > article section[name="data"] {
+    border-right: 0;
+    grid-column: 1;
+    font-size: 12px;
+  }
+  #recipe > article section[name="data"] > ul > li {
+    display: block;
+  }
+  #recipe > article .recipe-image {
+    width: 200px;
+    border-top: 0;
+    order: 3;
+  }
+  #method > article, #license > article {
+    font-size: 14px;
+  }
+  .off-w767 {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  #ingredients > article {
+    grid-template-columns: 1fr;
+  }
+  #recipe-detail-navbar {
+    border-radius: 0 !important;
+    grid-template: 1fr 1fr / 1fr 1fr;
+  }
+  #recipe-detail-navbar button {
+    border-radius: 0 !important;
+  }
+}
+
+@media only screen and (max-width: 483px) {
+  #recipe-detail-navbar button {
+    font-size: 12px;
+  }
+  #recipe > article > div.wrapper {
+    grid-template-columns: 1fr;
+  }
+  #recipe > article section[name="description"] {
+    border-top: 0;
+    order: 1;
+  }
+  #recipe > article .recipe-image {
+    border-top: 1px solid #dee2e6;
+    border-left: 1px solid #dee2e6;
+    height: 225px;
+    width: 100%;
+    order: 0;
+  }
+  #recipe > article section[name="data"] {
+    border-right: 1px solid #dee2e6;
+    grid-column: 1;
+    font-size: 12px;
+  }
+  #method > article, #license > article {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  #recipe, #ingredients, #method, #license {
+    padding: 30px 10px 30px 10px !important;
+  }
+}
+
+@media only screen and (max-width: 338px) {
+  #recipe > article .recipe-image {
+    height: 150px;
+  }
+}
+
+@media only screen and (max-width: 260px) {
+  #recipe-detail-navbar {
+    grid-template: 1fr / 1fr;
+  }
+}
+
+
+/**//* ----------------------- *//**/
+/**//* END of Recipe Container *//**/
+/**//* ----------------------- *//**/ 
+
+
+/* Social Media Icons */
+.social-media-icons li a img:hover {
+	opacity: 0.9;
+	border: 2px solid white;
+	border-radius: 50%;
+}
+
+
+
+@media only screen and (max-width: 800px) {
+
+	.social-media-icons li a img { height: 50px }
+
+	/* Recipe Categories ingredients list */
+	.checkbox-container {
+		font-size: 12px;
+	}
+	.checkmark {
+		top: 4px;
+		left: -19px;
+	}
+	/* END of Recipe Categories ingredients list */
+}

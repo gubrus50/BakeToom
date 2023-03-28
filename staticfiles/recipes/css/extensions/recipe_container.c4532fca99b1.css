@@ -1,0 +1,210 @@
+/* Pagination */
+#home-pagination { padding-bottom: 25px }
+/* First section of the pagination, buttons */
+#home-pagination div a { border-radius: 0 }
+/* Bottom section of the pagination, buttons */
+#home-pagination div[name="page-flip"] a {
+  border: 1px solid #dee2e6;
+  background-color: #fff;
+  text-decoration: none;
+  padding: .5rem .75rem;
+  text-align: center;
+  cursor: pointer;
+  border-top: 0;
+  float: left;
+  width: 20%
+}
+/* Pagination select page buttons */
+#home-pagination div ul li a.page-link-fancy {
+  border-left: 0;
+  border-right: 0
+}
+/* Pagination select page buttons, hover */
+#home-pagination div ul li a.page-link-fancy:hover {
+  background-image: linear-gradient(to top, #E9ECEF, #fff)
+}
+/* Pagination selected/current page button */
+#home-pagination div ul li a.page-link-active-fancy {
+  border-left: 0; 
+  border-right: 0;
+  color: #007bff;
+  background-color: #fff
+}
+/* Pagination FIRST (Początek btn) gradient hover */
+#home-pagination div ul li a[aria-label="First"]:hover {
+  background-image: linear-gradient(to right, #E9ECEF, #fff)
+}
+/* Pagination LAST (Koniec btn) gradient hover */
+#home-pagination div ul li a[aria-label="Last"]:hover {
+  background-image: linear-gradient(to right, #fff, #E9ECEF)
+}
+/* Pagination Previous (<< btn) gradient hover */
+#home-pagination div[name="page-flip"] a[aria-label="Previous"]:hover {
+  background-image: linear-gradient(to right, #E9ECEF, #fff)
+}
+/* Pagination Next (>> btn) gradient hover */
+#home-pagination div[name="page-flip"] a[aria-label="Next"]:hover {
+  background-image: linear-gradient(to right, #fff, #E9ECEF)
+}
+
+
+
+
+#recipe-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+#recipe-wrapper a {
+  color: inherit;
+  text-decoration: inherit;
+  padding: 0;
+  border-radius: 0;
+  background-color: #fff;
+  transition: transform .2s;
+}
+#recipe-wrapper a:hover {
+  -ms-transform: scale(1.02); /* IE 9 */
+  -webkit-transform: scale(1.02); /* Safari 3-8 */
+  transform: scale(1.02);
+}
+#recipe-wrapper div.recipe-item {
+  width: 250px;
+  height: 100%;
+}
+#recipe-wrapper div.recipe-image {
+  position: relative;
+  text-align: center;
+}
+#recipe-wrapper div.recipe-image > .unpublished {
+  font-size: 22px;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: red;
+}
+#recipe-wrapper div.recipe-detail {
+  white-space: nowrap; 
+  width: 95%; 
+  overflow: hidden; 
+}
+#recipe-wrapper .recipe-detail > img[alt="certification"] {
+  margin-top: 2px;
+}
+#recipe-wrapper .recipe-region {
+  display: inline-block;
+  margin-top: 0px;
+}
+#recipe-wrapper .recipe-region > .flag {
+  vertical-align: middle;
+  margin-bottom: 3px;
+}
+
+
+
+
+@media only screen and (max-width: 991px) {
+  #recipe-wrapper div.recipe-item {
+    width: 215px;
+    font-size: 12px;
+  }
+  #recipe-wrapper .recipe-title {
+    font-size: 18px;
+  }
+  #recipe-wrapper div.recipe-image > img {
+    height: 140px;
+  }
+  #recipe-wrapper div.recipe-image > .unpublished {
+    font-size: 18px;
+  }
+  #recipe-wrapper .recipe-region {
+    margin-top: 2px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #recipe-wrapper {
+    max-width: 100% !important;
+  }
+  #recipe-wrapper div.recipe-item {
+    width: 162px;
+    font-size: 10px;
+  }
+  #recipe-wrapper .recipe-title {
+    font-size: 14px;
+  }
+  #recipe-wrapper div.recipe-image > img {
+    height: 115px;
+  }
+  #recipe-wrapper div.recipe-image > .unpublished {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #home-pagination { font-size: 12px }
+}
+
+@media only screen and (max-width: 545px) {
+  #recipe-wrapper div.recipe-item {
+    width: 200px;
+    font-size: 12px;
+  }
+  #recipe-wrapper .recipe-title {
+    font-size: 16px;
+  }
+  #recipe-wrapper div.recipe-image > img {
+    height: 130px;
+  }
+}
+
+@media only screen and (max-width: 440px) {
+  #recipe-wrapper div.recipe-item {
+    width: 162px;
+    font-size: 10px;
+  }
+  #recipe-wrapper .recipe-title {
+    font-size: 14px;
+  }
+  #recipe-wrapper div.recipe-image > img {
+    height: 115px;
+  }
+}
+
+@media only screen and (max-width: 363px) {
+  #recipe-wrapper div.recipe-item {
+    width: 280px;
+    font-size: 12px;
+  }
+  #recipe-wrapper .recipe-title {
+    font-size: 18px;
+  }
+  #recipe-wrapper div.recipe-image > img {
+    height: 185px;
+  }
+  #recipe-wrapper div.recipe-image > .unpublished {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 321px) {
+  #recipe-wrapper div.recipe-item {
+    width: 262px;
+    font-size: 12px;
+  }
+  #recipe-wrapper div.recipe-image > img {
+    height: 175px;
+  }
+}
+
+@media only screen and (max-width: 280px) {
+  #recipe-wrapper div.recipe-item {
+    width: 230px;
+    font-size: 12px;
+  }
+  #recipe-wrapper div.recipe-image > img {
+    height: 150px;
+  }
+}
