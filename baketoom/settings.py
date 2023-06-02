@@ -94,14 +94,7 @@ WSGI_APPLICATION = 'baketoom.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
-if DEBUG == 'False':
-    DATABASES['default'] = {
+    'default' = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get('PGDATABASE'),
         'USER': os.environ.get('PGUSER'),
@@ -109,6 +102,7 @@ if DEBUG == 'False':
         'HOST': os.environ.get('PGHOST'),
         'PORT': os.environ.get('PGPORT'),
     }
+}
 
 
 
