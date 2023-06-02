@@ -66,7 +66,7 @@ CSRF_TRUSTED_ORIGINS = [
     'http://www.baketoom.com',
     'https://www.baketoom.com',
     'web-production-1cb3.up.railway.app'
-] # pip django-cors-headers
+]
 
 ROOT_URLCONF = 'baketoom.urls'
 
