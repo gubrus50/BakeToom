@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('BAKETOOM_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = (os.environ.get('BAKETOOM_DEBUG_VALUE') == 'True')
 
-ALLOWED_HOSTS = ['baketoom.herokuapp.com','web-production-1cb3.up.railway.app']
+ALLOWED_HOSTS = ['baketoom.herokuapp.com']
 
 
 # Application definition
@@ -60,7 +60,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CSRF_TRUSTED_ORIGINS = ['baketoom.com','www.baketoom.com'] # pip django-cors-headers
+CSRF_TRUSTED_ORIGINS = [
+    'baketoom.com',
+    'www.baketoom.com',
+    'http://www.baketoom.com',
+    'https://www.baketoom.com',
+    'web-production-1cb3.up.railway.app'
+] # pip django-cors-headers
 
 ROOT_URLCONF = 'baketoom.urls'
 
