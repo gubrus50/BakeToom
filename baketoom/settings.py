@@ -61,11 +61,9 @@ MIDDLEWARE = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'baketoom.com',
-    'www.baketoom.com',
     'http://www.baketoom.com',
     'https://www.baketoom.com',
-    'web-production-1cb3.up.railway.app'
+    'https://web-production-1cb3.up.railway.app',
 ]
 
 ROOT_URLCONF = 'baketoom.urls'
