@@ -60,7 +60,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CSRF_TRUSTED_ORIGINS = ['baketoom.com'] # pip django-cors-headers
+CSRF_TRUSTED_ORIGINS = [
+    'baketoom.com',
+    'www.baketoom.com',
+    'http://www.baketoom.com',
+    'https://www.baketoom.com',
+    'web-production-1cb3.up.railway.app'
+]
 
 ROOT_URLCONF = 'baketoom.urls'
 
@@ -92,6 +98,10 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+}
+
+if DEBUG == 'False':
+    DATABASES['default'] = dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 }
 
 
