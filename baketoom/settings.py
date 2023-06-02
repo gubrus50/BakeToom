@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('BAKETOOM_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = (os.environ.get('BAKETOOM_DEBUG_VALUE') == 'True')
 
-ALLOWED_HOSTS = ['baketoom.herokuapp.com','railway.app']
+ALLOWED_HOSTS = ['baketoom.herokuapp.com']
 
 
 # Application definition
