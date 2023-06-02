@@ -60,6 +60,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CSRF_TRUSTED_ORIGINS = ['baketoom.com'] # pip django-cors-headers
+
 ROOT_URLCONF = 'baketoom.urls'
 
 TEMPLATES = [
