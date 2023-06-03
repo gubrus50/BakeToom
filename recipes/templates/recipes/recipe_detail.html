@@ -4,6 +4,7 @@
 {% block head %}
 
 <link rel="stylesheet" href="{% static 'recipes/css/recipe_detail.css' %}">
+<link rel="stylesheet" href="{% static 'recipes/css/flags16_both.css' %}" name="world-flags-sprite">
 
 {% if recipe.publisher %}<meta name="author" content="{{ recipe.publisher}}">{% endif %}
 <meta name="description" content="{{ recipe.description }}">
