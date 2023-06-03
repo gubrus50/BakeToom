@@ -61,11 +61,9 @@ MIDDLEWARE = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'baketoom.com',
-    'www.baketoom.com',
     'http://www.baketoom.com',
     'https://www.baketoom.com',
-    'web-production-1cb3.up.railway.app'
+    'https://web-production-1cb3.up.railway.app',
 ]
 
 ROOT_URLCONF = 'baketoom.urls'
@@ -95,14 +93,15 @@ WSGI_APPLICATION = 'baketoom.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('PGDATABASE'),
+        'USER': os.environ.get('PGUSER'),
+        'HOST': os.environ.get('PGHOST'),
+        'PORT': os.environ.get('PGPORT'),
+        'PASSWORD': os.environ.get('PGPASSWORD'),
     }
 }
 
-if DEBUG == 'False':
-    DATABASES['default'] = dj_database_url.config(default=os.environ.get('DATABASE_URL'))
-}
 
 
 # Password validation
