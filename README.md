@@ -1,7 +1,7 @@
 <hr>
 <img width="125" src="https://github.com/gubrus50/BakeToom/blob/master/staticfiles/recipes/img/baketoom_logo.png"/>
 A website were you can store, share and manage your recipes.<br>
-Visit now at: www.baketoom.com
+Visit now at: www.baketoom.com (Temporarily down since rails-app, and Heroku update)
 <hr>
 <table>
   <tr>
